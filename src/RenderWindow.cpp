@@ -31,6 +31,39 @@ RenderWindow::~RenderWindow()
 }
 
 
+SDL_Texture* RenderWindow::loadTexture(const char* p_filePath)
+{
+	SDL_Texture* texture = IMG_LoadTexture(renderer, p_filePath);
+
+	if (texture == nullptr)
+	{
+		std::cout << "Failed to load texture! Error: " << SDL_GetError() << std::endl;
+	}
+
+	return texture;
+
+}	
+
+
+
+void RenderWindow::clear()
+{
+	SDL_RenderClear(renderer);
+}
+
+void RenderWindow::render(SDL_Texture* p_tex)
+{
+	
+	SDL_RenderCopy(renderer, p_tex, NULL, NULL);
+}
+
+void RenderWindow::display()
+{
+	SDL_RenderPresent(renderer);
+}
+
+
+
 
 
 void RenderWindow::cleanUp()

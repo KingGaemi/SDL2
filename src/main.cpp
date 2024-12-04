@@ -16,6 +16,9 @@ int main(int argc, char* args[])
 
 	RenderWindow window("GAME v1.0", 1280, 720);
 
+	SDL_Texture* eri = window.loadTexture("res/gfx/eri_copy.png");
+
+
 	bool gameIsRunning = true;
 
 	SDL_Event event;
@@ -27,13 +30,14 @@ int main(int argc, char* args[])
 			if(event.type == SDL_QUIT)
 				gameIsRunning = false;
 		}
+
+		window.clear();
+		window.render(eri);
+		window.display();
 	}
 
-	window.cleanUP();
+	window.cleanUp();
 	SDL_Quit();
 
-
-	std::cout << "YEY" << std::endl;
-	std::cin.get();
 	return 0;
 }
