@@ -1,43 +1,40 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <iostream>
-#include "RenderWindow.hpp"
+// void listRenderDrivers() {
+//     int numDrivers = SDL_GetNumRenderDrivers();
+//     SDL_RendererInfo info;
+
+//     for (int i = 0; i < numDrivers; ++i) {
+//         SDL_GetRenderDriverInfo(i, &info);
+//         std::cout << "Driver " << i << ": " << info.name << std::endl;
+//     }
+// }
+
+
+#include "Game.h"
+
+
 
 
 int main(int argc, char* args[])
 {
-	if (SDL_Init(SDL_INIT_VIDEO) > 0)
-	{
-		std::cout << "SDL_Init FAILED. SDL_ERROR:" << SDL_GetError() << std::endl;
-	}
-
-	if (!(IMG_Init(IMG_INIT_PNG)))
-		std::cout << "IMG_init has FAILED. SDL_ERROR: " << SDL_GetError() << std::endl;
-
-	RenderWindow window("GAME v1.0", 1280, 720);
-
-	SDL_Texture* eri = window.loadTexture("res/gfx/eri_copy.png");
+    
+    
+	Game game;
 
 
-	bool gameIsRunning = true;
+    game.init("Game.1.0.1", 1280, 800, false);
 
-	SDL_Event event;
 
-	while(gameIsRunning)
-	{
-		while (SDL_PollEvent(&event))
-		{
-			if(event.type == SDL_QUIT)
-				gameIsRunning = false;
-		}
+	game.run();
 
-		window.clear();
-		window.render(eri);
-		window.display();
-	}
+    game.clean();
 
-	window.cleanUp();
-	SDL_Quit();
+
+
+
+
+
 
 	return 0;
+
+
 }
