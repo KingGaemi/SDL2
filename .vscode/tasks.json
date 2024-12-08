@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Debug",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-c", "src/main.cpp", "src/Renderer.cpp",
+                "-std=c++17", "-g", "-Wall", "-m64",
+                "-I", "include",
+                "-I", "C:/SDL2-w64/include",
+                "&&",
+                "g++", "*.o",
+                "-o", "bin/debug/main",
+                "-L", "C:/SDL2-w64/lib",
+                "-lmingw32", "-lSDL2main", "-lSDL2", "-lSDL2_image",
+                "&&",
+                "start", "bin/debug/main"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Debug Build"
+        }
+    ]
+}

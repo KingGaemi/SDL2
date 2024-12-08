@@ -1,13 +1,12 @@
 #pragma once
-
 #include "Scene.h"
 
 
 
 
-class MenuScene : public Scene{
+class GameplayScene: public Scene{
 public:
-	MenuScene(ChangeSceneCallback callback) : Scene(callback) {}
+	GameplayScene(ChangeSceneCallback callback) : Scene(callback) {}
 	void init(Renderer* renderer) override;
 	void handleEvents(Event& event) override;
 	void render(Renderer* renderer) override;
@@ -17,4 +16,5 @@ public:
 	void pushEvent(const Event& event);
 private:
 	EventQueue sceneEventQueue;
+
 };

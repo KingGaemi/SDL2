@@ -33,7 +33,12 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     // Create renderer
     renderer = new Renderer(window);
 
-    changeScene(std::make_shared<MenuScene>());
+
+
+    currentScene = new MenuScene([this](const std::string& newScene) {
+        this->changeScene(newScene); // 콜백 함수 등록
+    });
+
     currentScene->init(renderer);
 
 
@@ -164,8 +169,14 @@ void Game::render() {
 
 
 void Game::changeScene(std::shared_ptr<Scene> newScene) {
-    currentScene = newScene;
-}
+    delete currentScene;
+
+    if (newScene == "GameplayScene") {
+        std::cout << "Switching to Gameplay Scene..." << std::endl;
+        currentScene = new GameplayScene([this](const std::string& newScene) {
+            this->changeScene(newScene); // 새로운 씬의 콜백 설정
+        });
+    }}
 
 
 

@@ -17,7 +17,8 @@ void MenuScene::handleEvents(Event& event){
 	if(event.type == "KEYDOWN" && event.key == SDLK_RETURN){
 
 		std::cout << "Enter Pressed! " << std::endl;
-
+		changeSceneCallback("GameplayScene");
+		
 	}
 
 }
