@@ -34,7 +34,10 @@ std::shared_ptr<Entity> ECSManager::getEntityByName(const std::string& name){
 
 void ECSManager::setEntityName(std::shared_ptr<Entity> sharedEntity, const std::string& name) {
    	
-
+	if (entityByName.find(name) != entityByName.end()) {
+        std::cerr << "Warning: Entity name already exists!" << std::endl;
+        return; // 이름 중복 방지
+    }
 
     std::cout << "ECSManager setEntityName :"<< name << std::endl;
     entityNames[sharedEntity] = name;

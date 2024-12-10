@@ -9,6 +9,7 @@
 #include <cassert>
 #include <optional>
 #include <stdexcept>
+class KeyboardComponent;
 
 
 
@@ -46,7 +47,14 @@ public:
         const ComponentID typeID = getComponentTypeID<T>();
         T* comp = new T(std::forward<Args>(args)...);
         comp->entity = this;
-        components.emplace_back(comp);
+        
+        
+        if (dynamic_cast<KeyboardComponent*>(comp.get())) {
+            components.insert(components.begin(), comp);  // 맨 앞에 추가
+        } else {
+            components.emplace_back(comp);  // 일반적인 컴포넌트는 뒤에 추가
+        }
+    
         componentArray[typeID] = comp;
         componentBitset[typeID] = true;
 
