@@ -33,14 +33,18 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     // Create renderer
     renderer = new Renderer(window);
 
+    // Create manager
+    manager = std::make_shared<ECSManager>();
 
 
-    currentScene = new MenuScene([this](const std::string& newScene) {
-        this->changeScene(newScene); // 콜백 함수 등록
-    });
+    currentScene = std::make_shared<MenuScene>(
+        [this](const std::shared_ptr<Scene> newScene){
+        this->changeScene(newScene->getName()); // 콜백 함수 등록
+        },
+        manager
+    );
 
     currentScene->init(renderer);
-
 
 	isRunning = true;
 }
@@ -117,12 +121,26 @@ void Game::handleEvents() {
 
         Event gameEvent = convertSDLEventToGameEvent(sdlEvent);
 
-
         if (currentScene) {
             currentScene->handleEvents(gameEvent);
         }
     }
 }
+
+void Game::changeScene(std::string sceneName) {
+
+    if (sceneName == "GameplayScene") {
+        std::cout << "Switching to Gameplay Scene..." << std::endl;
+        currentScene = std::make_shared<GameplayScene>(
+            [this](const std::shared_ptr<Scene> newScene) {
+                this->changeScene(newScene->getName()); // 새로운 씬의 콜백 설정
+            },
+            manager
+        );
+        std::cout << "callbackFunction ready" << std::endl;
+        currentScene->init(renderer);
+    }
+} 
 
 
 void Game::pushEvent(const Event& event){
@@ -168,15 +186,7 @@ void Game::render() {
 
 
 
-void Game::changeScene(std::shared_ptr<Scene> newScene) {
-    delete currentScene;
 
-    if (newScene == "GameplayScene") {
-        std::cout << "Switching to Gameplay Scene..." << std::endl;
-        currentScene = new GameplayScene([this](const std::string& newScene) {
-            this->changeScene(newScene); // 새로운 씬의 콜백 설정
-        });
-    }}
 
 
 

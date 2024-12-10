@@ -16,21 +16,24 @@ TextureManager* TextureManager::getInstance(){
 
 
 
-bool TextureManager::load(std::string_view id, std::string_view p_filePath, Renderer* renderer){
+bool TextureManager::load(std::string_view id, std::string_view p_filePath, IRenderer* renderer){
 
 
 	std::cout << "TextureManager load : " << p_filePath << std::endl;
 
 	if(textureMap.find(std::string(id)) != textureMap.end()){
-		std::cerr << "Already loaded texture. ID: " << id << std::endl;
+		std::cout << "Already loaded texture. ID: " << id << std::endl;
 		return false;
 	}
 
+	std::cout << "loaded : " << p_filePath << std::endl;
 
 	SDL_Texture* texture = renderer->loadTexture(std::string(p_filePath).c_str());
+
+
 	if (!texture) {
 
-		std::cerr << "Failed to load texture: "<< SDL_GetError() << std::endl;
+		std::cout << "Failed to load texture: "<< SDL_GetError() << std::endl;
 		return false;
 	}else {
     	std::cout << "Successfully loaded texture: " << p_filePath << std::endl;

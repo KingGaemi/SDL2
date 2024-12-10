@@ -6,7 +6,9 @@
 #include "TextureManager.h"
 #include "Scene.h"
 #include "MenuScene.h"
+#include "GameplayScene.h"
 #include "EventQueue.h"
+#include "ECS/ECSManager.h"
 
 
 
@@ -19,7 +21,7 @@ public:
 	Event convertSDLEventToGameEvent(const SDL_Event& sdlEvent);
 	void processGameEvents();
 	void pushEvent(const Event& event);
-	void changeScene(std::shared_ptr<Scene> newScene);
+	void changeScene(std::string newScene);
 	void run();
 	void handleEvents();
 	void update();
@@ -37,7 +39,7 @@ private:
 	const int FPS = 60;
 	const int frameDelay = 1000 / FPS;
     std::shared_ptr<Scene> currentScene;
-
+    std::shared_ptr<ECSManager> manager;
     EventQueue gameEventQueue;
 
 };

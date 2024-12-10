@@ -3,7 +3,8 @@
 #include <string>
 #include <string_view>
 #include <iostream>
-#include "Renderer.h"
+#include "IRenderer.h"
+
 
 
 class SDL_Texture;
@@ -14,7 +15,7 @@ class TextureManager
 public:
 
 	static TextureManager*getInstance();
-	bool load(std::string_view id, std::string_view p_filePath, Renderer* renderer);
+	bool load(std::string_view id, std::string_view p_filePath, IRenderer* renderer);
 
 	SDL_Texture* get(std::string_view id) const;
 	void clean();

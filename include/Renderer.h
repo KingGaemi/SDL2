@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <string_view>
+#include "TextureManager.h"
+#include "IRenderer.h"
 
 class SDL_Window;
 class SDL_Renderer;
@@ -8,17 +10,18 @@ class SDL_Texture;
 class SDL_Rect;
 
 
-class Renderer
-{
+
+class Renderer : public IRenderer {
 public:
 	Renderer(SDL_Window* window);
 	~Renderer();
 	
 
-	void clear();
+	SDL_Texture* loadTexture(const std::string& p_filePath) override;
 	void render(SDL_Texture* p_tex, SDL_Rect* srcRect, SDL_Rect* dstRect);
-	SDL_Texture* loadTexture(std::string_view p_filePath);
+	void draw(std::string textureID, SDL_Rect* srcRect, SDL_Rect* dstRect);
 	void display();
+	void clear();
 
 	
 
