@@ -1,34 +1,65 @@
+// ECSManager.h
 #pragma once
-#include "Entity.h"
-#include "Component.h"
-
-#include <unordered_map>
-#include <vector>
 #include <memory>
-#include <typeindex>
-#include <optional>
+#include <vector>
+#include <unordered_map>
+#include <string>
+#include "Entity.h"
+#include "System.h"
 
 
-class ECSManager{
+using SystemBitset = std::bitset<MAX_SYSTEMS>;
+using SystemArray = std::array<std::shared_ptr<System>, MAX_SYSTEMS>;
 
+class ECSManager {
 public:
-	using EntityList = std::vector<std::shared_ptr<Entity>>;
-
     std::shared_ptr<Entity> createEntity();
-    std::shared_ptr<Entity> getEntityByName(const std::string& name);
+    void destroyEntity(std::shared_ptr<Entity> entity);
+
+    // 엔티티 접근
+    std::shared_ptr<Entity> getEntityById(std::size_t id);
     void setEntityName(std::shared_ptr<Entity> entity, const std::string& name);
-    std::optional<std::string> getEntityName(std::shared_ptr<Entity> entity) const;
+    std::shared_ptr<Entity> getEntityByName(const std::string& name);
 
-    void update();
-    void draw();
+    // 시스템 추가/업데이트
+    template<typename S, typename... Args>
+    void addSystem(Args&&... args) {
+        SystemTypeID typeID = getSystemTypeID<S>();
+        if (systemBitset[typeID]) {
+            throw std::runtime_error("System already exists on this ECSManager!");
+        }
+        auto system = std::make_shared<S>(std::forward<Args>(args)...);
+        systemArray[typeID] = system;
+        systemBitset[typeID] = true;
+    }
+    void updateSystems(float deltaTime);
 
+    template<typename S>
+    std::shared_ptr<S> getSystem() const {
+        SystemTypeID typeID = getSystemTypeID<S>();
+        if (!systemBitset[typeID]) return nullptr;
+        return std::static_pointer_cast<S>(systemArray[typeID]);
+    }
+
+    template<typename S>
+    void removeSystem() {
+        SystemTypeID typeID = getSystemTypeID<S>();
+        if (systemBitset[typeID]) {
+            systemBitset[typeID] = false;
+            systemArray[typeID].reset();
+        }
+    }
+
+    // 엔티티 이름 관리 (선택 사항)
 
 private:
-
-    EntityList entities;
     std::size_t nextID = 0;
-    std::unordered_map<std::shared_ptr<Entity>, std::string> entityNames;
+    std::vector<std::shared_ptr<Entity>> entities;
+
+    // 이름 관리 (원한다면 유지)
     std::unordered_map<std::string, std::shared_ptr<Entity>> entityByName;
+    std::unordered_map<std::shared_ptr<Entity>, std::string> entityNames;
+
+    SystemArray systemArray{};
+    SystemBitset systemBitset;
 };
-
-

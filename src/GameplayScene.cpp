@@ -1,38 +1,31 @@
 #include "GameplayScene.h"
-#include "Renderer.h"
+#include "ECS/ECSManager.h"
+#include "ECS/Entity.h"
+#include "ECS/EntityFactory.h"
 #include <iostream>
 #include <string>
 
 
+// GameplayScene::~GameplayScene(){
+
+// 	onExit();
+// }
 
 
-void GameplayScene::init(Renderer* renderer){
+void GameplayScene::onEnter(){
 
-	std::cout << "GameplayScene init : " << std::endl;
-
-
+	// std::cout << "GameplayScene init : " << std::endl;
 	// Load texture
-	std::string texureID = "eri_copy";
-	TextureManager* textureManager = TextureManager::getInstance();	
-	if(!textureManager->load(texureID, "res/gfx/eri_copy2.png", renderer)) {
-	    std::cout << "Failed to load texture '"<< texureID <<"'" << std::endl;
-	    return;
-	}
 
-
-	player = manager->createEntity();
+	auto entityFactory = std::make_unique<EntityFactory>();
+	player = entityFactory->createPlayerEntity(ecsManager);
+	
 	// std::cout << "Player created" << std::endl;
 
-	playerTransform = &player->addComponent<TransformComponent>(10.0f, 10.0f);
-	// std::cout << "add TransfromComponent Complete" << std::endl;
-	player->addComponent<SpriteComponent>(texureID, playerTransform, renderer);
-	player->addComponent<KeyboardController>(playerTransform);
 
-
-	std::cout << "setEntityName" << std::endl;
-	manager->setEntityName(player, "player_Eri");
+	// std::cout << "setEntityName" << std::endl;
+	ecsManager->setEntityName(player, "player_Eri");
 	
-	player = manager->getEntityByName("player_Eri");
 	
 	std::cout << "GameplayScene initialized!" << std::endl;
 
@@ -41,37 +34,30 @@ void GameplayScene::init(Renderer* renderer){
 
 
 
-void GameplayScene::handleEvents(Event& event){
+void GameplayScene::handleEvents(const std::vector<Event>& events){
 
 	
-	giveEventsToFocus(event);
+	// giveEventsT	oFocus(event);
 
 }
 
-void GameplayScene::handleInput() {
 
 
+
+
+void GameplayScene::render(){
+	
    
-
-}
-
-
-
-void GameplayScene::render(Renderer* renderer){
-	
-	renderer->clear();
-   	
-
-	manager->draw();
 
 }
 
 void GameplayScene::update(float deltaTime){
 	// handleInput();
-	manager->update();	
+	// keyboardController->update();
+	ecsManager->updateSystems(deltaTime);	
 }
 
-void GameplayScene::clean(){
-	TextureManager* textureManager = TextureManager::getInstance();
-	textureManager->clean();
+void GameplayScene::onExit(){
+	
+	// ecsManager->destroyEntity(player);
 }

@@ -10,7 +10,7 @@ Event EventQueue::pop() {
         events.pop();
         return event;
     }
-    return {"", 0, ""}; // 빈 이벤트 반환
+    return {"", KeyCode::Unknown, ""}; // 빈 이벤트 반환
 }
 
 bool EventQueue::isEmpty() const {

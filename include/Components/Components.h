@@ -1,5 +1,5 @@
 #pragma once
 
-#include "TransformComponent.h"
-#include "SpriteComponent.h"
-#include "KeyboardController.h"
+#include "Components/TransformComponent.h"
+#include "Components/SpriteComponent.h"
+#include "Components/KeyboardController.h"

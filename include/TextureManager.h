@@ -3,29 +3,54 @@
 #include <string>
 #include <string_view>
 #include <iostream>
-#include "IRenderer.h"
+#include "Renderer.h"
 
 
-
-class SDL_Texture;
-class SDL_Rect;
-
-class TextureManager
-{
+class TextureManager{
 public:
 
-	static TextureManager*getInstance();
-	bool load(std::string_view id, std::string_view p_filePath, IRenderer* renderer);
+	TextureManager(Renderer& renderer) : renderer(&renderer) {}
+	~TextureManager() { cleanup(); }
 
-	SDL_Texture* get(std::string_view id) const;
-	void clean();
+	bool loadTexture(const std::string& textureID, std::string_view p_filePath){
+
+		SDL_Texture* texture = renderer->loadTexture(std::string(p_filePath).c_str());
+		if (!texture) {
+            std::cerr << "Failed to load texture: " << p_filePath << " Error: " << IMG_GetError() << std::endl;
+            return false;
+        }
+
+		textures[textureID] = texture;
+
+		return true;
+
+	};
+
+	SDL_Texture* getTexture(const std::string& textureID) {
+
+		// std::cout << "TextureManager :: getTexture(" << textureID << ")" << std::endl;
+		auto it = textures.find(textureID);
+		if (it != textures.end()) {
+			// std::cout << "getTexture Success" << std::endl;
+            return it->second;
+        }
+        std::cout << "Failed to find Texture.  ID: " << textureID << std::endl;
+
+
+        return nullptr;
+
+	}
+	void cleanup(){
+
+		for (auto& pair : textures) {
+            SDL_DestroyTexture(pair.second);
+        }
+        textures.clear();
+	}
 
 
 private:
-	static TextureManager* instance;
-	std::unordered_map<std::string, SDL_Texture*> textureMap;
-
-	TextureManager() = default;
-	~TextureManager();       
-
+	Renderer* renderer;
+	std::unordered_map<std::string, SDL_Texture*> textures;
+	   
 };    

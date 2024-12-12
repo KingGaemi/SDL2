@@ -1,65 +1,62 @@
 #include "MenuScene.h"
-#include "GameplayScene.h"
-#include "Renderer.h"
+#include "ECS/ECSManager.h"
+#include "ECS/Entity.h"
+#include "ECS/EntityFactory.h"
+
+
 #include <iostream>
 
 
+// MenuScene::~MenuScene(){
+
+// 	onExit();
+// }
 
 
-void MenuScene::init(Renderer* renderer){
+void MenuScene::onEnter(){
 
-	if (this->manager) {
+	if (this->ecsManager) {
         std::cout << "MenuScene initialized with a valid manager." << std::endl;
     } else {
         std::cerr << "MenuScene initialized with a nullptr manager!" << std::endl;
     }
+
+
+	auto entityFactory = std::make_unique<EntityFactory>();
+
+	std::cout <<"entityFactory created " << std::endl;
+	entityFactory->createBackgroundEntity(ecsManager, "background_main");
 	
-	TextureManager* textureManager = TextureManager::getInstance();
-	textureManager->load("background_main", "res/gfx/SunnyLand/Environment/back.png", renderer);
 	
-	renderer->clear();
-	
-	renderer->draw("background_main", nullptr, nullptr);
-	
-	renderer->display();
 }
 
 
 
-void MenuScene::handleEvents(Event& event){
-	if(event.type == "KEYDOWN" && event.key == SDLK_RETURN){
-
-		std::cout << "Enter Pressed! " << std::endl;
-		auto newScene = std::make_shared<GameplayScene>(
-            [this](const std::shared_ptr<Scene>& scene) {
-                changeSceneCallback(scene);
-            },
-            manager
-        );
-		std::cout << "Callback === " << std::endl;
-		changeSceneCallback(newScene);
-		std::cout << "changeSceneCallback ^^^ " << std::endl;
-	}
-
+void MenuScene::handleEvents(const std::vector<Event>& events){
+	for (const auto& e : events) {
+        if (e.type == "KEYDOWN" && e.key == KeyCode::Enter) {
+            std::cout << "Enter Pressed! " << std::endl;
+            changeSceneCallback("GameplayScene");
+        }
+    }
 }
 
 
-void MenuScene::render(Renderer* renderer){
+void MenuScene::render(){
 
-	
-
-
-	
-	
-	
-
+		
 }
 
 void MenuScene::update(float deltaTime){
 
+	ecsManager->updateSystems(deltaTime);
+
 }
 
-void MenuScene::clean(){
-	TextureManager* textureManager = TextureManager::getInstance();
-	textureManager->clean();
+
+
+void MenuScene::onExit(){
+
+ 	// ecsManager->destroyEntity()
+
 }

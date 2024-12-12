@@ -1,21 +1,16 @@
 #include "Components/KeyboardController.h"
+#include <iostream>
 
 
 
 
 
-
-KeyboardController::KeyboardController(TransformComponent* p_transform){
+KeyboardController::KeyboardController(std::shared_ptr<TransformComponent> p_transform){
 	
 	transform = p_transform;
 	// init();
 
 }
-
-void KeyboardController::init (){
-
-	
-} 
 
 
 
@@ -41,6 +36,7 @@ void KeyboardController::update(){
     } else if (state[SDL_SCANCODE_LEFT] && state[SDL_SCANCODE_DOWN]) {
         transform->velocity.x = -1;
         transform->velocity.y = 1;
+        std::cout << "DOWN" << std::endl;
     } 
     // 단일 방향 입력 처리
     else {

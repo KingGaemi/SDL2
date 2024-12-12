@@ -1,55 +1,29 @@
 #pragma once
-#include <SDL2/SDL.h>
-#include <map>
-#include <memory>
+
+#include <cstddef>
+#include <typeindex>
 #include <type_traits>
+#include <memory>
 
-class Entity;
-
-using ComponentID = std::size_t;
-
-
-class Component{
-
+class Component {
 public:
-    Entity* entity = nullptr;
-
-    virtual void init() = 0;
-    virtual void update() = 0;
-
-
-    virtual ~Component(){}
-
-
-
-private:
-
-
-
+    virtual ~Component() = default;
 };
 
-class DrawableComponent : public Component {
-public:
-    virtual void draw() = 0;
-};
+// 컴포넌트 타입 ID를 위한 유틸리티
+using ComponentTypeID = std::size_t;
 
-
-inline ComponentID getNewComponentTypeID()
-
-{
-
-    static ComponentID lastID = 0u;
+inline ComponentTypeID getNewComponentTypeID() {
+    static ComponentTypeID lastID = 0u;
     return lastID++;
-
-
-
 }
 
-
-template <typename T>
-inline ComponentID getComponentTypeID() noexcept {
+template<typename T>
+inline ComponentTypeID getComponentTypeID() noexcept {
     static_assert(std::is_base_of<Component, T>::value, "T must inherit from Component");
-    static ComponentID typeID = getNewComponentTypeID();
+    static ComponentTypeID typeID = getNewComponentTypeID();
     return typeID;
 }
+
+constexpr std::size_t MAX_COMPONENTS = 64;
 

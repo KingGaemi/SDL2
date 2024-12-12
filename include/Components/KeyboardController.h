@@ -1,5 +1,5 @@
 #pragma once
-#include "ECS/Component.h"
+#include <SDL2/SDL.h>
 #include "Components/TransformComponent.h"
 
 
@@ -10,16 +10,15 @@ class KeyboardController : public Component {
 
 public:
 
-	TransformComponent* transform; 
-	KeyboardController(TransformComponent* p_transform);
-	void init() override;
-	void update() override;
+	
+	KeyboardController(std::shared_ptr<TransformComponent> p_transform);
+	void update();
 
 
 private:
 
 
-
+	std::shared_ptr<TransformComponent> transform; 
 
 
 

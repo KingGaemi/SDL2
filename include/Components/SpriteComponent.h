@@ -1,29 +1,24 @@
 #pragma once
 #include <string>
 #include "ECS/Component.h"
-#include "TextureManager.h"
-#include "Components/TransformComponent.h"
-#include "Renderer.h"
 
 
-class SpriteComponent : public DrawableComponent{
+class SpriteComponent : public Component{
 
 public:
-	std::string textureID;
-	TransformComponent* transform;
-	Renderer* renderer;
 
-	SpriteComponent(std::string_view id, TransformComponent* transform, Renderer* renderer);
-	void init() override;
-	void draw() override;
-	void render();
-	void update() override;
+	int width;
+	int height;
+	float scale = 1.0f;
 
-	SDL_Rect srcRect;
-	SDL_Rect dstRect;        
 
-private:
-	std::string path;
+	SpriteComponent(const std::string& textureID, int w, int h) :  width(w), height(h), textureID(textureID){}
+	SpriteComponent(const std::string& textureID, int w, int h, float sc) : width(w), height(h), scale(sc), textureID(textureID){}
+	
+	std::string getTextureID() const {return textureID;}
 	
 
+	
+private:
+	std::string textureID;
 };
