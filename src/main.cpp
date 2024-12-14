@@ -15,24 +15,14 @@
 
 
 int main(int argc, char* args[])
-{
-    
-    
+{        
 	Game game;
 
-
     game.init("Game.1.0.1", 1280, 800, false);
-
 
 	game.run();
 
     game.clean();
-
-
-
-
-
-
 
 	return 0;
 

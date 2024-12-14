@@ -45,6 +45,17 @@ void ECSManager::updateSystems(float deltaTime) {
 }
 
 
+void ECSManager::setVelocity(std::shared_ptr<Entity> entity, float x, float y) {
+    
+    auto system = this->getSystem<MovementSystem>();
+    
+    system->setVelo(entity, x, y);
+
+
+}
+
+
+
 
 
 void ECSManager::setEntityName(std::shared_ptr<Entity> entity, const std::string& name) {

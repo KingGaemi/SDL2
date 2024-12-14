@@ -25,7 +25,7 @@ std::shared_ptr<Entity> EntityFactory::createPlayerEntity(std::shared_ptr<ECSMan
 	player->addComponent<TransformComponent>();
 	std::pair<int, int> size = ecsManager->getSystem<RenderSystem>()->getTextureSize("player_eri");
 	player->addComponent<SpriteComponent>("player_eri", size.first , size.second, 3.0f);
-	player->addComponent<KeyboardController>(player->getComponent<TransformComponent>());
+	// player->addComponent<KeyboardController>(player->getComponent<TransformComponent>());
 
 	return player;	
 

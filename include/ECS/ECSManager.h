@@ -50,6 +50,7 @@ public:
         }
     }
 
+    void setVelocity(std::shared_ptr<Entity> entity, float x, float y);
     // 엔티티 이름 관리 (선택 사항)
 
 private:

@@ -2,6 +2,7 @@
 #include "ECS/ECSManager.h"
 #include "ECS/Entity.h"
 #include "ECS/EntityFactory.h"
+#include "KeyCode.h"
 #include <iostream>
 #include <string>
 
@@ -36,18 +37,26 @@ void GameplayScene::onEnter(){
 
 void GameplayScene::handleEvents(const std::vector<Event>& events){
 
-	
-	// giveEventsT	oFocus(event);
+	for (auto event : events){
+		if(event.type == "KEYDOWN"){
+			
+			if (event.key == KeyCode::Right) {
+                ecsManager->setVelocity(player, 1, 0);  // 오른쪽으로 이동
+            } else if (event.key == KeyCode::Left) {
+                ecsManager->setVelocity(player, -1, 0); // 왼쪽으로 이동
+            } else if (event.key == KeyCode::Up) {
+                ecsManager->setVelocity(player, 0, -1);  // 위로 이동
+            } else if (event.key == KeyCode::Down) {
+                ecsManager->setVelocity(player, 0, 1); // 아래로 이동
+            }
+      
+		}
+		
+	}
 
 }
 
-
-
-
-
-void GameplayScene::render(){
-	
-   
+void GameplayScene::render(){	
 
 }
 
@@ -58,6 +67,5 @@ void GameplayScene::update(float deltaTime){
 }
 
 void GameplayScene::onExit(){
-	
 	// ecsManager->destroyEntity(player);
 }

@@ -6,6 +6,7 @@ class Entity;
 
 
 
+
 class GameplayScene: public Scene{
 public:
 	GameplayScene(std::shared_ptr<ECSManager> ecsManager, ChangeSceneCallback callback) : Scene("GameplayScene", ecsManager , callback){}
