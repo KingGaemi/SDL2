@@ -11,6 +11,7 @@ std::shared_ptr<Entity> EntityFactory::createBackgroundEntity(std::shared_ptr<EC
 	entity->addComponent<TransformComponent>();
 	entity->addComponent<SpriteComponent>(textureName, 1280, 800);
 
+
 	return entity;
 }
 

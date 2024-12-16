@@ -8,26 +8,21 @@ void InputManager::handleEvents(){
     SDL_Event sdlEvent;
     
     while (SDL_PollEvent(&sdlEvent)){
-        if (this->eventManager) {
-            std::cout << "eventManager is valid." << std::endl;
-        } else {
-            std::cerr << "eventManager is nullptr" << std::endl;
-        }
         Event gameEvent = convertSDLEventToGameEvent(sdlEvent);
         if (gameEvent.type == EventType::QUIT) {
             std::cout << "EventType : QUIT " << std::endl;
-            eventManager->pushEvent(gameEvent);
+            eventManager->pushBigEvent(gameEvent);
         }
         if(gameEvent.type == EventType::KEYDOWN) {
             std::cout << "EventType : KEYDOWN " << std::endl;
             eventManager->pushEvent(gameEvent);
         }
         if(gameEvent.type == EventType::KEYUP) {
-            std::cout << "EventType : KEYDOWN " << std::endl;
+            std::cout << "EventType : KEYUP " << std::endl;
             eventManager->pushEvent(gameEvent);
         }
         if(gameEvent.type == EventType::UNKNOWN){
-            std::cout << "EventType : UNKNOWN " << std::endl;  
+            // std::cout << "EventType : UNKNOWN " << std::endl;  
         }
     }
 }
@@ -36,8 +31,6 @@ void InputManager::handleEvents(){
 
 Event InputManager::convertSDLEventToGameEvent(const SDL_Event& sdlEvent) {
             Event gameEvent;
-
-            std::cout << "Convert Events " << std::endl;
 
             switch (sdlEvent.type) {
             case SDL_QUIT:
@@ -52,10 +45,10 @@ Event InputManager::convertSDLEventToGameEvent(const SDL_Event& sdlEvent) {
                 gameEvent.key = translateSDLKey(sdlEvent.key.keysym.sym);
                 break;
             default:
-                std::cout << "Unhandled SDL Event type: " << sdlEvent.type << std::endl;
-                if (sdlEvent.type == SDL_WINDOWEVENT) {
-                    std::cout << "SDL_WINDOWEVENT: " << (int)sdlEvent.window.event << std::endl;
-                }
+                // std::cout << "Unhandled SDL Event type: " << sdlEvent.type << std::endl;
+                // if (sdlEvent.type == SDL_WINDOWEVENT) {
+                //     std::cout << "SDL_WINDOWEVENT: " << (int)sdlEvent.window.event << std::endl;
+                // }
                 gameEvent.type = EventType::UNKNOWN;
                 break;
             }

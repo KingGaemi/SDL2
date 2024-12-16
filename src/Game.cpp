@@ -78,22 +78,24 @@ void Game::run() {
 
         // 1. 입력 처리 → InputManager가 SDL 이벤트를 EventManager에 푸시
         inputManager->handleEvents();
-        std::cout << "handleEvents complete." << std::endl;
+
         // deltaTime 구하기
         Uint32 currentFrameTime = SDL_GetTicks();
         float deltaTime = (currentFrameTime - lastFrameTime) / 1000.0f; // 초 단위 시간
         lastFrameTime = currentFrameTime;
 
-        std::cout << "Set deltaTime complete." << std::endl;
         // 2. ECS 시스템 업데이트 → EventSystem이 SCENE_CHANGE 이벤트 발생 가능
         ecsManager->updateSystems(deltaTime); 
 
         // 3. EventManager에서 이벤트 폴링 → SCENE_CHANGE나 QUIT 처리
         Event evt;
-        while (eventManager->pollEvent(evt)) {
+        while (eventManager->pollBigEvent(evt)) {
+            std::cout << "polling in Run" << std::endl;
             if (evt.type == EventType::SCENE_CHANGE && evt.sceneChangeData.has_value()) {
+
                 changeScene(evt.sceneChangeData->nextSceneName);
-            } else if (evt.type == EventType::QUIT) {
+            }
+            if (evt.type == EventType::QUIT) {
                 isRunning = false;
             }
         }
@@ -128,6 +130,7 @@ void Game::changeScene(std::string sceneName) {
 
     if (sceneName == "GameplayScene") {
         std::cout << "Switching to Gameplay Scene..." << std::endl;
+        currentScene->onExit();
         currentScene = std::make_shared<GameplayScene>(ecsManager);
         currentScene->onEnter();
     }

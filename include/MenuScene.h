@@ -20,4 +20,6 @@ public:
 
 private:
 
+	std::shared_ptr<Entity> background;
+
 };

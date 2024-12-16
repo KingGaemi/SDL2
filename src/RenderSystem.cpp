@@ -31,7 +31,7 @@ void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
             // Renderer 통해 그리기
             auto texture = textureManager->getTexture(sprite->getTextureID());
             // if(texture){
-            //     std::cout << "RenderSystem::update() srcRect.w : " << srcRect.w << "dstRect.w : " << dstRect.w << std::endl;
+            //     std::cout << "RenderSystem::update() " << "dstRect.x : " << dstRect.x << std::endl;
             // }else{
             //     std::cout << "getTexture Failed" << std::endl;
             // }

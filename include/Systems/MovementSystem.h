@@ -11,9 +11,8 @@ public:
         for (auto& entity : entities) {
             auto transform = entity->getComponent<TransformComponent>();
             if (transform) {
-                // 단순 이동 로직: x, y를 프레임마다 증가
-                transform->x(transform->velocity.x * transform->speed * deltaTime);
-                transform->y(transform->velocity.y * transform->speed * deltaTime);
+                transform->x(transform->position.x + transform->velocity.x * transform->speed * deltaTime * 50);
+                transform->y(transform->position.y + transform->velocity.y * transform->speed * deltaTime * 50);
             }else{
                 std::cout << "Entity doesn't have TransformComponent. ID: " << entity->getId() << std::endl;
             }
