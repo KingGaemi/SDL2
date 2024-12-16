@@ -9,12 +9,11 @@ class ECSManager;
 
 class Scene {
 public:
-    using ChangeSceneCallback = std::function<void(const std::string& sceneName)>;
+   
 
     Scene(const std::string& name, 
-          std::shared_ptr<ECSManager> ecsManager,
-          ChangeSceneCallback changeSceneCallback)
-        : name(name), ecsManager(ecsManager), changeSceneCallback(changeSceneCallback) {}
+          std::shared_ptr<ECSManager> ecsManager)
+        : name(name), ecsManager(ecsManager){}
 
     // virtual ~Scene() = default;
 
@@ -42,5 +41,4 @@ protected:
     std::string name;
     std::shared_ptr<ECSManager> ecsManager;
    	EventQueue sceneEventQueue;
-    ChangeSceneCallback changeSceneCallback;
 };

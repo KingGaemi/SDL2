@@ -23,10 +23,8 @@ void MenuScene::onEnter(){
 
 
 	auto entityFactory = std::make_unique<EntityFactory>();
-
 	std::cout <<"entityFactory created " << std::endl;
 	entityFactory->createBackgroundEntity(ecsManager, "background_main");
-	
 	
 }
 

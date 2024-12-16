@@ -39,29 +39,18 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
 
     // Create manager
     ecsManager = std::make_shared<ECSManager>();
-
     eventManager = std::make_unique<EventManager>();
     inputManager = std::make_unique<InputManager>(eventManager->get());
 
+
+    // Add Systems
     ecsManager->addSystem<RenderSystem>(*renderer);
     ecsManager->addSystem<MovementSystem>();
     ecsManager->addSystem<EventSystem>(eventManager->get());
 
     textureLoading();
     
-
-    inputManager->setQuitCallback([this]() {
-        this->isRunning = false;
-    });
-
-    currentScene = std::make_shared<MenuScene>(
-        ecsManager,
-        [this](const std::string& newSceneName){
-        this->changeScene(newSceneName); // 콜백 함수 등록
-        }
-        
-    );
-    std::cout << "NewScene " << std::endl;
+    currentScene = std::make_shared<MenuScene>(ecsManager);
     currentScene->onEnter();
 
 	isRunning = true;
@@ -81,12 +70,6 @@ void Game::textureLoading(){
 
 }
 
-
-
-
-// Run ========
-
-
 void Game::run() {
 
     
@@ -95,13 +78,13 @@ void Game::run() {
 
         // 1. 입력 처리 → InputManager가 SDL 이벤트를 EventManager에 푸시
         inputManager->handleEvents();
-
-      
+        std::cout << "handleEvents complete." << std::endl;
         // deltaTime 구하기
         Uint32 currentFrameTime = SDL_GetTicks();
         float deltaTime = (currentFrameTime - lastFrameTime) / 1000.0f; // 초 단위 시간
         lastFrameTime = currentFrameTime;
 
+        std::cout << "Set deltaTime complete." << std::endl;
         // 2. ECS 시스템 업데이트 → EventSystem이 SCENE_CHANGE 이벤트 발생 가능
         ecsManager->updateSystems(deltaTime); 
 
@@ -133,63 +116,22 @@ bool Game::running() const {
     return isRunning;
 }
 
-// Update =======
-
-
-
-
 void Game::render() {
 
-    // if (currentScene) {
-    //     currentScene->render();
-    // }
-
 }
-
-
-
-
-// Events =======
-
-
-
-
-
-
 
 void Game::handleEvents() {
     inputManager->handleEvents();
-
-    
 }
-
 
 void Game::changeScene(std::string sceneName) {
 
     if (sceneName == "GameplayScene") {
         std::cout << "Switching to Gameplay Scene..." << std::endl;
-        currentScene = std::make_shared<GameplayScene>(
-            ecsManager,
-            [this](const std::string& newSceneName) {
-                this->changeScene(newSceneName); // 새로운 씬의 콜백 설정
-            }
-        );
-        std::cout << "callbackFunction ready" << std::endl;
+        currentScene = std::make_shared<GameplayScene>(ecsManager);
         currentScene->onEnter();
     }
 } 
-
-
-
-
-
-
-
-
-
-
-
-
 
 void Game::clean() {
     SDL_DestroyWindow(window);

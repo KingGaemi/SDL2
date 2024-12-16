@@ -10,7 +10,7 @@ class Entity;
 
 class MenuScene : public Scene{
 public:
-	MenuScene(std::shared_ptr<ECSManager> ecsManager, ChangeSceneCallback callback) : Scene("MenuScene", ecsManager, callback){}
+	MenuScene(std::shared_ptr<ECSManager> ecsManager) : Scene("MenuScene", ecsManager){}
 	// ~MenuScene() override;	
 	void onEnter() override;
 	void onExit() override;

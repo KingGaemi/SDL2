@@ -9,7 +9,7 @@ class Entity;
 
 class GameplayScene: public Scene{
 public:
-	GameplayScene(std::shared_ptr<ECSManager> ecsManager, ChangeSceneCallback callback) : Scene("GameplayScene", ecsManager , callback){}
+	GameplayScene(std::shared_ptr<ECSManager> ecsManager) : Scene("GameplayScene", ecsManager){}
 	// ~GameplayScene() override;
 	void onEnter() override;
 	void handleEvents(const std::vector<Event>& events) override;

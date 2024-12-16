@@ -14,12 +14,7 @@ void EventSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float d
 
 }
 
-
-
-
-
 void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Entity>>& entities){
-
 
 	if(evt.type == EventType::KEYDOWN){
 

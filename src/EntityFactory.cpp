@@ -9,9 +9,6 @@ std::shared_ptr<Entity> EntityFactory::createBackgroundEntity(std::shared_ptr<EC
 
 	auto entity = ecsManager->createEntity();
 	entity->addComponent<TransformComponent>();
-
-	// auto renderSystem = ecsManager->getSystem<RenderSystem>();
-	// std::pair<int, int> size = renderSystem->getTextureSize(textureName);
 	entity->addComponent<SpriteComponent>(textureName, 1280, 800);
 
 	return entity;

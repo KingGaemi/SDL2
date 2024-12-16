@@ -22,19 +22,12 @@ void ECSManager::destroyEntity(std::shared_ptr<Entity> entity) {
     }
 }
 
-
 std::shared_ptr<Entity> ECSManager::getEntityById(std::size_t id) {
     for (auto& e : entities) {
         if (e->getId() == id) return e;
     }
     return nullptr;
 }
-
-
-// void ECSManager::addSystem(std::shared_ptr<System> system) {
-//     systems.push_back(system);
-// }
-
 
 void ECSManager::updateSystems(float deltaTime) {
     for (std::size_t i = 0; i < MAX_SYSTEMS; ++i) {
@@ -43,19 +36,6 @@ void ECSManager::updateSystems(float deltaTime) {
         }
     }
 }
-
-
-// void ECSManager::setVelocity(std::shared_ptr<Entity> entity, float x, float y) {
-    
-//     auto system = this->getSystem<MovementSystem>();
-    
-//     system->setVelo(entity, x, y);
-    
-// }
-
-
-
-
 
 void ECSManager::setEntityName(std::shared_ptr<Entity> entity, const std::string& name) {
     if (entityByName.find(name) != entityByName.end()) {

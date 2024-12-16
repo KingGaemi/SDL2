@@ -4,7 +4,7 @@
 
 
 #include <queue>
-#include <mutex>
+// #include <mutex>
 
 
 
@@ -13,12 +13,12 @@ class EventManager {
 
 public:
 	void pushEvent(const Event& event){
-		std::lock_guard<std::mutex> lock(mtx);
+		// std::lock_guard<std::mutex> lock(mtx);
 		eventQueue.push(event);
 	}
 
 	bool pollEvent(Event& outEvent) {
-		std::lock_guard<std::mutex> lock(mtx);
+		// std::lock_guard<std::mutex> lock(mtx);
 		if(eventQueue.empty()) return false;
 		outEvent = eventQueue.front();
 		eventQueue.pop();
@@ -32,5 +32,5 @@ public:
 
 private:
 	std::queue<Event> eventQueue;
-	std::mutex mtx;
+	// std::mutex mtx;
 };
