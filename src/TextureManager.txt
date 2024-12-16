@@ -3,8 +3,6 @@
 #include "TextureManager.h"
 
 
-
-
 TextureManager* TextureManager::instance = nullptr;
 
 TextureManager* TextureManager::getInstance(){

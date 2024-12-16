@@ -2,7 +2,7 @@
 #include <string>
 #include <functional>
 #include <memory>
-#include "EventQueue.h"
+#include "Events/EventQueue.h"
 
 class ECSManager;
  // 게임 내부 이벤트(키 입력 등), SDL_Event 변환한 형태라 가정

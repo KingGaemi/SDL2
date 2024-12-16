@@ -1,4 +1,4 @@
-#include "EventQueue.h"
+#include "Events/EventQueue.h"
 
 void EventQueue::push(const Event& event) {
     events.push(event);

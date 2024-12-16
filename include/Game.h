@@ -10,7 +10,10 @@
 #include "ECS/ECSManager.h"
 #include "ECS/System.h"
 #include "Systems/Systems.h"
-#include "InputManager.h"
+#include "Input/InputManager.h"
+#include "Events/EventSystem.h"
+#include "Events/EventManager.h"
+
 
 
 
@@ -23,11 +26,8 @@ public:
 	void textureLoading();
 	void run();
 	bool running() const;
-	void update();
 	void render();
 	Event convertSDLEventToGameEvent(const SDL_Event& sdlEvent);
-	void processGameEvents();
-	void pushEvent(const Event& event);
 	void changeScene(std::string newScene);
 	void handleEvents();
 	void clean();
@@ -46,8 +46,8 @@ private:
     std::shared_ptr<ECSManager> ecsManager;
     std::unique_ptr<TextureManager> textureManager;
     std::unique_ptr<InputManager> inputManager;
-    // std::shared_ptr<RenderSystem> renderSystem;
-    // std::shared_ptr<MovementSystem> movementSystem;
+    std::unique_ptr<EventManager> eventManager;
+ 
     EventQueue gameEventQueue;
 
 };

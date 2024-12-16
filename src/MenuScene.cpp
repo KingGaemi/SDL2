@@ -33,12 +33,7 @@ void MenuScene::onEnter(){
 
 
 void MenuScene::handleEvents(const std::vector<Event>& events){
-	for (const auto& e : events) {
-        if (e.type == "KEYDOWN" && e.key == KeyCode::Enter) {
-            std::cout << "Enter Pressed! " << std::endl;
-            changeSceneCallback("GameplayScene");
-        }
-    }
+
 }
 
 

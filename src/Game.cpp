@@ -39,15 +39,17 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
 
     // Create manager
     ecsManager = std::make_shared<ECSManager>();
-    // renderSystem = std::make_shared<RenderSystem>(*renderer);
-    // movementSystem = std::make_shared<MovementSystem>();
+
+    eventManager = std::make_unique<EventManager>();
+    inputManager = std::make_unique<InputManager>(eventManager->get());
+
     ecsManager->addSystem<RenderSystem>(*renderer);
     ecsManager->addSystem<MovementSystem>();
+    ecsManager->addSystem<EventSystem>(eventManager->get());
 
     textureLoading();
     
 
-    inputManager = std::make_unique<InputManager>();
     inputManager->setQuitCallback([this]() {
         this->isRunning = false;
     });
@@ -88,19 +90,40 @@ void Game::textureLoading(){
 void Game::run() {
 
     
-    while(isRunning)
-    {
+    while (isRunning) {
         frameStart = SDL_GetTicks();
 
-        handleEvents();
-        update();
-        render();
+        // 1. 입력 처리 → InputManager가 SDL 이벤트를 EventManager에 푸시
+        inputManager->handleEvents();
 
+      
+        // deltaTime 구하기
+        Uint32 currentFrameTime = SDL_GetTicks();
+        float deltaTime = (currentFrameTime - lastFrameTime) / 1000.0f; // 초 단위 시간
+        lastFrameTime = currentFrameTime;
+
+        // 2. ECS 시스템 업데이트 → EventSystem이 SCENE_CHANGE 이벤트 발생 가능
+        ecsManager->updateSystems(deltaTime); 
+
+        // 3. EventManager에서 이벤트 폴링 → SCENE_CHANGE나 QUIT 처리
+        Event evt;
+        while (eventManager->pollEvent(evt)) {
+            if (evt.type == EventType::SCENE_CHANGE && evt.sceneChangeData.has_value()) {
+                changeScene(evt.sceneChangeData->nextSceneName);
+            } else if (evt.type == EventType::QUIT) {
+                isRunning = false;
+            }
+        }
+
+        // 4. 씬의 update, render 호출 (씬이 직접 이벤트 처리 안함)
+        if (currentScene) {
+            currentScene->update(deltaTime);
+            currentScene->render();
+        }
 
         frameTime = SDL_GetTicks() - frameStart;
-
-        if(frameDelay> frameTime){
-            SDL_Delay(frameDelay- frameTime);
+        if (frameDelay > frameTime) {
+          SDL_Delay(frameDelay - frameTime);
         }
     }
 
@@ -113,15 +136,6 @@ bool Game::running() const {
 // Update =======
 
 
-void Game::update() {
-    Uint32 currentFrameTime = SDL_GetTicks();
-    float deltaTime = (currentFrameTime - lastFrameTime) / 1000.0f; // 초 단위 시간
-    lastFrameTime = currentFrameTime;
-
-    if (currentScene) {
-        currentScene->update(deltaTime);
-    }
-}
 
 
 void Game::render() {
@@ -138,38 +152,14 @@ void Game::render() {
 // Events =======
 
 
-// Event Game::convertSDLEventToGameEvent(const SDL_Event& sdlEvent) {
-//     Event gameEvent;
-
-//     switch (sdlEvent.type) {
-//     case SDL_QUIT:
-//         gameEvent.type = "QUIT";
-//         break;
-//     case SDL_KEYDOWN:
-//         gameEvent.type = "KEYDOWN";
-//         gameEvent.key = sdlEvent.key.keysym.sym;
-//         break;
-//     case SDL_KEYUP:
-//         gameEvent.type = "KEYUP";
-//         gameEvent.key = sdlEvent.key.keysym.sym;
-//         break;
-//     default:
-//         gameEvent.type = "UNKNOWN";
-//         break;
-//     }
-
-//     return gameEvent;
-// }
 
 
 
 
 
 void Game::handleEvents() {
-    inputManager->pollEvents();
-    if (currentScene) {
-        currentScene->handleEvents(inputManager->getEvents());
-    }
+    inputManager->handleEvents();
+
     
 }
 
@@ -190,20 +180,7 @@ void Game::changeScene(std::string sceneName) {
 } 
 
 
-void Game::pushEvent(const Event& event){
-    gameEventQueue.push(event);
-}
 
-
-void Game::processGameEvents() {
-
-    while (!gameEventQueue.isEmpty()) {
-        Event event = gameEventQueue.pop();
-        if (event.type == "GAME_OVER") {
-            //endGame();
-        }
-    }
-}
 
 
 

@@ -31,6 +31,7 @@ public:
 
 	void setPos(float x, float y){ position.x = x; position.y = y;}
 	void setVel(float x, float y) { velocity.x = x; velocity.y = y;}
+	void addVel(float x, float y) { velocity.x += x; velocity.y += y;}
 
 private:
 
