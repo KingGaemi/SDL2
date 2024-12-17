@@ -7,6 +7,7 @@
 #include <memory>
 
 
+class Rect;
 class Entity;
 class Renderer;
 // using TextureSize = std::pair<int, int>;
@@ -18,6 +19,7 @@ public:
     void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
     std::pair<int, int> getTextureSize(const std::string& textureID);
     void setTextureManager(std::unique_ptr<TextureManager> p_textureManager);
+    SDL_Rect toSDLRect(const Rect& r);
    
 private:
 	std::unique_ptr<TextureManager> textureManager;

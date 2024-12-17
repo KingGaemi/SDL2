@@ -15,7 +15,7 @@ public:
     ~Renderer();
     
     SDL_Texture* loadTexture(const std::string& filePath);
-    void render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* dstRect);
+    void render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* dstRect, double angle, SDL_Point* center, SDL_RendererFlip flip);
     void clear();
     void display();
 

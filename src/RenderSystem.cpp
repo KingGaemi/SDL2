@@ -6,41 +6,47 @@
 #include <iostream>
 
 
+SDL_Rect RenderSystem::toSDLRect(const Rect& r) {
+    SDL_Rect rect;
+    rect.x = r.x;
+    rect.y = r.y;
+    rect.w = r.w;
+    rect.h = r.h;
+    return rect;
+}
+
+
+
 void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) {
     // 화면 클리어
     renderer->clear();
 
     
     for (auto& entity : entities) {
-        // 렌더링에 필요한 컴포넌트를 가진 엔티티만 처리
+
+
         auto transform = entity->getComponent<TransformComponent>();
         auto sprite = entity->getComponent<SpriteComponent>();
         if (transform && sprite) {
-            // SDL_Rect srcRect;
-            SDL_Rect dstRect;
-
-            // srcRect.w = sprite->width;
-            // srcRect.h = sprite->height;
-            dstRect.x = static_cast<int>(transform->x());
-            dstRect.y = static_cast<int>(transform->y());
-            dstRect.w = static_cast<int>(sprite->width * sprite->scale);
-            dstRect.h = static_cast<int>(sprite->height * sprite->scale);
-
 
 
             // Renderer 통해 그리기
             auto texture = textureManager->getTexture(sprite->getTextureID());
-            // if(texture){
-            //     std::cout << "RenderSystem::update() " << "dstRect.x : " << dstRect.x << std::endl;
-            // }else{
-            //     std::cout << "getTexture Failed" << std::endl;
-            // }
 
-            renderer->render(texture, NULL, &dstRect);
+            SDL_Rect srcRect = toSDLRect(sprite->srcRect);
+            SDL_Rect dstRect = toSDLRect(sprite->dstRect);
+            dstRect.x = static_cast<int>(transform->x());
+            dstRect.y = static_cast<int>(transform->y());
+
+            SDL_RendererFlip flip = SDL_FLIP_NONE;
+            if (sprite->flipHorizontal) flip = SDL_FLIP_HORIZONTAL;
+            if (sprite->flipVertical) flip = (SDL_RendererFlip)(flip | SDL_FLIP_VERTICAL);
+
+
+            renderer->render(texture, &srcRect, &dstRect, 0.0, nullptr, flip);
         }
     }
-    // std::cout << "RenderSystem update()" << std::endl;
-    // 화면 업데이트
+
     renderer->display();
 }
 

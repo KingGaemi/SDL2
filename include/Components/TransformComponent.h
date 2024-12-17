@@ -4,12 +4,18 @@
 #include "Vector2D.h"
 
 
+struct Direction{
+	int x = 0;
+	int y = 0;
+};
+
 
 class TransformComponent : public Component {
 public:
 
 	Vector2D position;
 	Vector2D velocity;
+	Direction direction;
 
 	int height = 32;
 	int width = 32;
@@ -31,7 +37,13 @@ public:
 
 	void setPos(float x, float y){ position.x = x; position.y = y;}
 	void setVel(float x, float y) { velocity.x = x; velocity.y = y;}
-	void addVel(float x, float y) { velocity.x += x; velocity.y += y;}
+	void setVelx(float x) {velocity.x = x;}
+	void setVely(float y) {velocity.y = y;}
+	void setDirectionX(int x) {direction.x = x;}
+	void setDirectionY(int y) {direction.y = y;}
+ 	void addVel(float x, float y) { velocity.x += x; velocity.y += y;}
+	int getVelx() {return velocity.x;}
+	int getVely() {return velocity.y;}
 
 private:
 

@@ -39,8 +39,8 @@ SDL_Texture* Renderer::loadTexture(const std::string& p_filePath){
 }
 
 
-void Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* dstRect) {
-    SDL_RenderCopy(renderer, texture, srcRect, dstRect);
+void Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* dstRect, double angle, SDL_Point* center, SDL_RendererFlip flip) {
+    SDL_RenderCopyEx(renderer, texture, srcRect, dstRect, angle, center, flip);
 }
 
 void Renderer::clear()

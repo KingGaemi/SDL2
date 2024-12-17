@@ -1,5 +1,6 @@
 #include "Events/EventSystem.h"
 #include "Components/TransformComponent.h"
+#include "Components/PlayableComponent.h"
 #include "ECS/Entity.h"
 #include <iostream>
 #include <string>
@@ -22,13 +23,13 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 		for(auto& entity : entities){
 
 			auto trans = entity->getComponent<TransformComponent>();
-			
-			if(trans){
-				std::cout << "set Vel" << std::endl;
-				if(evt.key == KeyCode::Up)	trans->setVel(0.0f, -1.0f);
-				if(evt.key == KeyCode::Down) trans->setVel(0.0f, 1.0f);
-				if(evt.key == KeyCode::Right) trans->setVel(1.0f, 0.0f);	
-				if(evt.key == KeyCode::Left) trans	->setVel(-1.0f, 0.0f);
+			bool playable = entity->hasComponent<PlayableComponent>();
+
+			if(trans && playable){
+				if(evt.key == KeyCode::Left) trans->setDirectionX(-1);
+				if(evt.key == KeyCode::Right) trans->setDirectionX(1);	
+				if(evt.key == KeyCode::Up)	trans->setDirectionY(-1);
+				if(evt.key == KeyCode::Down) trans->setDirectionY(1);
 			}
 		}
 	}
@@ -40,13 +41,13 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 		for(auto& entity : entities){
 
 			auto trans = entity->getComponent<TransformComponent>();
-			
-			if(trans){
-				std::cout << "add Vel" << std::endl;
-				if(evt.key == KeyCode::Up)	trans->addVel(0.0f, 1.0f);
-				if(evt.key == KeyCode::Down) trans->addVel(0.0f, -1.0f);
-				if(evt.key == KeyCode::Right) trans->addVel(-1.0f, 0.0f);	
-				if(evt.key == KeyCode::Left) trans	->addVel(1.0f, 0.0f);
+			bool playable = entity->hasComponent<PlayableComponent>();
+
+			if(trans && playable){
+				if(evt.key == KeyCode::Left && trans->direction.x == -1) trans->setDirectionX(0);
+				if(evt.key == KeyCode::Right && trans->direction.x == 1) trans->setDirectionX(0);	
+				if(evt.key == KeyCode::Up && trans->direction.y == -1)	trans->setDirectionY(0);
+				if(evt.key == KeyCode::Down && trans->direction.y == 1) trans->setDirectionY(0);
 			}
 		}
 
@@ -68,6 +69,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 			}
 		}
     }
+
 
 
 
