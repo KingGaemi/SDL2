@@ -48,6 +48,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<MovementSystem>();
     ecsManager->addSystem<EventSystem>(eventManager->get());
     ecsManager->addSystem<AnimationSystem>();
+    ecsManager->addSystem<InputSystem>();
 
     textureLoading();
     
@@ -65,7 +66,9 @@ void Game::textureLoading(){
     textureManager->loadTexture("background_main", "res/gfx/SunnyLand/Environment/back.png");
     textureManager->loadTexture("player_eri", "res/gfx/eri_copy2.png");
     textureManager->loadTexture("streetlamp", "res/gfx/streetlamp3.png");
-    textureManager->loadTexture("player_sprite", "res/gfx/1/player_sprite_sheet.png");
+    textureManager->loadTexture("farmer", "res/gfx/1/player_sprite_sheet.png");
+    textureManager->loadTexture("orc3", "res/gfx/SpriteSheet/Orc/orc3_sprite_sheet.png");
+
 
     auto rendersys = ecsManager->getSystem<RenderSystem>();
     rendersys->setTextureManager(std::move(textureManager));

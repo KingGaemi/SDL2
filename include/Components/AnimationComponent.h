@@ -1,4 +1,5 @@
 #pragma once
+#include "nlohmann/json.hpp"
 #include "ECS/Component.h"
 #include <string>
 #include <vector>
@@ -24,6 +25,7 @@ struct AnimationData {
 
 class AnimationComponent : public Component {
 public: 
+	using json = nlohmann::json;
 
 	std::string currentAnimation;
 	std::map<std::string, AnimationData> animations;
@@ -31,33 +33,10 @@ public:
 	float currentTime = 0.0f;
 	int currentFrameIndex = 0;
 
-	void playAnimation(const std::string animName){
-		if (animations.find(animName) != animations.end()) {
-            currentAnimation = animName;
-            currentFrameIndex = 0;
-            currentTime = 0.0f;
-        }else{
-        	std::cout << "Has no Animation named:" << animName << "." << std::endl;
-        }
-
-	}
-
-	AnimationData* getCurrentAnimationData() {
-		auto it = animations.find(currentAnimation);
-		if(it != animations.end()){
-			return &it->second;
-		}
-		return nullptr;
-	}
-
-	AnimationFrame* getCurrentFrame(){
-		AnimationData* data = getCurrentAnimationData();
-        if (data && currentFrameIndex >= 0 && currentFrameIndex < (int)data->frames.size()) {
-            return &data->frames[currentFrameIndex];
-        }
-        return nullptr;
-	}
-
+	void playAnimation(const std::string animName);
+	bool loadAnimationsFromFile(const std::string& filename,std::shared_ptr<AnimationComponent> animComp); 
+	AnimationData* getCurrentAnimationData();
+	AnimationFrame* getCurrentFrame();
 private:
 
 

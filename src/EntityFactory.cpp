@@ -1,8 +1,9 @@
+#include <iostream>
 #include "ECS/EntityFactory.h"
 #include "ECS/ECSManager.h"
 #include "Components/Components.h"
 #include "Systems/Systems.h"
-#include <iostream>
+
 
 
 std::shared_ptr<Entity> EntityFactory::createBackgroundEntity(std::shared_ptr<ECSManager> ecsManager, const std::string& textureName){
@@ -20,11 +21,39 @@ std::shared_ptr<Entity> EntityFactory::createPlayerEntity(std::shared_ptr<ECSMan
 
 	auto player = ecsManager->createEntity();
 	player->addComponent<TransformComponent>();
-	player->addComponent<SpriteComponent>("player_sprite", 21, 28, 3);
+	player->addComponent<SpriteComponent>("orc3", 64, 64, 2);
 	player->addComponent<AnimationComponent>();
-	auto animComp = player->getComponent<AnimationComponent>();
 	player->addComponent<PlayableComponent>();
+	player->addComponent<StateComponent>();
+	auto animComp = player->getComponent<AnimationComponent>();
 
+	
+	    // 애니메이션을 JSON 파일에서 로드
+    if (!animComp->loadAnimationsFromFile("assets/animations.json", animComp)) {
+        std::cerr << "Failed to load animations for player." << std::endl;
+    }
+ 	// 기본 애니메이션 설정
+    animComp->playAnimation("d_idle");
+
+
+    return player;
+	
+
+
+
+}
+    // ... 필요한 팩토리 메서드를 추가
+
+
+
+
+std::shared_ptr<Entity> EntityFactory::createFarmerEntity(std::shared_ptr<ECSManager> ecsManager){
+
+	auto farmer = ecsManager->createEntity();
+	farmer->addComponent<TransformComponent>();
+	farmer->addComponent<SpriteComponent>("farmer", 21, 28, 3);
+	farmer->addComponent<AnimationComponent>();
+	auto animComp = farmer->getComponent<AnimationComponent>();
 
 	int currentPoint;
 	int nextPoint;
@@ -36,7 +65,6 @@ std::shared_ptr<Entity> EntityFactory::createPlayerEntity(std::shared_ptr<ECSMan
 	currentPoint = nextPoint;
 	d_idleAnim.loop = true;
 	animComp->animations["d_idle"] = d_idleAnim;
-	animComp->playAnimation("d_idle");
 
 
 	AnimationData d_specialAnim;
@@ -103,18 +131,8 @@ std::shared_ptr<Entity> EntityFactory::createPlayerEntity(std::shared_ptr<ECSMan
 	u_idleAnim.loop = true;
 	animComp->animations["u_idle"] = u_idleAnim;
 
-
-
-
-
-
-	return player;	
-
+	return farmer;	
 }
-    // ... 필요한 팩토리 메서드를 추가
-
-
-
 
 
 int EntityFactory::addAnimationFrames(AnimationData& animData, int x, int y, int w, int h, float duration, int interval, int count){

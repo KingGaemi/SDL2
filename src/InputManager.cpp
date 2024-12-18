@@ -10,15 +10,12 @@ void InputManager::handleEvents(){
     while (SDL_PollEvent(&sdlEvent)){
         Event gameEvent = convertSDLEventToGameEvent(sdlEvent);
         if (gameEvent.type == EventType::QUIT) {
-            std::cout << "EventType : QUIT " << std::endl;
             eventManager->pushBigEvent(gameEvent);
         }
         if(gameEvent.type == EventType::KEYDOWN) {
-            std::cout << "EventType : KEYDOWN " << std::endl;
             eventManager->pushEvent(gameEvent);
         }
         if(gameEvent.type == EventType::KEYUP) {
-            std::cout << "EventType : KEYUP " << std::endl;
             eventManager->pushEvent(gameEvent);
         }
         if(gameEvent.type == EventType::UNKNOWN){

@@ -5,46 +5,87 @@
 
 
 void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+
    	for (auto& entity : entities) {
+
         auto animComp = entity->getComponent<AnimationComponent>();
         auto spriteComp = entity->getComponent<SpriteComponent>();
        	auto trans = entity->getComponent<TransformComponent>();
+        auto state = entity->getComponent<StateComponent>();
 
         if(trans && animComp){
 
         	int dirX = trans->direction.x;
         	int dirY = trans->direction.y;
 
-	        if(dirY == 0 && dirX == 0){
-	        	if(animComp->currentAnimation != "d_idle") animComp->playAnimation("d_idle");
-	        }
+            if(trans){
+                if(state->currentState == States::Run){
+                    if(dirX == -1){
+                        if(animComp->currentAnimation != "l_run") animComp->playAnimation("l_run");
+                    }
+                    if (dirX == 1){
+                        if(animComp->currentAnimation != "r_run") animComp->playAnimation("r_run");
+                    }
+                    if(dirY == 1){
+                        if(animComp->currentAnimation != "d_run") animComp->playAnimation("d_run");
+                    }
+                    if(dirY == -1){
+                        if(animComp->currentAnimation != "u_run") animComp->playAnimation("u_run");
+                    }
+                }
+                if(state->currentState == States::Idle){
+                    if(dirX == -1){
+                        if(animComp->currentAnimation != "l_idle") animComp->playAnimation("l_idle");
+                    }
+                    if (dirX == 1){
+                        if(animComp->currentAnimation != "r_idle") animComp->playAnimation("r_idle");
+                    }
+                    if(dirY == 1){
+                        if(animComp->currentAnimation != "d_idle") animComp->playAnimation("d_idle");
+                    }
+                    if(dirY == -1){
+                        if(animComp->currentAnimation != "u_idle") animComp->playAnimation("u_idle");
+                    }
+                } 
+
+                if(state->currentState == States::Attack){
+                    std::cout << "Attack" << std::endl;
+                    if(dirX == -1){
+                        if(animComp->currentAnimation != "l_attack") animComp->playAnimation("l_attack");
+                    }
+                    if (dirX == 1){
+                        if(animComp->currentAnimation != "r_attack") animComp->playAnimation("r_attack");
+                    }
+                    if(dirY == 1){
+                        if(animComp->currentAnimation != "d_attack") animComp->playAnimation("d_attack");
+                    }
+                    if(dirY == -1){
+                        if(animComp->currentAnimation != "u_attack") animComp->playAnimation("u_attack");
+                    }
+                }
 
 
+                if(state->currentState == States::Walk){
+                    if(dirX == -1){
+                        if(animComp->currentAnimation != "l_walk") animComp->playAnimation("l_walk");
+                    }
+                    if (dirX == 1){
+                        if(animComp->currentAnimation != "r_walk") animComp->playAnimation("r_walk");
+                    }
+                    if(dirY == 1){
+                        if(animComp->currentAnimation != "d_walk") animComp->playAnimation("d_walk");
+                    }
+                    if(dirY == -1){
+                        if(animComp->currentAnimation != "u_walk") animComp->playAnimation("u_walk");
+                    }
+                }
 
-	        if(dirX == -1){
-	        	spriteComp->flipHorizontal = false;
-	        	if(animComp->currentAnimation != "s_walk") animComp->playAnimation("s_walk");
-	        }else if (dirX == 1){
-	        	spriteComp->flipHorizontal = true;
-	        	if(animComp->currentAnimation != "s_walk") animComp->playAnimation("s_walk");
-	        }
 
-
-	        if(dirY == 1 && dirX == 0){
-	        	if(animComp->currentAnimation != "d_walk") animComp->playAnimation("d_walk");
-	        }
-
-
-	        if(dirY == -1 && dirX == 0){
-	        	if(animComp->currentAnimation != "u_walk") animComp->playAnimation("u_walk");
-	        }
-
-	    }
-
-        if (animComp && spriteComp) {
-            updateAnimation(animComp, spriteComp, deltaTime);
+            }
+            if (animComp && spriteComp) {
+                updateAnimation(animComp, spriteComp, deltaTime);
+            }
         }
-
     }
 }
 

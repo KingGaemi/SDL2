@@ -22,6 +22,7 @@ public:
 	int scale = 1;
 
 	int speed = 3;
+	bool isMoving = false;
 
 	TransformComponent(){}
 	TransformComponent(int sc){scale = sc;}
@@ -44,6 +45,8 @@ public:
  	void addVel(float x, float y) { velocity.x += x; velocity.y += y;}
 	int getVelx() {return velocity.x;}
 	int getVely() {return velocity.y;}
+
+	void setMoving(bool moving) {isMoving = moving ;}
 
 private:
 

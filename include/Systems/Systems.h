@@ -1,4 +1,5 @@
 #pragma once
-#include "MovementSystem.h"
-#include "RenderSystem.h"
-#include "AnimationSystem.h"
+#include "Systems/AnimationSystem.h"
+#include "Systems/InputSystem.h"
+#include "Systems/MovementSystem.h"
+#include "Systems/RenderSystem.h"
