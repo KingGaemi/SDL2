@@ -13,12 +13,46 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
        	auto trans = entity->getComponent<TransformComponent>();
         auto state = entity->getComponent<StateComponent>();
 
-        if(trans && animComp){
+        if(spriteComp && trans && animComp && state){
 
         	int dirX = trans->direction.x;
         	int dirY = trans->direction.y;
 
-            if(trans){
+
+            if(animComp->busy){
+
+                if(state->stateTimer < 0){
+                    std::cout << "AnimationComplete" << std::endl;
+                    animComp->busy = false;
+                    state->currentState = States::Idle;
+                }
+            }
+
+
+
+
+            if(!animComp->busy){
+
+
+                if(state->currentState == States::Attack){
+                    animComp->busy = true;
+                    if(dirX == -1){
+                        if(animComp->currentAnimation != "l_attack") animComp->playAnimation("l_attack");
+                    }
+                    if (dirX == 1){
+                        if(animComp->currentAnimation != "r_attack") animComp->playAnimation("r_attack");
+                    }
+                    if(dirY == 1){
+                        if(animComp->currentAnimation != "d_attack") animComp->playAnimation("d_attack");
+                    }
+                    if(dirY == -1){
+                        if(animComp->currentAnimation != "u_attack") animComp->playAnimation("u_attack");
+                    }
+                }
+
+
+
+                
                 if(state->currentState == States::Run){
                     if(dirX == -1){
                         if(animComp->currentAnimation != "l_run") animComp->playAnimation("l_run");
@@ -47,22 +81,6 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                         if(animComp->currentAnimation != "u_idle") animComp->playAnimation("u_idle");
                     }
                 } 
-
-                if(state->currentState == States::Attack){
-                    std::cout << "Attack" << std::endl;
-                    if(dirX == -1){
-                        if(animComp->currentAnimation != "l_attack") animComp->playAnimation("l_attack");
-                    }
-                    if (dirX == 1){
-                        if(animComp->currentAnimation != "r_attack") animComp->playAnimation("r_attack");
-                    }
-                    if(dirY == 1){
-                        if(animComp->currentAnimation != "d_attack") animComp->playAnimation("d_attack");
-                    }
-                    if(dirY == -1){
-                        if(animComp->currentAnimation != "u_attack") animComp->playAnimation("u_attack");
-                    }
-                }
 
 
                 if(state->currentState == States::Walk){

@@ -26,6 +26,7 @@ public:
 
 	TransformComponent(){}
 	TransformComponent(int sc){scale = sc;}
+	TransformComponent(Vector2D vector){position = vector;}
 	TransformComponent(float x, float y){position.x = x; position.y = y;}
 	TransformComponent(float x, float y, int sc){position.x = x; position.y = y; scale = sc;}
 	TransformComponent(float x, float y, int w, int h, int sc){position.x = x; position.y = y; width = w; height = h; scale = sc;}
@@ -37,6 +38,8 @@ public:
 
 
 	void setPos(float x, float y){ position.x = x; position.y = y;}
+	void setPos(Vector2D vector){ position = vector;}
+
 	void setVel(float x, float y) { velocity.x = x; velocity.y = y;}
 	void setVelx(float x) {velocity.x = x;}
 	void setVely(float y) {velocity.y = y;}

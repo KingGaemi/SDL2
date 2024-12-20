@@ -49,6 +49,9 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<EventSystem>(eventManager->get());
     ecsManager->addSystem<AnimationSystem>();
     ecsManager->addSystem<InputSystem>();
+    ecsManager->addSystem<TimerSystem>();
+    ecsManager->addSystem<ExpireSystem>(ecsManager);
+    ecsManager->addSystem<AttackSystem>(ecsManager);
 
     textureLoading();
     
@@ -67,6 +70,7 @@ void Game::textureLoading(){
     textureManager->loadTexture("player_eri", "res/gfx/eri_copy2.png");
     textureManager->loadTexture("streetlamp", "res/gfx/streetlamp3.png");
     textureManager->loadTexture("farmer", "res/gfx/1/player_sprite_sheet.png");
+    textureManager->loadTexture("water_tile", "res/gfx/water_tile.png");
     textureManager->loadTexture("orc3", "res/gfx/SpriteSheet/Orc/orc3_sprite_sheet.png");
 
 
@@ -95,7 +99,7 @@ void Game::run() {
         // 3. EventManager에서 이벤트 폴링 → SCENE_CHANGE나 QUIT 처리
         Event evt;
         while (eventManager->pollBigEvent(evt)) {
-            std::cout << "polling Big Event" << std::endl;
+            // std::cout << "polling Big Event" << std::endl;
             if (evt.type == EventType::SCENE_CHANGE && evt.sceneChangeData.has_value()) {
 
                 changeScene(evt.sceneChangeData->nextSceneName);

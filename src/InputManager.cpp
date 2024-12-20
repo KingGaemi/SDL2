@@ -62,6 +62,7 @@ KeyCode InputManager::translateSDLKey(SDL_Keycode sdlKey) {
         case SDLK_RIGHT:  return KeyCode::Right;
         case SDLK_UP:     return KeyCode::Up;
         case SDLK_DOWN:   return KeyCode::Down;
+        case SDLK_SPACE:  return KeyCode::Space;
         default:          return KeyCode::Unknown;
     }
 }

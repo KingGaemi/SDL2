@@ -1,6 +1,7 @@
 #include <iostream>
 #include "ECS/EntityFactory.h"
 #include "ECS/ECSManager.h"
+#include "ECS/Entity.h"
 #include "Components/Components.h"
 #include "Systems/Systems.h"
 
@@ -17,6 +18,7 @@ std::shared_ptr<Entity> EntityFactory::createBackgroundEntity(std::shared_ptr<EC
 
 
 
+
 std::shared_ptr<Entity> EntityFactory::createPlayerEntity(std::shared_ptr<ECSManager> ecsManager){
 
 	auto player = ecsManager->createEntity();
@@ -25,6 +27,7 @@ std::shared_ptr<Entity> EntityFactory::createPlayerEntity(std::shared_ptr<ECSMan
 	player->addComponent<AnimationComponent>();
 	player->addComponent<PlayableComponent>();
 	player->addComponent<StateComponent>();
+	player->addComponent<StatusComponent>(100, 100);
 	auto animComp = player->getComponent<AnimationComponent>();
 
 	
@@ -50,10 +53,17 @@ std::shared_ptr<Entity> EntityFactory::createPlayerEntity(std::shared_ptr<ECSMan
 std::shared_ptr<Entity> EntityFactory::createFarmerEntity(std::shared_ptr<ECSManager> ecsManager){
 
 	auto farmer = ecsManager->createEntity();
-	farmer->addComponent<TransformComponent>();
+	farmer->addComponent<TransformComponent>(500.0f, 500.0f);
 	farmer->addComponent<SpriteComponent>("farmer", 21, 28, 3);
 	farmer->addComponent<AnimationComponent>();
+	farmer->addComponent<StateComponent>();
 	auto animComp = farmer->getComponent<AnimationComponent>();
+
+	auto stateComp = farmer->getComponent<StateComponent>();
+
+	stateComp->currentState = States::Idle;
+
+
 
 	int currentPoint;
 	int nextPoint;
@@ -131,8 +141,34 @@ std::shared_ptr<Entity> EntityFactory::createFarmerEntity(std::shared_ptr<ECSMan
 	u_idleAnim.loop = true;
 	animComp->animations["u_idle"] = u_idleAnim;
 
+
+	animComp->playAnimation("d_idle");
+
 	return farmer;	
 }
+
+
+
+
+
+// void EntityFactory::createAttack(std::shared_ptr<ECSManager> ecsManager, float x, float y){
+
+// 	auto attack = ecsManager->createEntity();
+// 	attack->addComponent<TransformComponent>(x, y);
+// 	attack->addComponent<SpriteComponent>("water_tile", 20, 40);
+// 	attack->addComponent<LifeTimeComponent>();
+	
+// 	auto lifeComp = attack->getComponent<LifeTimeComponent>();
+
+// 	if(lifeComp){
+// 		lifeComp->lifeTime = 0.56f;
+// 	}
+
+
+// }
+
+
+
 
 
 int EntityFactory::addAnimationFrames(AnimationData& animData, int x, int y, int w, int h, float duration, int interval, int count){

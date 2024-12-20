@@ -66,8 +66,8 @@ bool AnimationComponent::loadAnimationsFromFile(const std::string& filename, std
         for (auto& frameJson : animDataJson["frames"]) {
             int x = frameJson.value("x", 0);
             int y = frameJson.value("y", 0);
-            int w = frameJson.value("w", 64);
-            int h = frameJson.value("h", 64);
+            int w = frameJson.value("w", 0);
+            int h = frameJson.value("h", 0);
             float duration = frameJson.value("duration", 0.1f);
             animData.frames.push_back({x, y, w, h, duration});
         }
@@ -75,5 +75,14 @@ bool AnimationComponent::loadAnimationsFromFile(const std::string& filename, std
         animComp->animations[animName] = animData;
     }
 
+    return true;
+}
+
+
+bool AnimationComponent::isAnimationComplete() const {
+    if (animations.find(currentAnimation) != animations.end()) {
+        return !animations.at(currentAnimation).loop && 
+               currentFrameIndex >= animations.at(currentAnimation).frames.size();
+    }
     return true;
 }

@@ -32,9 +32,11 @@ public:
 
 	float currentTime = 0.0f;
 	int currentFrameIndex = 0;
+	bool busy = false;
 
 	void playAnimation(const std::string animName);
-	bool loadAnimationsFromFile(const std::string& filename,std::shared_ptr<AnimationComponent> animComp); 
+	bool loadAnimationsFromFile(const std::string& filename,std::shared_ptr<AnimationComponent> animComp);
+	bool isAnimationComplete() const; 
 	AnimationData* getCurrentAnimationData();
 	AnimationFrame* getCurrentFrame();
 private:

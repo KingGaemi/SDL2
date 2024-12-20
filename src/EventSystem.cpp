@@ -3,6 +3,7 @@
 #include "Components/PlayableComponent.h"
 #include "Components/StateComponent.h"
 #include "ECS/Entity.h"
+#include "ECS/EntityFactory.h"
 #include <iostream>
 #include <string>
 
@@ -19,7 +20,7 @@ void EventSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float d
 void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Entity>>& entities){
 
 	if(evt.type == EventType::KEYDOWN){
-		std::cout << "KEYDOWN" << std::endl;
+		// std::cout << "KEYDOWN" << std::endl;
 
 		for(auto& entity : entities){
 
@@ -27,7 +28,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 			auto state = entity->getComponent<StateComponent>();
 			bool playable = entity->hasComponent<PlayableComponent>();
 
-			if(trans && playable){
+			if(playable && trans && state){
 				
 
 				if(evt.key == KeyCode::Left){
@@ -51,7 +52,9 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 				 	// if(state->currentState != States::Walk) state->currentState = States::Walk;
 				}
 
-				if(evt.key == KeyCode::Space) state->currentState = States::Attack; 
+				if(evt.key == KeyCode::Space){
+					state->changeState(States::Attack, 0.57f);
+				}
 
 
 			}
@@ -63,7 +66,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 
 	if(evt.type == EventType::KEYUP){
 
-		std::cout << "KEYUP"  << std::endl;
+		// std::cout << "KEYUP"  << std::endl;
 
 		// for(auto& entity : entities){
 

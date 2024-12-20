@@ -1,11 +1,7 @@
 #pragma once
 #include <string>
 #include "ECS/Component.h"
-
-
-struct Rect {
-    int x, y, w, h;
-};
+#include "Rect.h"
 
 
 class SpriteComponent : public Component{
