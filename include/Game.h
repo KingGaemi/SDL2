@@ -9,6 +9,7 @@
 #include "GameplayScene.h"
 #include "ECS/ECSManager.h"
 #include "ECS/System.h"
+#include "ECS/EntityFactory.h"
 #include "Systems/Systems.h"
 #include "Input/InputManager.h"
 #include "Events/EventSystem.h"
@@ -44,6 +45,7 @@ private:
 	std::unique_ptr<Renderer> renderer;
     std::shared_ptr<Scene> currentScene;
     std::shared_ptr<ECSManager> ecsManager;
+    std::shared_ptr<EntityFactory> entityFactory;
     std::unique_ptr<TextureManager> textureManager;
     std::unique_ptr<InputManager> inputManager;
     std::unique_ptr<EventManager> eventManager;

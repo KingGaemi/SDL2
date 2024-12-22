@@ -17,18 +17,19 @@ public:
 	Vector2D velocity;
 	Direction direction;
 
-	int height = 32;
 	int width = 32;
+	int height = 32;
 	int scale = 1;
 
-	int speed = 3;
 	bool isMoving = false;
 
 	TransformComponent(){}
 	TransformComponent(int sc){scale = sc;}
 	TransformComponent(Vector2D vector){position = vector;}
 	TransformComponent(float x, float y){position.x = x; position.y = y;}
-	TransformComponent(float x, float y, int sc){position.x = x; position.y = y; scale = sc;}
+	TransformComponent(float x, float y, Direction dir){position.x = x; position.y = y; direction = dir;}
+	TransformComponent(float x, float y, int sc){position.x = x; position.y = y; scale = sc; }
+	TransformComponent(float x, float y,  Direction dir, int sc){position.x = x; position.y = y;  direction = dir; scale = sc;}
 	TransformComponent(float x, float y, int w, int h, int sc){position.x = x; position.y = y; width = w; height = h; scale = sc;}
 
 	float x(){return position.x;}

@@ -20,7 +20,8 @@ public:
 			auto lifeTimeComp = entity->getComponent<LifeTimeComponent>();
 
 			if(stateComp){
-				stateComp->stateTimer -= deltaTime;
+				if(stateComp->stateTimer > 0) stateComp->stateTimer -= deltaTime;
+				if(stateComp->stateTimer < 0) stateComp->stateTimer = 0;
 			}
 
 			if(lifeTimeComp){

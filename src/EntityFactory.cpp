@@ -7,27 +7,30 @@
 
 
 
-std::shared_ptr<Entity> EntityFactory::createBackgroundEntity(std::shared_ptr<ECSManager> ecsManager, const std::string& textureName){
+void EntityFactory::createBackgroundEntity(const std::string& textureName){
 
-	auto entity = ecsManager->createEntity();
-	entity->addComponent<TransformComponent>();
-	entity->addComponent<SpriteComponent>(textureName, 1280, 800);
+	auto background = ecsManager->createEntity();
+	background->addComponent<TransformComponent>();
+	background->addComponent<SpriteComponent>(textureName, 1280, 800);
+	
+	ecsManager->setEntityName(background, "background");
 
-	return entity;
 }
 
 
 
 
-std::shared_ptr<Entity> EntityFactory::createPlayerEntity(std::shared_ptr<ECSManager> ecsManager){
+void EntityFactory::createPlayerEntity(const SpawnRequest& req){
 
 	auto player = ecsManager->createEntity();
-	player->addComponent<TransformComponent>();
+	ecsManager->setEntityName(player, "player");
+	player->addComponent<TransformComponent>(req.x, req.y);
 	player->addComponent<SpriteComponent>("orc3", 64, 64, 2);
 	player->addComponent<AnimationComponent>();
 	player->addComponent<PlayableComponent>();
 	player->addComponent<StateComponent>();
 	player->addComponent<StatusComponent>(100, 100);
+	player->addComponent<CooldownComponent>("basic_attack", 0.57f);
 	auto animComp = player->getComponent<AnimationComponent>();
 
 	
@@ -39,10 +42,9 @@ std::shared_ptr<Entity> EntityFactory::createPlayerEntity(std::shared_ptr<ECSMan
     animComp->playAnimation("d_idle");
 
 
-    return player;
+    
+
 	
-
-
 
 }
     // ... 필요한 팩토리 메서드를 추가
@@ -50,10 +52,11 @@ std::shared_ptr<Entity> EntityFactory::createPlayerEntity(std::shared_ptr<ECSMan
 
 
 
-std::shared_ptr<Entity> EntityFactory::createFarmerEntity(std::shared_ptr<ECSManager> ecsManager){
+void EntityFactory::createFarmerEntity(const SpawnRequest& req){
 
 	auto farmer = ecsManager->createEntity();
-	farmer->addComponent<TransformComponent>(500.0f, 500.0f);
+	ecsManager->setEntityName(farmer, "farmer");
+	farmer->addComponent<TransformComponent>(req.x, req.y);
 	farmer->addComponent<SpriteComponent>("farmer", 21, 28, 3);
 	farmer->addComponent<AnimationComponent>();
 	farmer->addComponent<StateComponent>();
@@ -144,8 +147,58 @@ std::shared_ptr<Entity> EntityFactory::createFarmerEntity(std::shared_ptr<ECSMan
 
 	animComp->playAnimation("d_idle");
 
-	return farmer;	
+
 }
+
+
+
+
+
+
+
+
+
+int EntityFactory::addAnimationFrames(AnimationData& animData, int x, int y, int w, int h, float duration, int interval, int count){
+
+	int desX = x;
+	int desY = y;
+
+	for (int i = 0; i < count; ++i)
+	{
+		desX = x + (interval * i);
+		animData.frames.push_back({desX, desY, w, h, duration});
+	}
+
+	return x + (interval * count);
+}
+
+
+
+
+void EntityFactory::createSlashEntity(const AttackRequest& req){
+
+	auto slash = ecsManager->createEntity();
+
+	Direction direction;
+	direction.x = req.directionX;
+	direction.y = req.directionY;
+
+	slash->addComponent<AttackComponent>(req.damage);
+	slash->addComponent<TransformComponent>(req.x, req.y, direction, req.scale);
+	slash->addComponent<SpriteComponent>("water_tile", 100, 200);
+	slash->addComponent<LifeTimeComponent>(req.duration);
+
+
+
+
+
+}
+
+
+
+
+
+
 
 
 
@@ -167,20 +220,3 @@ std::shared_ptr<Entity> EntityFactory::createFarmerEntity(std::shared_ptr<ECSMan
 
 // }
 
-
-
-
-
-int EntityFactory::addAnimationFrames(AnimationData& animData, int x, int y, int w, int h, float duration, int interval, int count){
-
-	int desX = x;
-	int desY = y;
-
-	for (int i = 0; i < count; ++i)
-	{
-		desX = x + (interval * i);
-		animData.frames.push_back({desX, desY, w, h, duration});
-	}
-
-	return x + (interval * count);
-}

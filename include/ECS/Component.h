@@ -21,7 +21,7 @@ inline ComponentTypeID getNewComponentTypeID() {
 template<typename T>
 inline ComponentTypeID getComponentTypeID() noexcept {
     static_assert(std::is_base_of<Component, T>::value, "T must inherit from Component");
-    static ComponentTypeID typeID = getNewComponentTypeID();
+    static const ComponentTypeID typeID = getNewComponentTypeID();
     return typeID;
 }
 

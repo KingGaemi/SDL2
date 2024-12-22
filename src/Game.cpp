@@ -41,7 +41,8 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager = std::make_shared<ECSManager>();
     eventManager = std::make_unique<EventManager>();
     inputManager = std::make_unique<InputManager>(eventManager->get());
-
+    auto entityFactory = std::make_shared<EntityFactory>(ecsManager);
+    ecsManager->setFactory(entityFactory);    
 
     // Add Systems
     ecsManager->addSystem<RenderSystem>(*renderer);
@@ -50,8 +51,9 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<AnimationSystem>();
     ecsManager->addSystem<InputSystem>();
     ecsManager->addSystem<TimerSystem>();
-    ecsManager->addSystem<ExpireSystem>(ecsManager);
+    ecsManager->addSystem<ExpireSystem>();
     ecsManager->addSystem<AttackSystem>(ecsManager);
+    ecsManager->addSystem<CooldownSystem>();
 
     textureLoading();
     
@@ -95,6 +97,8 @@ void Game::run() {
 
         // 2. ECS 시스템 업데이트 → EventSystem이 SCENE_CHANGE 이벤트 발생 가능
         ecsManager->updateSystems(deltaTime); 
+        ecsManager->processSpawnRequests();
+        ecsManager->cleanUpEntities();
 
         // 3. EventManager에서 이벤트 폴링 → SCENE_CHANGE나 QUIT 처리
         Event evt;
@@ -108,6 +112,7 @@ void Game::run() {
                 isRunning = false;
             }
         }
+
 
         // 4. 씬의 update, render 호출 (씬이 직접 이벤트 처리 안함)
         if (currentScene) {

@@ -5,6 +5,7 @@
 #include <bitset>
 #include <memory>
 #include <stdexcept>
+#include <iostream>
 
 using ComponentBitset = std::bitset<MAX_COMPONENTS>;
 using ComponentArray = std::array<std::shared_ptr<Component>, MAX_COMPONENTS>;
@@ -24,13 +25,19 @@ public:
         auto component = std::make_shared<T>(std::forward<Args>(args)...);
         componentArray[typeID] = component;
         componentBitset[typeID] = true;
+
+
+        std::cout << "addComponent : " << typeID << std::endl;
     }
 
     template<typename T>
     std::shared_ptr<T> getComponent() const {
         ComponentTypeID typeID = getComponentTypeID<T>();
         if (!componentBitset[typeID]) return nullptr;
-        return std::static_pointer_cast<T>(componentArray[typeID]);
+        auto& component = componentArray[typeID];
+
+        std::cout << "getComponent : " << typeID << std::endl;
+        return std::static_pointer_cast<T>(component);
     }
 
     template<typename T>
@@ -38,6 +45,8 @@ public:
         ComponentTypeID typeID = getComponentTypeID<T>();
         return componentBitset[typeID];
     }
+
+    bool isActive = true;
 
 private:
     std::size_t id;

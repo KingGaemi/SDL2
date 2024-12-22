@@ -32,8 +32,8 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 				
 
 				if(evt.key == KeyCode::Left){
-				trans->setDirectionX(-1);
-				trans->setDirectionY(0);
+					trans->setDirectionX(-1);
+					trans->setDirectionY(0);
 					// if(state->currentState != States::Walk) state->currentState = States::Walk;
 				}
 				if(evt.key == KeyCode::Right){
@@ -100,19 +100,16 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
     if (evt.type == EventType::KEYDOWN && evt.key == KeyCode::Escape) {
 
     	for(auto& entity : entities){
-			auto trans = entity->getComponent<TransformComponent>();			
-			if(trans){
-				std::cout << "(" << trans->x() << ", " << trans->y() << ")" << std::endl;
+			auto trans = entity->getComponent<TransformComponent>();
+			auto playComp = entity->getComponent<PlayableComponent>();
+			auto stateComp = entity->getComponent<StateComponent>();			
+			if(trans && playComp){
+				std::cout << "(" << trans->x() << ", " << trans->y() << ")" ;
 			}
-		}
-    }
-
-    if (evt.type == EventType::KEYDOWN && evt.key == KeyCode::Space) {
-
-    	for(auto& entity : entities){
-			auto state = entity->getComponent<StateComponent>();			
-			if(state){
-				state->currentState = States::Attack;
+			if(stateComp && playComp){
+				if(stateComp->currentState == States::Idle) std::cout << "Idle" << std::endl;
+				if(stateComp->currentState == States::Attack) std::cout << "Attack" << std::endl;
+				
 			}
 		}
     }

@@ -22,8 +22,17 @@ void MenuScene::onEnter(){
     }
 
 
-	auto entityFactory = std::make_unique<EntityFactory>();
-	background = entityFactory->createBackgroundEntity(ecsManager, "background_main");
+	auto entityFactory = ecsManager->shareFactory();
+
+
+	if(entityFactory){
+		entityFactory->createBackgroundEntity("background_main");
+	}else{
+
+		std::cerr << "nullptr factory!" << std::endl;
+	}
+
+	background = ecsManager->getEntityByName("background");
 	
 }
 
@@ -49,6 +58,5 @@ void MenuScene::update(float deltaTime){
 
 void MenuScene::onExit(){
 
- 	ecsManager->destroyEntity(background);
-
-}
+ 	background->isActive = false;
+ }

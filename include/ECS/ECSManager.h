@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include <string>
+#include "EntityFactory.h"
 #include "Entity.h"
 #include "System.h"
 
@@ -50,16 +51,32 @@ public:
         }
     }
 
+
+
+    // Temporary
+    void takeSingleRequest(const SpawnRequest& req);
+
+
+
+    std::shared_ptr<EntityFactory> shareFactory();
+    void setFactory(std::shared_ptr<EntityFactory>& factory);
     void setVelocity(std::shared_ptr<Entity> entity, float x, float y);
+    void processSpawnRequests();
+    void cleanUpEntities();
     // 엔티티 이름 관리 (선택 사항)
 
+    std::vector<SpawnRequest> pendingSpawns;
 private:
     std::size_t nextID = 0;
     std::vector<std::shared_ptr<Entity>> entities;
 
+
     // 이름 관리 (원한다면 유지)
     std::unordered_map<std::string, std::shared_ptr<Entity>> entityByName;
     std::unordered_map<std::shared_ptr<Entity>, std::string> entityNames;
+
+    std::shared_ptr<EntityFactory> entityFactory;
+
 
     SystemArray systemArray{};
     SystemBitset systemBitset;

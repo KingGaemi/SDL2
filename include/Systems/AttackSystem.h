@@ -10,7 +10,8 @@
 #include "Components/StatusComponent.h"
 #include "Components/ColliderComponent.h"
 #include "Components/SpriteComponent.h"
-#include "Components/LifeTimeComponent.h"
+#include "Components/CooldownComponent.h"
+#include "Requests.h"
 
 
 
@@ -19,9 +20,10 @@ class AttackSystem : public System {
 
 
 public:
-	AttackSystem(std::shared_ptr<ECSManager> ecsManager) : ecsManager(ecsManager) {}
+	AttackSystem(std::shared_ptr<ECSManager>& ecsManager) : ecsManager(ecsManager) {}
 	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
 
+	std::vector<AttackRequest> requests;
 private:
 
 	std::shared_ptr<ECSManager> ecsManager;

@@ -11,12 +11,24 @@
 
 void GameplayScene::onEnter(){
 
-	auto entityFactory = std::make_unique<EntityFactory>();
-	player = entityFactory->createPlayerEntity(ecsManager);
-	ecsManager->setEntityName(player, "player_orc");
-	
-	auto farmer = entityFactory->createFarmerEntity(ecsManager);
-	ecsManager->setEntityName(farmer, "farmer");	
+
+	SpawnRequest req1;
+	SpawnRequest req2;
+
+	req1.type = "player";
+	req1.x = 100.0f;
+	req1.y = 150.0f;
+
+	ecsManager->pendingSpawns.push_back(req1);
+
+	req2.type = "farmer";
+	req2.x = 500.0f;
+	req2.y = 600.0f;
+	ecsManager->pendingSpawns.push_back(req2);
+
+
+	player = ecsManager->getEntityByName("player");
+	farmer = ecsManager->getEntityByName("farmer");
 
 	
 	std::cout << "GameplayScene initialized!" << std::endl;
@@ -39,6 +51,10 @@ void GameplayScene::update(float deltaTime){
 }
 
 void GameplayScene::onExit(){
-	ecsManager->destroyEntity(ecsManager->getEntityByName("player_Eri"));
-	ecsManager->destroyEntity(ecsManager->getEntityByName("farmer"));
+
+
+	if(player) player->isActive = false;
+	if(farmer) farmer->isActive = false;
+
+
 }

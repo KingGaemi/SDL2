@@ -9,3 +9,4 @@
 #include "Components/ColliderComponent.h"
 #include "Components/AttackComponent.h"
 #include "Components/StatusComponent.h"
+#include "Components/CooldownComponent.h"

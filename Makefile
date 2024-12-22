@@ -1,6 +1,6 @@
 # 변수 정의
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -m64 -I include -I C:/SDL2-w64/include
+CXXFLAGS = -g -Wall -std=c++17 -Wall -m64 -I include -I C:/SDL2-w64/include -MMD -MP
 LDFLAGS = -L C:/SDL2-w64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
 SRC_DIR = src
 OBJ_DIR = obj
@@ -11,6 +11,7 @@ RELEASE_BIN = $(BIN_DIR)/release/main
 # 소스 파일 및 오브젝트 파일
 SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SOURCES))
+DEPENDS = $(OBJECTS:.o=.d)
 
 # 빌드 타겟
 all: debug
@@ -32,6 +33,8 @@ $(RELEASE_BIN): $(OBJECTS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -g -c $< -o $@
+
+-include $(DEPENDS)
 
 all: 
 	@echo "SOURCES: $(SOURCES)"

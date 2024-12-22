@@ -13,9 +13,6 @@ class ExpireSystem : public System{
 
 public:
 
-
-	ExpireSystem(std::shared_ptr<ECSManager> ecsManager) : ecsManager(ecsManager) {}
-
 	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override {
 
 		for(auto& entity : entities){
@@ -24,7 +21,7 @@ public:
 
 				auto lifeTimeComp = entity->getComponent<LifeTimeComponent>();
 
-				if(lifeTimeComp && lifeTimeComp->lifeTime < 0) ecsManager->destroyEntity(entity);
+				if(lifeTimeComp && lifeTimeComp->lifeTime < 0) entity->isActive = false;
 			}
 
 		}
@@ -33,6 +30,5 @@ public:
 
 private:
 
-	std::shared_ptr<ECSManager> ecsManager;
 
 };

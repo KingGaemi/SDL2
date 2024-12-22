@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ECS/Component.h"
+#include <iostream>
 
 
 enum class States{
@@ -34,6 +35,10 @@ public:
 			currentState = newState;
 			stateTimer = timer;
 			if(newState == States::Attack) callAttack = true;
+			if(currentState == States::Idle) std::cout << "Idle";
+			if(currentState == States::Attack) std::cout << "Attack";
+
+			std::cout << std::endl;
 		}
 	}
 
