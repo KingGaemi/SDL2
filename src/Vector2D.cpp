@@ -20,6 +20,41 @@ Vector2D::Vector2D(float x, float y)
 }
 
 
+Vector2D::Vector2D(Dir dir)
+{	
+	if(dir == Dir::Left){
+
+		this->x = -1;
+		this->y = 0;
+
+	}
+
+
+	if(dir == Dir::Right){
+
+		this->x = 1;
+		this->y = 0;
+		
+	}
+
+	if(dir == Dir::Up){
+
+		this->x = 0;
+		this->y = -1;
+		
+	}
+
+	if(dir == Dir::Down){
+
+		this->x = 0;
+		this->y = 1;
+		
+	}
+
+
+}
+
+
 Vector2D& Vector2D::Add(const Vector2D& vec)
 {
 	this->x += vec.x;
@@ -105,6 +140,24 @@ Vector2D& Vector2D::operator*(const int& i)
 
 	return *this;
 }
+
+Vector2D& Vector2D::operator*(const float& f)
+{
+	this->x *= f;
+	this->y *= f;
+
+	return *this;
+}
+
+
+// Vector2D& Vector2D::operator*=(const int& i)
+// {
+// 	this->x *= i;
+// 	this->y *= i;
+
+// 	return *this;
+// }
+
 
 
 

@@ -10,7 +10,7 @@
 void EntityFactory::createBackgroundEntity(const std::string& textureName){
 
 	auto background = ecsManager->createEntity();
-	background->addComponent<TransformComponent>();
+	background->addComponent<PositionComponent>();
 	background->addComponent<SpriteComponent>(textureName, 1280, 800);
 	
 	ecsManager->setEntityName(background, "background");
@@ -24,13 +24,16 @@ void EntityFactory::createPlayerEntity(const SpawnRequest& req){
 
 	auto player = ecsManager->createEntity();
 	ecsManager->setEntityName(player, "player");
-	player->addComponent<TransformComponent>(req.x, req.y);
+	player->addComponent<PositionComponent>(req.x, req.y);
+	player->addComponent<VelocityComponent>();
+	player->addComponent<DirectionComponent>(0, 1);
 	player->addComponent<SpriteComponent>("orc3", 64, 64, 2);
 	player->addComponent<AnimationComponent>();
 	player->addComponent<PlayableComponent>();
 	player->addComponent<StateComponent>();
 	player->addComponent<StatusComponent>(100, 100);
 	player->addComponent<CooldownComponent>("basic_attack", 0.57f);
+	player->addComponent<CommandComponent>();
 	auto animComp = player->getComponent<AnimationComponent>();
 
 	
@@ -50,13 +53,27 @@ void EntityFactory::createPlayerEntity(const SpawnRequest& req){
     // ... 필요한 팩토리 메서드를 추가
 
 
+void EntityFactory::createEri(const SpawnRequest& req){
+
+	auto eri = ecsManager->createEntity();
+	eri->addComponent<PositionComponent>(req.x, req.y);
+	eri->addComponent<VelocityComponent>(3.0f, 3.0f);
+	eri->addComponent<SpriteComponent>("eri", 60, 60);
+	
+	ecsManager->setEntityName(eri, "eri");
+
+}
+
+
 
 
 void EntityFactory::createFarmerEntity(const SpawnRequest& req){
 
 	auto farmer = ecsManager->createEntity();
 	ecsManager->setEntityName(farmer, "farmer");
-	farmer->addComponent<TransformComponent>(req.x, req.y);
+	farmer->addComponent<PositionComponent>(req.x, req.y);
+	farmer->addComponent<VelocityComponent>();
+	farmer->addComponent<DirectionComponent>(0, 1);
 	farmer->addComponent<SpriteComponent>("farmer", 21, 28, 3);
 	farmer->addComponent<AnimationComponent>();
 	farmer->addComponent<StateComponent>();
@@ -179,13 +196,11 @@ void EntityFactory::createSlashEntity(const AttackRequest& req){
 
 	auto slash = ecsManager->createEntity();
 
-	Direction direction;
-	direction.x = req.directionX;
-	direction.y = req.directionY;
 
 	slash->addComponent<AttackComponent>(req.damage);
-	slash->addComponent<TransformComponent>(req.x, req.y, direction, req.scale);
-	slash->addComponent<SpriteComponent>("water_tile", 100, 200);
+	slash->addComponent<PositionComponent>(req.x, req.y);
+	slash->addComponent<DirectionComponent>(req.hDir, req.vDir);
+	slash->addComponent<SpriteComponent>("water_tile", 100, 200, req.scale);
 	slash->addComponent<LifeTimeComponent>(req.duration);
 
 

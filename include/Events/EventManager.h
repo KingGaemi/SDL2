@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Events/EventQueue.h"
-
-
 #include <queue>
 // #include <mutex>
 

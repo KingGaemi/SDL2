@@ -54,7 +54,11 @@ obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
  include/Components/ColliderComponent.h \
  include/Components/AttackComponent.h \
  include/Components/StatusComponent.h \
- include/Components/CooldownComponent.h include/Systems/Systems.h \
+ include/Components/CooldownComponent.h \
+ include/Components/CommandComponent.h \
+ include/Components/DirectionComponent.h \
+ include/Components/PositionComponent.h \
+ include/Components/VelocityComponent.h include/Systems/Systems.h \
  include/Systems/AnimationSystem.h include/Systems/InputSystem.h \
  include/Systems/MovementSystem.h include/Systems/RenderSystem.h \
  include/TextureManager.h include/Renderer.h include/IRenderer.h \
@@ -108,7 +112,7 @@ obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
  C:/SDL2-w64/include/SDL2/SDL_misc.h C:/SDL2-w64/include/SDL2/SDL_image.h \
  C:/SDL2-w64/include/SDL2/SDL.h include/Systems/TimerSystem.h \
  include/Systems/ExpireSystem.h include/Systems/AttackSystem.h \
- include/Systems/CooldownSystem.h
+ include/Systems/CooldownSystem.h include/Systems/CommandSystem.h
 include/ECS/EntityFactory.h:
 include/Requests.h:
 include/ECS/ECSManager.h:
@@ -174,6 +178,10 @@ include/Components/ColliderComponent.h:
 include/Components/AttackComponent.h:
 include/Components/StatusComponent.h:
 include/Components/CooldownComponent.h:
+include/Components/CommandComponent.h:
+include/Components/DirectionComponent.h:
+include/Components/PositionComponent.h:
+include/Components/VelocityComponent.h:
 include/Systems/Systems.h:
 include/Systems/AnimationSystem.h:
 include/Systems/InputSystem.h:
@@ -238,3 +246,4 @@ include/Systems/TimerSystem.h:
 include/Systems/ExpireSystem.h:
 include/Systems/AttackSystem.h:
 include/Systems/CooldownSystem.h:
+include/Systems/CommandSystem.h:

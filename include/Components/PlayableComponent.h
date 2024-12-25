@@ -7,4 +7,6 @@ class PlayableComponent : public Component{
 
 public:
 
+	bool keyDown = false;
+
 };

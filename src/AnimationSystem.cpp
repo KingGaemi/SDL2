@@ -1,4 +1,6 @@
 #include "Systems/AnimationSystem.h"
+#include "Components/DirectionComponent.h"
+#include "Components/StateComponent.h"
 #include <iostream>
 
 
@@ -8,101 +10,128 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
 
    	for (auto& entity : entities) {
 
-        auto animComp = entity->getComponent<AnimationComponent>();
         
-        if(animComp){
+        if(entity->hasComponent<AnimationComponent>()){
+            auto animComp = entity->getComponent<AnimationComponent>();
+        
+            if(animComp){
 
-            auto spriteComp = entity->getComponent<SpriteComponent>();
-            auto trans = entity->getComponent<TransformComponent>();
-            auto state = entity->getComponent<StateComponent>();
+                auto spriteComp = entity->getComponent<SpriteComponent>();
+                auto directComp = entity->getComponent<DirectionComponent>();
+                auto state = entity->getComponent<StateComponent>();
 
-            if(spriteComp && trans && state){
+                if(spriteComp && directComp && state){
 
-            	int dirX = trans->direction.x;
-            	int dirY = trans->direction.y;
+                	int hDir = directComp->direction.hDir;
+                	int vDir = directComp->direction.vDir;
 
-                if(animComp->busy){
+                    if(animComp->busy){
 
-                    if(state->stateTimer < 0){
-                        std::cout << "AnimationComplete" << std::endl;
-                        animComp->busy = false;
-                    }
-                }
+                        if(state->stateTimer <= 0){
+                            std::cout << "AnimationComplete" << std::endl;
+                            animComp->busy = false;
+                        }
 
-                if(!animComp->busy){
-
-                    if(state->currentState == States::Attack){
-                        std::cout << "Attack in Animation.  ID: "<< spriteComp->textureID << std::endl;
-
-                        animComp->busy = true;
-                        if(dirX == -1){
-                            if(animComp->currentAnimation != "l_attack") animComp->playAnimation("l_attack");
-                        }
-                        if (dirX == 1){
-                            if(animComp->currentAnimation != "r_attack") animComp->playAnimation("r_attack");
-                        }
-                        if(dirY == 1){
-                            if(animComp->currentAnimation != "d_attack") animComp->playAnimation("d_attack");
-                        }
-                        if(dirY == -1){
-                            if(animComp->currentAnimation != "u_attack") animComp->playAnimation("u_attack");
-                        }
-                    }
-                    
-                    if(state->currentState == States::Run){
-                        if(dirX == -1){
-                            if(animComp->currentAnimation != "l_run") animComp->playAnimation("l_run");
-                        }
-                        if (dirX == 1){
-                            if(animComp->currentAnimation != "r_run") animComp->playAnimation("r_run");
-                        }
-                        if(dirY == 1){
-                            if(animComp->currentAnimation != "d_run") animComp->playAnimation("d_run");
-                        }
-                        if(dirY == -1){
-                            if(animComp->currentAnimation != "u_run") animComp->playAnimation("u_run");
-                        }
-                    }
-                    if(state->currentState == States::Idle){
-                        if(dirX == -1){
-                            if(animComp->currentAnimation != "l_idle") animComp->playAnimation("l_idle");
-                        }
-                        if (dirX == 1){
-                            if(animComp->currentAnimation != "r_idle") animComp->playAnimation("r_idle");
-                        }
-                        if(dirY == 1){
-                            if(animComp->currentAnimation != "d_idle") animComp->playAnimation("d_idle");
-                        }
-                        if(dirY == -1){
-                            if(animComp->currentAnimation != "u_idle") animComp->playAnimation("u_idle");
-                        }
-                    } 
-
-
-                    if(state->currentState == States::Walk){
-                        if(dirX == -1){
-                            if(animComp->currentAnimation != "l_walk") animComp->playAnimation("l_walk");
-                        }
-                        if (dirX == 1){
-                            if(animComp->currentAnimation != "r_walk") animComp->playAnimation("r_walk");
-                        }
-                        if(dirY == 1){
-                            if(animComp->currentAnimation != "d_walk") animComp->playAnimation("d_walk");
-                        }
-                        if(dirY == -1){
-                            if(animComp->currentAnimation != "u_walk") animComp->playAnimation("u_walk");
-                        }
                     }
 
+                    if(!animComp->busy){
 
-                }
-                if (animComp && spriteComp) {
-                    updateAnimation(animComp, spriteComp, deltaTime);
+                        if(state->currentState == States::Attack){
+                            std::cout << "Attack in Animation.  ID: "<< spriteComp->textureID << std::endl;
+
+                            animComp->busy = true;
+
+                            if(vDir != 0){
+                                if(vDir == 1){
+                                    if(animComp->currentAnimation != "d_attack") animComp->playAnimation("d_attack");
+                                }
+                                if(vDir == -1){
+                                    if(animComp->currentAnimation != "u_attack") animComp->playAnimation("u_attack");
+                                }
+                            }else{
+                                if(hDir == -1){
+                                    if(animComp->currentAnimation != "l_attack") animComp->playAnimation("l_attack");
+                                }
+                                if (hDir == 1){
+                                    if(animComp->currentAnimation != "r_attack") animComp->playAnimation("r_attack");
+                                }
+                            }
+
+                        }
+                        
+                        if(state->currentState == States::Run){
+
+                            if(vDir != 0){
+                                if(vDir == 1){
+                                    if(animComp->currentAnimation != "d_run") animComp->playAnimation("d_run");
+                                }
+                                if(vDir == -1){
+                                    if(animComp->currentAnimation != "u_run") animComp->playAnimation("u_run");
+                                }else{
+                                    if(hDir == -1){
+                                        if(animComp->currentAnimation != "l_run") animComp->playAnimation("l_run");
+                                    }
+                                    if (hDir == 1){
+                                        if(animComp->currentAnimation != "r_run") animComp->playAnimation("r_run");
+                                    }
+                                }
+                            }
+
+                        }
+
+
+                        if(state->currentState == States::Idle){
+
+                            if(hDir == -1){
+                                if(animComp->currentAnimation != "l_idle") animComp->playAnimation("l_idle");
+                            }
+                            if (hDir == 1){
+                                if(animComp->currentAnimation != "r_idle") animComp->playAnimation("r_idle");
+                            }
+                            if(vDir == 1){
+                                if(animComp->currentAnimation != "d_idle") animComp->playAnimation("d_idle");
+                            }
+                            if(vDir == -1){
+                                if(animComp->currentAnimation != "u_idle") animComp->playAnimation("u_idle");
+                            }
+
+                        } 
+
+
+                        if(state->currentState == States::Walk){
+
+                            if(vDir != 0){
+                                if(vDir == 1){
+                                    if(animComp->currentAnimation != "d_walk") animComp->playAnimation("d_walk");
+                                }
+                                if(vDir == -1){
+                                    if(animComp->currentAnimation != "u_walk") animComp->playAnimation("u_walk");
+                                }
+                            }else{
+                                if(hDir == -1){
+                                    if(animComp->currentAnimation != "l_walk") animComp->playAnimation("l_walk");
+                                }
+                                if (hDir == 1){
+                                    if(animComp->currentAnimation != "r_walk") animComp->playAnimation("r_walk");
+                                }
+                            }
+
+                        }
+
+
+                    }
+
+
+                    if (animComp && spriteComp) {
+                        updateAnimation(animComp, spriteComp, deltaTime);
+                    }
                 }
             }
         }
     }
 }
+
+
 
 
 void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animComp, std::shared_ptr<SpriteComponent> spriteComp, float deltaTime){

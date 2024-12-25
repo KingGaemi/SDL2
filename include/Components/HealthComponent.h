@@ -5,5 +5,6 @@
 class HealthComponent : public Component {
 public:
     int health;
-    HealthComponent(int h) : health(h) {}
+
+    HealthComponent(int h) : h(health) {}
 };

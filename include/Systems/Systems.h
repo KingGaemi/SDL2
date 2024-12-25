@@ -7,3 +7,4 @@
 #include "Systems/ExpireSystem.h"
 #include "Systems/AttackSystem.h"
 #include "Systems/CooldownSystem.h"
+#include "CommandSystem.h"

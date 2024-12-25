@@ -1,6 +1,6 @@
 #include "Systems/RenderSystem.h"
 #include "ECS/Entity.h"
-#include "Components/TransformComponent.h"
+#include "Components/PositionComponent.h"
 #include "Components/SpriteComponent.h"
 #include "Renderer.h"
 #include <iostream>
@@ -24,26 +24,28 @@ void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
     
     for (auto& entity : entities) {
 
+        if(entity->hasComponent<PositionComponent>() && entity->hasComponent<SpriteComponent>()){
 
-        auto transform = entity->getComponent<TransformComponent>();
-        auto sprite = entity->getComponent<SpriteComponent>();
-        if (transform && sprite) {
-
-
-            // Renderer 통해 그리기
-            auto texture = textureManager->getTexture(sprite->getTextureID());
-
-            SDL_Rect srcRect = toSDLRect(sprite->srcRect);
-            SDL_Rect dstRect = toSDLRect(sprite->dstRect);
-            dstRect.x = static_cast<int>(transform->x());
-            dstRect.y = static_cast<int>(transform->y());
-
-            SDL_RendererFlip flip = SDL_FLIP_NONE;
-            if (sprite->flipHorizontal) flip = SDL_FLIP_HORIZONTAL;
-            if (sprite->flipVertical) flip = (SDL_RendererFlip)(flip | SDL_FLIP_VERTICAL);
+            auto posComp = entity->getComponent<PositionComponent>();
+            auto sprite = entity->getComponent<SpriteComponent>();
+            if (posComp && sprite) {
 
 
-            renderer->render(texture, &srcRect, &dstRect, 0.0, nullptr, flip);
+                // Renderer 통해 그리기
+                auto texture = textureManager->getTexture(sprite->getTextureID());
+
+                SDL_Rect srcRect = toSDLRect(sprite->srcRect);
+                SDL_Rect dstRect = toSDLRect(sprite->dstRect);
+                dstRect.x = static_cast<int>(posComp->x());
+                dstRect.y = static_cast<int>(posComp->y());
+
+                SDL_RendererFlip flip = SDL_FLIP_NONE;
+                if (sprite->flipHorizontal) flip = SDL_FLIP_HORIZONTAL;
+                if (sprite->flipVertical) flip = (SDL_RendererFlip)(flip | SDL_FLIP_VERTICAL);
+
+
+                renderer->render(texture, &srcRect, &dstRect, 0.0, nullptr, flip);
+            }
         }
     }
 

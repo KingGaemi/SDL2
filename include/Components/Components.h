@@ -10,3 +10,7 @@
 #include "Components/AttackComponent.h"
 #include "Components/StatusComponent.h"
 #include "Components/CooldownComponent.h"
+#include "CommandComponent.h"
+#include "PositionComponent.h"
+#include "DirectionComponent.h"
+#include "VelocityComponent.h"

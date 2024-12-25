@@ -100,15 +100,13 @@ obj/main.o: src/main.cpp include/Game.h C:/SDL2-w64/include/SDL2/SDL.h \
  include/nlohmann/detail/macro_unscope.hpp \
  include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
  include/Components/SpriteComponent.h include/Rect.h \
- include/Components/TransformComponent.h include/Vector2D.h \
- include/Components/StateComponent.h include/Systems/InputSystem.h \
- include/Systems/MovementSystem.h include/Systems/RenderSystem.h \
- include/Systems/TimerSystem.h include/Components/LifeTimeComponent.h \
- include/Systems/ExpireSystem.h include/Systems/AttackSystem.h \
- include/Components/AttackComponent.h \
- include/Components/StatusComponent.h \
- include/Components/ColliderComponent.h \
- include/Components/CooldownComponent.h include/Systems/CooldownSystem.h \
+ include/Systems/InputSystem.h include/Systems/MovementSystem.h \
+ include/Components/PositionComponent.h include/Vector2D.h \
+ include/Components/VelocityComponent.h include/Systems/RenderSystem.h \
+ include/Systems/TimerSystem.h include/Components/StateComponent.h \
+ include/Components/LifeTimeComponent.h include/Systems/ExpireSystem.h \
+ include/Systems/AttackSystem.h include/Systems/CooldownSystem.h \
+ include/Components/CooldownComponent.h include/Systems/CommandSystem.h \
  include/Input/InputManager.h include/Events/EventManager.h \
  include/Events/EventSystem.h
 include/Game.h:
@@ -229,21 +227,20 @@ include/nlohmann/detail/macro_unscope.hpp:
 include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
 include/Components/SpriteComponent.h:
 include/Rect.h:
-include/Components/TransformComponent.h:
-include/Vector2D.h:
-include/Components/StateComponent.h:
 include/Systems/InputSystem.h:
 include/Systems/MovementSystem.h:
+include/Components/PositionComponent.h:
+include/Vector2D.h:
+include/Components/VelocityComponent.h:
 include/Systems/RenderSystem.h:
 include/Systems/TimerSystem.h:
+include/Components/StateComponent.h:
 include/Components/LifeTimeComponent.h:
 include/Systems/ExpireSystem.h:
 include/Systems/AttackSystem.h:
-include/Components/AttackComponent.h:
-include/Components/StatusComponent.h:
-include/Components/ColliderComponent.h:
-include/Components/CooldownComponent.h:
 include/Systems/CooldownSystem.h:
+include/Components/CooldownComponent.h:
+include/Systems/CommandSystem.h:
 include/Input/InputManager.h:
 include/Events/EventManager.h:
 include/Events/EventSystem.h:

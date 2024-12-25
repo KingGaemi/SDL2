@@ -56,6 +56,10 @@ void ECSManager::processSpawnRequests() {
         if(req.type == "farmer"){
             entityFactory->createFarmerEntity(req);
         }
+        if(req.type == "eri"){
+
+            entityFactory->createEri(req);
+        }
 
 
 

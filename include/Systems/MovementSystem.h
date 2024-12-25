@@ -2,7 +2,8 @@
 
 #include "ECS/System.h"
 #include "ECS/Entity.h"
-#include "Components/TransformComponent.h"
+#include "Components/PositionComponent.h"
+#include "Components/VelocityComponent.h"
 #include <iostream>
 
 class MovementSystem : public System {
@@ -10,20 +11,19 @@ public:
     void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override {
         for (auto& entity : entities) {
 
-            if(entity->hasComponent<TransformComponent>()){
+            if(entity->hasComponent<VelocityComponent>()){
 
-                auto transform = entity->getComponent<TransformComponent>();
-                if (transform) {
+                auto posComp = entity->getComponent<PositionComponent>();
+                auto veloComp = entity->getComponent<VelocityComponent>();
+
+                if (posComp && veloComp) {
+                
+                    posComp->add(veloComp->velo() * deltaTime);
                     
-                    transform->x(transform->position.x + transform->velocity.x * deltaTime * 100);
-                    transform->y(transform->position.y + transform->velocity.y * deltaTime * 100);
-
                 }else{
                     std::cout << "Entity doesn't have TransformComponent. ID: " << entity->getId() << std::endl;
                 }
             }
         }
     }
-
-
 };

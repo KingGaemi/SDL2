@@ -50,7 +50,7 @@ obj/RenderSystem.o: src/RenderSystem.cpp include/Systems/RenderSystem.h \
  C:/SDL2-w64/include/SDL2/SDL_locale.h \
  C:/SDL2-w64/include/SDL2/SDL_misc.h C:/SDL2-w64/include/SDL2/SDL_image.h \
  C:/SDL2-w64/include/SDL2/SDL.h include/ECS/Entity.h \
- include/ECS/Component.h include/Components/TransformComponent.h \
+ include/ECS/Component.h include/Components/PositionComponent.h \
  include/Vector2D.h include/Components/SpriteComponent.h include/Rect.h
 include/Systems/RenderSystem.h:
 include/ECS/System.h:
@@ -111,7 +111,7 @@ C:/SDL2-w64/include/SDL2/SDL_image.h:
 C:/SDL2-w64/include/SDL2/SDL.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
-include/Components/TransformComponent.h:
+include/Components/PositionComponent.h:
 include/Vector2D.h:
 include/Components/SpriteComponent.h:
 include/Rect.h:

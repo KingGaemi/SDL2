@@ -4,13 +4,6 @@
 #include "ECS/System.h"
 #include "ECS/ECSManager.h"
 
-#include "Components/TransformComponent.h"
-#include "Components/AttackComponent.h"
-#include "Components/StateComponent.h"
-#include "Components/StatusComponent.h"
-#include "Components/ColliderComponent.h"
-#include "Components/SpriteComponent.h"
-#include "Components/CooldownComponent.h"
 #include "Requests.h"
 
 

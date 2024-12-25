@@ -54,6 +54,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<ExpireSystem>();
     ecsManager->addSystem<AttackSystem>(ecsManager);
     ecsManager->addSystem<CooldownSystem>();
+    ecsManager->addSystem<CommandSystem>();
 
     textureLoading();
     
@@ -69,7 +70,7 @@ void Game::textureLoading(){
 
     textureManager = std::make_unique<TextureManager>(*renderer);
     textureManager->loadTexture("background_main", "res/gfx/SunnyLand/Environment/back.png");
-    textureManager->loadTexture("player_eri", "res/gfx/eri_copy2.png");
+    textureManager->loadTexture("eri", "res/gfx/eri_copy2.png");
     textureManager->loadTexture("streetlamp", "res/gfx/streetlamp3.png");
     textureManager->loadTexture("farmer", "res/gfx/1/player_sprite_sheet.png");
     textureManager->loadTexture("water_tile", "res/gfx/water_tile.png");

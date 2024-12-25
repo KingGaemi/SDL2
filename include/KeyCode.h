@@ -10,5 +10,10 @@ enum class KeyCode {
     Up,
     Down,
     Space,
+    NUM_OF_KEY_CODES
     // 필요한 키 추가...
 };
+
+constexpr int toInt(KeyCode key) {
+    return static_cast<int>(key);
+}

@@ -27,6 +27,12 @@ public:
 	void changeState(States newState){
 		if(currentState != newState){
 			currentState = newState;
+
+			if(currentState == States::Idle) std::cout << "Idle";
+			if(currentState == States::Attack) std::cout << "Attack";
+			if(currentState == States::Walk) std::cout << "Walk";
+
+			std::cout << std::endl;
 		}
 	}
 	
@@ -37,6 +43,7 @@ public:
 			if(newState == States::Attack) callAttack = true;
 			if(currentState == States::Idle) std::cout << "Idle";
 			if(currentState == States::Attack) std::cout << "Attack";
+			if(currentState == States::Walk) std::cout << "Walk";
 
 			std::cout << std::endl;
 		}

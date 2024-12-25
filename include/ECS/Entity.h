@@ -27,7 +27,7 @@ public:
         componentBitset[typeID] = true;
 
 
-        std::cout << "addComponent : " << typeID << std::endl;
+        // std::cout << "addComponent : " << typeID << std::endl;
     }
 
     template<typename T>
@@ -36,7 +36,7 @@ public:
         if (!componentBitset[typeID]) return nullptr;
         auto& component = componentArray[typeID];
 
-        std::cout << "getComponent : " << typeID << std::endl;
+        // std::cout << "getComponent : " << typeID << std::endl;
         return std::static_pointer_cast<T>(component);
     }
 

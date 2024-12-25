@@ -4,8 +4,6 @@
 #include "ECS/System.h"
 #include "Components/AnimationComponent.h"
 #include "Components/SpriteComponent.h"
-#include "Components/TransformComponent.h"
-#include "Components/StateComponent.h"
 
 
 class AnimationSystem : public System {

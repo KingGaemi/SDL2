@@ -2,6 +2,15 @@
 #include "iostream"
 
 
+enum class Dir{
+	Left,
+	Right,
+	Up,
+	Down
+};
+
+
+
 class Vector2D
 
 {
@@ -11,6 +20,7 @@ public:
 
 	Vector2D();
 	Vector2D(float x, float y);
+	Vector2D(Dir dir);
 
 	Vector2D& Add(const Vector2D& vec);
 	Vector2D& Subtract(const Vector2D& vec);
@@ -30,6 +40,8 @@ public:
 	Vector2D& operator/=(const Vector2D& vec);
 
 	Vector2D& operator*(const int& i);
+	Vector2D& operator*(const float& f);
+	// Vector2D& operator*=(const int& i);
 	Vector2D& Zero();
 
 	friend std::ostream& operator<<(std::ostream& stream, const Vector2D& vec);
