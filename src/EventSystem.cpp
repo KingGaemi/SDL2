@@ -22,49 +22,58 @@ void EventSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float d
 void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Entity>>& entities){
 
 
+// if(evt.type == EventType::KEYDOWN || evt.type == EventType::KEYUP){
+// 		if(isControlKey(evt.key)){
+// 	}
+// 	}
 	// Find Target
-	if(evt.type == EventType::KEYDOWN || evt.type == EventType::KEYUP){
-		if(isControlKey(evt.key)){
+	
 			for(auto& entity : entities){
 				if(entity->hasComponent<PlayableComponent>() && entity->hasComponent<CommandComponent>()){
 
+
 					auto playComp = entity->getComponent<PlayableComponent>();
 					auto commandComp = entity->getComponent<CommandComponent>();
-					auto stateComp = entity->getComponent<StateComponent>();
 
-					if(playComp&&commandComp&&stateComp){
+
+
+					if(playComp&&commandComp){
+
 						if(evt.type == EventType::KEYDOWN){
-							pressed[toInt(evt.key)] = true;
-							if(isArrow(evt.key)){
-								if(isHorizontal(evt.key)){
-									lastHorizontalKey = evt.key;		
-									if(evt.key == KeyCode::Left){
-										std::cout << "Left" << std::endl;						
-										commandComp->commandData.moveDirection.hDir = -1;
-									}else{
-										std::cout << "Right" << std::endl;
-										commandComp->commandData.moveDirection.hDir = 1;
+							if(isControlKey(evt.key)){
+								pressed[toInt(evt.key)] = true;
+								if(isArrow(evt.key)){
+									if(isHorizontal(evt.key)){
+										lastHorizontalKey = evt.key;
+										if(evt.key == KeyCode::Left){
+											std::cout << "Left" << std::endl;					
+											commandComp->commandData.moveDirection.hDir = -1;
+										}else{
+											std::cout << "Right" << std::endl;
+											commandComp->commandData.moveDirection.hDir = 1;
+										}
 									}
-								}
 
-								if(isVertical(evt.key)){
-									lastVerticalKey = evt.key;
-									if(evt.key == KeyCode::Up){
-										std::cout << "Up" << std::endl;
-										commandComp->commandData.moveDirection.vDir = -1;
-									}else{
-										std::cout << "Down" << std::endl;
-										commandComp->commandData.moveDirection.vDir = 1;
+									if(isVertical(evt.key)){
+										lastVerticalKey = evt.key;
+										if(evt.key == KeyCode::Up){
+											std::cout << "Up" << std::endl;
+											commandComp->commandData.moveDirection.vDir = -1;
+										}else{
+											std::cout << "Down" << std::endl;
+											commandComp->commandData.moveDirection.vDir = 1;
+										}
 									}
+								
+									commandComp->commandData.type = CommandType::Move;
+									
+
 								}
-
-								commandComp->commandData.type = CommandType::Move;
-								stateComp->changeState(States::Walk);
-
 							}
 						}
 
 						if(evt.type == EventType::KEYUP){
+
 							pressed[toInt(evt.key)] = false;
 							std::cout << "KeyUp : ";
 							if(isHorizontal(evt.key)){
@@ -127,7 +136,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 						}
 						if(!pressed[toInt(KeyCode::Right)] && !pressed[toInt(KeyCode::Left)] && !pressed[toInt(KeyCode::Down)] && !pressed[toInt(KeyCode::Up)]){
 								commandComp->commandData.type = CommandType::None;
-								stateComp->changeState(States::Idle);
+								
 						}
 					}
 
@@ -137,13 +146,20 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 
 				        
 				    }
+
+
+
+
+
+
+
 				}
 			}
 
 		
 
-		}
-	}
+	
+
 	
 
 

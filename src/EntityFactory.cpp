@@ -32,10 +32,15 @@ void EntityFactory::createPlayerEntity(const SpawnRequest& req){
 	player->addComponent<PlayableComponent>();
 	player->addComponent<StateComponent>();
 	player->addComponent<StatusComponent>(100, 100);
-	player->addComponent<CooldownComponent>("basic_attack", 0.57f);
+
+	auto statusComp = player->getComponent<StatusComponent>();
+
+
+	player->addComponent<CooldownComponent>("attack", 1.0f/statusComp->attackSpeed);
 	player->addComponent<CommandComponent>();
 	auto animComp = player->getComponent<AnimationComponent>();
-
+	animComp->attackFast = statusComp->attackSpeed;
+	animComp->moveFast =  statusComp->movementSpeed / 100.0f;
 	
 	    // 애니메이션을 JSON 파일에서 로드
     if (!animComp->loadAnimationsFromFile("assets/animations.json", animComp)) {

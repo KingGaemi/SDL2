@@ -4,6 +4,7 @@
 #include "Components/CommandComponent.h"
 #include "Components/StatusComponent.h"
 #include "Components/StateComponent.h"
+#include "Components/CooldownComponent.h"
 #include <iostream>
 
 
@@ -21,8 +22,9 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 				auto directComp = entity->getComponent<DirectionComponent>();
 				auto statusComp = entity->getComponent<StatusComponent>();
 				auto stateComp = entity->getComponent<StateComponent>();
+				auto cooldownComp = entity->getComponent<CooldownComponent>();
 
-				if(commandComp && veloComp && directComp && statusComp && stateComp){
+				if(commandComp && veloComp && directComp && statusComp && stateComp && cooldownComp){
 
 					if(commandComp->commandData.type == CommandType::Move){
 
@@ -35,7 +37,7 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 
 						veloComp->set(velo);
 
-						stateComp->changeState(States::Walk);
+						// stateComp->changeState(States::Walk);
 
 					
 					}else if(commandComp->commandData.type == CommandType::None){
@@ -43,14 +45,15 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 
 						veloComp->zero();
 
-						stateComp->changeState(States::Idle);
+						// stateComp->changeState(States::Idle);
+
 					}
 
-					if(commandComp->commandData.type == CommandType::Attack){
+					if(commandComp->commandData.type == CommandType::Attack && cooldownComp->isOnCooldown("attack")){
 
-						stateComp->callAttack = true;
-						stateComp->changeState(States::Attack, 0.57f);
-
+						// if(!stateComp->inMotion){
+						// 	stateComp->changeState(States::Attack, cooldownComp->cooldownAbilities["attack"].cooldownTime);
+						// }
 						
 					}
 				}

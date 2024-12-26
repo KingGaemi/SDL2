@@ -25,14 +25,6 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                 	int hDir = directComp->direction.hDir;
                 	int vDir = directComp->direction.vDir;
 
-                    if(animComp->busy){
-
-                        if(state->stateTimer <= 0){
-                            std::cout << "AnimationComplete" << std::endl;
-                            animComp->busy = false;
-                        }
-
-                    }
 
                     if(!animComp->busy){
 
@@ -146,9 +138,23 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
     // 경과 시간 갱신
     animComp->currentTime += deltaTime;
 
+    
+
+    float baseDuration = frame->duration;
+    float duration;
+
+    if(animData->type == "attack"){
+        duration = baseDuration / animComp->attackFast;
+    }else if(animData->type == "move"){
+        duration = baseDuration / animComp->moveFast;
+    }else{
+        duration = baseDuration;
+    }
+
+
     // 현재 프레임 지속시간보다 경과 시간이 길다면 다음 프레임으로
-    if (animComp->currentTime >= frame->duration) {
-        animComp->currentTime -= frame->duration;
+    if (animComp->currentTime >= duration) {
+        animComp->currentTime -= duration;
         animComp->currentFrameIndex++;
         // 프레임 넘어갔을 때 애니메이션 루프 처리
         if (animComp->currentFrameIndex >= (int)animData->frames.size()) {
@@ -157,6 +163,7 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
             } else {
                 // 루프 안하는 애니메이션이면 마지막 프레임 유지
                 animComp->currentFrameIndex = (int)animData->frames.size() - 1;
+                animComp->busy = false;
             }
         }
         frame = animComp->getCurrentFrame(); // 새 프레임 정보 갱신

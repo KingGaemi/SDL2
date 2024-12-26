@@ -15,6 +15,7 @@ struct AnimationFrame {
 
 
 struct AnimationData {
+	std::string type;
     std::string name;     
     std::vector<AnimationFrame> frames;
     bool loop = true;     
@@ -32,7 +33,14 @@ public:
 
 	float currentTime = 0.0f;
 	int currentFrameIndex = 0;
+
+	float fast = 1.0f;
+
+	float moveFast = 1.0f;
+	float attackFast = 1.0f;
+
 	bool busy = false;
+
 
 	void playAnimation(const std::string animName);
 	bool loadAnimationsFromFile(const std::string& filename,std::shared_ptr<AnimationComponent> animComp);

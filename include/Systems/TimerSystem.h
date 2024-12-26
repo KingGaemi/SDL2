@@ -16,16 +16,22 @@ public:
 
 		for(auto& entity : entities){
 
-			auto stateComp = entity->getComponent<StateComponent>();
-			auto lifeTimeComp = entity->getComponent<LifeTimeComponent>();
+			if(entity->hasComponent<LifeTimeComponent>() || entity->hasComponent<StateComponent>()){
+				auto stateComp = entity->getComponent<StateComponent>();
+				auto lifeTimeComp = entity->getComponent<LifeTimeComponent>();
 
-			if(stateComp){
-				if(stateComp->stateTimer > 0) stateComp->stateTimer -= deltaTime;
-				if(stateComp->stateTimer < 0) stateComp->stateTimer = 0;
-			}
+				if(stateComp){
+					if(stateComp->stateTimer > 0) stateComp->stateTimer -= deltaTime;
+					if(stateComp->stateTimer <= 0) {
+						stateComp->stateTimer = 0;
+						if(stateComp->inMotion) stateComp->inMotion = false;
+					}
+					
+				}
 
-			if(lifeTimeComp){
-				lifeTimeComp->lifeTime -= deltaTime;
+				if(lifeTimeComp){
+					lifeTimeComp->lifeTime -= deltaTime;
+				}
 			}
 		}
 

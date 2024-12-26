@@ -15,12 +15,12 @@ public:
 		maxMp, 
 		hp, 
 		mp, 
-		movementSpeed, 
-		attackSpeed, 
 		strength, 
 		agility, 
 		intelligence, 
 		physicalDamage;
+
+	float attackSpeed, movementSpeed;
 
 
 	//float timeSpeed
@@ -32,8 +32,8 @@ public:
 		maxMp = 1;
 		hp = 1;
 		mp = 1;
-		movementSpeed = 5;
-		attackSpeed = 1;
+		movementSpeed = 100.0f;
+		attackSpeed = 3.0f;   // ms,     can attack (attackSpeed/1000) per one second
 		strength = 1;
 		agility = 1;
 		intelligence = 1;
@@ -43,8 +43,8 @@ public:
 	StatusComponent(int maxHp, int maxMp) : maxHp(maxHp) , maxMp(maxMp) {
 		hp = maxHp;
 		mp = maxMp;
-		movementSpeed = 100;
-		attackSpeed = 1;
+		movementSpeed = 200.0f;
+		attackSpeed = 3.0f;
 		strength = 1;
 		agility = 1;
 		intelligence = 1;

@@ -57,6 +57,7 @@ bool AnimationComponent::loadAnimationsFromFile(const std::string& filename, std
         AnimationData animData;
         animData.name = animName;
         animData.loop = animDataJson.value("loop", true);
+        animData.type = animDataJson.value("type", "none");
 
         if (!animDataJson.contains("frames")) {
             std::cerr << "No frames for animation " << animName << std::endl;

@@ -49,7 +49,6 @@ obj/InputSystem.o: src/InputSystem.cpp C:/SDL2-w64/include/SDL2/SDL.h \
  C:/SDL2-w64/include/SDL2/SDL_misc.h include/Systems/InputSystem.h \
  include/ECS/System.h include/ECS/Entity.h include/ECS/Component.h \
  include/Components/PlayableComponent.h \
- include/Components/TransformComponent.h include/Vector2D.h \
  include/Components/StateComponent.h
 C:/SDL2-w64/include/SDL2/SDL.h:
 C:/SDL2-w64/include/SDL2/SDL_main.h:
@@ -106,6 +105,4 @@ include/ECS/System.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
 include/Components/PlayableComponent.h:
-include/Components/TransformComponent.h:
-include/Vector2D.h:
 include/Components/StateComponent.h:

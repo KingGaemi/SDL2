@@ -1,5 +1,8 @@
 #pragma once
+
 #include "ECS/Component.h"
+
+#include <unordered_map>
 #include <iostream>
 
 
@@ -37,6 +40,8 @@ public:
         // return false;
 
         if (it != cooldownAbilities.end()) return it->second.isOn;
+
+        return false;
     }
 	void resetCooldown(const std::string& abilityName){
 

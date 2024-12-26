@@ -1,7 +1,6 @@
 #include <SDL2/SDL.h>
 #include "Systems/InputSystem.h"
 #include "Components/PlayableComponent.h"
-#include "Components/TransformComponent.h"
 #include "Components/StateComponent.h"
 #include <iostream>
 
@@ -19,15 +18,19 @@ void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float d
 
 
 	for (auto& entity : entities){
-		if(entity->hasComponent<PlayableComponent>()){
+		if(entity->hasComponent<PlayableComponent>()&& entity->hasComponent<StateComponent>() ){
 
 			auto playComp = entity->getComponent<PlayableComponent>();
+			auto stateComp = entity->getComponent<StateComponent>();
 
-			if(playComp){
+			if(playComp && stateComp){
 				if (state[SDL_SCANCODE_LEFT] || state[SDL_SCANCODE_RIGHT] || state[SDL_SCANCODE_UP] || state[SDL_SCANCODE_DOWN]){
-					playComp->keyDown = true;
+
+					stateComp->changeState(States::Walk);
+
 				}else{
-					playComp->keyDown = false;
+					stateComp->changeState(States::Idle);
+
 				}
 			}
 
