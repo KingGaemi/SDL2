@@ -34,8 +34,10 @@ void AttackSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 						AttackRequest req;
 
 						req.type = "slash";
-						req.x = posComp->x() + (spriteComp->dstRect.w / 3) + directComp->hDir() * 80;
-						req.y = posComp->y() + (spriteComp->dstRect.h / 3) + directComp->vDir() * 80;
+
+						std::cout << spriteComp->dstRect.w << std::endl;
+						req.x = posComp->x() + 20 + directComp->hDir() * spriteComp->dstRect.w;
+						req.y = posComp->y() + directComp->vDir() * spriteComp->dstRect.h;
 						req.hDir = directComp->direction.hDir;
 						req.vDir = directComp->direction.vDir;
 						req.damage = statusComp->physicalDamage;

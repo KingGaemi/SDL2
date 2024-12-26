@@ -20,10 +20,11 @@ public:
 
 	void handleEvent(const Event& evt, std::vector<std::shared_ptr<Entity>>&entities);
 
-	bool isControlKey(const KeyCode& key);
+	bool isControl(const KeyCode& key);
 	bool isArrow(const KeyCode& key);
 	bool isHorizontal(const KeyCode& key);
 	bool isVertical(const KeyCode& key);
+	bool isAttack(const KeyCode& key);
 
 private:
 	EventManager* eventManager;
@@ -31,6 +32,7 @@ private:
 		
 	KeyCode lastHorizontalKey = KeyCode::Unknown;
 	KeyCode lastVerticalKey = KeyCode::Unknown;
+	KeyCode lastArrowKey = KeyCode::Unknown;
 
 
 };

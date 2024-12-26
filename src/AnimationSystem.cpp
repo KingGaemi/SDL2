@@ -29,29 +29,27 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                     if(!animComp->busy){
 
                         if(state->currentState == States::Attack){
-                            std::cout << "Attack in Animation.  ID: "<< spriteComp->textureID << std::endl;
+                            // std::cout << "Attack in Animation.  ID: "<< spriteComp->textureID << std::endl;
 
                             animComp->busy = true;
 
                             if(vDir != 0){
                                 if(vDir == 1){
-                                    if(animComp->currentAnimation != "d_attack") animComp->playAnimation("d_attack");
+                                    animComp->playAnimation("d_attack");
                                 }
                                 if(vDir == -1){
-                                    if(animComp->currentAnimation != "u_attack") animComp->playAnimation("u_attack");
+                                    animComp->playAnimation("u_attack");
                                 }
                             }else{
                                 if(hDir == -1){
-                                    if(animComp->currentAnimation != "l_attack") animComp->playAnimation("l_attack");
+                                    animComp->playAnimation("l_attack");
                                 }
                                 if (hDir == 1){
-                                    if(animComp->currentAnimation != "r_attack") animComp->playAnimation("r_attack");
+                                    animComp->playAnimation("r_attack");
                                 }
                             }
 
-                        }
-                        
-                        if(state->currentState == States::Run){
+                        }else if(state->currentState == States::Run){
 
                             if(vDir != 0){
                                 if(vDir == 1){
@@ -69,10 +67,7 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                                 }
                             }
 
-                        }
-
-
-                        if(state->currentState == States::Idle){
+                        }else if(state->currentState == States::Idle){
 
                             if(hDir == -1){
                                 if(animComp->currentAnimation != "l_idle") animComp->playAnimation("l_idle");
@@ -87,10 +82,7 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                                 if(animComp->currentAnimation != "u_idle") animComp->playAnimation("u_idle");
                             }
 
-                        } 
-
-
-                        if(state->currentState == States::Walk){
+                        }else if(state->currentState == States::Walk){
 
                             if(vDir != 0){
                                 if(vDir == 1){
@@ -107,7 +99,6 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                                     if(animComp->currentAnimation != "r_walk") animComp->playAnimation("r_walk");
                                 }
                             }
-
                         }
 
 
@@ -160,10 +151,12 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
         if (animComp->currentFrameIndex >= (int)animData->frames.size()) {
             if (animData->loop) {
                 animComp->currentFrameIndex = 0;
+
             } else {
                 // 루프 안하는 애니메이션이면 마지막 프레임 유지
                 animComp->currentFrameIndex = (int)animData->frames.size() - 1;
                 animComp->busy = false;
+                // std::cout << duration << std::endl;
             }
         }
         frame = animComp->getCurrentFrame(); // 새 프레임 정보 갱신

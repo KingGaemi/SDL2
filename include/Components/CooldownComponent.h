@@ -60,6 +60,7 @@ public:
                 if (ability.remainingTime < 0.0f) {
                     ability.remainingTime = 0.0f;
                     ability.isOn = true; // 음수 방지
+                  
                 }
             }
         }

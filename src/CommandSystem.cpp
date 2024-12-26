@@ -30,10 +30,19 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 
 
 						directComp->direction = commandComp->commandData.moveDirection;
-						
-						Vector2D velo = directComp->dirToVector();
+						Vector2D velo = directComp->dirToVector();;
 
-						velo = velo * statusComp->movementSpeed;
+						int dir = directComp->direction.hDir + directComp->direction.vDir;
+
+						if(dir == 0 || dir == 2 || dir == -2){
+							velo = velo * statusComp->movementSpeed * 0.8f;
+						}else{
+							velo = velo * statusComp->movementSpeed;
+
+						}	
+
+						 
+
 
 						veloComp->set(velo);
 
@@ -51,9 +60,19 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 
 					if(commandComp->commandData.type == CommandType::Attack && cooldownComp->isOnCooldown("attack")){
 
-						// if(!stateComp->inMotion){
-						// 	stateComp->changeState(States::Attack, cooldownComp->cooldownAbilities["attack"].cooldownTime);
-						// }
+						directComp->direction = commandComp->commandData.moveDirection;
+						
+						// Vector2D velo = directComp->dirToVector();
+
+						// velo = velo * statusComp->movementSpeed;
+
+						// veloComp->set(velo);
+
+						if(!stateComp->inMotion){
+							stateComp->changeState(States::Attack, cooldownComp->cooldownAbilities["attack"].cooldownTime);
+							// std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
+							cooldownComp->resetCooldown("attack");
+						}
 						
 					}
 				}

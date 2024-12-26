@@ -25,7 +25,6 @@ public:
 				auto cooldownComp = entity->getComponent<CooldownComponent>();
 
 				if(cooldownComp){
-
 					cooldownComp->updateAllCooldowns(deltaTime);
 				}
 				

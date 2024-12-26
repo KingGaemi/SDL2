@@ -7,14 +7,14 @@
 std::shared_ptr<Entity> ECSManager::createEntity() {
     auto entity = std::make_shared<Entity>(nextID++);
     entities.push_back(entity);
-    std::cout << "createEntity "<< std::endl; 
+    // std::cout << "createEntity "<< std::endl; 
     return entity;
 }
 
 
 void ECSManager::destroyEntity(std::shared_ptr<Entity> entity) {
 
-    std::cout << "destroyEntity : " << entityNames[entity] << std::endl; 
+    // std::cout << "destroyEntity : " << entityNames[entity] << std::endl; 
     entities.erase(std::remove(entities.begin(), entities.end(), entity), entities.end());
     // 이름 관리도 필요하면 여기서 정리
     for (auto it = entityNames.begin(); it != entityNames.end();) {

@@ -29,10 +29,10 @@ public:
 		if(currentState != newState){
 			currentState = newState;
 			inMotion = false;
-			if(currentState == States::Idle) std::cout << "Idle";
-			if(currentState == States::Walk) std::cout << "Walk";
+			// if(currentState == States::Idle) std::cout << "Idle";
+			// if(currentState == States::Walk) std::cout << "Walk";
 
-			std::cout << std::endl;
+			// std::cout << std::endl;
 		}
 	}
 	
@@ -42,9 +42,9 @@ public:
 			stateTimer = timer;
 			inMotion = true;
 			if(newState == States::Attack) callAttack = true;
-			if(currentState == States::Attack) std::cout << "Attack";
+			// if(currentState == States::Attack) std::cout << "Attack";
 
-			std::cout << std::endl;
+			// std::cout << std::endl;
 		}
 	}
 

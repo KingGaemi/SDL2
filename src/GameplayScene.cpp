@@ -17,8 +17,8 @@ void GameplayScene::onEnter(){
 	SpawnRequest req3;
 
 	req1.type = "player";
-	req1.x = 100.0f;
-	req1.y = 150.0f;
+	req1.x = 0.0f;
+	req1.y = 0.0f;
 
 	ecsManager->pendingSpawns.push_back(req1);
 
@@ -32,9 +32,6 @@ void GameplayScene::onEnter(){
 	req3.x = 200.0f;
 	req3.y = 200.0f;
 	ecsManager->pendingSpawns.push_back(req3);
-
-	player = ecsManager->getEntityByName("player");
-	farmer = ecsManager->getEntityByName("farmer");
 
 
 	
@@ -58,6 +55,10 @@ void GameplayScene::update(float deltaTime){
 }
 
 void GameplayScene::onExit(){
+	
+	player = ecsManager->getEntityByName("player");
+	farmer = ecsManager->getEntityByName("farmer");
+
 
 	if(player) player->isActive = false;
 	if(farmer) farmer->isActive = false;
