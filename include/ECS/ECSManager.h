@@ -4,13 +4,24 @@
 #include <vector>
 #include <unordered_map>
 #include <string>
+#include <algorithm>
 #include "EntityFactory.h"
 #include "Entity.h"
 #include "System.h"
 
 
-using SystemBitset = std::bitset<MAX_SYSTEMS>;
-using SystemArray = std::array<std::shared_ptr<System>, MAX_SYSTEMS>;
+enum class SystemGroup {
+    Logic,
+    Render,
+    UI
+};
+
+struct SystemRegistration {
+    std::shared_ptr<System> system;
+    SystemGroup group;
+    int priority; // 그룹 내 우선순위
+};
+
 
 class ECSManager {
 public:
@@ -24,31 +35,45 @@ public:
 
     // 시스템 추가/업데이트
     template<typename S, typename... Args>
-    void addSystem(Args&&... args) {
-        SystemTypeID typeID = getSystemTypeID<S>();
-        if (systemBitset[typeID]) {
-            throw std::runtime_error("System already exists on this ECSManager!");
-        }
+    void addSystem(SystemGroup group, int priority ,Args&&... args) {
+        // SystemTypeID typeID = getSystemTypeID<S>();
+        // if (systemBitset[typeID]) {
+        //     throw std::runtime_error("System already exists on this ECSManager!");
+        // }
         auto system = std::make_shared<S>(std::forward<Args>(args)...);
-        systemArray[typeID] = system;
-        systemBitset[typeID] = true;
+
+        SystemRegistration reg;
+        reg.system   = system;
+        reg.group    = group;
+        reg.priority = priority;
+        registeredSystems.push_back(reg);
+
+        // systemArray[typeID] = system;
+        // systemBitset[typeID] = true;
     }
     void updateSystems(float deltaTime);
+    void renderSystems(float deltaTime);
 
     template<typename S>
-    std::shared_ptr<S> getSystem() const {
-        SystemTypeID typeID = getSystemTypeID<S>();
-        if (!systemBitset[typeID]) return nullptr;
-        return std::static_pointer_cast<S>(systemArray[typeID]);
+    std::shared_ptr<S> getSystem(){
+        for (auto& reg : registeredSystems) {
+            auto casted = std::dynamic_pointer_cast<S>(reg.system);
+            if (casted) {
+                return casted;
+            }
+        }
+        return nullptr;
     }
 
     template<typename S>
     void removeSystem() {
-        SystemTypeID typeID = getSystemTypeID<S>();
-        if (systemBitset[typeID]) {
-            systemBitset[typeID] = false;
-            systemArray[typeID].reset();
-        }
+        registeredSystems.erase(
+            std::remove_if(registeredSystems.begin(), registeredSystems.end(),
+                [](auto& reg){
+                    return (std::dynamic_pointer_cast<S>(reg.system) != nullptr);
+                }),
+            registeredSystems.end()
+        );
     }
 
 
@@ -77,7 +102,7 @@ private:
 
     std::shared_ptr<EntityFactory> entityFactory;
 
-
-    SystemArray systemArray{};
-    SystemBitset systemBitset;
+    // SystemArray systemArray{};
+    // SystemBitset systemBitset;
+    std::vector<SystemRegistration> registeredSystems;
 };

@@ -46,14 +46,14 @@ obj/main.o: src/main.cpp include/Game.h C:/SDL2-w64/include/SDL2/SDL.h \
  C:/SDL2-w64/include/SDL2/SDL_timer.h \
  C:/SDL2-w64/include/SDL2/SDL_version.h \
  C:/SDL2-w64/include/SDL2/SDL_locale.h \
- C:/SDL2-w64/include/SDL2/SDL_misc.h include/Renderer.h \
- include/IRenderer.h C:/SDL2-w64/include/SDL2/SDL_image.h \
- C:/SDL2-w64/include/SDL2/SDL.h include/TextureManager.h include/Scene.h \
- include/Events/EventQueue.h include/KeyCode.h include/MenuScene.h \
- include/GameplayScene.h include/Requests.h include/ECS/ECSManager.h \
- include/ECS/EntityFactory.h include/ECS/Entity.h include/ECS/Component.h \
- include/ECS/System.h include/Systems/Systems.h \
- include/Systems/AnimationSystem.h \
+ C:/SDL2-w64/include/SDL2/SDL_misc.h C:/SDL2-w64/include/SDL2/SDL_ttf.h \
+ C:/SDL2-w64/include/SDL2/SDL.h include/Renderer.h include/IRenderer.h \
+ C:/SDL2-w64/include/SDL2/SDL_image.h include/TextureManager.h \
+ include/Scene.h include/Events/EventQueue.h include/KeyCode.h \
+ include/MenuScene.h include/GameplayScene.h include/Requests.h \
+ include/ECS/ECSManager.h include/ECS/EntityFactory.h \
+ include/ECS/Entity.h include/ECS/Component.h include/ECS/System.h \
+ include/Systems/Systems.h include/Systems/AnimationSystem.h \
  include/Components/AnimationComponent.h include/nlohmann/json.hpp \
  include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
@@ -103,10 +103,12 @@ obj/main.o: src/main.cpp include/Game.h C:/SDL2-w64/include/SDL2/SDL.h \
  include/Systems/InputSystem.h include/Systems/MovementSystem.h \
  include/Components/PositionComponent.h include/Vector2D.h \
  include/Components/VelocityComponent.h include/Systems/RenderSystem.h \
- include/Systems/TimerSystem.h include/Components/StateComponent.h \
+ include/Groups.h include/Systems/TimerSystem.h \
+ include/Components/StateComponent.h \
  include/Components/LifeTimeComponent.h include/Systems/ExpireSystem.h \
  include/Systems/AttackSystem.h include/Systems/CooldownSystem.h \
  include/Components/CooldownComponent.h include/Systems/CommandSystem.h \
+ include/Systems/WorldRenderSystem.h include/Systems/UIRenderSystem.h \
  include/Input/InputManager.h include/Events/EventManager.h \
  include/Events/EventSystem.h
 include/Game.h:
@@ -160,10 +162,11 @@ C:/SDL2-w64/include/SDL2/SDL_timer.h:
 C:/SDL2-w64/include/SDL2/SDL_version.h:
 C:/SDL2-w64/include/SDL2/SDL_locale.h:
 C:/SDL2-w64/include/SDL2/SDL_misc.h:
+C:/SDL2-w64/include/SDL2/SDL_ttf.h:
+C:/SDL2-w64/include/SDL2/SDL.h:
 include/Renderer.h:
 include/IRenderer.h:
 C:/SDL2-w64/include/SDL2/SDL_image.h:
-C:/SDL2-w64/include/SDL2/SDL.h:
 include/TextureManager.h:
 include/Scene.h:
 include/Events/EventQueue.h:
@@ -233,6 +236,7 @@ include/Components/PositionComponent.h:
 include/Vector2D.h:
 include/Components/VelocityComponent.h:
 include/Systems/RenderSystem.h:
+include/Groups.h:
 include/Systems/TimerSystem.h:
 include/Components/StateComponent.h:
 include/Components/LifeTimeComponent.h:
@@ -241,6 +245,8 @@ include/Systems/AttackSystem.h:
 include/Systems/CooldownSystem.h:
 include/Components/CooldownComponent.h:
 include/Systems/CommandSystem.h:
+include/Systems/WorldRenderSystem.h:
+include/Systems/UIRenderSystem.h:
 include/Input/InputManager.h:
 include/Events/EventManager.h:
 include/Events/EventSystem.h:

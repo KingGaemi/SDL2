@@ -1,8 +1,8 @@
 #include "Systems/RenderSystem.h"
-#include "ECS/Entity.h"
+#include "Renderer.h"
+#include "Groups.h"
 #include "Components/PositionComponent.h"
 #include "Components/SpriteComponent.h"
-#include "Renderer.h"
 #include <iostream>
 
 
@@ -21,32 +21,10 @@ void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
     // 화면 클리어
     renderer->clear();
 
-    
+   
     for (auto& entity : entities) {
 
-        if(entity->hasComponent<PositionComponent>() && entity->hasComponent<SpriteComponent>()){
-
-            auto posComp = entity->getComponent<PositionComponent>();
-            auto sprite = entity->getComponent<SpriteComponent>();
-            if (posComp && sprite) {
-
-
-                // Renderer 통해 그리기
-                auto texture = textureManager->getTexture(sprite->getTextureID());
-
-                SDL_Rect srcRect = toSDLRect(sprite->srcRect);
-                SDL_Rect dstRect = toSDLRect(sprite->dstRect);
-                dstRect.x = static_cast<int>(posComp->x());
-                dstRect.y = static_cast<int>(posComp->y());
-
-                SDL_RendererFlip flip = SDL_FLIP_NONE;
-                if (sprite->flipHorizontal) flip = SDL_FLIP_HORIZONTAL;
-                if (sprite->flipVertical) flip = (SDL_RendererFlip)(flip | SDL_FLIP_VERTICAL);
-
-
-                renderer->render(texture, &srcRect, &dstRect, 0.0, nullptr, flip);
-            }
-        }
+       drawEntity(entity);
     }
 
     renderer->display();
@@ -71,4 +49,29 @@ void RenderSystem::setTextureManager(std::unique_ptr<TextureManager> p_textureMa
     textureManager = std::move(p_textureManager);
 }
 
+
+void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
+
+    if(entity->isActive && entity->hasComponent<PositionComponent>() && entity->hasComponent<SpriteComponent>()){
+        auto posComp = entity->getComponent<PositionComponent>();
+        auto sprite = entity->getComponent<SpriteComponent>();
+        if (posComp && sprite) {
+
+            auto texture = textureManager->getTexture(sprite->getTextureID());
+
+            SDL_Rect srcRect = toSDLRect(sprite->srcRect);
+            SDL_Rect dstRect = toSDLRect(sprite->dstRect);
+
+            dstRect.x = static_cast<int>(posComp->x()) - (dstRect.w/2);
+            dstRect.y = static_cast<int>(posComp->y()) - (dstRect.h/2);
+
+            SDL_RendererFlip flip = SDL_FLIP_NONE;
+            if (sprite->flipHorizontal) flip = SDL_FLIP_HORIZONTAL;
+            if (sprite->flipVertical) flip = (SDL_RendererFlip)(flip | SDL_FLIP_VERTICAL);
+
+
+            renderer->render(texture, &srcRect, &dstRect, 0.0, nullptr, flip);
+        }
+    }
+}
 

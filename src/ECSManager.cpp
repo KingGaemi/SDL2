@@ -35,15 +35,43 @@ std::shared_ptr<Entity> ECSManager::getEntityById(std::size_t id) {
 }
 
 void ECSManager::updateSystems(float deltaTime) {
-    for (std::size_t i = 0; i < MAX_SYSTEMS; ++i) {
 
-        if (systemBitset[i]) {
-            auto& system = systemArray[i];
-            system->update(entities, deltaTime);
+        std::sort(registeredSystems.begin(), registeredSystems.end(),
+            [](const SystemRegistration& a, const SystemRegistration& b) {
+                return a.priority < b.priority;
+            }
+        );
+
+
+        for (auto& reg : registeredSystems) {
+            if (reg.group == SystemGroup::Logic) {
+                reg.system->update(entities, deltaTime);
+            }
+        }
+}
+
+void ECSManager::renderSystems(float deltaTime) {
+
+    std::sort(registeredSystems.begin(), registeredSystems.end(),
+        [](const SystemRegistration& a, const SystemRegistration& b) {
+            return a.priority < b.priority;
+        }
+    );
+
+    for (auto& reg : registeredSystems) {
+        if (reg.group == SystemGroup::Render) {
+            reg.system->update(entities, deltaTime);
         }
     }
 
+    for (auto& reg : registeredSystems) {
+        if (reg.group == SystemGroup::UI) {
+            reg.system->update(entities, deltaTime);
+        }
+    }
+    
 }
+
 
  
 void ECSManager::processSpawnRequests() {
@@ -59,6 +87,10 @@ void ECSManager::processSpawnRequests() {
         if(req.type == "eri"){
 
             entityFactory->createEri(req);
+        }
+        if(req.type == "text"){
+
+            entityFactory->createText(req);
         }
 
 
@@ -77,9 +109,6 @@ void ECSManager::processSpawnRequests() {
                 entityFactory->createSlashEntity(req);
             }
         }
-
-
-
         attackSys->requests.clear();
     }
 
@@ -122,7 +151,7 @@ void ECSManager::cleanUpEntities(){
     for (auto& entity : entities){
         
 
-        if(entity&&!entity->isActive) destroyEntity(entity);
+        if(entity&&entity->terminate) destroyEntity(entity);
     }
 
 }

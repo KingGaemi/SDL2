@@ -8,3 +8,5 @@
 #include "Systems/AttackSystem.h"
 #include "Systems/CooldownSystem.h"
 #include "CommandSystem.h"
+#include "WorldRenderSystem.h"
+#include "UIRenderSystem.h"

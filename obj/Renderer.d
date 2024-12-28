@@ -47,7 +47,9 @@ obj/Renderer.o: src/Renderer.cpp include/Renderer.h include/IRenderer.h \
  C:/SDL2-w64/include/SDL2/SDL_version.h \
  C:/SDL2-w64/include/SDL2/SDL_locale.h \
  C:/SDL2-w64/include/SDL2/SDL_misc.h C:/SDL2-w64/include/SDL2/SDL_image.h \
- C:/SDL2-w64/include/SDL2/SDL.h
+ C:/SDL2-w64/include/SDL2/SDL.h C:/SDL2-w64/include/Sdl2/SDL_ttf.h \
+ C:/SDL2-w64/include/Sdl2/SDL.h C:/SDL2-w64/include/Sdl2/begin_code.h \
+ C:/SDL2-w64/include/Sdl2/close_code.h
 include/Renderer.h:
 include/IRenderer.h:
 C:/SDL2-w64/include/SDL2/SDL.h:
@@ -102,3 +104,7 @@ C:/SDL2-w64/include/SDL2/SDL_locale.h:
 C:/SDL2-w64/include/SDL2/SDL_misc.h:
 C:/SDL2-w64/include/SDL2/SDL_image.h:
 C:/SDL2-w64/include/SDL2/SDL.h:
+C:/SDL2-w64/include/Sdl2/SDL_ttf.h:
+C:/SDL2-w64/include/Sdl2/SDL.h:
+C:/SDL2-w64/include/Sdl2/begin_code.h:
+C:/SDL2-w64/include/Sdl2/close_code.h:

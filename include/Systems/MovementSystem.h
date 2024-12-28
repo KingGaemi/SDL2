@@ -11,7 +11,7 @@ public:
     void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override {
         for (auto& entity : entities) {
 
-            if(entity->hasComponent<VelocityComponent>()){
+            if(entity->isActive && entity->hasComponent<VelocityComponent>()){
 
                 auto posComp = entity->getComponent<PositionComponent>();
                 auto veloComp = entity->getComponent<VelocityComponent>();

@@ -2,34 +2,35 @@
 #include "Renderer.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <Sdl2/SDL_ttf.h>
 #include <iostream>
 
 
 
 Renderer::Renderer(SDL_Window* window)
 {
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	SDL_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    if (renderer == nullptr)
+    if (SDL_renderer == nullptr)
     {
         std::cerr << "Renderer failed to init. Error: " << SDL_GetError() << std::endl;
     }
 }
 
-
+    
 Renderer::~Renderer()
 {
-	 if (renderer != nullptr)
+	 if (SDL_renderer != nullptr)
     {
-        SDL_DestroyRenderer(renderer);
-        renderer = nullptr;
+        SDL_DestroyRenderer(SDL_renderer);
+        SDL_renderer = nullptr;
     }
 }
 
 
 SDL_Texture* Renderer::loadTexture(const std::string& p_filePath){
 
-    SDL_Texture* texture = IMG_LoadTexture(renderer, p_filePath.c_str());
+    SDL_Texture* texture = IMG_LoadTexture(SDL_renderer, p_filePath.c_str());
     if (!texture) {
         std::cerr << "Failed to load texture: " << SDL_GetError() << std::endl;
     }else{
@@ -38,19 +39,43 @@ SDL_Texture* Renderer::loadTexture(const std::string& p_filePath){
 	return texture;
 }
 
+SDL_Texture* Renderer::loadText(const char * textString){
+
+    auto myFont =TTF_OpenFont("res/fonts/ARCADECLASSIC.TTF", 18);
+   
+    SDL_Color myColor;
+    myColor.r = 255;
+    myColor.g = 255;
+    myColor.b = 255;
+
+
+    SDL_Surface* textSurface = TTF_RenderText_Blended(myFont, textString, myColor);
+    SDL_Texture* textTexture = SDL_CreateTextureFromSurface(SDL_renderer, textSurface);
+    SDL_FreeSurface(textSurface);
+
+    if(!textTexture){
+        std::cerr << "Failed to load textTexture: " << SDL_GetError() << std::endl;
+    }else{
+        std::cout << "Renderer loadText Complete!" << std::endl;
+    }
+
+    return textTexture;
+
+}
+
 
 void Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* dstRect, double angle, SDL_Point* center, SDL_RendererFlip flip) {
-    SDL_RenderCopyEx(renderer, texture, srcRect, dstRect, angle, center, flip);
+    SDL_RenderCopyEx(SDL_renderer, texture, srcRect, dstRect, angle, center, flip);
 }
 
 void Renderer::clear()
 {
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(SDL_renderer, 0, 0, 0, 255);
+	SDL_RenderClear(SDL_renderer);
 }
 
 void Renderer::display()
 {
-	SDL_RenderPresent(renderer);
+	SDL_RenderPresent(SDL_renderer);
 }
 

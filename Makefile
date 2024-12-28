@@ -1,7 +1,7 @@
 # 변수 정의
 CXX = g++
 CXXFLAGS = -g -Wall -std=c++17 -Wall -m64 -I include -I C:/SDL2-w64/include -MMD -MP
-LDFLAGS = -L C:/SDL2-w64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
+LDFLAGS = -L C:/SDL2-w64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin

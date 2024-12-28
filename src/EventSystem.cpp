@@ -30,131 +30,131 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 	//To command
 	//
 	
-			for(auto& entity : entities){
-				if(entity->hasComponent<PlayableComponent>() && entity->hasComponent<CommandComponent>()){
+	for(auto& entity : entities){
+		if(entity->isActive && entity->hasComponent<PlayableComponent>() && entity->hasComponent<CommandComponent>()){
 
 
-					auto playComp = entity->getComponent<PlayableComponent>();
-					auto commandComp = entity->getComponent<CommandComponent>();
+			auto playComp = entity->getComponent<PlayableComponent>();
+			auto commandComp = entity->getComponent<CommandComponent>();
 
 
 
-					if(playComp&&commandComp){
+			if(playComp&&commandComp){
 
-						if(evt.type == EventType::KEYDOWN){
-							if(isControl(evt.key)){
-								if(isArrow(evt.key)){
-									pressed[toInt(evt.key)] = true;
-									lastArrowKey = evt.key;
-									if(isHorizontal(evt.key)){
-										lastHorizontalKey = evt.key;
-										if(evt.key == KeyCode::Left){
-											std::cout << "Left" << std::endl;
-										}else{
-											std::cout << "Right" << std::endl;
-										}
-									}
-
-									if(isVertical(evt.key)){
-										lastVerticalKey = evt.key;
-										if(evt.key == KeyCode::Up){
-											std::cout << "Up" << std::endl;
-										}else{
-											std::cout << "Down" << std::endl;
-										}
-									}
-
-									if(isAttack(evt.key)){
-
-									}
+				if(evt.type == EventType::KEYDOWN){
+					if(isControl(evt.key)){
+						if(isArrow(evt.key)){
+							pressed[toInt(evt.key)] = true;
+							lastArrowKey = evt.key;
+							if(isHorizontal(evt.key)){
+								lastHorizontalKey = evt.key;
+								if(evt.key == KeyCode::Left){
+									std::cout << "Left" << std::endl;
+								}else{
+									std::cout << "Right" << std::endl;
 								}
 							}
-						}
 
-						if(evt.type == EventType::KEYUP){
-
-							pressed[toInt(evt.key)] = false;
-							std::cout << "KeyUp : ";
-	
-							if(evt.key == KeyCode::Left){
-								std::cout << "Left" << std::endl;
-								if(pressed[toInt(KeyCode::Right)]) lastHorizontalKey = KeyCode::Right;
-							}
-							if(evt.key == KeyCode::Right){
-								std::cout << "Right" << std::endl;
-								if(pressed[toInt(KeyCode::Left)]) lastHorizontalKey = KeyCode::Left;
+							if(isVertical(evt.key)){
+								lastVerticalKey = evt.key;
+								if(evt.key == KeyCode::Up){
+									std::cout << "Up" << std::endl;
+								}else{
+									std::cout << "Down" << std::endl;
+								}
 							}
 
-							if(evt.key == KeyCode::Up){
-								std::cout << "Up" << std::endl;
-								if(pressed[toInt(KeyCode::Down)]) lastVerticalKey = KeyCode::Down;
+							if(isAttack(evt.key)){
+
 							}
-
-							if(evt.key == KeyCode::Down){
-								std::cout << "Down" << std::endl;
-								if(pressed[toInt(KeyCode::Up)]) lastVerticalKey = KeyCode::Up;
-							}
-
-
-
-
-							if(pressed[toInt(KeyCode::Left)]) lastArrowKey = KeyCode::Left;
-							if(pressed[toInt(KeyCode::Right)]) lastArrowKey = KeyCode::Right;
-							if(pressed[toInt(KeyCode::Up)]) lastArrowKey = KeyCode::Up;
-							if(pressed[toInt(KeyCode::Down)]) lastArrowKey = KeyCode::Down;
-
-						}
-
-
-
-						if(pressed[toInt(KeyCode::Left)] || pressed[toInt(KeyCode::Right)]){
-
-							if(lastHorizontalKey == KeyCode::Left){
-								commandComp->commandData.moveDirection.hDir = -1;
-							}else{
-								commandComp->commandData.moveDirection.hDir = 1;
-							}
-
-						}else{
-							commandComp->commandData.moveDirection.hDir = 0;
-						}
-
-
-						if(pressed[toInt(KeyCode::Up)] || pressed[toInt(KeyCode::Down)]){
-
-							if(lastVerticalKey == KeyCode::Up){
-								commandComp->commandData.moveDirection.vDir = -1;
-							}else{
-								commandComp->commandData.moveDirection.vDir = 1;
-							}
-
-						}else{
-							commandComp->commandData.moveDirection.vDir = 0;
-						}
-
-
-
-
-						if(pressed[toInt(KeyCode::Left)] || pressed[toInt(KeyCode::Right)] || pressed[toInt(KeyCode::Up)] || pressed[toInt(KeyCode::Down)]){
-							commandComp->commandData.type = CommandType::Move;
-
-						}else{
-							commandComp->commandData.type = CommandType::None;
-
-						}
-
-						if(evt.type == EventType::KEYDOWN && evt.key == KeyCode::Space){
-
-							if(lastArrowKey == KeyCode::Left) commandComp->commandData.moveDirection.hDir = -1;
-							if(lastArrowKey == KeyCode::Right) commandComp->commandData.moveDirection.hDir = 1;
-							if(lastArrowKey == KeyCode::Up) commandComp->commandData.moveDirection.vDir = -1;
-							if(lastArrowKey == KeyCode::Down) commandComp->commandData.moveDirection.vDir = 1;
-
-							commandComp->commandData.type = CommandType::Attack;
 						}
 					}
 				}
+
+				if(evt.type == EventType::KEYUP){
+
+					pressed[toInt(evt.key)] = false;
+					std::cout << "KeyUp : ";
+
+					if(evt.key == KeyCode::Left){
+						std::cout << "Left" << std::endl;
+						if(pressed[toInt(KeyCode::Right)]) lastHorizontalKey = KeyCode::Right;
+					}
+					if(evt.key == KeyCode::Right){
+						std::cout << "Right" << std::endl;
+						if(pressed[toInt(KeyCode::Left)]) lastHorizontalKey = KeyCode::Left;
+					}
+
+					if(evt.key == KeyCode::Up){
+						std::cout << "Up" << std::endl;
+						if(pressed[toInt(KeyCode::Down)]) lastVerticalKey = KeyCode::Down;
+					}
+
+					if(evt.key == KeyCode::Down){
+						std::cout << "Down" << std::endl;
+						if(pressed[toInt(KeyCode::Up)]) lastVerticalKey = KeyCode::Up;
+					}
+
+
+
+
+					if(pressed[toInt(KeyCode::Left)]) lastArrowKey = KeyCode::Left;
+					if(pressed[toInt(KeyCode::Right)]) lastArrowKey = KeyCode::Right;
+					if(pressed[toInt(KeyCode::Up)]) lastArrowKey = KeyCode::Up;
+					if(pressed[toInt(KeyCode::Down)]) lastArrowKey = KeyCode::Down;
+
+				}
+
+
+
+				if(pressed[toInt(KeyCode::Left)] || pressed[toInt(KeyCode::Right)]){
+
+					if(lastHorizontalKey == KeyCode::Left){
+						commandComp->commandData.moveDirection.hDir = -1;
+					}else{
+						commandComp->commandData.moveDirection.hDir = 1;
+					}
+
+				}else{
+					commandComp->commandData.moveDirection.hDir = 0;
+				}
+
+
+				if(pressed[toInt(KeyCode::Up)] || pressed[toInt(KeyCode::Down)]){
+
+					if(lastVerticalKey == KeyCode::Up){
+						commandComp->commandData.moveDirection.vDir = -1;
+					}else{
+						commandComp->commandData.moveDirection.vDir = 1;
+					}
+
+				}else{
+					commandComp->commandData.moveDirection.vDir = 0;
+				}
+
+
+
+
+				if(pressed[toInt(KeyCode::Left)] || pressed[toInt(KeyCode::Right)] || pressed[toInt(KeyCode::Up)] || pressed[toInt(KeyCode::Down)]){
+					commandComp->commandData.type = CommandType::Move;
+
+				}else{
+					commandComp->commandData.type = CommandType::None;
+
+				}
+
+				if(evt.type == EventType::KEYDOWN && evt.key == KeyCode::Space){
+
+					if(lastArrowKey == KeyCode::Left) commandComp->commandData.moveDirection.hDir = -1;
+					if(lastArrowKey == KeyCode::Right) commandComp->commandData.moveDirection.hDir = 1;
+					if(lastArrowKey == KeyCode::Up) commandComp->commandData.moveDirection.vDir = -1;
+					if(lastArrowKey == KeyCode::Down) commandComp->commandData.moveDirection.vDir = 1;
+
+					commandComp->commandData.type = CommandType::Attack;
+				}
 			}
+		}
+	}
 
 		
 ///=============================================================================

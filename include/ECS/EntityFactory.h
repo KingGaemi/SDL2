@@ -19,6 +19,7 @@ public:
     void createFarmerEntity(const SpawnRequest& req);
     void createSlashEntity(const AttackRequest& req);
     void createEri(const SpawnRequest& req);
+    void createText(const SpawnRequest& req);
     // void createAttack(std::shared_ptr<ECSManager> ecsManager, float x, float y);
     int addAnimationFrames(AnimationData& animData, int x, int y, int w, int h, float duration, int interval, int count);
     // ... 필요한 팩토리 메서드를 추가

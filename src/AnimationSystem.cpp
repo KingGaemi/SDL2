@@ -11,7 +11,7 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
    	for (auto& entity : entities) {
 
         
-        if(entity->hasComponent<AnimationComponent>()){
+        if(entity->isActive && entity->hasComponent<AnimationComponent>()){
             auto animComp = entity->getComponent<AnimationComponent>();
         
             if(animComp){

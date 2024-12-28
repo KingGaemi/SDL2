@@ -25,6 +25,12 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
         std::cerr << "IMG_Init Failed: " << IMG_GetError() << std::endl;
         return;
     }
+
+
+    if (TTF_Init() == -1){
+        std::cerr << "TTF_Init Failed: " << TTF_GetError() << std::endl;
+        return;
+    }
     
 
 	// Create Window
@@ -45,16 +51,17 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->setFactory(entityFactory);    
 
     // Add Systems
-    ecsManager->addSystem<RenderSystem>(*renderer);
-    ecsManager->addSystem<MovementSystem>();
-    ecsManager->addSystem<EventSystem>(eventManager->get());
-    ecsManager->addSystem<AnimationSystem>();
-    ecsManager->addSystem<InputSystem>();
-    ecsManager->addSystem<TimerSystem>();
-    ecsManager->addSystem<ExpireSystem>();
-    ecsManager->addSystem<AttackSystem>(ecsManager);
-    ecsManager->addSystem<CooldownSystem>();
-    ecsManager->addSystem<CommandSystem>();
+    ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer);
+    ecsManager->addSystem<UIRenderSystem>(SystemGroup::UI, 200, *renderer);
+    ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
+    ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager->get());
+    ecsManager->addSystem<InputSystem>(SystemGroup::Logic, 20);
+    ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
+    ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40);
+    ecsManager->addSystem<ExpireSystem>(SystemGroup::Logic, 90);
+    ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
+    ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200,ecsManager);
+    ecsManager->addSystem<CooldownSystem>(SystemGroup::Logic, 250);
 
     textureLoading();
     
@@ -69,16 +76,25 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
 void Game::textureLoading(){
 
     textureManager = std::make_unique<TextureManager>(*renderer);
+    uiTextureManager = std::make_unique<TextureManager>(*renderer);
     textureManager->loadTexture("background_main", "res/gfx/SunnyLand/Environment/back.png");
     textureManager->loadTexture("eri", "res/gfx/eri_copy2.png");
     textureManager->loadTexture("streetlamp", "res/gfx/streetlamp3.png");
     textureManager->loadTexture("farmer", "res/gfx/1/player_sprite_sheet.png");
     textureManager->loadTexture("water_tile", "res/gfx/water_tile.png");
     textureManager->loadTexture("orc3", "res/gfx/SpriteSheet/Orc/orc3_sprite_sheet.png");
+    uiTextureManager->loadText("Hello World!");
+    // textureManager->loadTexture("farm_map",);
 
 
-    auto rendersys = ecsManager->getSystem<RenderSystem>();
-    rendersys->setTextureManager(std::move(textureManager));
+    
+
+
+    auto worldRenderSys = ecsManager->getSystem<WorldRenderSystem>();
+    worldRenderSys->setTextureManager(std::move(textureManager));
+
+    auto uiRenderSys = ecsManager->getSystem<UIRenderSystem>();
+    uiRenderSys->setTextureManager(std::move(uiTextureManager));
 
 }
 
@@ -97,9 +113,12 @@ void Game::run() {
         lastFrameTime = currentFrameTime;
 
         // 2. ECS 시스템 업데이트 → EventSystem이 SCENE_CHANGE 이벤트 발생 가능
-        ecsManager->updateSystems(deltaTime); 
+        ecsManager->updateSystems(deltaTime);
+        ecsManager->renderSystems(deltaTime);
         ecsManager->processSpawnRequests();
         ecsManager->cleanUpEntities();
+
+        
 
         // 3. EventManager에서 이벤트 폴링 → SCENE_CHANGE나 QUIT 처리
         Event evt;
@@ -153,6 +172,8 @@ void Game::changeScene(std::string sceneName) {
 
 void Game::clean() {
     SDL_DestroyWindow(window);
+
+    TTF_Quit();
     IMG_Quit();
     SDL_Quit();
 }

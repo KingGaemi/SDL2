@@ -13,7 +13,6 @@ class ActionComponent : public Component {
 
 public:
 
-
 	void doAction(enum Actions type);
 
 

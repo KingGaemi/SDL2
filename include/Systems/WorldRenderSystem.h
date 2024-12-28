@@ -1,0 +1,19 @@
+#pragma once
+#include "RenderSystem.h"
+
+
+
+class WorldRenderSystem : public RenderSystem {
+	using RenderSystem::RenderSystem;
+
+    void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override {
+        renderer->clear(); 
+
+        for (auto& entity : entities) {
+            if (!entity->isActive) continue;
+            if (entity->hasComponent<UITag>()) continue;
+
+            drawEntity(entity);
+        }
+    }
+};

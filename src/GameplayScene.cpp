@@ -12,26 +12,29 @@
 void GameplayScene::onEnter(){
 
 
-	SpawnRequest req1;
-	SpawnRequest req2;
-	SpawnRequest req3;
-
-	req1.type = "player";
-	req1.x = 0.0f;
-	req1.y = 0.0f;
-
-	ecsManager->pendingSpawns.push_back(req1);
-
-	req2.type = "farmer";
-	req2.x = 500.0f;
-	req2.y = 600.0f;
-	ecsManager->pendingSpawns.push_back(req2);
+	SpawnRequest req;
 
 
-	req3.type = "eri" ;
-	req3.x = 200.0f;
-	req3.y = 200.0f;
-	ecsManager->pendingSpawns.push_back(req3);
+	req.type = "player";
+	req.x = 145.0f;
+	req.y = 150.0f;
+	ecsManager->pendingSpawns.push_back(req);
+
+	req.type = "farmer";
+	req.x = 500.0f;
+	req.y = 600.0f;
+	ecsManager->pendingSpawns.push_back(req);
+
+
+	req.type = "eri" ;
+	req.x = 200.0f;
+	req.y = 200.0f;
+	ecsManager->pendingSpawns.push_back(req);
+
+	req.type = "text" ;
+	req.x = 500.0f;
+	req.y = 200.0f;
+	ecsManager->pendingSpawns.push_back(req);
 
 
 	
@@ -60,8 +63,8 @@ void GameplayScene::onExit(){
 	farmer = ecsManager->getEntityByName("farmer");
 
 
-	if(player) player->isActive = false;
-	if(farmer) farmer->isActive = false;
+	if(player) player->terminate = true;
+	if(farmer) farmer->terminate = true;
 
 
 }

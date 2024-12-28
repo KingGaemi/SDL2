@@ -15,13 +15,14 @@ public:
     ~Renderer();
     
     SDL_Texture* loadTexture(const std::string& filePath);
+    SDL_Texture* loadText(const char * textString);
     void render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* dstRect, double angle, SDL_Point* center, SDL_RendererFlip flip);
     void clear();
     void display();
 
-    SDL_Renderer* getSDLRenderer() const { return renderer; }
+    SDL_Renderer* getSDLRenderer() const { return SDL_renderer; }
 
 private:
-    SDL_Renderer* renderer = nullptr;
+    SDL_Renderer* SDL_renderer = nullptr;
 };
 

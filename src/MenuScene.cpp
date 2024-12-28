@@ -58,5 +58,5 @@ void MenuScene::update(float deltaTime){
 
 void MenuScene::onExit(){
 
- 	background->isActive = false;
+ 	background->terminate = true;
  }

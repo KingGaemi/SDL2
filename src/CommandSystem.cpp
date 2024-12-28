@@ -16,7 +16,7 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 
 		if(entity){
 
-			if(entity->hasComponent<CommandComponent>()){
+			if(entity->isActive && entity->hasComponent<CommandComponent>()){
 				auto commandComp = entity->getComponent<CommandComponent>();
 				auto veloComp = entity->getComponent<VelocityComponent>();
 				auto directComp = entity->getComponent<DirectionComponent>();

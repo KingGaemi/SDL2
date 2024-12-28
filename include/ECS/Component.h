@@ -26,4 +26,5 @@ inline ComponentTypeID getComponentTypeID() noexcept {
 }
 
 constexpr std::size_t MAX_COMPONENTS = 64;
+constexpr std::size_t MAX_GROUPS = 32;
 

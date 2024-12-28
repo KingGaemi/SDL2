@@ -3,15 +3,18 @@
 #include "ECS/ECSManager.h"
 #include "ECS/Entity.h"
 #include "Components/Components.h"
-#include "Systems/Systems.h"
+#include "Groups.h"
 
 
 
 void EntityFactory::createBackgroundEntity(const std::string& textureName){
 
 	auto background = ecsManager->createEntity();
-	background->addComponent<PositionComponent>();
+	background->addComponent<PositionComponent>(640, 400);
 	background->addComponent<SpriteComponent>(textureName, 1280, 800);
+	background->addComponent<SceneTag>(SceneCode::Menu);
+	background->addComponent<IMGTag>();
+
 	
 	ecsManager->setEntityName(background, "background");
 
@@ -24,6 +27,9 @@ void EntityFactory::createPlayerEntity(const SpawnRequest& req){
 
 	auto player = ecsManager->createEntity();
 	ecsManager->setEntityName(player, "player");
+	player->addComponent<SceneTag>(SceneCode::Game);
+	player->addComponent<PlayerTag>();
+	player->addComponent<TeamComponent>(TeamCode::Ally);
 	player->addComponent<PositionComponent>(req.x, req.y);
 	player->addComponent<VelocityComponent>();
 	player->addComponent<DirectionComponent>(0, 1);
@@ -33,26 +39,25 @@ void EntityFactory::createPlayerEntity(const SpawnRequest& req){
 	player->addComponent<StateComponent>();
 	player->addComponent<StatusComponent>(100, 100);
 
+
+
+
+
 	auto statusComp = player->getComponent<StatusComponent>();
-
-
 	player->addComponent<CooldownComponent>("attack", 1.0f/statusComp->attackSpeed);
 	player->addComponent<CommandComponent>();
+
 	auto animComp = player->getComponent<AnimationComponent>();
 	animComp->attackFast = statusComp->attackSpeed;
 	animComp->moveFast =  statusComp->movementSpeed / 100.0f;
 	
-	    // 애니메이션을 JSON 파일에서 로드
+	// 애니메이션을 JSON 파일에서 로드
     if (!animComp->loadAnimationsFromFile("assets/animations.json", animComp)) {
         std::cerr << "Failed to load animations for player." << std::endl;
     }
  	// 기본 애니메이션 설정
     animComp->playAnimation("d_idle");
 
-
-    
-
-	
 
 }
     // ... 필요한 팩토리 메서드를 추가
@@ -61,10 +66,14 @@ void EntityFactory::createPlayerEntity(const SpawnRequest& req){
 void EntityFactory::createEri(const SpawnRequest& req){
 
 	auto eri = ecsManager->createEntity();
+
 	eri->addComponent<PositionComponent>(req.x, req.y);
-	eri->addComponent<VelocityComponent>(3.0f, 3.0f);
-	eri->addComponent<SpriteComponent>("eri", 60, 60);
+	eri->addComponent<VelocityComponent>(5.0f, 5.0f);
+	eri->addComponent<SpriteComponent>("eri", 31, 38, 2);
 	
+
+
+
 	ecsManager->setEntityName(eri, "eri");
 
 }
@@ -76,16 +85,21 @@ void EntityFactory::createFarmerEntity(const SpawnRequest& req){
 
 	auto farmer = ecsManager->createEntity();
 	ecsManager->setEntityName(farmer, "farmer");
+
 	farmer->addComponent<PositionComponent>(req.x, req.y);
 	farmer->addComponent<VelocityComponent>();
 	farmer->addComponent<DirectionComponent>(0, 1);
 	farmer->addComponent<SpriteComponent>("farmer", 21, 28, 3);
 	farmer->addComponent<AnimationComponent>();
 	farmer->addComponent<StateComponent>();
+
+
+
+
 	auto animComp = farmer->getComponent<AnimationComponent>();
 
-	auto stateComp = farmer->getComponent<StateComponent>();
 
+	auto stateComp = farmer->getComponent<StateComponent>();
 	stateComp->currentState = States::Idle;
 
 
@@ -169,6 +183,18 @@ void EntityFactory::createFarmerEntity(const SpawnRequest& req){
 
 	animComp->playAnimation("d_idle");
 
+
+}
+
+
+void EntityFactory::createText(const SpawnRequest& req){
+
+	auto text = ecsManager->createEntity();
+	text->addComponent<PositionComponent>(req.x, req.y);
+	text->addComponent<SpriteComponent>("font", req.x, req.y);
+	text->addComponent<UITag>();
+
+	ecsManager->setEntityName(text, "text");
 
 }
 

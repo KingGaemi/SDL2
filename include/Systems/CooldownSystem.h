@@ -20,7 +20,7 @@ public:
 
 		for(auto& entity : entities){
 
-			if(entity->hasComponent<CooldownComponent>()){
+			if(entity->isActive && entity->hasComponent<CooldownComponent>()){
 
 				auto cooldownComp = entity->getComponent<CooldownComponent>();
 

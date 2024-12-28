@@ -48,6 +48,22 @@ public:
         textures.clear();
 	}
 
+	bool loadText(const char * textString){
+
+		SDL_Texture* texture = renderer->loadText(textString);
+
+		if (!texture) {
+            std::cerr << "Failed to load textTexture: " << textString << " Error: " << SDL_GetError() << std::endl;
+            return false;
+        }
+
+		textures["font"] = texture;
+
+		return true;
+
+	}
+
+
 
 private:
 	Renderer* renderer;

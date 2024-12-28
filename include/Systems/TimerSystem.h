@@ -16,7 +16,7 @@ public:
 
 		for(auto& entity : entities){
 
-			if(entity->hasComponent<LifeTimeComponent>() || entity->hasComponent<StateComponent>()){
+			if(entity->isActive && (entity->hasComponent<LifeTimeComponent>() || entity->hasComponent<StateComponent>())){
 				auto stateComp = entity->getComponent<StateComponent>();
 				auto lifeTimeComp = entity->getComponent<LifeTimeComponent>();
 

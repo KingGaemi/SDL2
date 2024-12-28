@@ -17,11 +17,11 @@ public:
 
 		for(auto& entity : entities){
 
-			if(entity->hasComponent<LifeTimeComponent>()){
+			if(entity->isActive && entity->hasComponent<LifeTimeComponent>()){
 
 				auto lifeTimeComp = entity->getComponent<LifeTimeComponent>();
 
-				if(lifeTimeComp && lifeTimeComp->lifeTime < 0) entity->isActive = false;
+				if(lifeTimeComp && lifeTimeComp->lifeTime < 0) entity->terminate = true;
 			}
 
 		}

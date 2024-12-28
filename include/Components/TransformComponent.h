@@ -11,8 +11,7 @@ public:
     int height = 32;
     int scale = 1;
 
-    // 예: 각도(회전)가 필요하다면 추가
-    // float rotation = 0.0f;
+    float rotation = 0.0f;
 
     // bool isMoving = false; // 이동 중인지 여부(선택적으로 유지)
 

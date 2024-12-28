@@ -1,5 +1,6 @@
 obj/RenderSystem.o: src/RenderSystem.cpp include/Systems/RenderSystem.h \
- include/ECS/System.h include/TextureManager.h include/Renderer.h \
+ include/ECS/System.h include/ECS/Entity.h include/ECS/Component.h \
+ include/Groups.h include/TextureManager.h include/Renderer.h \
  include/IRenderer.h C:/SDL2-w64/include/SDL2/SDL.h \
  C:/SDL2-w64/include/SDL2/SDL_main.h \
  C:/SDL2-w64/include/SDL2/SDL_stdinc.h \
@@ -49,11 +50,13 @@ obj/RenderSystem.o: src/RenderSystem.cpp include/Systems/RenderSystem.h \
  C:/SDL2-w64/include/SDL2/SDL_version.h \
  C:/SDL2-w64/include/SDL2/SDL_locale.h \
  C:/SDL2-w64/include/SDL2/SDL_misc.h C:/SDL2-w64/include/SDL2/SDL_image.h \
- C:/SDL2-w64/include/SDL2/SDL.h include/ECS/Entity.h \
- include/ECS/Component.h include/Components/PositionComponent.h \
+ C:/SDL2-w64/include/SDL2/SDL.h include/Components/PositionComponent.h \
  include/Vector2D.h include/Components/SpriteComponent.h include/Rect.h
 include/Systems/RenderSystem.h:
 include/ECS/System.h:
+include/ECS/Entity.h:
+include/ECS/Component.h:
+include/Groups.h:
 include/TextureManager.h:
 include/Renderer.h:
 include/IRenderer.h:
@@ -109,8 +112,6 @@ C:/SDL2-w64/include/SDL2/SDL_locale.h:
 C:/SDL2-w64/include/SDL2/SDL_misc.h:
 C:/SDL2-w64/include/SDL2/SDL_image.h:
 C:/SDL2-w64/include/SDL2/SDL.h:
-include/ECS/Entity.h:
-include/ECS/Component.h:
 include/Components/PositionComponent.h:
 include/Vector2D.h:
 include/Components/SpriteComponent.h:

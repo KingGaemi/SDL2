@@ -4,9 +4,5 @@
 
 
 class PlayableComponent : public Component{
-
-public:
-
-	bool keyDown = false;
-
+	bool playable = true;
 };

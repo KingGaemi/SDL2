@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <memory>
 #include "Renderer.h"
 #include "TextureManager.h"
@@ -47,6 +48,7 @@ private:
     std::shared_ptr<ECSManager> ecsManager;
     std::shared_ptr<EntityFactory> entityFactory;
     std::unique_ptr<TextureManager> textureManager;
+    std::unique_ptr<TextureManager> uiTextureManager;
     std::unique_ptr<InputManager> inputManager;
     std::unique_ptr<EventManager> eventManager;
  
