@@ -20,6 +20,7 @@ public:
     void createSlashEntity(const AttackRequest& req);
     void createEri(const SpawnRequest& req);
     void createText(const SpawnRequest& req);
+    void createEnemyDummy(const SpawnRequest& req);
     // void createAttack(std::shared_ptr<ECSManager> ecsManager, float x, float y);
     int addAnimationFrames(AnimationData& animData, int x, int y, int w, int h, float duration, int interval, int count);
     void generalUnit(std::shared_ptr<Entity> entity, const SpawnRequest& req);

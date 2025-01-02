@@ -92,6 +92,10 @@ void ECSManager::processSpawnRequests() {
 
             entityFactory->createText(req);
         }
+        if(req.type == "enemy"){
+
+            entityFactory->createEnemyDummy(req);
+        }
     }
     pendingSpawns.clear();
     

@@ -193,6 +193,39 @@ void EntityFactory::createFarmerEntity(const SpawnRequest& req){
 
 }
 
+
+void EntityFactory::createEnemyDummy(const SpawnRequest& req){
+
+	auto enemy = ecsManager->createEntity();
+	ecsManager->setEntityName(enemy, "enemy");
+
+	generalUnit(enemy, req);
+
+	enemy->addComponent<SpriteComponent>("orc3", 64, 64, 2.0f);
+
+	enemy->addComponent<StatusComponent>(100, 100);
+
+	auto colComp = enemy->getComponent<ColliderComponent>();
+	colComp->offsetX = -1.0f;
+	colComp->offsetY = -6.0f;
+
+	auto statusComp = enemy->getComponent<StatusComponent>();
+	enemy->addComponent<CooldownComponent>("attack", 1.0f/statusComp->attackSpeed);
+	enemy->addComponent<CommandComponent>();
+	
+	auto animComp = enemy->getComponent<AnimationComponent>();
+	animComp->attackFast = statusComp->attackSpeed;
+	animComp->moveFast =  statusComp->movementSpeed / 100.0f;
+	
+	// 애니메이션을 JSON 파일에서 로드
+    if (!animComp->loadAnimationsFromFile("assets/animations.json", animComp)) {
+        std::cerr << "Failed to load animations for player." << std::endl;
+    }
+ 	// 기본 애니메이션 설정
+    // animComp->playAnimation("d_idle");
+
+}
+
 void EntityFactory::createText(const SpawnRequest& req){
 
 	auto text = ecsManager->createEntity();

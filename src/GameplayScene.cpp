@@ -25,6 +25,19 @@ void GameplayScene::onEnter(){
 	req.teamCode = TeamCode::Ally;
 	ecsManager->pendingSpawns.push_back(req);
 
+
+	req.type = "enemy";
+	req.x = 500.0f;
+	req.y = 300.0f;
+	req.w = 32;
+	req.h = 39;
+	req.sc = 2.0f;
+	req.teamCode = TeamCode::Enemy;
+	ecsManager->pendingSpawns.push_back(req);
+
+
+
+
 	req.type = "farmer";
 	req.x = 500.0f;
 	req.y = 600.0f;

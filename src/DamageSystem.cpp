@@ -1,6 +1,7 @@
 #include "Systems/DamageSystem.h"
 #include "Components/AttackComponent.h"
 #include "Components/StatusComponent.h"
+#include "Components/StateComponent.h"
 #include <iostream>
 
 
@@ -45,6 +46,12 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
         if(teamCompA->teamCode == teamCompT->teamCode) return;
 
 	    if (attackComp->hitTargets.count(target->getID()) == 0) {
+
+	    	if(target->hasComponent<StateComponent>()){
+	    		auto stateComp = target->getComponent<StateComponent>();
+	    		stateComp->changeState(States::Hurt, 1.0f);
+	    	}
+
 	        statusComp->hp -= attackComp->damage;
 	        attackComp->hitTargets.insert(target->getID());
 

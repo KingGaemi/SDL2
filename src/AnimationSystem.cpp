@@ -27,9 +27,27 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
 
 
                     if(!animComp->busy){
-
-                        if(stateComp->currentState == States::Attack){
-    
+                        if(stateComp->currentState == States::Death){
+                            if(vDir != 0){
+                                if(vDir == 1){
+                                    if(animComp->currentAnimation != "d_death") animComp->playAnimation("d_death");
+                                }
+                                if(vDir == -1){
+                                    if(animComp->currentAnimation != "u_death") animComp->playAnimation("u_death");
+                                }
+                            }else{
+                                if(hDir == -1){
+                                    if(animComp->currentAnimation != "l_death") animComp->playAnimation("l_death");
+                                }
+                                if (hDir == 1){
+                                    if(animComp->currentAnimation != "r_death") animComp->playAnimation("r_death");
+                                }
+                            }
+                            if(animComp->currentAnimation == "d_death" || animComp->currentAnimation == "u_death" 
+                                ||animComp->currentAnimation == "l_death" || animComp->currentAnimation == "r_death"){
+                                animComp->busy =true;
+                            }
+                        }else if(stateComp->currentState == States::Attack){
                             if(vDir != 0){
                                 if(vDir == 1){
                                     if(stateComp->isWalking){
@@ -74,12 +92,32 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
 
                                 ||animComp->currentAnimation == "d_walk_attack" || animComp->currentAnimation == "u_walk_attack" 
                                 ||animComp->currentAnimation == "l_walk_attack" || animComp->currentAnimation == "r_walk_attack"
-                                
+
                                 ||animComp->currentAnimation == "d_run_attack" || animComp->currentAnimation == "u_run_attack" 
                                 ||animComp->currentAnimation == "l_run_attack" || animComp->currentAnimation == "r_run_attack"
                                 ){
                                 animComp->busy = true;
                             }   
+                        }else if(stateComp->currentState == States::Hurt){
+                            if(vDir != 0){
+                                if(vDir == 1){
+                                    if(animComp->currentAnimation != "d_hurt") animComp->playAnimation("d_hurt");
+                                }
+                                if(vDir == -1){
+                                    if(animComp->currentAnimation != "u_hurt") animComp->playAnimation("u_hurt");
+                                }
+                            }else{
+                                if(hDir == -1){
+                                    if(animComp->currentAnimation != "l_hurt") animComp->playAnimation("l_hurt");
+                                }
+                                if (hDir == 1){
+                                    if(animComp->currentAnimation != "r_hurt") animComp->playAnimation("r_hurt");
+                                }
+                            }
+                            if(animComp->currentAnimation == "d_hurt" || animComp->currentAnimation == "u_hurt" 
+                                ||animComp->currentAnimation == "l_hurt" || animComp->currentAnimation == "r_hurt"){
+                                animComp->busy =true;
+                            }
                         }else if(stateComp->currentState == States::Run){
 
                                 if(vDir != 0){
@@ -228,7 +266,7 @@ void AnimationSystem::Init(){
 
     
     startX += 64*frameCount;
-    duration = 0.1666;
+    duration = 0.04;
     frameCount = 6;
 
     animations["d_hurt"] = createAnimation("d_hurt", "hurt", false, startX, 0, frameCount, gap, duration);
