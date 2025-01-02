@@ -5,6 +5,8 @@
 #include "Components/SpriteComponent.h"
 #include "Components/StateComponent.h"
 #include "Components/StatusComponent.h"
+#include "Groups.h"
+
 
 
 #include <iostream>
@@ -18,8 +20,9 @@
 void AttackSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
 
 	for(auto& entity : entities){
+		if(!entity->isActive) continue;
 
-		if(entity->isActive && entity->hasComponent<StateComponent>() ){
+		if(entity->hasComponent<StateComponent>() ){
 			auto stateComp = entity->getComponent<StateComponent>();
 
 			if(stateComp && stateComp->callAttack){
@@ -28,14 +31,13 @@ void AttackSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 				auto directComp = entity->getComponent<DirectionComponent>();
 				auto spriteComp = entity->getComponent<SpriteComponent>();
 				auto statusComp = entity->getComponent<StatusComponent>();
-
-
-				if(posComp && directComp && spriteComp && statusComp){
+				auto teamComp = entity->getComponent<TeamComponent>();
+				
+				if(posComp && directComp && spriteComp && statusComp && teamComp){
 					AttackRequest req;
 
 					req.type = "slash";
-
-					
+			
 					req.x = posComp->x() + directComp->hDir() * spriteComp->dstRect.w;
 					req.y = posComp->y() + directComp->vDir() * spriteComp->dstRect.h;
 					req.hDir = directComp->direction.hDir;
@@ -43,12 +45,10 @@ void AttackSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 					req.damage = statusComp->physicalDamage;
 					req.scale = 1;
 					req.duration = 0.1f;
-
-
+					req.teamCode = teamComp->teamCode;
 
 					requests.push_back(req);
 
-		
 					stateComp->callAttack = false;
 
 				}

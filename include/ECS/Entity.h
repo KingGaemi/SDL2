@@ -16,7 +16,7 @@ class Entity {
 public:
     Entity(EntityID id) : id(id) {}
 
-    EntityID getId() const { return id; }
+    EntityID getID() const { return id; }
 
     template<typename T, typename... Args>
     void addComponent(Args&&... args) {

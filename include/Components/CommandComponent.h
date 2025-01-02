@@ -12,6 +12,7 @@
 enum class CommandType{
     None,
     Move,
+    Run,
     Attack,
     Skill
 };

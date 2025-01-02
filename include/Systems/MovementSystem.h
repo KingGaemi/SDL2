@@ -4,6 +4,7 @@
 #include "ECS/Entity.h"
 #include "Components/PositionComponent.h"
 #include "Components/VelocityComponent.h"
+#include "Components/ColliderComponent.h"
 #include <iostream>
 
 class MovementSystem : public System {
@@ -15,14 +16,18 @@ public:
 
                 auto posComp = entity->getComponent<PositionComponent>();
                 auto veloComp = entity->getComponent<VelocityComponent>();
-
-                if (posComp && veloComp) {
-                
-                    posComp->add(veloComp->velo() * deltaTime);
+                if (!posComp || !veloComp) continue;
                     
-                }else{
-                    std::cout << "Entity doesn't have TransformComponent. ID: " << entity->getId() << std::endl;
-                }
+                posComp->add(veloComp->velo() * deltaTime);
+                        
+                // if(entity->hasComponent<ColliderComponent>()){
+                //     auto colliderComp = entity->getComponent<ColliderComponent>();
+                //     if(!colliderComp) continue;
+
+                //     colliderComp->add(veloComp->velo() * deltaTime);
+                // }
+
+
             }
         }
     }

@@ -27,9 +27,11 @@ void ECSManager::destroyEntity(std::shared_ptr<Entity> entity) {
     }
 }
 
+
+
 std::shared_ptr<Entity> ECSManager::getEntityById(std::size_t id) {
     for (auto& e : entities) {
-        if (e->getId() == id) return e;
+        if (e->getID() == id) return e;
     }
     return nullptr;
 }
@@ -41,7 +43,6 @@ void ECSManager::updateSystems(float deltaTime) {
                 return a.priority < b.priority;
             }
         );
-
 
         for (auto& reg : registeredSystems) {
             if (reg.group == SystemGroup::Logic) {
@@ -76,7 +77,6 @@ void ECSManager::renderSystems(float deltaTime) {
  
 void ECSManager::processSpawnRequests() {
 
-
     for(auto& req : pendingSpawns){
         if(req.type == "player"){
             entityFactory->createPlayerEntity(req);
@@ -92,9 +92,6 @@ void ECSManager::processSpawnRequests() {
 
             entityFactory->createText(req);
         }
-
-
-
     }
     pendingSpawns.clear();
     
@@ -111,12 +108,25 @@ void ECSManager::processSpawnRequests() {
         }
         attackSys->requests.clear();
     }
-
-
-    
-
-
 }
+
+void ECSManager::processCollisionEvents(){
+
+    for(auto& evt : collisionEvents){
+
+        if(evt.type == CollisionType::Move){
+
+
+        }else if(evt.type == CollisionType::Hit){
+
+            std::cout << evt.entityA->getID() << " hits " << evt.entityB->getID() << std::endl;
+
+        }
+
+    }
+    collisionEvents.clear();
+}
+
 
 std::shared_ptr<EntityFactory> ECSManager::shareFactory() {
     return entityFactory;
@@ -149,18 +159,27 @@ std::shared_ptr<Entity> ECSManager::getEntityByName(const std::string& name) {
 void ECSManager::cleanUpEntities(){
 
     for (auto& entity : entities){
-        
-
         if(entity&&entity->terminate) destroyEntity(entity);
     }
 
 }
 
+void ECSManager::cleanUpAllEntities(){
 
+    for (auto& entity : entities){
+        destroyEntity(entity);
+    }
 
+}
 
-
-
+void ECSManager::cleanUpEntitiesByScene(SceneCode sceneCode){
+    for (auto& entity : entities){
+        if(entity&&entity->hasComponent<SceneTag>()){
+            auto sceneTag = entity->getComponent<SceneTag>();
+            if(sceneTag && sceneTag->sceneCode == sceneCode) entity->terminate = true;
+        }
+    }
+}
 
 void ECSManager::takeSingleRequest(const SpawnRequest& req){
 

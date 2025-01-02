@@ -10,3 +10,5 @@
 #include "CommandSystem.h"
 #include "WorldRenderSystem.h"
 #include "UIRenderSystem.h"
+#include "CollisionSystem.h"
+#include "DamageSystem.h"

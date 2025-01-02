@@ -22,6 +22,7 @@ public:
     void createText(const SpawnRequest& req);
     // void createAttack(std::shared_ptr<ECSManager> ecsManager, float x, float y);
     int addAnimationFrames(AnimationData& animData, int x, int y, int w, int h, float duration, int interval, int count);
+    void generalUnit(std::shared_ptr<Entity> entity, const SpawnRequest& req);
     // ... 필요한 팩토리 메서드를 추가
 
 private:

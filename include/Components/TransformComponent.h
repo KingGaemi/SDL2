@@ -9,14 +9,14 @@ public:
 
     int width = 32;    // 그래픽/충돌 용도
     int height = 32;
-    int scale = 1;
+    float scale = 1;
 
     float rotation = 0.0f;
 
     // bool isMoving = false; // 이동 중인지 여부(선택적으로 유지)
 
     TransformComponent() {}
-    TransformComponent(int w, int h, int sc)
+    TransformComponent(int w, int h, float sc)
         : width(w), height(h), scale(sc) {}
 
     // 필요하다면 생성자/메서드 더 추가

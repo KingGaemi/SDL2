@@ -30,7 +30,7 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 
 
 						directComp->direction = commandComp->commandData.moveDirection;
-						Vector2D velo = directComp->dirToVector();;
+						Vector2D velo = directComp->dirToVector();
 
 						int dir = directComp->direction.hDir + directComp->direction.vDir;
 
@@ -41,20 +41,43 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 
 						}	
 
-						 
+						veloComp->set(velo);
 
+						stateComp->isWalking = true;
+						stateComp->isRunning = false;
+						stateComp->changeState(States::Walk);
+
+					
+					}else if(commandComp->commandData.type == CommandType::Run){
+
+						directComp->direction = commandComp->commandData.moveDirection;
+						Vector2D velo = directComp->dirToVector();
+
+						int dir = directComp->direction.hDir + directComp->direction.vDir;
+
+						if(dir == 0 || dir == 2 || dir == -2){
+							velo = velo * statusComp->movementSpeed * 0.8f * 2;
+						}else{
+							velo = velo * statusComp->movementSpeed * 2;
+
+						}	
 
 						veloComp->set(velo);
 
-						// stateComp->changeState(States::Walk);
+						stateComp->isWalking = false;
+						stateComp->isRunning = true;
+						stateComp->changeState(States::Run);
+
 
 					
 					}else if(commandComp->commandData.type == CommandType::None){
 
 
 						veloComp->zero();
-
-						// stateComp->changeState(States::Idle);
+						
+						stateComp->isRunning = false;
+						stateComp->isWalking = false;
+						stateComp->changeState(States::Idle);
 
 					}
 

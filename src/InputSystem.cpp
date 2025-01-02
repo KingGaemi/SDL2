@@ -17,63 +17,28 @@ void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float d
 	// Vector2D velo;
 
 
-	for (auto& entity : entities){
-		if(entity->hasComponent<PlayableComponent>()&& entity->hasComponent<StateComponent>() ){
+	// for (auto& entity : entities){
+	// 	if(entity->hasComponent<PlayableComponent>()&& entity->hasComponent<StateComponent>() ){
 
-			auto playComp = entity->getComponent<PlayableComponent>();
-			auto stateComp = entity->getComponent<StateComponent>();
+	// 		auto playComp = entity->getComponent<PlayableComponent>();
+	// 		auto stateComp = entity->getComponent<StateComponent>();
 
-			if(playComp && stateComp){
-				if (state[SDL_SCANCODE_LEFT] || state[SDL_SCANCODE_RIGHT] || state[SDL_SCANCODE_UP] || state[SDL_SCANCODE_DOWN]){
+	// 		if(playComp && stateComp){
+	// 			if (state[SDL_SCANCODE_LEFT] || state[SDL_SCANCODE_RIGHT] || state[SDL_SCANCODE_UP] || state[SDL_SCANCODE_DOWN]){
 
-					stateComp->changeState(States::Walk);
+	// 				stateComp->changeState(States::Walk);
 
-				}else{
-					stateComp->changeState(States::Idle);
+	// 			}else{
+	// 				stateComp->changeState(States::Idle);
 
-				}
-
-
-			}
-
-		}
-	}
+	// 			}
 
 
-	// if (state[SDL_SCANCODE_LEFT]) velo.x += -1;
-    // if (state[SDL_SCANCODE_RIGHT]) velo.x += 1;
-    // if (state[SDL_SCANCODE_UP]) velo.y += -1;
-    // if (state[SDL_SCANCODE_DOWN]) velo.y += 1;
+	// 		}
 
-
-    // // 키 상태에 따른 방향 결정
-    // if (state[SDL_SCANCODE_LEFT] || state[SDL_SCANCODE_RIGHT] || state[SDL_SCANCODE_UP] || state[SDL_SCANCODE_DOWN]){
-	// 	for (auto& entity : entities) {
-	//         if (entity->hasComponent<PlayableComponent>()) {
-	//         	auto trans = entity->getComponent<TransformComponent>();
-	//         	if(trans){
-	//         		trans->velocity = velo;
-	//         	}
-	//             auto stateComp = entity->getComponent<StateComponent>();
-	//             if (stateComp) {
-	//                 if(stateComp->currentState != States::Walk) stateComp->currentState = States::Walk;
-	//             }
-	//         }
-    // 	}
-    // }else{
-    // 	for (auto& entity : entities) {
-    // 		if (entity->hasComponent<PlayableComponent>()) {
-	//         	auto trans = entity->getComponent<TransformComponent>();
-	//         	if(trans){
-	//         		trans->velocity = velo;
-	//         	}
-	// 	        auto stateComp = entity->getComponent<StateComponent>();
-	// 	        if (stateComp) {
-	// 	        	if(stateComp->currentState != States::Idle) stateComp->currentState = States::Idle;
-	// 	        }
-	// 	    }
 	// 	}
-    // }
+	// }
+
 
    
 

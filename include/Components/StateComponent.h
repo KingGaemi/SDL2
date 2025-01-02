@@ -23,6 +23,8 @@ public:
 	float stateTimer;
 	bool callAttack = false;
 	bool inMotion = false;
+	bool isWalking = false;
+	bool isRunning = false;
 
 	
 	void changeState(States newState){
@@ -37,15 +39,15 @@ public:
 	}
 	
 	void changeState(States newState, float timer){
-		if(currentState != newState){
-			currentState = newState;
-			stateTimer = timer;
-			inMotion = true;
-			if(newState == States::Attack) callAttack = true;
-			// if(currentState == States::Attack) std::cout << "Attack";
+		
+		currentState = newState;
+		stateTimer = timer;
+		inMotion = true;
+		if(newState == States::Attack) callAttack = true;
+		// if(currentState == States::Attack) std::cout << "Attack";
 
 			// std::cout << std::endl;
-		}
+
 	}
 
 	void setTimer(float timer){stateTimer = timer;}

@@ -17,6 +17,9 @@ class Renderer;
 class RenderSystem : public System{
 
 public:
+
+    bool debugMode = true;
+
 	RenderSystem(Renderer& renderer) : renderer(&renderer), textureManager(nullptr) {}
     void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
     std::pair<int, int> getTextureSize(const std::string& textureID);

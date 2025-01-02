@@ -3,6 +3,7 @@
 #include "Groups.h"
 #include "Components/PositionComponent.h"
 #include "Components/SpriteComponent.h"
+#include "Components/ColliderComponent.h"
 #include <iostream>
 
 
@@ -51,8 +52,8 @@ void RenderSystem::setTextureManager(std::unique_ptr<TextureManager> p_textureMa
 
 
 void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
-
-    if(entity->isActive && entity->hasComponent<PositionComponent>() && entity->hasComponent<SpriteComponent>()){
+    if (!entity->isActive) return;
+    if(entity->hasComponent<PositionComponent>() && entity->hasComponent<SpriteComponent>()){
         auto posComp = entity->getComponent<PositionComponent>();
         auto sprite = entity->getComponent<SpriteComponent>();
         if (posComp && sprite) {
@@ -73,5 +74,25 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             renderer->render(texture, &srcRect, &dstRect, 0.0, nullptr, flip);
         }
     }
+
+
+    if(debugMode){
+        if (entity->hasComponent<ColliderComponent>()) {
+            auto collider = entity->getComponent<ColliderComponent>();
+            
+            // collider 위치(월드 좌표) -> 화면 좌표 변환
+            // (camX, camY) 만큼 빼주기, 혹은 camTransform 적용
+            SDL_Rect debugRect;
+            debugRect.x = static_cast<int>(collider->collider.x);
+            debugRect.y = static_cast<int>(collider->collider.y);
+            debugRect.w = static_cast<int>(collider->collider.w);
+            debugRect.h = static_cast<int>(collider->collider.h);
+            
+            // 원하는 색상 설정 (빨간색, 투명도 255)
+            renderer->SetRenderDrawColor(255, 0, 0, 255);
+            renderer->RenderDrawRect(debugRect);
+        }
+    }
+
 }
 

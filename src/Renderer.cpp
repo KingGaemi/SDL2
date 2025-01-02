@@ -65,7 +65,9 @@ SDL_Texture* Renderer::loadText(const char * textString){
 
 
 void Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* dstRect, double angle, SDL_Point* center, SDL_RendererFlip flip) {
+
     SDL_RenderCopyEx(SDL_renderer, texture, srcRect, dstRect, angle, center, flip);
+
 }
 
 void Renderer::clear()
@@ -79,3 +81,11 @@ void Renderer::display()
 	SDL_RenderPresent(SDL_renderer);
 }
 
+void Renderer::SetRenderDrawColor(int r, int g, int b, int a){
+    SDL_SetRenderDrawColor(SDL_renderer, r, g, b, a);
+}
+
+void Renderer::RenderDrawRect(SDL_Rect &debugRect){
+
+    SDL_RenderDrawRect(SDL_renderer, &debugRect);
+}

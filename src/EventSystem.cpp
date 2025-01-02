@@ -4,6 +4,7 @@
 #include "Components/PlayableComponent.h"
 #include "Components/StateComponent.h"
 #include "Components/CommandComponent.h"
+#include "Components/DashComponent.h"
 #include "ECS/Entity.h"
 #include "ECS/EntityFactory.h"
 #include <iostream>
@@ -20,7 +21,6 @@ void EventSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float d
 }
 
 void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Entity>>& entities){
-
 
 
 	// Find Target
@@ -41,32 +41,38 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 
 			if(playComp&&commandComp){
 
+				std::shared_ptr<DashComponent> dashComp;
+				if(entity->hasComponent<DashComponent>()) dashComp = entity->getComponent<DashComponent>();
+
+
 				if(evt.type == EventType::KEYDOWN){
 					if(isControl(evt.key)){
+						pressed[toInt(evt.key)] = true;
 						if(isArrow(evt.key)){
-							pressed[toInt(evt.key)] = true;
 							lastArrowKey = evt.key;
 							if(isHorizontal(evt.key)){
 								lastHorizontalKey = evt.key;
 								if(evt.key == KeyCode::Left){
-									std::cout << "Left" << std::endl;
+									
 								}else{
-									std::cout << "Right" << std::endl;
+									// std::cout << "Right" << std::endl;
 								}
 							}
 
 							if(isVertical(evt.key)){
 								lastVerticalKey = evt.key;
 								if(evt.key == KeyCode::Up){
-									std::cout << "Up" << std::endl;
+									// std::cout << "Up" << std::endl;
 								}else{
-									std::cout << "Down" << std::endl;
+									// std::cout << "Down" << std::endl;
 								}
 							}
 
-							if(isAttack(evt.key)){
-
-							}
+							if(dashComp->lastArrowKey == evt.key && dashComp->currentTime > 0){
+								dashComp->isDashing = true;
+							}else{
+								dashComp->lastArrowKey = evt.key;		
+							}							
 						}
 					}
 				}
@@ -74,28 +80,32 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 				if(evt.type == EventType::KEYUP){
 
 					pressed[toInt(evt.key)] = false;
-					std::cout << "KeyUp : ";
+					// std::cout << "KeyUp : ";
 
 					if(evt.key == KeyCode::Left){
-						std::cout << "Left" << std::endl;
+						// std::cout << "Left" << std::endl;
 						if(pressed[toInt(KeyCode::Right)]) lastHorizontalKey = KeyCode::Right;
 					}
 					if(evt.key == KeyCode::Right){
-						std::cout << "Right" << std::endl;
+						// std::cout << "Right" << std::endl;
 						if(pressed[toInt(KeyCode::Left)]) lastHorizontalKey = KeyCode::Left;
 					}
 
 					if(evt.key == KeyCode::Up){
-						std::cout << "Up" << std::endl;
+						// std::cout << "Up" << std::endl;
 						if(pressed[toInt(KeyCode::Down)]) lastVerticalKey = KeyCode::Down;
 					}
 
 					if(evt.key == KeyCode::Down){
-						std::cout << "Down" << std::endl;
+						// std::cout << "Down" << std::endl;
 						if(pressed[toInt(KeyCode::Up)]) lastVerticalKey = KeyCode::Up;
 					}
 
+					if(isArrow(evt.key)){
 
+						dashComp->pressed(evt.key);									
+
+					}
 
 
 					if(pressed[toInt(KeyCode::Left)]) lastArrowKey = KeyCode::Left;
@@ -136,15 +146,24 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 
 
 				if(pressed[toInt(KeyCode::Left)] || pressed[toInt(KeyCode::Right)] || pressed[toInt(KeyCode::Up)] || pressed[toInt(KeyCode::Down)]){
-					commandComp->commandData.type = CommandType::Move;
+
+					if(!dashComp->isDashing){
+						commandComp->commandData.type = CommandType::Move;
+					}else{
+						commandComp->commandData.type = CommandType::Run;
+					}
 
 				}else{
 					commandComp->commandData.type = CommandType::None;
-
+					// if(dashComp->isDashing) dashComp->currentTime = 0;
+					dashComp->isDashing = false;
 				}
+
+
 
 				if(evt.type == EventType::KEYDOWN && evt.key == KeyCode::Space){
 
+					
 					if(lastArrowKey == KeyCode::Left) commandComp->commandData.moveDirection.hDir = -1;
 					if(lastArrowKey == KeyCode::Right) commandComp->commandData.moveDirection.hDir = 1;
 					if(lastArrowKey == KeyCode::Up) commandComp->commandData.moveDirection.vDir = -1;
@@ -185,8 +204,8 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 				std::cout << "(" << posComp->x() << ", " << posComp->y() << " | " << directComp->direction.hDir << ", " << directComp->direction.vDir << ")"  ;
 			}
 			if(stateComp && playComp){
-				if(stateComp->currentState == States::Idle) std::cout << "Idle" << std::endl;
-				if(stateComp->currentState == States::Attack) std::cout << "Attack" << std::endl;
+				// if(stateComp->currentState == States::Idle) std::cout << "Idle" << std::endl;
+				// if(stateComp->currentState == States::Attack) std::cout << "Attack" << std::endl;
 				
 			}
 		}

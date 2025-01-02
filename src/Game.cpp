@@ -55,12 +55,17 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<UIRenderSystem>(SystemGroup::UI, 200, *renderer);
     ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
     ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager->get());
-    ecsManager->addSystem<InputSystem>(SystemGroup::Logic, 20);
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
     ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40);
+    ecsManager->addSystem<CollisionSystem>(SystemGroup::Logic, 60, ecsManager);
     ecsManager->addSystem<ExpireSystem>(SystemGroup::Logic, 90);
+    ecsManager->addSystem<DamageSystem>(SystemGroup::Logic, 100, ecsManager);
     ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
-    ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200,ecsManager);
+
+    auto animSys = ecsManager->getSystem<AnimationSystem>();
+    animSys->Init();
+
+    ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager);
     ecsManager->addSystem<CooldownSystem>(SystemGroup::Logic, 250);
 
     textureLoading();
@@ -116,6 +121,7 @@ void Game::run() {
         ecsManager->updateSystems(deltaTime);
         ecsManager->renderSystems(deltaTime);
         ecsManager->processSpawnRequests();
+        ecsManager->processCollisionEvents();
         ecsManager->cleanUpEntities();
 
         

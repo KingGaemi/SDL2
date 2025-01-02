@@ -4,6 +4,7 @@
 #include "ECS/EntityFactory.h"
 
 
+
 #include <iostream>
 
 
@@ -58,5 +59,5 @@ void MenuScene::update(float deltaTime){
 
 void MenuScene::onExit(){
 
- 	background->terminate = true;
+ 	ecsManager->cleanUpEntitiesByScene(SceneCode::Menu);
  }

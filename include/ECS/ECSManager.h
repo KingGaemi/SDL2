@@ -6,6 +6,7 @@
 #include <string>
 #include <algorithm>
 #include "EntityFactory.h"
+#include "Groups.h"
 #include "Entity.h"
 #include "System.h"
 
@@ -16,10 +17,22 @@ enum class SystemGroup {
     UI
 };
 
+enum class CollisionType {
+    Move,
+    Hit
+};
+
+
 struct SystemRegistration {
     std::shared_ptr<System> system;
     SystemGroup group;
     int priority; // 그룹 내 우선순위
+};
+
+struct CollisionEvent {
+    CollisionType type;
+    std::shared_ptr<Entity> entityA;
+    std::shared_ptr<Entity> entityB;
 };
 
 
@@ -82,15 +95,24 @@ public:
     void takeSingleRequest(const SpawnRequest& req);
 
 
+    std::vector<CollisionEvent>& getCollisionEvents() {
+        return collisionEvents;
+    }
 
     std::shared_ptr<EntityFactory> shareFactory();
+
     void setFactory(std::shared_ptr<EntityFactory>& factory);
     void setVelocity(std::shared_ptr<Entity> entity, float x, float y);
     void processSpawnRequests();
+    void processCollisionEvents();
+
     void cleanUpEntities();
+    void cleanUpAllEntities();
+    void cleanUpEntitiesByScene(SceneCode sceneCode);
     // 엔티티 이름 관리 (선택 사항)
 
     std::vector<SpawnRequest> pendingSpawns;
+    std::vector<CollisionEvent> collisionEvents;
 private:
     std::size_t nextID = 0;
     std::vector<std::shared_ptr<Entity>> entities;

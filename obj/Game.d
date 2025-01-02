@@ -51,8 +51,8 @@ obj/Game.o: src/Game.cpp include/Game.h C:/SDL2-w64/include/SDL2/SDL.h \
  C:/SDL2-w64/include/SDL2/SDL_image.h include/TextureManager.h \
  include/Scene.h include/Events/EventQueue.h include/KeyCode.h \
  include/MenuScene.h include/GameplayScene.h include/Requests.h \
- include/ECS/ECSManager.h include/ECS/EntityFactory.h \
- include/ECS/Entity.h include/ECS/Component.h include/ECS/System.h \
+ include/Groups.h include/ECS/Component.h include/ECS/ECSManager.h \
+ include/ECS/EntityFactory.h include/ECS/Entity.h include/ECS/System.h \
  include/Systems/Systems.h include/Systems/AnimationSystem.h \
  include/Components/AnimationComponent.h include/nlohmann/json.hpp \
  include/nlohmann/adl_serializer.hpp \
@@ -102,15 +102,17 @@ obj/Game.o: src/Game.cpp include/Game.h C:/SDL2-w64/include/SDL2/SDL.h \
  include/Components/SpriteComponent.h include/Rect.h \
  include/Systems/InputSystem.h include/Systems/MovementSystem.h \
  include/Components/PositionComponent.h include/Vector2D.h \
- include/Components/VelocityComponent.h include/Systems/RenderSystem.h \
- include/Groups.h include/Systems/TimerSystem.h \
- include/Components/StateComponent.h \
- include/Components/LifeTimeComponent.h include/Systems/ExpireSystem.h \
- include/Systems/AttackSystem.h include/Systems/CooldownSystem.h \
- include/Components/CooldownComponent.h include/Systems/CommandSystem.h \
- include/Systems/WorldRenderSystem.h include/Systems/UIRenderSystem.h \
- include/Input/InputManager.h include/Events/EventManager.h \
- include/Events/EventSystem.h
+ include/Components/VelocityComponent.h \
+ include/Components/ColliderComponent.h include/Systems/RenderSystem.h \
+ include/Systems/TimerSystem.h include/Components/StateComponent.h \
+ include/Components/LifeTimeComponent.h \
+ include/Components/DashComponent.h include/Systems/ExpireSystem.h \
+ include/Components/StatusComponent.h include/Systems/AttackSystem.h \
+ include/Systems/CooldownSystem.h include/Components/CooldownComponent.h \
+ include/Systems/CommandSystem.h include/Systems/WorldRenderSystem.h \
+ include/Systems/UIRenderSystem.h include/Systems/CollisionSystem.h \
+ include/Systems/DamageSystem.h include/Input/InputManager.h \
+ include/Events/EventManager.h include/Events/EventSystem.h
 include/Game.h:
 C:/SDL2-w64/include/SDL2/SDL.h:
 C:/SDL2-w64/include/SDL2/SDL_main.h:
@@ -174,10 +176,11 @@ include/KeyCode.h:
 include/MenuScene.h:
 include/GameplayScene.h:
 include/Requests.h:
+include/Groups.h:
+include/ECS/Component.h:
 include/ECS/ECSManager.h:
 include/ECS/EntityFactory.h:
 include/ECS/Entity.h:
-include/ECS/Component.h:
 include/ECS/System.h:
 include/Systems/Systems.h:
 include/Systems/AnimationSystem.h:
@@ -235,18 +238,22 @@ include/Systems/MovementSystem.h:
 include/Components/PositionComponent.h:
 include/Vector2D.h:
 include/Components/VelocityComponent.h:
+include/Components/ColliderComponent.h:
 include/Systems/RenderSystem.h:
-include/Groups.h:
 include/Systems/TimerSystem.h:
 include/Components/StateComponent.h:
 include/Components/LifeTimeComponent.h:
+include/Components/DashComponent.h:
 include/Systems/ExpireSystem.h:
+include/Components/StatusComponent.h:
 include/Systems/AttackSystem.h:
 include/Systems/CooldownSystem.h:
 include/Components/CooldownComponent.h:
 include/Systems/CommandSystem.h:
 include/Systems/WorldRenderSystem.h:
 include/Systems/UIRenderSystem.h:
+include/Systems/CollisionSystem.h:
+include/Systems/DamageSystem.h:
 include/Input/InputManager.h:
 include/Events/EventManager.h:
 include/Events/EventSystem.h:

@@ -2,6 +2,7 @@
 #include "Components/DirectionComponent.h"
 #include "Components/StateComponent.h"
 #include <iostream>
+#include <fstream>
 
 
 
@@ -10,7 +11,6 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
 
    	for (auto& entity : entities) {
 
-        
         if(entity->isActive && entity->hasComponent<AnimationComponent>()){
             auto animComp = entity->getComponent<AnimationComponent>();
         
@@ -18,9 +18,9 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
 
                 auto spriteComp = entity->getComponent<SpriteComponent>();
                 auto directComp = entity->getComponent<DirectionComponent>();
-                auto state = entity->getComponent<StateComponent>();
+                auto stateComp = entity->getComponent<StateComponent>();
 
-                if(spriteComp && directComp && state){
+                if(spriteComp && directComp && stateComp){
 
                 	int hDir = directComp->direction.hDir;
                 	int vDir = directComp->direction.vDir;
@@ -28,35 +28,67 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
 
                     if(!animComp->busy){
 
-                        if(state->currentState == States::Attack){
-                            // std::cout << "Attack in Animation.  ID: "<< spriteComp->textureID << std::endl;
-
-                            animComp->busy = true;
-
+                        if(stateComp->currentState == States::Attack){
+    
                             if(vDir != 0){
                                 if(vDir == 1){
-                                    animComp->playAnimation("d_attack");
+                                    if(stateComp->isWalking){
+                                        animComp->playAnimation("d_walk_attack");
+                                    }else if(stateComp->isRunning){
+                                        animComp->playAnimation("d_run_attack");
+                                    }else{
+                                        animComp->playAnimation("d_attack");
+                                    }
                                 }
                                 if(vDir == -1){
-                                    animComp->playAnimation("u_attack");
+                                    if(stateComp->isWalking){
+                                        animComp->playAnimation("u_walk_attack");
+                                    }else if(stateComp->isRunning){
+                                        animComp->playAnimation("u_run_attack");
+                                    }else{
+                                        animComp->playAnimation("u_attack");
+                                    }
                                 }
                             }else{
                                 if(hDir == -1){
-                                    animComp->playAnimation("l_attack");
+                                    if(stateComp->isWalking){
+                                        animComp->playAnimation("l_walk_attack");
+                                    }else if(stateComp->isRunning){
+                                        animComp->playAnimation("l_run_attack");
+                                    }else{
+                                        animComp->playAnimation("l_attack");
+                                    }
                                 }
                                 if (hDir == 1){
-                                    animComp->playAnimation("r_attack");
+                                    if(stateComp->isWalking){
+                                        animComp->playAnimation("r_walk_attack");
+                                    }else if(stateComp->isRunning){
+                                        animComp->playAnimation("r_run_attack");
+                                    }else{
+                                        animComp->playAnimation("r_attack");
+                                    }
                                 }
                             }
+                            if(animComp->currentAnimation == "d_attack" || animComp->currentAnimation == "u_attack" 
+                                ||animComp->currentAnimation == "l_attack" || animComp->currentAnimation == "r_attack"
 
-                        }else if(state->currentState == States::Run){
+                                ||animComp->currentAnimation == "d_walk_attack" || animComp->currentAnimation == "u_walk_attack" 
+                                ||animComp->currentAnimation == "l_walk_attack" || animComp->currentAnimation == "r_walk_attack"
+                                
+                                ||animComp->currentAnimation == "d_run_attack" || animComp->currentAnimation == "u_run_attack" 
+                                ||animComp->currentAnimation == "l_run_attack" || animComp->currentAnimation == "r_run_attack"
+                                ){
+                                animComp->busy = true;
+                            }   
+                        }else if(stateComp->currentState == States::Run){
 
-                            if(vDir != 0){
-                                if(vDir == 1){
-                                    if(animComp->currentAnimation != "d_run") animComp->playAnimation("d_run");
-                                }
-                                if(vDir == -1){
-                                    if(animComp->currentAnimation != "u_run") animComp->playAnimation("u_run");
+                                if(vDir != 0){
+                                    if(vDir == 1){
+                                        if(animComp->currentAnimation != "d_run") animComp->playAnimation("d_run");
+                                    }
+                                    if(vDir == -1){
+                                        if(animComp->currentAnimation != "u_run") animComp->playAnimation("u_run");
+                                    }
                                 }else{
                                     if(hDir == -1){
                                         if(animComp->currentAnimation != "l_run") animComp->playAnimation("l_run");
@@ -65,9 +97,7 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                                         if(animComp->currentAnimation != "r_run") animComp->playAnimation("r_run");
                                     }
                                 }
-                            }
-
-                        }else if(state->currentState == States::Idle){
+                        }else if(stateComp->currentState == States::Idle){
 
                             if(hDir == -1){
                                 if(animComp->currentAnimation != "l_idle") animComp->playAnimation("l_idle");
@@ -82,8 +112,7 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                                 if(animComp->currentAnimation != "u_idle") animComp->playAnimation("u_idle");
                             }
 
-                        }else if(state->currentState == States::Walk){
-
+                        }else if(stateComp->currentState == States::Walk){
                             if(vDir != 0){
                                 if(vDir == 1){
                                     if(animComp->currentAnimation != "d_walk") animComp->playAnimation("d_walk");
@@ -170,3 +199,123 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
         spriteComp->srcRect.h = frame->h;
     }
 }
+
+
+void AnimationSystem::Init(){
+
+
+    json animations;
+
+    int startX = 0;
+    int gap = 64;
+    int frameCount = 4;
+    float duration = 0.2; 
+
+    // 예제: idle 애니메이션
+    animations["d_idle"] = createAnimation("d_idle", "idle", true, startX, 0, frameCount, gap, duration);
+    animations["u_idle"] = createAnimation("u_idle", "idle", true, startX, 64, frameCount, gap, duration);
+    animations["l_idle"] = createAnimation("l_idle", "idle", true, startX, 128, frameCount, gap, duration);
+    animations["r_idle"] = createAnimation("r_idle", "idle", true, startX, 192, frameCount, gap, duration);
+
+    startX += 64*frameCount;
+    duration = 0.125;
+    frameCount = 8;
+
+    animations["d_attack"] = createAnimation("d_attack", "attack", false, startX, 0, frameCount, gap, duration);
+    animations["u_attack"] = createAnimation("u_attack", "attack", false, startX, 64, frameCount, gap, duration);
+    animations["l_attack"] = createAnimation("l_attack", "attack", false, startX, 128, frameCount, gap, duration);
+    animations["r_attack"] = createAnimation("r_attack", "attack", false, startX, 192, frameCount, gap, duration);
+
+    
+    startX += 64*frameCount;
+    duration = 0.1666;
+    frameCount = 6;
+
+    animations["d_hurt"] = createAnimation("d_hurt", "hurt", false, startX, 0, frameCount, gap, duration);
+    animations["u_hurt"] = createAnimation("u_hurt", "hurt", false, startX, 64, frameCount, gap, duration);
+    animations["l_hurt"] = createAnimation("l_hurt", "hurt", false, startX, 128, frameCount, gap, duration);
+    animations["r_hurt"] = createAnimation("r_hurt", "hurt", false, startX, 192, frameCount, gap, duration);
+
+
+    
+    startX += 64 * frameCount;
+    duration = 0.125;
+    frameCount = 8;
+
+    animations["d_death"] = createAnimation("d_death", "death", false, startX, 0, frameCount, gap, duration);
+    animations["u_death"] = createAnimation("u_death", "death", false, startX, 64, frameCount, gap, duration);
+    animations["l_death"] = createAnimation("l_death", "death", false, startX, 128, frameCount, gap, duration);
+    animations["r_death"] = createAnimation("r_death", "death", false, startX, 192, frameCount, gap, duration);
+
+
+    
+    startX += 64*frameCount;
+    duration = 0.1666;
+    frameCount = 6;
+
+    animations["d_walk"] = createAnimation("d_walk", "move", true, startX, 0, frameCount, gap, duration);
+    animations["u_walk"] = createAnimation("u_walk", "move", true, startX, 64, frameCount, gap, duration);
+    animations["l_walk"] = createAnimation("l_walk", "move", true, startX, 128, frameCount, gap, duration);
+    animations["r_walk"] = createAnimation("r_walk", "move", true, startX, 192, frameCount, gap, duration);
+
+
+    
+    startX += 64*frameCount;
+    duration = 0.1666;
+    frameCount = 6;
+
+    animations["d_walk_attack"] = createAnimation("d_walk_attack", "attack", false, startX, 0, frameCount, gap, duration);
+    animations["u_walk_attack"] = createAnimation("u_walk_attack", "attack", false, startX, 64, frameCount, gap, duration);
+    animations["l_walk_attack"] = createAnimation("l_walk_attack", "attack", false, startX, 128, frameCount, gap, duration);
+    animations["r_walk_attack"] = createAnimation("r_walk_attack", "attack", false, startX, 192, frameCount, gap, duration);
+    
+    
+    startX += 64*frameCount;
+    duration = 0.125;
+    frameCount = 8;
+
+    animations["d_run"] = createAnimation("d_run", "move", true, startX, 0, frameCount, gap, duration);
+    animations["u_run"] = createAnimation("u_run", "move", true, startX, 64, frameCount, gap, duration);
+    animations["l_run"] = createAnimation("l_run", "move", true, startX, 128, frameCount, gap, duration);
+    animations["r_run"] = createAnimation("r_run", "move", true, startX, 192, frameCount, gap, duration);
+
+
+    
+    startX += 64*frameCount;
+    duration = 0.125;
+    frameCount = 8;
+
+    animations["d_run_attack"] = createAnimation("d_run_attack", "attack", false, startX, 0, frameCount, gap, duration);
+    animations["u_run_attack"] = createAnimation("u_run_attack", "attack", false, startX, 64, frameCount, gap, duration);
+    animations["l_run_attack"] = createAnimation("l_run_attack", "attack", false, startX, 128, frameCount, gap, duration);
+    animations["r_run_attack"] = createAnimation("r_run_attack", "attack", false, startX, 192, frameCount, gap, duration);
+    
+    std::ofstream outFile("assets/animations.json");
+    outFile << animations.dump(4);  // JSON 데이터를 예쁘게 포맷해서 저장
+    outFile.close();
+    
+}
+
+
+
+json AnimationSystem::createAnimation(const std::string& name, const std::string& type, bool loop,
+                     int startX, int startY, int frameCount, int gap, float duration) {
+    json animation;
+    animation["type"] = type;
+    animation["loop"] = loop;
+
+    // 프레임 생성
+    for (int i = 0; i < frameCount; ++i) {
+        animation["frames"].push_back({
+            {"x", startX + i * gap},
+            {"y", startY},
+            {"w", gap},
+            {"h", gap},
+            {"duration", duration}
+        });
+    }
+
+    return animation;
+}
+
+

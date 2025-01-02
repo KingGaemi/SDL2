@@ -23,10 +23,10 @@ struct AnimationData {
 
 
 
+using json = nlohmann::json;
 
 class AnimationComponent : public Component {
-public: 
-	using json = nlohmann::json;
+public:
 
 	std::string currentAnimation;
 	std::map<std::string, AnimationData> animations;
@@ -44,7 +44,10 @@ public:
 
 	void playAnimation(const std::string animName);
 	bool loadAnimationsFromFile(const std::string& filename,std::shared_ptr<AnimationComponent> animComp);
-	bool isAnimationComplete() const; 
+	bool isAnimationComplete() const;
+
+	void saveJson();
+
 	AnimationData* getCurrentAnimationData();
 	AnimationFrame* getCurrentFrame();
 private:

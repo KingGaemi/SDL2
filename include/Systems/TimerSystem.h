@@ -4,6 +4,7 @@
 #include "ECS/Entity.h"
 #include "Components/StateComponent.h"
 #include "Components/LifeTimeComponent.h"
+#include "Components/DashComponent.h"
 
 
 
@@ -16,10 +17,11 @@ public:
 
 		for(auto& entity : entities){
 
-			if(entity->isActive && (entity->hasComponent<LifeTimeComponent>() || entity->hasComponent<StateComponent>())){
+			if(entity->isActive && (entity->hasComponent<LifeTimeComponent>() || entity->hasComponent<StateComponent>()
+				|| entity->hasComponent<DashComponent>())){
 				auto stateComp = entity->getComponent<StateComponent>();
 				auto lifeTimeComp = entity->getComponent<LifeTimeComponent>();
-
+				auto dashComp = entity->getComponent<DashComponent>();
 				if(stateComp){
 					if(stateComp->stateTimer > 0) stateComp->stateTimer -= deltaTime;
 					if(stateComp->stateTimer <= 0) {
@@ -32,6 +34,23 @@ public:
 				if(lifeTimeComp){
 					lifeTimeComp->lifeTime -= deltaTime;
 				}
+
+				if(dashComp){
+					if(dashComp->currentTime > 0){
+						dashComp->currentTime -= deltaTime;
+					}else{
+						dashComp->currentTime = 0;
+					}
+					
+					// if(dashComp->keyUpTime > 0){
+					// 	dashComp->keyUpTime -= deltaTime;
+					// }else{
+					// 	dashComp->keyUpTime = 0;
+					// }
+
+				}
+
+
 			}
 		}
 

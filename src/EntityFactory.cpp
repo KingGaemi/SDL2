@@ -3,6 +3,7 @@
 #include "ECS/ECSManager.h"
 #include "ECS/Entity.h"
 #include "Components/Components.h"
+
 #include "Groups.h"
 
 
@@ -25,23 +26,23 @@ void EntityFactory::createBackgroundEntity(const std::string& textureName){
 
 void EntityFactory::createPlayerEntity(const SpawnRequest& req){
 
+
 	auto player = ecsManager->createEntity();
 	ecsManager->setEntityName(player, "player");
-	player->addComponent<SceneTag>(SceneCode::Game);
+
+	generalUnit(player, req);
 	player->addComponent<PlayerTag>();
-	player->addComponent<TeamComponent>(TeamCode::Ally);
-	player->addComponent<PositionComponent>(req.x, req.y);
-	player->addComponent<VelocityComponent>();
-	player->addComponent<DirectionComponent>(0, 1);
-	player->addComponent<SpriteComponent>("orc3", 64, 64, 2);
-	player->addComponent<AnimationComponent>();
-	player->addComponent<PlayableComponent>();
-	player->addComponent<StateComponent>();
+	player->addComponent<PlayableComponent>();	
+	player->addComponent<DashComponent>(0.2f);
+	player->addComponent<SpriteComponent>("orc3", 64, 64, 2.0f);
+
 	player->addComponent<StatusComponent>(100, 100);
 
 
 
-
+	auto colComp = player->getComponent<ColliderComponent>();
+	colComp->offsetX = -1.0f;
+	colComp->offsetY = -6.0f;
 
 	auto statusComp = player->getComponent<StatusComponent>();
 	player->addComponent<CooldownComponent>("attack", 1.0f/statusComp->attackSpeed);
@@ -60,16 +61,23 @@ void EntityFactory::createPlayerEntity(const SpawnRequest& req){
 
 
 }
-    // ... 필요한 팩토리 메서드를 추가
-
-
+    
 void EntityFactory::createEri(const SpawnRequest& req){
+
+	int w = 31;
+	int h = 38;
+	float sc = 2.0f;
+	std::string name = "eri";
 
 	auto eri = ecsManager->createEntity();
 
+	eri->addComponent<SceneTag>(SceneCode::Game);
 	eri->addComponent<PositionComponent>(req.x, req.y);
 	eri->addComponent<VelocityComponent>(5.0f, 5.0f);
-	eri->addComponent<SpriteComponent>("eri", 31, 38, 2);
+	eri->addComponent<SpriteComponent>(name, w, h, sc);
+	eri->addComponent<ColliderComponent>(w*sc, h*sc, "eri");
+	eri->addComponent<TeamComponent>(req.teamCode);
+	eri->addComponent<StatusComponent>(100, 100);
 	
 
 
@@ -78,18 +86,17 @@ void EntityFactory::createEri(const SpawnRequest& req){
 
 }
 
-
-
-
 void EntityFactory::createFarmerEntity(const SpawnRequest& req){
 
 	auto farmer = ecsManager->createEntity();
 	ecsManager->setEntityName(farmer, "farmer");
 
+	farmer->addComponent<SceneTag>(SceneCode::Game);
 	farmer->addComponent<PositionComponent>(req.x, req.y);
 	farmer->addComponent<VelocityComponent>();
 	farmer->addComponent<DirectionComponent>(0, 1);
 	farmer->addComponent<SpriteComponent>("farmer", 21, 28, 3);
+	farmer->addComponent<ColliderComponent>(21*3, 28*3, "farmer");
 	farmer->addComponent<AnimationComponent>();
 	farmer->addComponent<StateComponent>();
 
@@ -186,7 +193,6 @@ void EntityFactory::createFarmerEntity(const SpawnRequest& req){
 
 }
 
-
 void EntityFactory::createText(const SpawnRequest& req){
 
 	auto text = ecsManager->createEntity();
@@ -197,14 +203,6 @@ void EntityFactory::createText(const SpawnRequest& req){
 	ecsManager->setEntityName(text, "text");
 
 }
-
-
-
-
-
-
-
-
 
 int EntityFactory::addAnimationFrames(AnimationData& animData, int x, int y, int w, int h, float duration, int interval, int count){
 
@@ -220,32 +218,33 @@ int EntityFactory::addAnimationFrames(AnimationData& animData, int x, int y, int
 	return x + (interval * count);
 }
 
-
-
-
 void EntityFactory::createSlashEntity(const AttackRequest& req){
 
 	auto slash = ecsManager->createEntity();
-
 
 	slash->addComponent<AttackComponent>(req.damage);
 	slash->addComponent<PositionComponent>(req.x, req.y);
 	slash->addComponent<DirectionComponent>(req.hDir, req.vDir);
 	slash->addComponent<SpriteComponent>("water_tile", 100, 200, req.scale);
 	slash->addComponent<LifeTimeComponent>(req.duration);
-
-
-
-
+	slash->addComponent<ColliderComponent>(100, 200, "slash");
+	slash->addComponent<TeamComponent>(TeamCode::Ally);
 
 }
 
+void EntityFactory::generalUnit(std::shared_ptr<Entity> entity, const SpawnRequest& req){
 
+	entity->addComponent<SceneTag>(SceneCode::Game);
+	entity->addComponent<TeamComponent>(req.teamCode);
+	entity->addComponent<PositionComponent>(req.x, req.y);
+	entity->addComponent<DirectionComponent>(0, 1);
+	entity->addComponent<VelocityComponent>();
+	entity->addComponent<TransformComponent>(req.w, req.h, req.sc);
+	entity->addComponent<ColliderComponent>(req.w*req.sc, req.h*req.sc, req.type);
+	entity->addComponent<AnimationComponent>();
+	entity->addComponent<StateComponent>();
 
-
-
-
-
+}
 
 
 

@@ -11,7 +11,7 @@ class DirectionComponent : public Component {
 public:
     Direction direction;
 
-    DirectionComponent() : direction{0, 0} {}
+    DirectionComponent() : direction{0, 1} {}
     DirectionComponent(int dx, int dy) : direction{dx, dy} {}
 
     void set(int dx, int dy) { direction.hDir = dx; direction.vDir = dy; }

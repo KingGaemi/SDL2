@@ -1,6 +1,6 @@
 obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
- include/Requests.h include/ECS/ECSManager.h include/ECS/Entity.h \
- include/ECS/Component.h include/ECS/System.h \
+ include/Requests.h include/Groups.h include/ECS/Component.h \
+ include/ECS/ECSManager.h include/ECS/Entity.h include/ECS/System.h \
  include/Components/Components.h include/Components/TransformComponent.h \
  include/Vector2D.h include/Components/SpriteComponent.h include/Rect.h \
  include/Components/PlayableComponent.h \
@@ -58,12 +58,14 @@ obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
  include/Components/CommandComponent.h \
  include/Components/DirectionComponent.h \
  include/Components/PositionComponent.h \
- include/Components/VelocityComponent.h include/Groups.h
+ include/Components/VelocityComponent.h \
+ include/Components/DashComponent.h include/KeyCode.h
 include/ECS/EntityFactory.h:
 include/Requests.h:
+include/Groups.h:
+include/ECS/Component.h:
 include/ECS/ECSManager.h:
 include/ECS/Entity.h:
-include/ECS/Component.h:
 include/ECS/System.h:
 include/Components/Components.h:
 include/Components/TransformComponent.h:
@@ -128,4 +130,5 @@ include/Components/CommandComponent.h:
 include/Components/DirectionComponent.h:
 include/Components/PositionComponent.h:
 include/Components/VelocityComponent.h:
-include/Groups.h:
+include/Components/DashComponent.h:
+include/KeyCode.h:

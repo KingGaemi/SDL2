@@ -43,12 +43,12 @@ bool AnimationComponent::loadAnimationsFromFile(const std::string& filename, std
     file >> j;
 
     // j["animations"] 객체 접근
-    if (!j.contains("animations")) {
-        std::cerr << "No 'animations' field in " << filename << std::endl;
-        return false;
-    }
+    // if (!j.contains("animations")) {
+    //     std::cerr << "No 'animations' field in " << filename << std::endl;
+    //     return false;
+    // }
 
-    auto animationsJson = j["animations"];
+    auto animationsJson = j;
 
     for (auto it = animationsJson.begin(); it != animationsJson.end(); ++it) {
         std::string animName = it.key();
@@ -83,7 +83,11 @@ bool AnimationComponent::loadAnimationsFromFile(const std::string& filename, std
 bool AnimationComponent::isAnimationComplete() const {
     if (animations.find(currentAnimation) != animations.end()) {
         return !animations.at(currentAnimation).loop && 
-               currentFrameIndex >= animations.at(currentAnimation).frames.size();
+               currentFrameIndex >= static_cast<int>(animations.at(currentAnimation).frames.size());
     }
     return true;
 }
+
+
+
+

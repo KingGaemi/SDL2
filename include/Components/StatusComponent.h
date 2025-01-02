@@ -11,6 +11,7 @@ class StatusComponent : public Component {
 
 public:
 
+	bool alive = true;
 	int maxHp, 
 		maxMp, 
 		hp, 
@@ -19,9 +20,7 @@ public:
 		agility, 
 		intelligence, 
 		physicalDamage;
-
 	float attackSpeed, movementSpeed;
-
 
 	//float timeSpeed
 
@@ -37,7 +36,7 @@ public:
 		strength = 1;
 		agility = 1;
 		intelligence = 1;
-		physicalDamage = 1;
+		physicalDamage = 10;
 
 	}
 	StatusComponent(int maxHp, int maxMp) : maxHp(maxHp) , maxMp(maxMp) {
@@ -48,7 +47,7 @@ public:
 		strength = 1;
 		agility = 1;
 		intelligence = 1;
-		physicalDamage = 1;
+		physicalDamage = 10;
 	}
 
 

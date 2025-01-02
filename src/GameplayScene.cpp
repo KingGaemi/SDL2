@@ -3,6 +3,7 @@
 #include "ECS/Entity.h"
 #include "ECS/EntityFactory.h"
 #include "KeyCode.h"
+#include "Groups.h"
 #include <iostream>
 #include <string>
 
@@ -18,17 +19,23 @@ void GameplayScene::onEnter(){
 	req.type = "player";
 	req.x = 145.0f;
 	req.y = 150.0f;
+	req.w = 32;
+	req.h = 39;
+	req.sc = 2.0f;
+	req.teamCode = TeamCode::Ally;
 	ecsManager->pendingSpawns.push_back(req);
 
 	req.type = "farmer";
 	req.x = 500.0f;
 	req.y = 600.0f;
+	req.teamCode = TeamCode::Ally;
 	ecsManager->pendingSpawns.push_back(req);
 
 
 	req.type = "eri" ;
 	req.x = 200.0f;
 	req.y = 200.0f;
+	req.teamCode = TeamCode::Enemy;
 	ecsManager->pendingSpawns.push_back(req);
 
 	req.type = "text" ;
@@ -59,12 +66,6 @@ void GameplayScene::update(float deltaTime){
 
 void GameplayScene::onExit(){
 	
-	player = ecsManager->getEntityByName("player");
-	farmer = ecsManager->getEntityByName("farmer");
-
-
-	if(player) player->terminate = true;
-	if(farmer) farmer->terminate = true;
-
-
+	ecsManager->cleanUpEntitiesByScene(SceneCode::Game);
+	
 }
