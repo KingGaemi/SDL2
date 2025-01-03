@@ -12,7 +12,7 @@
 
 
 void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
-	const Uint8* state = SDL_GetKeyboardState(NULL);
+	// const Uint8* state = SDL_GetKeyboardState(NULL);
 
 	// Vector2D velo;
 

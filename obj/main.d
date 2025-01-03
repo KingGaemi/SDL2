@@ -101,10 +101,8 @@ obj/main.o: src/main.cpp include/Game.h C:/SDL2-w64/include/SDL2/SDL.h \
  include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
  include/Components/SpriteComponent.h include/Rect.h \
  include/Systems/InputSystem.h include/Systems/MovementSystem.h \
- include/Components/PositionComponent.h include/Vector2D.h \
- include/Components/VelocityComponent.h \
- include/Components/ColliderComponent.h include/Systems/RenderSystem.h \
- include/Systems/TimerSystem.h include/Components/StateComponent.h \
+ include/Systems/RenderSystem.h include/Systems/TimerSystem.h \
+ include/Components/StateComponent.h \
  include/Components/LifeTimeComponent.h \
  include/Components/DashComponent.h include/Systems/ExpireSystem.h \
  include/Components/StatusComponent.h include/Systems/AttackSystem.h \
@@ -235,10 +233,6 @@ include/Components/SpriteComponent.h:
 include/Rect.h:
 include/Systems/InputSystem.h:
 include/Systems/MovementSystem.h:
-include/Components/PositionComponent.h:
-include/Vector2D.h:
-include/Components/VelocityComponent.h:
-include/Components/ColliderComponent.h:
 include/Systems/RenderSystem.h:
 include/Systems/TimerSystem.h:
 include/Components/StateComponent.h:

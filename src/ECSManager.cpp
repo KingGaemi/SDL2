@@ -118,12 +118,12 @@ void ECSManager::processCollisionEvents(){
 
     for(auto& evt : collisionEvents){
 
-        if(evt.type == CollisionType::Move){
-
+        if(evt.type == CollisionType::Crash){
+            
 
         }else if(evt.type == CollisionType::Hit){
 
-            std::cout << evt.entityA->getID() << " hits " << evt.entityB->getID() << std::endl;
+            // std::cout << evt.entityA->getID() << " hits " << evt.entityB->getID() << std::endl;
 
         }
 

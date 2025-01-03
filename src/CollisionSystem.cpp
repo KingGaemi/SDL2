@@ -1,20 +1,57 @@
 #include "Systems/CollisionSystem.h"
+#include "Components/ColliderComponent.h"
 #include "Components/PositionComponent.h"
+#include "Components/SolidComponent.h"
+#include "Collision.h"
 
 #include <iostream>
 
 void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
 
+    
+    auto colliders = getColliders(entities);
+
+    if(!colliders.empty()){
+        updateCollidersPosition(colliders);
+        checkCollisions(colliders);
+    }
+   
+    
+}
+
+std::vector<std::shared_ptr<Entity>> CollisionSystem::getColliders(std::vector<std::shared_ptr<Entity>>& entities){
     std::vector<std::shared_ptr<Entity>> colliders;
     for (auto& entity : entities) {
         if (!entity->isActive) continue;
         if (entity->hasComponent<ColliderComponent>() &&
-            entity->hasComponent<PositionComponent>()) {
+            entity->hasComponent<PositionComponent>()) {    
             colliders.push_back(entity);
         }
     }
+    return colliders;
+}
 
-    for (auto& entity : colliders) {
+std::vector<std::shared_ptr<Entity>> CollisionSystem::getSolidColliders(std::vector<std::shared_ptr<Entity>>& entities){
+    std::vector<std::shared_ptr<Entity>> colliders;
+    for (auto& entity : entities) {
+        if (!entity->isActive) continue;
+        if (entity->hasComponent<ColliderComponent>() &&
+            entity->hasComponent<PositionComponent>() &&
+            entity->hasComponent<SolidComponent>()) {    
+            colliders.push_back(entity);
+        }
+    }
+    return colliders;
+}
+
+
+
+
+
+
+void CollisionSystem::updateCollidersPosition(std::vector<std::shared_ptr<Entity>>& colliders){
+
+    for(auto& entity : colliders) {
         auto posComp = entity->getComponent<PositionComponent>();
         auto colComp = entity->getComponent<ColliderComponent>();
 
@@ -23,21 +60,30 @@ void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
         colComp->collider.y = posComp->y() + colComp->offsetY - colComp->collider.h/2.0f;
         // colComp->collider.x = posComp->x() + colComp->offsetX; etc...
     }
+}
 
+void CollisionSystem::checkCollisions(std::vector<std::shared_ptr<Entity>>& colliders){
 
     for (int i = 0; i < (int)colliders.size(); i++){
         auto colA = colliders[i]->getComponent<ColliderComponent>();
 
         for (int j = i+1; j < (int)colliders.size(); j++){
             auto colB = colliders[j]->getComponent<ColliderComponent>();
-
-            if (AABB(*colA, *colB)) {
+            
+            if (Collision::AABB(*colA, *colB)) {
                 // 충돌 처리 (로그 출력, 이벤트, 데미지 등)
 
-            	CollisionEvent colEvt;
-            	colEvt.type = CollisionType::Hit;
-            	colEvt.entityA = colliders[i];
-            	colEvt.entityB = colliders[j];
+                CollisionEvent colEvt;
+
+                // if(colEvt.entityA->hasComponent<SolidComponent>()&&colEvt.entityB->hasComponent<SolidComponent>()){
+                //     // 
+                //     colEvt.type = CollisionType::Crash;
+                // }else{
+                // }
+
+                colEvt.type = CollisionType::Hit;
+                colEvt.entityA = colliders[i];
+                colEvt.entityB = colliders[j];
 
                 ecsManager->collisionEvents.push_back(colEvt);
 
@@ -46,37 +92,4 @@ void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
     }
 }
 
-
-
-bool CollisionSystem::AABB(const Rect& recA , const Rect& recB){
-		
-
-
-		if(	
-			recA.x + recA.w >= recB.x &&
-			recB.x + recB.w >= recA.x &&
-			recA.y + recA.h >= recB.y &&
-			recB.y + recB.h >= recA.h)
-		{
-			return true;
-		}
-
-		return false;
-
-}
-
-
-
-bool CollisionSystem::AABB(const ColliderComponent& cA, const ColliderComponent& cB){
-    // 표준 AABB 충돌 체크
-    const Rect& a = cA.collider;
-    const Rect& b = cB.collider;
-    if (a.x < b.x + b.w  &&
-        a.x + a.w > b.x  &&
-        a.y < b.y + b.h  &&
-        a.y + a.h > b.y)
-    {
-        return true;
-    }
-    return false;
-}
+    

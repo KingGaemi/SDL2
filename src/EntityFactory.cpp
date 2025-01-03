@@ -276,6 +276,7 @@ void EntityFactory::generalUnit(std::shared_ptr<Entity> entity, const SpawnReque
 	entity->addComponent<ColliderComponent>(req.w*req.sc, req.h*req.sc, req.type);
 	entity->addComponent<AnimationComponent>();
 	entity->addComponent<StateComponent>();
+	entity->addComponent<SolidComponent>();
 
 }
 

@@ -28,6 +28,7 @@ public:
 
 	
 	void changeState(States newState){
+		if(currentState == States::Death) return;
 		if(currentState != newState){
 			currentState = newState;
 			inMotion = false;
@@ -40,6 +41,7 @@ public:
 	
 	void changeState(States newState, float timer){
 		
+		if(currentState == States::Death) return;
 		currentState = newState;
 		stateTimer = timer;
 		inMotion = true;

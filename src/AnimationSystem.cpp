@@ -25,29 +25,31 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                 	int hDir = directComp->direction.hDir;
                 	int vDir = directComp->direction.vDir;
 
+                    if(stateComp->currentState == States::Death){
+                        if(vDir != 0){
+                            if(vDir == 1){
+                                if(animComp->currentAnimation != "d_death") animComp->playAnimation("d_death");
+                            }
+                            if(vDir == -1){
+                                if(animComp->currentAnimation != "u_death") animComp->playAnimation("u_death");
+                            }
+                        }else{
+                            if(hDir == -1){
+                                if(animComp->currentAnimation != "l_death") animComp->playAnimation("l_death");
+                            }
+                            if (hDir == 1){
+                                if(animComp->currentAnimation != "r_death") animComp->playAnimation("r_death");
+                            }
+                        }
+                        if(animComp->currentAnimation == "d_death" || animComp->currentAnimation == "u_death" 
+                            ||animComp->currentAnimation == "l_death" || animComp->currentAnimation == "r_death"){
+                            animComp->busy =true;
+                        }
+                    }
+
 
                     if(!animComp->busy){
-                        if(stateComp->currentState == States::Death){
-                            if(vDir != 0){
-                                if(vDir == 1){
-                                    if(animComp->currentAnimation != "d_death") animComp->playAnimation("d_death");
-                                }
-                                if(vDir == -1){
-                                    if(animComp->currentAnimation != "u_death") animComp->playAnimation("u_death");
-                                }
-                            }else{
-                                if(hDir == -1){
-                                    if(animComp->currentAnimation != "l_death") animComp->playAnimation("l_death");
-                                }
-                                if (hDir == 1){
-                                    if(animComp->currentAnimation != "r_death") animComp->playAnimation("r_death");
-                                }
-                            }
-                            if(animComp->currentAnimation == "d_death" || animComp->currentAnimation == "u_death" 
-                                ||animComp->currentAnimation == "l_death" || animComp->currentAnimation == "r_death"){
-                                animComp->busy =true;
-                            }
-                        }else if(stateComp->currentState == States::Attack){
+                        if(stateComp->currentState == States::Attack){
                             if(vDir != 0){
                                 if(vDir == 1){
                                     if(stateComp->isWalking){

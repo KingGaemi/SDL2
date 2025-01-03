@@ -18,7 +18,7 @@ enum class SystemGroup {
 };
 
 enum class CollisionType {
-    Move,
+    Crash,
     Hit
 };
 

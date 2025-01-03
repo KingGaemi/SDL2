@@ -1,9 +1,7 @@
 obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
  include/Requests.h include/Groups.h include/ECS/Component.h \
  include/ECS/ECSManager.h include/ECS/Entity.h include/ECS/System.h \
- include/Components/Components.h include/Components/TransformComponent.h \
- include/Vector2D.h include/Components/SpriteComponent.h include/Rect.h \
- include/Components/PlayableComponent.h \
+ include/Components/Components.h include/Components/AttackComponent.h \
  include/Components/AnimationComponent.h include/nlohmann/json.hpp \
  include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
@@ -49,17 +47,18 @@ obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
  include/nlohmann/ordered_map.hpp \
  include/nlohmann/detail/macro_unscope.hpp \
  include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
- include/Components/StateComponent.h \
- include/Components/LifeTimeComponent.h \
- include/Components/ColliderComponent.h \
- include/Components/AttackComponent.h \
- include/Components/StatusComponent.h \
- include/Components/CooldownComponent.h \
+ include/Components/ColliderComponent.h include/Rect.h include/Vector2D.h \
  include/Components/CommandComponent.h \
  include/Components/DirectionComponent.h \
+ include/Components/CooldownComponent.h \
+ include/Components/DashComponent.h include/KeyCode.h \
+ include/Components/LifeTimeComponent.h \
+ include/Components/PlayableComponent.h \
  include/Components/PositionComponent.h \
- include/Components/VelocityComponent.h \
- include/Components/DashComponent.h include/KeyCode.h
+ include/Components/SolidComponent.h include/Components/SpriteComponent.h \
+ include/Components/StateComponent.h include/Components/StatusComponent.h \
+ include/Components/TransformComponent.h \
+ include/Components/VelocityComponent.h
 include/ECS/EntityFactory.h:
 include/Requests.h:
 include/Groups.h:
@@ -68,11 +67,7 @@ include/ECS/ECSManager.h:
 include/ECS/Entity.h:
 include/ECS/System.h:
 include/Components/Components.h:
-include/Components/TransformComponent.h:
-include/Vector2D.h:
-include/Components/SpriteComponent.h:
-include/Rect.h:
-include/Components/PlayableComponent.h:
+include/Components/AttackComponent.h:
 include/Components/AnimationComponent.h:
 include/nlohmann/json.hpp:
 include/nlohmann/adl_serializer.hpp:
@@ -120,15 +115,20 @@ include/nlohmann/detail/conversions/to_chars.hpp:
 include/nlohmann/ordered_map.hpp:
 include/nlohmann/detail/macro_unscope.hpp:
 include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
-include/Components/StateComponent.h:
-include/Components/LifeTimeComponent.h:
 include/Components/ColliderComponent.h:
-include/Components/AttackComponent.h:
-include/Components/StatusComponent.h:
-include/Components/CooldownComponent.h:
+include/Rect.h:
+include/Vector2D.h:
 include/Components/CommandComponent.h:
 include/Components/DirectionComponent.h:
-include/Components/PositionComponent.h:
-include/Components/VelocityComponent.h:
+include/Components/CooldownComponent.h:
 include/Components/DashComponent.h:
 include/KeyCode.h:
+include/Components/LifeTimeComponent.h:
+include/Components/PlayableComponent.h:
+include/Components/PositionComponent.h:
+include/Components/SolidComponent.h:
+include/Components/SpriteComponent.h:
+include/Components/StateComponent.h:
+include/Components/StatusComponent.h:
+include/Components/TransformComponent.h:
+include/Components/VelocityComponent.h:

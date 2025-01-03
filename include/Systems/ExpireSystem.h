@@ -4,6 +4,7 @@
 #include "ECS/ECSManager.h"
 #include "Components/LifeTimeComponent.h"
 #include "Components/StatusComponent.h"
+#include "Components/AnimationComponent.h"
 
 
 
@@ -30,7 +31,15 @@ public:
 
 				auto statusComp = entity->getComponent<StatusComponent>();
 
-				if(statusComp && !statusComp->alive) entity->terminate = true;
+				if(entity->hasComponent<AnimationComponent>()){
+					auto animComp = entity->getComponent<AnimationComponent>();
+
+					if(statusComp && !statusComp->alive && !animComp->busy) entity->terminate = true;
+				}else{
+
+					if(statusComp && !statusComp->alive) entity->terminate = true;
+				}
+
 				
 			}
 

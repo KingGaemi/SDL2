@@ -1,10 +1,15 @@
 # 변수 정의
 CXX = g++
-CXXFLAGS = -g -Wall -std=c++17 -Wall -m64 -I include -I C:/SDL2-w64/include -MMD -MP
-LDFLAGS = -L C:/SDL2-w64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
+# 원래 있던 -o my_app를 빼주고, 중복된 -Wall도 하나만 남깁니다.
+CXXFLAGS = -g -Wall -std=c++17 -m64 -I include -I C:/SDL2-w64/include -I C:/Users/geami/Desktop/Dev/box2d/include -MMD -MP
+
+LDFLAGS = -L C:/SDL2-w64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf \
+          -L C:/Users/geami/Desktop/Dev/box2d/build/src -lbox2d
+
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
+
 DEBUG_BIN = $(BIN_DIR)/debug/main
 RELEASE_BIN = $(BIN_DIR)/release/main
 
@@ -13,7 +18,6 @@ SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SOURCES))
 DEPENDS = $(OBJECTS:.o=.d)
 
-# 빌드 타겟
 all: debug
 
 debug: $(DEBUG_BIN)

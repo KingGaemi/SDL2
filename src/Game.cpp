@@ -62,8 +62,8 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<DamageSystem>(SystemGroup::Logic, 100, ecsManager);
     ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
 
-    auto animSys = ecsManager->getSystem<AnimationSystem>();
-    animSys->Init();
+    // auto animSys = ecsManager->getSystem<AnimationSystem>();
+    // animSys->Init();
 
     ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager);
     ecsManager->addSystem<CooldownSystem>(SystemGroup::Logic, 250);

@@ -49,7 +49,7 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 
 	    	if(target->hasComponent<StateComponent>()){
 	    		auto stateComp = target->getComponent<StateComponent>();
-	    		stateComp->changeState(States::Hurt, 1.0f);
+	    		stateComp->changeState(States::Hurt, 0.7f);
 	    	}
 
 	        statusComp->hp -= attackComp->damage;
@@ -58,9 +58,13 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 	        std::cout << statusComp->hp << "/" << statusComp->maxHp << std::endl;
 	        if(statusComp->hp <= 0){
 	        	statusComp->hp = 0;
+		        if(target->hasComponent<StateComponent>()){
+		    		auto stateComp = target->getComponent<StateComponent>();
+		    		stateComp->changeState(States::Death, 1.0f);
+		    	}
 	        	statusComp->alive = false;
 	        	std::cout << "Died" << std::endl;
-	        } 
+	        }
 	    } 
     }
 }
