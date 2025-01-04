@@ -1,5 +1,6 @@
 #pragma once
 
+// #include "ActionComponent.h"
 #include "AttackComponent.h"
 #include "AnimationComponent.h"
 #include "ColliderComponent.h"
@@ -8,6 +9,7 @@
 #include "DashComponent.h"
 #include "DirectionComponent.h"
 #include "LifeTimeComponent.h"
+#include "PhysicsComponent.h"
 #include "PlayableComponent.h"
 #include "PositionComponent.h"
 #include "SolidComponent.h"
@@ -16,4 +18,5 @@
 #include "StatusComponent.h"
 #include "TransformComponent.h"
 #include "VelocityComponent.h"
+
 // #include "GroupComponent.h"

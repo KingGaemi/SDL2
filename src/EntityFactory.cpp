@@ -32,13 +32,14 @@ void EntityFactory::createPlayerEntity(const SpawnRequest& req){
 
 	generalUnit(player, req);
 	player->addComponent<PlayerTag>();
-	player->addComponent<PlayableComponent>();	
+	player->addComponent<PlayableComponent>();
 	player->addComponent<DashComponent>(0.2f);
 	player->addComponent<SpriteComponent>("orc3", 64, 64, 2.0f);
 
 	player->addComponent<StatusComponent>(100, 100);
 
 
+	player->addComponent<PhysicsComponent>(BodyType::Kinematic);
 
 	auto colComp = player->getComponent<ColliderComponent>();
 	colComp->offsetX = -1.0f;
@@ -73,9 +74,11 @@ void EntityFactory::createEri(const SpawnRequest& req){
 
 	eri->addComponent<SceneTag>(SceneCode::Game);
 	eri->addComponent<PositionComponent>(req.x, req.y);
-	eri->addComponent<VelocityComponent>(5.0f, 5.0f);
+	// eri->addComponent<VelocityComponent>(5.0f, 5.0f);
+	eri->addComponent<PhysicsComponent>(BodyType::Dynamic);
 	eri->addComponent<SpriteComponent>(name, w, h, sc);
 	eri->addComponent<ColliderComponent>(w*sc, h*sc, "eri");
+	eri->addComponent<TransformComponent>(w, h, sc);
 	eri->addComponent<TeamComponent>(req.teamCode);
 	eri->addComponent<StatusComponent>(100, 100);
 	
@@ -85,6 +88,53 @@ void EntityFactory::createEri(const SpawnRequest& req){
 	ecsManager->setEntityName(eri, "eri");
 
 }
+
+
+
+void EntityFactory::createBox(const SpawnRequest& req){
+
+	int w = 32;
+	int h = 32;
+	float sc = 2.0f;
+	std::string name = "box1";
+
+	auto box = ecsManager->createEntity();
+
+	box->addComponent<SceneTag>(SceneCode::Game);
+	box->addComponent<PositionComponent>(req.x, req.y);
+	// eri->addComponent<VelocityComponent>(5.0f, 5.0f);
+	box->addComponent<PhysicsComponent>(BodyType::Dynamic);
+	box->addComponent<SpriteComponent>(name, w, h, sc);
+	// box->addComponent<ColliderComponent>(w*sc, h*sc, "box");
+	box->addComponent<TransformComponent>(w, h, sc);
+
+	ecsManager->setEntityName(box, "box");
+
+}
+
+void EntityFactory::createGround(){
+
+	int w = 1000;
+	int h = 16;
+	float sc = 2.0f;
+
+	std::string name = "dirt_tile";
+
+	auto ground = ecsManager->createEntity();
+
+	ground->addComponent<SceneTag>(SceneCode::Game);
+	ground->addComponent<PositionComponent>(600, 800);
+	// eri->addComponent<VelocityComponent>(5.0f, 5.0f);
+	ground->addComponent<PhysicsComponent>(BodyType::Static);
+	ground->addComponent<SpriteComponent>(name, w, h, sc);
+	ground->addComponent<TransformComponent>(w, h, sc);
+
+	ecsManager->setEntityName(ground, "ground");
+
+
+}
+
+
 
 void EntityFactory::createFarmerEntity(const SpawnRequest& req){
 

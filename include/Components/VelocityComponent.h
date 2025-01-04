@@ -16,6 +16,9 @@ public:
     void add(float vx, float vy) { velocity.x += vx; velocity.y += vy; }
     void add(const Vector2D& vel) { velocity += vel;}
 
+    float x() { return velocity.x; }
+    float y() { return velocity.y; }
+
     void zero() { velocity.x = 0.0f;  velocity.y = 0.0f;}
 
     Vector2D velo() { return velocity; }

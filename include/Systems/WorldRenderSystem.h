@@ -1,10 +1,12 @@
 #pragma once
 #include "RenderSystem.h"
 
-
+#include <iostream>
 
 class WorldRenderSystem : public RenderSystem {
+public:
 	using RenderSystem::RenderSystem;
+
 
     void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override {
         renderer->clear(); 
@@ -15,5 +17,8 @@ class WorldRenderSystem : public RenderSystem {
 
             drawEntity(entity);
         }
+
+    
     }
+
 };

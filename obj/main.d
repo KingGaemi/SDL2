@@ -107,6 +107,13 @@ obj/main.o: src/main.cpp include/Game.h C:/SDL2-w64/include/SDL2/SDL.h \
  include/Components/DashComponent.h include/Systems/ExpireSystem.h \
  include/Components/StatusComponent.h include/Systems/AttackSystem.h \
  include/Systems/CooldownSystem.h include/Components/CooldownComponent.h \
+ include/Systems/PhysicsSystem.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/box2d.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/base.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/collision.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/math_functions.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/id.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/types.h \
  include/Systems/CommandSystem.h include/Systems/WorldRenderSystem.h \
  include/Systems/UIRenderSystem.h include/Systems/CollisionSystem.h \
  include/Systems/DamageSystem.h include/Input/InputManager.h \
@@ -243,6 +250,13 @@ include/Components/StatusComponent.h:
 include/Systems/AttackSystem.h:
 include/Systems/CooldownSystem.h:
 include/Components/CooldownComponent.h:
+include/Systems/PhysicsSystem.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/box2d.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/base.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/collision.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/math_functions.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/id.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/types.h:
 include/Systems/CommandSystem.h:
 include/Systems/WorldRenderSystem.h:
 include/Systems/UIRenderSystem.h:

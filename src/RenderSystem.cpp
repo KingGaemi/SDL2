@@ -4,6 +4,7 @@
 #include "Components/PositionComponent.h"
 #include "Components/SpriteComponent.h"
 #include "Components/ColliderComponent.h"
+#include "Components/Transformcomponent.h"
 #include <iostream>
 
 
@@ -67,11 +68,16 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             dstRect.y = static_cast<int>(posComp->y()) - (dstRect.h/2);
 
             SDL_RendererFlip flip = SDL_FLIP_NONE;
+            float rot = 0.0f;
             if (sprite->flipHorizontal) flip = SDL_FLIP_HORIZONTAL;
             if (sprite->flipVertical) flip = (SDL_RendererFlip)(flip | SDL_FLIP_VERTICAL);
+            
+            if (entity->hasComponent<TransformComponent>()){
+                auto transComp = entity->getComponent<TransformComponent>();
+                rot = transComp->rotation;
+            }
 
-
-            renderer->render(texture, &srcRect, &dstRect, 0.0, nullptr, flip);
+            renderer->render(texture, &srcRect, &dstRect, rot, nullptr, flip);
         }
     }
 

@@ -56,6 +56,9 @@ void GameplayScene::onEnter(){
 	req.y = 200.0f;
 	ecsManager->pendingSpawns.push_back(req);
 
+	req.type = "ground" ;
+	ecsManager->pendingSpawns.push_back(req);
+
 
 	
 	std::cout << "GameplayScene initialized!" << std::endl;

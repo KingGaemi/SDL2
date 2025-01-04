@@ -7,6 +7,7 @@
 #include "Systems/ExpireSystem.h"
 #include "Systems/AttackSystem.h"
 #include "Systems/CooldownSystem.h"
+#include "PhysicsSystem.h"
 #include "CommandSystem.h"
 #include "WorldRenderSystem.h"
 #include "UIRenderSystem.h"

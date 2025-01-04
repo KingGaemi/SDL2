@@ -1,5 +1,5 @@
-#include "Game.h"
 
+#include "Game.h"
 
 
 
@@ -39,7 +39,6 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
         std::cerr << "Window creation failed: " << SDL_GetError() << std::endl;
         return;
     }
-
     // Create renderer
     renderer = std::make_unique<Renderer>(window);
 
@@ -48,7 +47,9 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     eventManager = std::make_unique<EventManager>();
     inputManager = std::make_unique<InputManager>(eventManager->get());
     auto entityFactory = std::make_shared<EntityFactory>(ecsManager);
-    ecsManager->setFactory(entityFactory);    
+    ecsManager->setFactory(entityFactory);  
+
+
 
     // Add Systems
     ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer);
@@ -57,11 +58,11 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager->get());
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
     ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40);
+    ecsManager->addSystem<PhysicsSystem>(SystemGroup::Logic, 50);
     ecsManager->addSystem<CollisionSystem>(SystemGroup::Logic, 60, ecsManager);
     ecsManager->addSystem<ExpireSystem>(SystemGroup::Logic, 90);
     ecsManager->addSystem<DamageSystem>(SystemGroup::Logic, 100, ecsManager);
     ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
-
     // auto animSys = ecsManager->getSystem<AnimationSystem>();
     // animSys->Init();
 
@@ -88,6 +89,10 @@ void Game::textureLoading(){
     textureManager->loadTexture("farmer", "res/gfx/1/player_sprite_sheet.png");
     textureManager->loadTexture("water_tile", "res/gfx/water_tile.png");
     textureManager->loadTexture("orc3", "res/gfx/SpriteSheet/Orc/orc3_sprite_sheet.png");
+    textureManager->loadTexture("dirt_tile", "res/gfx/dirt_tile.png");
+    textureManager->loadTexture("box1", "res/gfx/box1.png");
+    
+
     uiTextureManager->loadText("Hello World!");
     // textureManager->loadTexture("farm_map",);
 
@@ -105,10 +110,10 @@ void Game::textureLoading(){
 
 void Game::run() {
 
+
     
     while (isRunning) {
         frameStart = SDL_GetTicks();
-
         // 1. 입력 처리 → InputManager가 SDL 이벤트를 EventManager에 푸시
         inputManager->handleEvents();
 
@@ -119,6 +124,7 @@ void Game::run() {
 
         // 2. ECS 시스템 업데이트 → EventSystem이 SCENE_CHANGE 이벤트 발생 가능
         ecsManager->updateSystems(deltaTime);
+
         ecsManager->renderSystems(deltaTime);
         ecsManager->processSpawnRequests();
         ecsManager->processCollisionEvents();

@@ -53,6 +53,13 @@ obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
  include/Components/CooldownComponent.h \
  include/Components/DashComponent.h include/KeyCode.h \
  include/Components/LifeTimeComponent.h \
+ include/Components/PhysicsComponent.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/box2d.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/base.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/collision.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/math_functions.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/id.h \
+ C:/Users/geami/Desktop/Dev/box2d/include/box2d/types.h \
  include/Components/PlayableComponent.h \
  include/Components/PositionComponent.h \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
@@ -124,6 +131,13 @@ include/Components/CooldownComponent.h:
 include/Components/DashComponent.h:
 include/KeyCode.h:
 include/Components/LifeTimeComponent.h:
+include/Components/PhysicsComponent.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/box2d.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/base.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/collision.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/math_functions.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/id.h:
+C:/Users/geami/Desktop/Dev/box2d/include/box2d/types.h:
 include/Components/PlayableComponent.h:
 include/Components/PositionComponent.h:
 include/Components/SolidComponent.h:

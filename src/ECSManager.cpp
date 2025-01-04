@@ -15,6 +15,7 @@ std::shared_ptr<Entity> ECSManager::createEntity() {
 void ECSManager::destroyEntity(std::shared_ptr<Entity> entity) {
 
     // std::cout << "destroyEntity : " << entityNames[entity] << std::endl; 
+    
     entities.erase(std::remove(entities.begin(), entities.end(), entity), entities.end());
     // 이름 관리도 필요하면 여기서 정리
     for (auto it = entityNames.begin(); it != entityNames.end();) {
@@ -95,6 +96,12 @@ void ECSManager::processSpawnRequests() {
         if(req.type == "enemy"){
 
             entityFactory->createEnemyDummy(req);
+        }
+        if(req.type == "box"){
+            entityFactory->createBox(req);
+        }
+        if(req.type == "ground"){
+            entityFactory->createGround();
         }
     }
     pendingSpawns.clear();
