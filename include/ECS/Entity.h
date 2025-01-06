@@ -22,7 +22,11 @@ public:
     void addComponent(Args&&... args) {
         ComponentTypeID typeID = getComponentTypeID<T>();
         if (componentBitSet[typeID]) {
-            throw std::runtime_error("Component already exists on this entity!");
+            // throw std::runtime_error("Component already exists on this entity!");
+            std::cout << "Component already exists on this entity!" << std::endl;
+            return;
+        }else{
+            std::cout << "add Component complete" << std::endl;
         }
         auto component = std::make_shared<T>(std::forward<Args>(args)...);
         componentArray[typeID] = component;
@@ -41,6 +45,20 @@ public:
     bool hasComponent() const {
         ComponentTypeID typeID = getComponentTypeID<T>();
         return componentBitSet[typeID];
+    }
+
+
+    template<typename T>
+    void removeComponent() {
+        ComponentTypeID typeID = getComponentTypeID<T>();
+        if (componentBitSet[typeID]) {
+            componentBitSet[typeID] = false;
+            componentArray[typeID] = nullptr;
+            std::cout << "Remove component complete" << std::endl;
+        }else{
+            std::cout << "There is no that Component!" << std::endl;
+        }
+
     }
 
 

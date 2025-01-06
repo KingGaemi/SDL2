@@ -44,10 +44,11 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
 
     // Create manager
     ecsManager = std::make_shared<ECSManager>();
-    eventManager = std::make_unique<EventManager>();
+    eventManager = std::make_shared<EventManager>();
     inputManager = std::make_unique<InputManager>(eventManager->get());
     auto entityFactory = std::make_shared<EntityFactory>(ecsManager);
     ecsManager->setFactory(entityFactory);  
+
 
 
 
@@ -63,11 +64,16 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<ExpireSystem>(SystemGroup::Logic, 90);
     ecsManager->addSystem<DamageSystem>(SystemGroup::Logic, 100, ecsManager);
     ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
+    ecsManager->addSystem<MiddleEventSystem>(SystemGroup::Event, 200, eventManager->get());
     // auto animSys = ecsManager->getSystem<AnimationSystem>();
     // animSys->Init();
 
     ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager);
     ecsManager->addSystem<CooldownSystem>(SystemGroup::Logic, 250);
+
+
+    auto physSys = ecsManager->getSystem<PhysicsSystem>();
+    ecsManager->setPhysicsSystem(physSys);
 
     textureLoading();
     
@@ -130,14 +136,11 @@ void Game::run() {
         ecsManager->processCollisionEvents();
         ecsManager->cleanUpEntities();
 
-        
-
         // 3. EventManager에서 이벤트 폴링 → SCENE_CHANGE나 QUIT 처리
         Event evt;
         while (eventManager->pollBigEvent(evt)) {
             // std::cout << "polling Big Event" << std::endl;
             if (evt.type == EventType::SCENE_CHANGE && evt.sceneChangeData.has_value()) {
-
                 changeScene(evt.sceneChangeData->nextSceneName);
             }
             if (evt.type == EventType::QUIT) {

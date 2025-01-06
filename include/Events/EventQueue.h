@@ -11,6 +11,7 @@ enum class EventType {
     KEYDOWN,
     KEYUP,
     SCENE_CHANGE,
+    CHARACTER_CHANGE,
     GAME_OVER,
     UNKNOWN
 };
@@ -19,6 +20,10 @@ enum class EventType {
 
 struct SceneChangeEventData {
     std::string nextSceneName;
+};
+
+struct CharacterChangeEventDate{
+    std::string characterName;
 };
 
 

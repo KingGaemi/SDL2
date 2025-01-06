@@ -14,8 +14,11 @@ std::shared_ptr<Entity> ECSManager::createEntity() {
 
 void ECSManager::destroyEntity(std::shared_ptr<Entity> entity) {
 
-    // std::cout << "destroyEntity : " << entityNames[entity] << std::endl; 
-    
+
+    if(physicsSystem){
+        physicsSystem->destroyBody(entity);
+    }
+    // std::cout << "destroyEntity : " << entityNames[entity] << std::endl;
     entities.erase(std::remove(entities.begin(), entities.end(), entity), entities.end());
     // 이름 관리도 필요하면 여기서 정리
     for (auto it = entityNames.begin(); it != entityNames.end();) {
@@ -50,6 +53,15 @@ void ECSManager::updateSystems(float deltaTime) {
                 reg.system->update(entities, deltaTime);
             }
         }
+
+        for (auto& reg : registeredSystems) {
+            if (reg.group == SystemGroup::Event) {
+                reg.system->update(entities, deltaTime);
+            }
+        }
+
+
+
 }
 
 void ECSManager::renderSystems(float deltaTime) {
@@ -145,6 +157,10 @@ std::shared_ptr<EntityFactory> ECSManager::shareFactory() {
 
 void ECSManager::setFactory(std::shared_ptr<EntityFactory>& factory){
     entityFactory = factory;
+}
+
+void ECSManager::setPhysicsSystem(std::shared_ptr<PhysicsSystem>& physSystem){
+    physicsSystem = physSystem;
 }
 
 

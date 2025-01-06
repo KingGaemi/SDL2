@@ -20,6 +20,7 @@ enum class SceneCode{
 class UITag : public Component{};
 class TextTag : public Component{};
 class PlayerTag : public Component{};
+class Player2Tag : public Component{};
 class IMGTag : public Component{};
 
 

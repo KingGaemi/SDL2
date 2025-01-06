@@ -34,5 +34,4 @@ private:
 	KeyCode lastVerticalKey = KeyCode::Unknown;
 	KeyCode lastArrowKey = KeyCode::Unknown;
 
-
 };

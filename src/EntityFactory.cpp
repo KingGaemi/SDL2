@@ -39,7 +39,8 @@ void EntityFactory::createPlayerEntity(const SpawnRequest& req){
 	player->addComponent<StatusComponent>(100, 100);
 
 
-	player->addComponent<PhysicsComponent>(BodyType::Kinematic);
+	player->addComponent<PhysicsComponent>(BodyType::Dynamic);
+
 
 	auto colComp = player->getComponent<ColliderComponent>();
 	colComp->offsetX = -1.0f;
@@ -73,8 +74,10 @@ void EntityFactory::createEri(const SpawnRequest& req){
 	auto eri = ecsManager->createEntity();
 
 	eri->addComponent<SceneTag>(SceneCode::Game);
+
 	eri->addComponent<PositionComponent>(req.x, req.y);
 	// eri->addComponent<VelocityComponent>(5.0f, 5.0f);
+
 	eri->addComponent<PhysicsComponent>(BodyType::Dynamic);
 	eri->addComponent<SpriteComponent>(name, w, h, sc);
 	eri->addComponent<ColliderComponent>(w*sc, h*sc, "eri");
@@ -250,10 +253,12 @@ void EntityFactory::createEnemyDummy(const SpawnRequest& req){
 	ecsManager->setEntityName(enemy, "enemy");
 
 	generalUnit(enemy, req);
-
+	enemy->addComponent<Player2Tag>();
+	enemy->addComponent<DashComponent>(0.2f);
 	enemy->addComponent<SpriteComponent>("orc3", 64, 64, 2.0f);
-
 	enemy->addComponent<StatusComponent>(100, 100);
+	enemy->addComponent<PhysicsComponent>(BodyType::Dynamic);
+
 
 	auto colComp = enemy->getComponent<ColliderComponent>();
 	colComp->offsetX = -1.0f;
@@ -261,6 +266,7 @@ void EntityFactory::createEnemyDummy(const SpawnRequest& req){
 
 	auto statusComp = enemy->getComponent<StatusComponent>();
 	enemy->addComponent<CooldownComponent>("attack", 1.0f/statusComp->attackSpeed);
+
 	enemy->addComponent<CommandComponent>();
 	
 	auto animComp = enemy->getComponent<AnimationComponent>();
@@ -273,7 +279,13 @@ void EntityFactory::createEnemyDummy(const SpawnRequest& req){
     }
  	// 기본 애니메이션 설정
     // animComp->playAnimation("d_idle");
-
+	
+	// 애니메이션을 JSON 파일에서 로드
+    if (!animComp->loadAnimationsFromFile("assets/animations.json", animComp)) {
+        std::cerr << "Failed to load animations for player." << std::endl;
+    }
+ 	// 기본 애니메이션 설정
+    animComp->playAnimation("d_idle");
 }
 
 void EntityFactory::createText(const SpawnRequest& req){

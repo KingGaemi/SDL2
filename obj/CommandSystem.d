@@ -5,7 +5,8 @@ obj/CommandSystem.o: src/CommandSystem.cpp \
  include/Components/DirectionComponent.h \
  include/Components/CommandComponent.h \
  include/Components/StatusComponent.h include/Components/StateComponent.h \
- include/Components/CooldownComponent.h
+ include/Components/CooldownComponent.h \
+ include/Components/PlayableComponent.h
 include/Systems/CommandSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -17,3 +18,4 @@ include/Components/CommandComponent.h:
 include/Components/StatusComponent.h:
 include/Components/StateComponent.h:
 include/Components/CooldownComponent.h:
+include/Components/PlayableComponent.h:

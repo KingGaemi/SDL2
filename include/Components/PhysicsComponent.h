@@ -24,5 +24,4 @@ public:
 	bool hasBody() { return B2_IS_NON_NULL(body);}
 
 
-
 };

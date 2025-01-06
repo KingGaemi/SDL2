@@ -7,6 +7,7 @@
 #include "Components/DashComponent.h"
 #include "ECS/Entity.h"
 #include "ECS/EntityFactory.h"
+#include "Groups.h"
 #include <iostream>
 #include <string>
 
@@ -31,21 +32,21 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 	//
 	
 	for(auto& entity : entities){
-		if(entity->isActive && entity->hasComponent<PlayableComponent>() && entity->hasComponent<CommandComponent>()){
+		if(entity->isActive &&
+			entity->hasComponent<PlayerTag>() &&
+			entity->hasComponent<PlayableComponent>() &&
+			entity->hasComponent<CommandComponent>()){
 
 
-			auto playComp = entity->getComponent<PlayableComponent>();
 			auto commandComp = entity->getComponent<CommandComponent>();
 
-
-
-			if(playComp&&commandComp){
+			if(commandComp){
 
 				std::shared_ptr<DashComponent> dashComp;
 				if(entity->hasComponent<DashComponent>()) dashComp = entity->getComponent<DashComponent>();
 
 
-				if(evt.type == EventType::KEYDOWN){
+				if(evt.type == EventType::KEYDOWN && !pressed[toInt(evt.key)]){
 					if(isControl(evt.key)){
 						pressed[toInt(evt.key)] = true;
 						if(isArrow(evt.key)){
@@ -67,12 +68,14 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 									// std::cout << "Down" << std::endl;
 								}
 							}
-
-							if(dashComp->lastArrowKey == evt.key && dashComp->currentTime > 0){
-								dashComp->isDashing = true;
-							}else{
-								dashComp->lastArrowKey = evt.key;		
-							}							
+							if(dashComp){
+								if(dashComp->lastArrowKey == evt.key && dashComp->currentTime > 0){
+									dashComp->isDashing = true;
+								}else{
+									dashComp->lastArrowKey = evt.key;
+									dashComp->pressed(evt.key);
+								}			
+							}				
 						}
 					}
 				}
@@ -103,7 +106,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 
 					if(isArrow(evt.key)){
 
-						dashComp->pressed(evt.key);									
+		
 
 					}
 
@@ -147,16 +150,18 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 
 				if(pressed[toInt(KeyCode::Left)] || pressed[toInt(KeyCode::Right)] || pressed[toInt(KeyCode::Up)] || pressed[toInt(KeyCode::Down)]){
 
-					if(!dashComp->isDashing){
-						commandComp->commandData.type = CommandType::Move;
-					}else{
-						commandComp->commandData.type = CommandType::Run;
+					if(dashComp){
+						if(!dashComp->isDashing){
+							commandComp->commandData.type = CommandType::Move;
+						}else{
+							commandComp->commandData.type = CommandType::Run;
+						}
 					}
 
 				}else{
 					commandComp->commandData.type = CommandType::None;
 					// if(dashComp->isDashing) dashComp->currentTime = 0;
-					dashComp->isDashing = false;
+					if(dashComp) dashComp->isDashing = false;
 				}
 
 
@@ -180,6 +185,14 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 	
 
 	
+
+
+	if (evt.type == EventType::KEYDOWN && evt.key == KeyCode::Key_2) {
+		std::cout << "2" << std::endl;
+        Event characterChangeEvent;
+        characterChangeEvent.type = EventType::CHARACTER_CHANGE;
+        eventManager->pushMiddleEvent(characterChangeEvent);
+    }
 
 
 	
@@ -258,70 +271,3 @@ bool EventSystem::isAttack(const KeyCode& key){
 	return false;
 }
 
-// bool left, right, up, down;
-
-
-
-// 	if(evt.type == EventType::KEYDOWN){
-// 		std::cout << "KEYDOWN" << std::endl;
-
-// 		for(auto& entity : entities){
-
-// 			auto trans = entity->getComponent<TransformComponent>();
-// 			bool playable = entity->hasComponent<PlayableComponent>();
-
-// 			if(trans && playable){
-// 				if(evt.key == KeyCode::Left){
-// 					trans->setDirectionX(-1);
-// 					left = true;
-// 				}
-// 				if(evt.key == KeyCode::Right){
-// 					trans->setDirectionX(1);
-// 					right = true;
-// 				}
-// 				if(evt.key == KeyCode::Up){
-// 					trans->setDirectionY(-1);
-// 					up = true;
-// 				}
-// 				if(evt.key == KeyCode::Down){
-// 				 	trans->setDirectionY(1);
-// 				 	down = true;
-// 				}
-// 			}
-
-// 			if(trans && playable){
-// 				if(left || right || up || down){
-// 					trans->setMoving(true);
-// 				}
-// 			}
-
-// 		}
-// 	}
-
-// 	if(evt.type == EventType::KEYUP){
-
-// 		std::cout << "KEYUP"  << std::endl;
-
-// 		for(auto& entity : entities){
-
-// 			auto trans = entity->getComponent<TransformComponent>();
-// 			bool playable = entity->hasComponent<PlayableComponent>();
-
-// 			if(trans && playable){
-// 				if(evt.key == KeyCode::Left && trans->direction.x == -1) trans->setDirectionX(0);
-// 				if(evt.key == KeyCode::Right && trans->direction.x == 1) trans->setDirectionX(0);	
-// 				if(evt.key == KeyCode::Up && trans->direction.y == -1)	trans->setDirectionY(0);
-// 				if(evt.key == KeyCode::Down && trans->direction.y == 1) trans->setDirectionY(0);
-
-// 				if(evt.key == KeyCode::Left) left = false;
-// 				if(evt.key == KeyCode::Right) right = false;	
-// 				if(evt.key == KeyCode::Up) up = false;
-// 				if(evt.key == KeyCode::Down) down = false;
-
-// 				if(!left && !right & !up && !down){
-// 					trans->setMoving(false);
-// 				}
-// 			}
-// 		}
-
-// 	}

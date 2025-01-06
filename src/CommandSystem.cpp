@@ -5,6 +5,7 @@
 #include "Components/StatusComponent.h"
 #include "Components/StateComponent.h"
 #include "Components/CooldownComponent.h"
+#include "Components/PlayableComponent.h"
 #include <iostream>
 
 

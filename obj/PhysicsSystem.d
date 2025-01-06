@@ -10,7 +10,8 @@ obj/PhysicsSystem.o: src/PhysicsSystem.cpp \
  include/Components/PositionComponent.h include/Vector2D.h \
  include/Components/PhysicsComponent.h \
  include/Components/Transformcomponent.h \
- include/Components/VelocityComponent.h
+ include/Components/VelocityComponent.h \
+ include/Components/PlayableComponent.h include/Groups.h
 include/Systems/PhysicsSystem.h:
 C:/Users/geami/Desktop/Dev/box2d/include/box2d/box2d.h:
 C:/Users/geami/Desktop/Dev/box2d/include/box2d/base.h:
@@ -26,3 +27,5 @@ include/Vector2D.h:
 include/Components/PhysicsComponent.h:
 include/Components/Transformcomponent.h:
 include/Components/VelocityComponent.h:
+include/Components/PlayableComponent.h:
+include/Groups.h:

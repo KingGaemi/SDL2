@@ -19,11 +19,25 @@ public:
 		bigEventQueue.push(event);
 	}
 
+	void pushMiddleEvent(const Event& event){
+		middleEventQueue.push(event);
+	}
+
+
 	bool pollEvent(Event& outEvent) {
 		// std::lock_guard<std::mutex> lock(mtx);
 		if(eventQueue.empty()) return false;
 		outEvent = eventQueue.front();
 		eventQueue.pop();
+
+		return true;
+	}
+
+	bool pollMiddleEvent(Event& outEvent){
+
+		if(middleEventQueue.empty()) return false;
+		outEvent = middleEventQueue.front();
+		middleEventQueue.pop();
 
 		return true;
 	}
@@ -45,5 +59,6 @@ public:
 private:
 	std::queue<Event> eventQueue;
 	std::queue<Event> bigEventQueue;
+	std::queue<Event> middleEventQueue;
 	// std::mutex mtx;
 };

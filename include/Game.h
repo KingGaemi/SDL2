@@ -15,6 +15,7 @@
 #include "Input/InputManager.h"
 #include "Events/EventSystem.h"
 #include "Events/EventManager.h"
+#include "Events/MiddleEventSystem.h"
 
 
 
@@ -47,10 +48,10 @@ private:
     std::shared_ptr<Scene> currentScene;
     std::shared_ptr<ECSManager> ecsManager;
     std::shared_ptr<EntityFactory> entityFactory;
+    std::shared_ptr<EventManager> eventManager;
     std::unique_ptr<TextureManager> textureManager;
     std::unique_ptr<TextureManager> uiTextureManager;
     std::unique_ptr<InputManager> inputManager;
-    std::unique_ptr<EventManager> eventManager;
  
     EventQueue gameEventQueue;
 

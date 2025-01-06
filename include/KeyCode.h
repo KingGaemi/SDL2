@@ -10,7 +10,9 @@ enum class KeyCode {
     Up,
     Down,
     Space,
-    NUM_OF_KEY_CODES
+    NUM_OF_KEY_CODES,
+    Key_1,
+    Key_2
     // 필요한 키 추가...
 };
 

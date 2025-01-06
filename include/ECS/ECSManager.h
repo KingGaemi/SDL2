@@ -6,6 +6,7 @@
 #include <string>
 #include <algorithm>
 #include "EntityFactory.h"
+#include "Systems/PhysicsSystem.h"
 #include "Groups.h"
 #include "Entity.h"
 #include "System.h"
@@ -14,7 +15,8 @@
 enum class SystemGroup {
     Logic,
     Render,
-    UI
+    UI,
+    Event
 };
 
 enum class CollisionType {
@@ -38,6 +40,10 @@ struct CollisionEvent {
 
 class ECSManager {
 public:
+
+
+
+
     std::shared_ptr<Entity> createEntity();
     void destroyEntity(std::shared_ptr<Entity> entity);
 
@@ -54,7 +60,6 @@ public:
         //     throw std::runtime_error("System already exists on this ECSManager!");
         // }
         auto system = std::make_shared<S>(std::forward<Args>(args)...);
-
         SystemRegistration reg;
         reg.system   = system;
         reg.group    = group;
@@ -102,9 +107,11 @@ public:
     std::shared_ptr<EntityFactory> shareFactory();
 
     void setFactory(std::shared_ptr<EntityFactory>& factory);
+    void setPhysicsSystem(std::shared_ptr<PhysicsSystem>& physSystem);
     void setVelocity(std::shared_ptr<Entity> entity, float x, float y);
     void processSpawnRequests();
     void processCollisionEvents();
+    void processMiddleEvents();
 
     void cleanUpEntities();
     void cleanUpAllEntities();
@@ -124,6 +131,7 @@ private:
 
     std::shared_ptr<EntityFactory> entityFactory;
 
+    std::shared_ptr<PhysicsSystem> physicsSystem;
     // SystemArray systemArray{};
     // SystemBitset systemBitset;
     std::vector<SystemRegistration> registeredSystems;
