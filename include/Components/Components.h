@@ -13,6 +13,7 @@
 #include "PhysicsComponent.h"
 #include "PlayableComponent.h"
 #include "PositionComponent.h"
+#include "ProjectileComponent.h"
 #include "SolidComponent.h"
 #include "SpriteComponent.h"
 #include "StateComponent.h"

@@ -37,7 +37,6 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 			entity->hasComponent<PlayableComponent>() &&
 			entity->hasComponent<CommandComponent>()){
 
-
 			auto commandComp = entity->getComponent<CommandComponent>();
 
 			if(commandComp){
@@ -163,10 +162,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 					if(dashComp) dashComp->isDashing = false;
 				}
 
-
-
 				if(evt.type == EventType::KEYDOWN && evt.key == KeyCode::Space){
-
 					
 					if(lastArrowKey == KeyCode::Left) commandComp->commandData.moveDirection.hDir = -1;
 					if(lastArrowKey == KeyCode::Right) commandComp->commandData.moveDirection.hDir = 1;
@@ -188,9 +184,9 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 
 	if (evt.type == EventType::KEYDOWN && evt.key == KeyCode::Key_2) {
 		std::cout << "2" << std::endl;
-        Event characterChangeEvent;
-        characterChangeEvent.type = EventType::CHARACTER_CHANGE;
-        eventManager->pushMiddleEvent(characterChangeEvent);
+        // Event characterChangeEvent;
+        // characterChangeEvent.type = EventType::CHARACTER_CHANGE;
+        // eventManager->pushMiddleEvent(characterChangeEvent);
     }
 
 

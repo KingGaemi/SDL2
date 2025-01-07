@@ -5,7 +5,8 @@
 #include "Components/LifeTimeComponent.h"
 #include "Components/StatusComponent.h"
 #include "Components/AnimationComponent.h"
-
+#include "Components/ProjectileComponent.h"
+#include <iostream>
 
 
 
@@ -23,7 +24,7 @@ public:
 
 				auto lifeTimeComp = entity->getComponent<LifeTimeComponent>();
 
-				if(lifeTimeComp && lifeTimeComp->lifeTime < 0) entity->terminate = true;
+				if(lifeTimeComp && lifeTimeComp->lifeTime <= 0) entity->terminate = true;
 
 			}
 
@@ -43,8 +44,15 @@ public:
 				
 			}
 
-		}
+			if(entity->hasComponent<ProjectileComponent>()){
 
+				auto projectileComp = entity->getComponent<ProjectileComponent>();
+				
+				if(projectileComp && projectileComp->duration <= 0){
+					entity->terminate = true;
+				}
+			}
+		}
 	}
 
 private:

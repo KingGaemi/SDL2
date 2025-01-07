@@ -35,22 +35,22 @@ void AttackSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 				
 				if(posComp && directComp && spriteComp && statusComp && teamComp){
 					
-
-
-					ProjectileRequest req;
+					SpawnRequest req;
 
 					req.entityType = EntityType::Projectile;
 					req.name = "slash";
 			
 					req.x = posComp->x + directComp->hDir() * spriteComp->dstRect.w;
 					req.y = posComp->y + directComp->vDir() * spriteComp->dstRect.h;
+					req.hasTransform = false;
 					req.hDir = directComp->direction.hDir;
 					req.vDir = directComp->direction.vDir;
 					req.damage = statusComp->physicalDamage;
 					req.hasDamage = true;
 					req.sc = 1.0f;
-					req.duration = 0.1f;
 					req.teamCode = teamComp->teamCode;
+					req.ownerId = entity->getID();
+					req.hasOwner = true;
 
 					// SpawnRequest req;
 

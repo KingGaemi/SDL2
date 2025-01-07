@@ -16,8 +16,9 @@ void ECSManager::destroyEntity(std::shared_ptr<Entity> entity) {
 
 
     if(physicsSystem){
-        physicsSystem->destroyBody(entity);
+        if(entity->hasComponent<PhysicsComponent>()) physicsSystem->destroyBody(entity);
     }
+    
     // std::cout << "destroyEntity : " << entityNames[entity] << std::endl;
     entities.erase(std::remove(entities.begin(), entities.end(), entity), entities.end());
     // 이름 관리도 필요하면 여기서 정리

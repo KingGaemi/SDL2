@@ -20,16 +20,12 @@ void PhysicsSystem::init() {
 
 void PhysicsSystem::update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime){
 
+    createBodies(entities);
 
+    int subStepCount = 8;
+    b2World_Step(worldId, deltaTime, subStepCount);
 
-        createBodies(entities);
-
-        int subStepCount = 8;
-        b2World_Step(worldId, deltaTime, subStepCount);
-
-        setPositionsFromWorld(entities);
-        
-
+    setPositionsFromWorld(entities);
 }
 
 
@@ -73,7 +69,6 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
             }
 
             physComp->body = b2CreateBody(worldId, &bodyDef);
-
 
             b2Polygon bodyBox;
             auto transComp = entity->getComponent<TransformComponent>();

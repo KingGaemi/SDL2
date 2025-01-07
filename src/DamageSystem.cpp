@@ -37,7 +37,7 @@ void DamageSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr<Entity> target) {
     if (attacker->hasComponent<DamageComponent>() && target->hasComponent<StatusComponent>()
     	&& attacker->hasComponent<TeamTag>() && target->hasComponent<TeamTag>()) {
-        auto attackComp = attacker->getComponent<DamageComponent>();
+        auto damageComp = attacker->getComponent<DamageComponent>();
         auto statusComp = target->getComponent<StatusComponent>();
         auto teamCompA = attacker->getComponent<TeamTag>();
         auto teamCompT = target->getComponent<TeamTag>();
@@ -46,15 +46,15 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 
         if(teamCompA->teamCode == teamCompT->teamCode) return;
 
-	    if (attackComp->hitTargets.count(target->getID()) == 0) {
+	    if (damageComp->hitTargets.count(target->getID()) == 0) {
 
 	    	if(target->hasComponent<StateComponent>()){
 	    		auto stateComp = target->getComponent<StateComponent>();
 	    		stateComp->changeState(States::Hurt, 0.7f);
 	    	}
 
-	        statusComp->currentHp -= attackComp->damage;
-	        attackComp->hitTargets.insert(target->getID());
+	        statusComp->currentHp -= damageComp->damage;
+	        damageComp->hitTargets.insert(target->getID());
 
 	        std::cout << statusComp->currentHp << "/" << statusComp->maxHp << std::endl;
 	        if(statusComp->currentHp <= 0){

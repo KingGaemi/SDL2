@@ -39,17 +39,23 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
         }
     }
 
-    setValue(entity, req);
+    applyRequests(entity, req);
 }
 
-void EntityFactory::setValue(std::shared_ptr<Entity> entity, const SpawnRequest& req) {
+void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req) {
 
+	if(req.teamCode != TeamCode::Neutral){
+		auto teamTag = entity->getComponent<TeamTag>();
+		if(teamTag){
+			teamTag->teamCode = req.teamCode;
+		}
+	}
     if(req.hasPosition){
 	    auto posComp = entity->getComponent<PositionComponent>();
 	    if (posComp) {
             posComp->x = req.x;
             posComp->y = req.y;
-	    }
+	    } 
     }
     if(req.hasDirection){
 	    auto directComp = entity->getComponent<DirectionComponent>();
@@ -71,6 +77,12 @@ void EntityFactory::setValue(std::shared_ptr<Entity> entity, const SpawnRequest&
 	    auto ownerComp = entity->getComponent<OwnerComponent>();
 	    if (ownerComp) {
             ownerComp->ownerId = req.ownerId;
+	    }
+    }
+    if(req.hasDamage){
+	    auto damageComp = entity->getComponent<DamageComponent>();
+	    if (damageComp) {
+	    	damageComp->damage = req.damage;
 	    }
     }
 }
@@ -173,7 +185,7 @@ void EntityFactory::loadColliderComponent(const json& componentData, std::shared
 	float offsetY = componentData.value("offsetY", 0.0f);
 	ColliderType colliderType;
 	if(typeStr == "Unit") colliderType = ColliderType::Unit;
-	else if(typeStr == "Attack") colliderType = ColliderType::Attack;
+	else if(typeStr == "Projectile") colliderType = ColliderType::Projectile;
 	else if(typeStr == "Portal") colliderType = ColliderType::Portal;
 	else if(typeStr == "Beacon") colliderType = ColliderType::Beacon;
 
@@ -230,6 +242,24 @@ void EntityFactory::loadDashComponent(const json& componentData, std::shared_ptr
 void EntityFactory::loadPlayerTag(const json& componentData, std::shared_ptr<Entity> entity) {
 	entity->addComponent<PlayerTag>();
 }
+
+void EntityFactory::loadProjectileComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+	float speed = componentData.value("speed", 1.0);
+	float scale = componentData.value("scale", 1.0);
+	float duration = componentData.value("duration", 1.0);
+
+	entity->addComponent<ProjectileComponent>(speed, scale, duration);
+}
+
+void EntityFactory::loadDamageComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+
+
+	int damage = componentData.value("damage", 1);
+
+	entity->addComponent<DamageComponent>(damage);
+}
+
+
 
 
 
@@ -318,5 +348,14 @@ void EntityFactory::registerComponentLoaders() {
     };
     componentLoaders["PlayerTag"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadPlayerTag(data, entity);
+    };
+    componentLoaders["CooldownComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadCooldownComponent(data, entity);
+    };
+     componentLoaders["ProjectileComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadProjectileComponent(data, entity);
+    };
+    componentLoaders["DamageComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadDamageComponent(data, entity);
     };
 }

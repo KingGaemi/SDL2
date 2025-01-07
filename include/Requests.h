@@ -22,17 +22,25 @@ struct SpawnRequest {
     float x, y, w, h, sc;
     int hDir, vDir;
     TeamCode teamCode;
+
+    // if it's projectile..
+    int damage;
+    float projectileSpeed, projectileScale;
+    float duration;
+
     bool hasPosition = true;
     bool hasDirection = false;
     bool hasTransform = true;
     bool hasOwner = false;
+    bool hasDamage = false;
+
     std::size_t ownerId;
+
+
 };
 
 struct ProjectileRequest : public SpawnRequest {
-    int damage;
-    float duration;// 필요하다면 데미지, 크기, 지속시간 등 추가
-    bool hasDamage = false;
+
 };
 
 

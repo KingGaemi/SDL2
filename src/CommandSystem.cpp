@@ -82,7 +82,7 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 
 					}
 
-					if(commandComp->commandData.type == CommandType::Attack && cooldownComp->isOnCooldown("attack")){
+					if(commandComp->commandData.type == CommandType::Attack && cooldownComp->isOnCooldown("basicAttack")){
 
 						directComp->direction = commandComp->commandData.moveDirection;
 						
@@ -93,9 +93,9 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 						// veloComp->set(velo);
 
 						if(!stateComp->inMotion){
-							stateComp->changeState(States::Attack, cooldownComp->cooldownAbilities["attack"].cooldownTime);
+							stateComp->changeState(States::Attack, cooldownComp->cooldownAbilities["basicAttack"].cooldownTime);
 							// std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
-							cooldownComp->resetCooldown("attack");
+							cooldownComp->resetCooldown("basicAttack");
 						}
 						
 					}

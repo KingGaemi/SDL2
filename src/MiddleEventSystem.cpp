@@ -36,26 +36,40 @@ void MiddleEventSystem::handleMiddleEvent(const Event& evt, std::vector<std::sha
 		if (!player1 || !player2) {
 		    std::cerr << "Error: player1 or player2 not found!" << std::endl;
 		    return; // 또는 적절한 에러 처리
+		}else{
+			auto commandComp = player1->getComponent<CommandComponent>();
+			if(commandComp)
+			{
+				commandComp->commandData.type = CommandType::None;
+			}
+
+			// Step 1: player1의 컴포넌트 변경
+			// if(player2->hasComponent<PlayerTag>()) player2->removeComponent<PlayerTag>();
+			player1->removeComponent<PlayerTag>();
+			player1->removeComponent<PlayableComponent>();
+			player1->addComponent<Player2Tag>();
+
+			// Step 2: player2의 컴포넌트 변경
+			// if(player2->hasComponent<PlayerTag>()) player2->removeComponent<PlayerTag>();
+			player2->removeComponent<Player2Tag>();
+			player2->addComponent<PlayerTag>();
+			player2->addComponent<PlayableComponent>();
+
+			if(player1->hasComponent<Player2Tag>() && player2->hasComponent<PlayerTag>() && player2->hasComponent<PlayableComponent>()){
+				std::cout << "Success to switch" << std::endl;
+			}else{
+				player1->addComponent<PlayerTag>();
+				player1->addComponent<PlayableComponent>();
+				player1->removeComponent<Player2Tag>();
+
+				player2->addComponent<Player2Tag>();
+				player2->removeComponent<PlayerTag>();
+				player2->removeComponent<PlayableComponent>();
+			}
+
 		}
 
-		auto commandComp = player1->getComponent<CommandComponent>();
-		if(commandComp)
-		{
-			commandComp->commandData.type = CommandType::None;
-		}
-
-		// Step 1: player1의 컴포넌트 변경
-		// if(player2->hasComponent<PlayerTag>()) player2->removeComponent<PlayerTag>();
-		player1->removeComponent<PlayerTag>();
-		player1->removeComponent<PlayableComponent>();
-		player1->addComponent<Player2Tag>();
-
-		// Step 2: player2의 컴포넌트 변경
-		// if(player2->hasComponent<PlayerTag>()) player2->removeComponent<PlayerTag>();
-		player2->removeComponent<Player2Tag>();
-		player2->addComponent<PlayerTag>();
-		player2->addComponent<PlayableComponent>();
-
+		
 	}
 
 }

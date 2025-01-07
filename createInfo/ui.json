@@ -11,13 +11,17 @@
         "textureID": "background_main",
         "width": 384,
         "height": 240,
-        "scale": 2.0
+        "scale": 1.0
       },
       {
         "name": "TransformComponent",
         "width": 384,
         "height": 240,
         "scale": 2.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Menu"
       }
     ]
   }

@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"spr",
+				"spriteComp"
+			],
+			[
+				"max",
+				"maxMp"
+			],
+			[
+				"Entity",
+				"entityType"
+			],
+			[
+				"sc",
+				"scale"
+			],
+			[
+				"Direc",
+				"Direction"
+			],
+			[
+				"typ",
+				"typeStr"
+			],
+			[
+				"Animation",
+				"AnimationComponent"
+			],
+			[
 				"Play",
 				"Player2Tag"
 			],
@@ -296,10 +324,6 @@
 				"cleanUpEntities"
 			],
 			[
-				"typ",
-				"typeID"
-			],
-			[
 				"co",
 				"cooldownComp"
 			],
@@ -490,35 +514,3655 @@
 			[
 				"text",
 				"textureManager"
-			],
-			[
-				"Tex",
-				"TextureManager"
-			],
-			[
-				"SDL_Ren",
-				"SDL_RenderClear"
-			],
-			[
-				"sc",
-				"second"
-			],
-			[
-				"texture",
-				"textureMap"
-			],
-			[
-				"p_",
-				"p_filePath"
-			],
-			[
-				"Ren",
-				"RenderWindow"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "src/EntityFactory.cpp",
+			"settings":
+			{
+				"buffer_size": 12269,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					17,
+					1,
+					"insert",
+					{
+						"characters": "s"
+					},
+					"AQAAADsBAAAAAAAAPAEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAOwEAAAAAAAA7AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					20,
+					1,
+					"insert",
+					{
+						"characters": "s"
+					},
+					"AQAAALIBAAAAAAAAswEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAsgEAAAAAAACyAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					28,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAANUFAAAAAAAA1wUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1QUAAAAAAADVBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					38,
+					1,
+					"left_delete",
+					null,
+					"AgAAANYFAAAAAAAA1gUAAAAAAAABAAAAKdUFAAAAAAAA1QUAAAAAAAABAAAAKA",
+					"AQAAAAAAAAABAAAA1wUAAAAAAADXBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					39,
+					1,
+					"right_delete",
+					null,
+					"AQAAANUFAAAAAAAA1QUAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAA1QUAAAAAAADVBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					40,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAANUFAAAAAAAA1gUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1QUAAAAAAADVBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					75,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AwAAAH8GAAAAAAAAgAYAAAAAAAAAAAAAgAYAAAAAAACFBgAAAAAAAAAAAACFBgAAAAAAAIYGAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfwYAAAAAAAB/BgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					76,
+					1,
+					"paste",
+					null,
+					"AQAAAIYGAAAAAAAAjwYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAhgYAAAAAAACGBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					77,
+					1,
+					"insert",
+					{
+						"characters": " dir"
+					},
+					"BAAAAI8GAAAAAAAAkAYAAAAAAAAAAAAAkAYAAAAAAACRBgAAAAAAAAAAAACRBgAAAAAAAJIGAAAAAAAAAAAAAJIGAAAAAAAAkwYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAjwYAAAAAAACPBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					78,
+					1,
+					"insert",
+					{
+						"characters": " ="
+					},
+					"AgAAAJMGAAAAAAAAlAYAAAAAAAAAAAAAlAYAAAAAAACVBgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAkwYAAAAAAACTBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					79,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAJUGAAAAAAAAlgYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlQYAAAAAAACVBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					80,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAJYGAAAAAAAAmAYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlgYAAAAAAACWBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					81,
+					1,
+					"insert",
+					{
+						"characters": "req.hD"
+					},
+					"BgAAAJcGAAAAAAAAmAYAAAAAAAAAAAAAmAYAAAAAAACZBgAAAAAAAAAAAACZBgAAAAAAAJoGAAAAAAAAAAAAAJoGAAAAAAAAmwYAAAAAAAAAAAAAmwYAAAAAAACcBgAAAAAAAAAAAACcBgAAAAAAAJ0GAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlwYAAAAAAACXBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					82,
+					1,
+					"insert",
+					{
+						"characters": "ir,"
+					},
+					"AwAAAJ0GAAAAAAAAngYAAAAAAAAAAAAAngYAAAAAAACfBgAAAAAAAAAAAACfBgAAAAAAAKAGAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnQYAAAAAAACdBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					83,
+					1,
+					"insert",
+					{
+						"characters": " req."
+					},
+					"BQAAAKAGAAAAAAAAoQYAAAAAAAAAAAAAoQYAAAAAAACiBgAAAAAAAAAAAACiBgAAAAAAAKMGAAAAAAAAAAAAAKMGAAAAAAAApAYAAAAAAAAAAAAApAYAAAAAAAClBgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAoAYAAAAAAACgBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					84,
+					1,
+					"insert",
+					{
+						"characters": "vDi"
+					},
+					"AwAAAKUGAAAAAAAApgYAAAAAAAAAAAAApgYAAAAAAACnBgAAAAAAAAAAAACnBgAAAAAAAKgGAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAApQYAAAAAAAClBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					85,
+					1,
+					"insert_completion",
+					{
+						"completion": "vDir",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "vDir"
+					},
+					"AgAAAKUGAAAAAAAApQYAAAAAAAADAAAAdkRppQYAAAAAAACpBgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAqAYAAAAAAACoBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					87,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAAKoGAAAAAAAAqwYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAqgYAAAAAAACqBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					108,
+					1,
+					"left_delete",
+					null,
+					"AQAAAIAGAAAAAAAAgAYAAAAAAAArAAAACSAgICAJRGlyZWN0aW9uIGRpciA9IChyZXEuaERpciwgcmVxLnZEaXIpOw",
+					"AQAAAAAAAAABAAAAqwYAAAAAAACABgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					113,
+					1,
+					"insert",
+					{
+						"characters": "d"
+					},
+					"AQAAAJkGAAAAAAAAmgYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmQYAAAAAAACZBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					114,
+					1,
+					"insert",
+					{
+						"characters": "irection."
+					},
+					"CQAAAJoGAAAAAAAAmwYAAAAAAAAAAAAAmwYAAAAAAACcBgAAAAAAAAAAAACcBgAAAAAAAJ0GAAAAAAAAAAAAAJ0GAAAAAAAAngYAAAAAAAAAAAAAngYAAAAAAACfBgAAAAAAAAAAAACfBgAAAAAAAKAGAAAAAAAAAAAAAKAGAAAAAAAAoQYAAAAAAAAAAAAAoQYAAAAAAACiBgAAAAAAAAAAAACiBgAAAAAAAKMGAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmgYAAAAAAACaBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					120,
+					1,
+					"paste",
+					null,
+					"AgAAAMwGAAAAAAAA2gYAAAAAAAAAAAAA2gYAAAAAAADaBgAAAAAAAAQAAAB2RGly",
+					"AQAAAAAAAAABAAAAzAYAAAAAAADQBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					122,
+					1,
+					"left_delete",
+					null,
+					"AQAAANYGAAAAAAAA1gYAAAAAAAABAAAAaA",
+					"AQAAAAAAAAABAAAA1wYAAAAAAADXBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					123,
+					1,
+					"insert",
+					{
+						"characters": "v"
+					},
+					"AQAAANYGAAAAAAAA1wYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1gYAAAAAAADWBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					133,
+					1,
+					"insert",
+					{
+						"characters": "string"
+					},
+					"BgAAAAkWAAAAAAAAChYAAAAAAAAAAAAAChYAAAAAAAALFgAAAAAAAAAAAAALFgAAAAAAAAwWAAAAAAAAAAAAAAwWAAAAAAAADRYAAAAAAAAAAAAADRYAAAAAAAAOFgAAAAAAAAAAAAAOFgAAAAAAAA8WAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAACRYAAAAAAAAJFgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					134,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAA8WAAAAAAAAEBYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAADxYAAAAAAAAPFgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					140,
+					1,
+					"paste",
+					null,
+					"AgAAAC4ZAAAAAAAAORkAAAAAAAAAAAAAORkAAAAAAAA5GQAAAAAAAAUAAABzdGQ6Og",
+					"AQAAAAAAAAABAAAAMxkAAAAAAAAuGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					141,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAADkZAAAAAAAAOhkAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAORkAAAAAAAA5GQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					144,
+					1,
+					"right_delete",
+					null,
+					"AQAAALsZAAAAAAAAuxkAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAuxkAAAAAAAC7GQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					147,
+					1,
+					"right_delete",
+					null,
+					"AQAAAOwZAAAAAAAA7BkAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAA7BkAAAAAAADsGQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					150,
+					1,
+					"right_delete",
+					null,
+					"AQAAAB4aAAAAAAAAHhoAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAHhoAAAAAAAAeGgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					153,
+					1,
+					"right_delete",
+					null,
+					"AQAAAFEaAAAAAAAAURoAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAURoAAAAAAABRGgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					156,
+					1,
+					"right_delete",
+					null,
+					"AQAAADgXAAAAAAAAOBcAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAOBcAAAAAAAA4FwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					159,
+					1,
+					"right_delete",
+					null,
+					"AQAAAHsXAAAAAAAAexcAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAexcAAAAAAAB7FwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					162,
+					1,
+					"right_delete",
+					null,
+					"AQAAAL4XAAAAAAAAvhcAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAvhcAAAAAAAC+FwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					165,
+					1,
+					"right_delete",
+					null,
+					"AQAAAPYWAAAAAAAA9hYAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAA9hYAAAAAAAD2FgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					169,
+					1,
+					"right_delete",
+					null,
+					"AQAAAB0bAAAAAAAAHRsAAAAAAAABAAAAIg",
+					"AQAAAAAAAAABAAAAHRsAAAAAAAAdGwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					171,
+					1,
+					"right_delete",
+					null,
+					"AQAAAB4bAAAAAAAAHhsAAAAAAAABAAAAIg",
+					"AQAAAAAAAAABAAAAHhsAAAAAAAAeGwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					173,
+					1,
+					"left_delete",
+					null,
+					"AQAAAEsbAAAAAAAASxsAAAAAAAABAAAAIg",
+					"AQAAAAAAAAABAAAATBsAAAAAAABMGwAAAAAAAAAAAAAA4HpA"
+				],
+				[
+					175,
+					1,
+					"right_delete",
+					null,
+					"AQAAAEwbAAAAAAAATBsAAAAAAAABAAAAIg",
+					"AQAAAAAAAAABAAAATBsAAAAAAABMGwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					202,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"EAAAAFskAAAAAAAAXiQAAAAAAAAAAAAAFCQAAAAAAAAXJAAAAAAAAAAAAADOIwAAAAAAANEjAAAAAAAAAAAAAIkjAAAAAAAAjCMAAAAAAAAAAAAARSMAAAAAAABIIwAAAAAAAAAAAAD+IgAAAAAAAAEjAAAAAAAAAAAAALYiAAAAAAAAuSIAAAAAAAAAAAAAbyIAAAAAAAByIgAAAAAAAAAAAAAnIgAAAAAAACoiAAAAAAAAAAAAAOohAAAAAAAA7SEAAAAAAAAAAAAArCEAAAAAAACvIQAAAAAAAAAAAABkIQAAAAAAAGchAAAAAAAAAAAAAB8hAAAAAAAAIiEAAAAAAAAAAAAA2SAAAAAAAADcIAAAAAAAAAAAAACSIAAAAAAAAJUgAAAAAAAAAAAAAGEgAAAAAAAAZCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAXSQAAAAAAABfIAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					204,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAI0kAAAAAAAAjiQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAjSQAAAAAAACNJAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					205,
+					1,
+					"paste",
+					null,
+					"AQAAAI4kAAAAAAAAXS0AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAjiQAAAAAAACOJAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					208,
+					1,
+					"right_delete",
+					null,
+					"AQAAANUPAAAAAAAA1Q8AAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAA1Q8AAAAAAADVDwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					214,
+					1,
+					"right_delete",
+					null,
+					"AQAAAA4QAAAAAAAADhAAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAADhAAAAAAAAAOEAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					217,
+					1,
+					"right_delete",
+					null,
+					"AQAAAEgQAAAAAAAASBAAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAASBAAAAAAAABIEAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					222,
+					1,
+					"right_delete",
+					null,
+					"AQAAAIQQAAAAAAAAhBAAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAhBAAAAAAAACEEAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					225,
+					1,
+					"right_delete",
+					null,
+					"AQAAAKERAAAAAAAAoREAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAoREAAAAAAAChEQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					228,
+					1,
+					"right_delete",
+					null,
+					"AQAAANsRAAAAAAAA2xEAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAA2xEAAAAAAADbEQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					231,
+					1,
+					"right_delete",
+					null,
+					"AQAAABMSAAAAAAAAExIAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAExIAAAAAAAATEgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					234,
+					1,
+					"right_delete",
+					null,
+					"AQAAAH0ZAAAAAAAAfRkAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAfRkAAAAAAAB9GQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					237,
+					1,
+					"insert",
+					{
+						"characters": "="
+					},
+					"AQAAAOINAAAAAAAA4w0AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA4g0AAAAAAADiDQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					240,
+					1,
+					"insert",
+					{
+						"characters": "="
+					},
+					"AQAAACEOAAAAAAAAIg4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAIQ4AAAAAAAAhDgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					243,
+					1,
+					"insert",
+					{
+						"characters": "="
+					},
+					"AQAAAGAOAAAAAAAAYQ4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYA4AAAAAAABgDgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					246,
+					1,
+					"insert",
+					{
+						"characters": "="
+					},
+					"AQAAAKEOAAAAAAAAog4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAoQ4AAAAAAAChDgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					249,
+					1,
+					"insert",
+					{
+						"characters": "Coli"
+					},
+					"BQAAAHAYAAAAAAAAcRgAAAAAAAAAAAAAcRgAAAAAAABxGAAAAAAAAAkAAABUcmFuc2Zvcm1xGAAAAAAAAHIYAAAAAAAAAAAAAHIYAAAAAAAAcxgAAAAAAAAAAAAAcxgAAAAAAAB0GAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAeRgAAAAAAABwGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					250,
+					1,
+					"left_delete",
+					null,
+					"AQAAAHMYAAAAAAAAcxgAAAAAAAABAAAAaQ",
+					"AQAAAAAAAAABAAAAdBgAAAAAAAB0GAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					251,
+					1,
+					"insert",
+					{
+						"characters": "lider"
+					},
+					"BQAAAHMYAAAAAAAAdBgAAAAAAAAAAAAAdBgAAAAAAAB1GAAAAAAAAAAAAAB1GAAAAAAAAHYYAAAAAAAAAAAAAHYYAAAAAAAAdxgAAAAAAAAAAAAAdxgAAAAAAAB4GAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAcxgAAAAAAABzGAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					261,
+					1,
+					"reindent",
+					null,
+					"AQAAAFIFAAAAAAAAUwUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAUgUAAAAAAABSBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					262,
+					1,
+					"insert",
+					{
+						"characters": "\nstd\"\""
+					},
+					"CAAAAFMFAAAAAAAAVAUAAAAAAAAAAAAAVAUAAAAAAABVBQAAAAAAAAAAAABSBQAAAAAAAFIFAAAAAAAAAQAAAAlUBQAAAAAAAFUFAAAAAAAAAAAAAFUFAAAAAAAAVgUAAAAAAAAAAAAAVgUAAAAAAABXBQAAAAAAAAAAAABXBQAAAAAAAFgFAAAAAAAAAAAAAFgFAAAAAAAAWQUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAUwUAAAAAAABTBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					263,
+					2,
+					"left_delete",
+					null,
+					"AgAAAFgFAAAAAAAAWAUAAAAAAAABAAAAIlcFAAAAAAAAVwUAAAAAAAABAAAAIg",
+					"AQAAAAAAAAABAAAAWQUAAAAAAABZBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					264,
+					1,
+					"insert",
+					{
+						"characters": "::cou"
+					},
+					"BQAAAFcFAAAAAAAAWAUAAAAAAAAAAAAAWAUAAAAAAABZBQAAAAAAAAAAAABZBQAAAAAAAFoFAAAAAAAAAAAAAFoFAAAAAAAAWwUAAAAAAAAAAAAAWwUAAAAAAABcBQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAVwUAAAAAAABXBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					265,
+					1,
+					"insert_completion",
+					{
+						"completion": "cout",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "cout"
+					},
+					"AgAAAFkFAAAAAAAAWQUAAAAAAAADAAAAY291WQUAAAAAAABdBQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAXAUAAAAAAABcBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					266,
+					1,
+					"insert",
+					{
+						"characters": " <<"
+					},
+					"AwAAAF0FAAAAAAAAXgUAAAAAAAAAAAAAXgUAAAAAAABfBQAAAAAAAAAAAABfBQAAAAAAAGAFAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAXQUAAAAAAABdBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					267,
+					1,
+					"insert",
+					{
+						"characters": " set"
+					},
+					"BAAAAGAFAAAAAAAAYQUAAAAAAAAAAAAAYQUAAAAAAABiBQAAAAAAAAAAAABiBQAAAAAAAGMFAAAAAAAAAAAAAGMFAAAAAAAAZAUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYAUAAAAAAABgBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					268,
+					3,
+					"left_delete",
+					null,
+					"AwAAAGMFAAAAAAAAYwUAAAAAAAABAAAAdGIFAAAAAAAAYgUAAAAAAAABAAAAZWEFAAAAAAAAYQUAAAAAAAABAAAAcw",
+					"AQAAAAAAAAABAAAAZAUAAAAAAABkBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					269,
+					1,
+					"insert_snippet",
+					{
+						"contents": "\"$0\""
+					},
+					"AQAAAGEFAAAAAAAAYwUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYQUAAAAAAABhBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					270,
+					1,
+					"insert",
+					{
+						"characters": "setv"
+					},
+					"BAAAAGIFAAAAAAAAYwUAAAAAAAAAAAAAYwUAAAAAAABkBQAAAAAAAAAAAABkBQAAAAAAAGUFAAAAAAAAAAAAAGUFAAAAAAAAZgUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYgUAAAAAAABiBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					271,
+					1,
+					"insert_completion",
+					{
+						"completion": "setValue",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "setValue"
+					},
+					"AgAAAGIFAAAAAAAAYgUAAAAAAAAEAAAAc2V0dmIFAAAAAAAAagUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAZgUAAAAAAABmBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					273,
+					1,
+					"insert",
+					{
+						"characters": " <<std::end"
+					},
+					"CwAAAGsFAAAAAAAAbAUAAAAAAAAAAAAAbAUAAAAAAABtBQAAAAAAAAAAAABtBQAAAAAAAG4FAAAAAAAAAAAAAG4FAAAAAAAAbwUAAAAAAAAAAAAAbwUAAAAAAABwBQAAAAAAAAAAAABwBQAAAAAAAHEFAAAAAAAAAAAAAHEFAAAAAAAAcgUAAAAAAAAAAAAAcgUAAAAAAABzBQAAAAAAAAAAAABzBQAAAAAAAHQFAAAAAAAAAAAAAHQFAAAAAAAAdQUAAAAAAAAAAAAAdQUAAAAAAAB2BQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAawUAAAAAAABrBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					274,
+					1,
+					"insert_completion",
+					{
+						"completion": "endl",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "endl"
+					},
+					"AgAAAHMFAAAAAAAAcwUAAAAAAAADAAAAZW5kcwUAAAAAAAB3BQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAdgUAAAAAAAB2BQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					275,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAAHcFAAAAAAAAeAUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAdwUAAAAAAAB3BQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					302,
+					1,
+					"cut",
+					null,
+					"AQAAAFQFAAAAAAAAVAUAAAAAAAAkAAAAc3RkOjpjb3V0IDw8ICJzZXRWYWx1ZSIgPDxzdGQ6OmVuZGw7",
+					"AQAAAAAAAAABAAAAVAUAAAAAAAB4BQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					307,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"BAAAAGcHAAAAAAAAaAcAAAAAAAAAAAAAaAcAAAAAAABtBwAAAAAAAAAAAABtBwAAAAAAAG4HAAAAAAAAAAAAAFMFAAAAAAAAUwUAAAAAAAABAAAACQ",
+					"AQAAAAAAAAABAAAAZwcAAAAAAABnBwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					308,
+					1,
+					"paste",
+					null,
+					"AQAAAG0HAAAAAAAAkQcAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAbQcAAAAAAABtBwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					329,
+					1,
+					"insert",
+					{
+						"characters": " <<"
+					},
+					"AwAAAIcHAAAAAAAAiAcAAAAAAAAAAAAAiAcAAAAAAACJBwAAAAAAAAAAAACJBwAAAAAAAIoHAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAhwcAAAAAAACHBwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					331,
+					1,
+					"insert",
+					{
+						"characters": " req.w"
+					},
+					"BgAAAIcHAAAAAAAAiAcAAAAAAAAAAAAAiAcAAAAAAACJBwAAAAAAAAAAAACJBwAAAAAAAIoHAAAAAAAAAAAAAIoHAAAAAAAAiwcAAAAAAAAAAAAAiwcAAAAAAACMBwAAAAAAAAAAAACMBwAAAAAAAI0HAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAhwcAAAAAAACHBwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					339,
+					1,
+					"left_delete",
+					null,
+					"AQAAAFIFAAAAAAAAUgUAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAAUwUAAAAAAABTBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					342,
+					2,
+					"left_delete",
+					null,
+					"AgAAAGYHAAAAAAAAZgcAAAAAAAAzAAAACSAgICAJc3RkOjpjb3V0IDw8ICJzZXRWYWx1ZSIgPDwgcmVxLncgPDxzdGQ6OmVuZGw7ZQcAAAAAAABlBwAAAAAAAAEAAAAK",
+					"AQAAAAAAAAABAAAAmQcAAAAAAABmBwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					350,
+					1,
+					"insert",
+					{
+						"characters": "u"
+					},
+					"AQAAALwNAAAAAAAAvQ0AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAvA0AAAAAAAC8DQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					351,
+					1,
+					"left_delete",
+					null,
+					"AQAAALwNAAAAAAAAvA0AAAAAAAABAAAAdQ",
+					"AQAAAAAAAAABAAAAvQ0AAAAAAAC9DQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					352,
+					1,
+					"insert",
+					{
+						"characters": "ani"
+					},
+					"AwAAALwNAAAAAAAAvQ0AAAAAAAAAAAAAvQ0AAAAAAAC+DQAAAAAAAAAAAAC+DQAAAAAAAL8NAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAvA0AAAAAAAC8DQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					353,
+					1,
+					"insert_completion",
+					{
+						"completion": "animations",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "animations"
+					},
+					"AgAAALwNAAAAAAAAvA0AAAAAAAADAAAAYW5pvA0AAAAAAADGDQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAvw0AAAAAAAC/DQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					354,
+					1,
+					"insert",
+					{
+						"characters": "/"
+					},
+					"AQAAAMYNAAAAAAAAxw0AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAxg0AAAAAAADGDQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					367,
+					1,
+					"insert",
+					{
+						"characters": "Unit"
+					},
+					"BQAAAEoNAAAAAAAASw0AAAAAAAAAAAAASw0AAAAAAABLDQAAAAAAAAYAAABPYmplY3RLDQAAAAAAAEwNAAAAAAAAAAAAAEwNAAAAAAAATQ0AAAAAAAAAAAAATQ0AAAAAAABODQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAASg0AAAAAAABQDQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					375,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAO8dAAAAAAAA8B0AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA7x0AAAAAAADvHQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					376,
+					1,
+					"paste",
+					null,
+					"AQAAAPAdAAAAAAAA6B4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA8B0AAAAAAADwHQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					379,
+					1,
+					"insert",
+					{
+						"characters": "Dash"
+					},
+					"BQAAAAgeAAAAAAAACR4AAAAAAAAAAAAACR4AAAAAAAAJHgAAAAAAAAgAAABWZWxvY2l0eQkeAAAAAAAACh4AAAAAAAAAAAAACh4AAAAAAAALHgAAAAAAAAAAAAALHgAAAAAAAAweAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAACB4AAAAAAAAQHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					384,
+					1,
+					"left_delete",
+					null,
+					"AQAAAFMeAAAAAAAAUx4AAAAAAABfAAAACglWZWN0b3IyRCB2ZWxvOwoJdmVsby54ID0gY29tcG9uZW50RGF0YS52YWx1ZSgieCIsIDApOwoJdmVsby55ID0gY29tcG9uZW50RGF0YS52YWx1ZSgieSIsIDApOwo",
+					"AQAAAAAAAAABAAAAUx4AAAAAAACyHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					385,
+					1,
+					"reindent",
+					null,
+					"AQAAAFMeAAAAAAAAVB4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAUx4AAAAAAABTHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					391,
+					1,
+					"paste",
+					null,
+					"AQAAAFQeAAAAAAAAnB4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAVB4AAAAAAABUHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					395,
+					1,
+					"insert",
+					{
+						"characters": "flo"
+					},
+					"BAAAAFQeAAAAAAAAVR4AAAAAAAAAAAAAVR4AAAAAAABVHgAAAAAAAAsAAABzdGQ6OnN0cmluZ1UeAAAAAAAAVh4AAAAAAAAAAAAAVh4AAAAAAABXHgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAVB4AAAAAAABfHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					396,
+					1,
+					"insert_completion",
+					{
+						"completion": "float",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "float"
+					},
+					"AgAAAFQeAAAAAAAAVB4AAAAAAAADAAAAZmxvVB4AAAAAAABZHgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAVx4AAAAAAABXHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					400,
+					1,
+					"insert",
+					{
+						"characters": "dash"
+					},
+					"BQAAAFoeAAAAAAAAWx4AAAAAAAAAAAAAWx4AAAAAAABbHgAAAAAAAAsAAABhYmlsaXR5TmFtZVseAAAAAAAAXB4AAAAAAAAAAAAAXB4AAAAAAABdHgAAAAAAAAAAAABdHgAAAAAAAF4eAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAWh4AAAAAAABlHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					401,
+					1,
+					"insert",
+					{
+						"characters": "Time"
+					},
+					"BAAAAF4eAAAAAAAAXx4AAAAAAAAAAAAAXx4AAAAAAABgHgAAAAAAAAAAAABgHgAAAAAAAGEeAAAAAAAAAAAAAGEeAAAAAAAAYh4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAXh4AAAAAAABeHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					415,
+					1,
+					"insert",
+					{
+						"characters": "limit"
+					},
+					"BQAAAGIeAAAAAAAAYx4AAAAAAAAAAAAAYx4AAAAAAABkHgAAAAAAAAAAAABkHgAAAAAAAGUeAAAAAAAAAAAAAGUeAAAAAAAAZh4AAAAAAAAAAAAAZh4AAAAAAABnHgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYh4AAAAAAABiHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					418,
+					1,
+					"insert",
+					{
+						"characters": "L"
+					},
+					"AgAAAGIeAAAAAAAAYx4AAAAAAAAAAAAAYx4AAAAAAABjHgAAAAAAAAEAAABs",
+					"AQAAAAAAAAABAAAAYh4AAAAAAABjHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					428,
+					1,
+					"paste",
+					null,
+					"AgAAAH8eAAAAAAAAjB4AAAAAAAAAAAAAjB4AAAAAAACMHgAAAAAAAAsAAABhYmlsaXR5TmFtZQ",
+					"AQAAAAAAAAABAAAAfx4AAAAAAACKHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					441,
+					1,
+					"insert",
+					{
+						"characters": " 0.17"
+					},
+					"BgAAAI4eAAAAAAAAjx4AAAAAAAAAAAAAjx4AAAAAAACPHgAAAAAAAAoAAAAgInVua25vd24ijx4AAAAAAACQHgAAAAAAAAAAAACQHgAAAAAAAJEeAAAAAAAAAAAAAJEeAAAAAAAAkh4AAAAAAAAAAAAAkh4AAAAAAACTHgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAjh4AAAAAAACYHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					451,
+					1,
+					"paste",
+					null,
+					"AgAAAKweAAAAAAAAuR4AAAAAAAAAAAAAuR4AAAAAAAC5HgAAAAAAABEAAABWZWxvY2l0eUNvbXBvbmVudA",
+					"AQAAAAAAAAABAAAArB4AAAAAAAC9HgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					461,
+					1,
+					"paste",
+					null,
+					"AgAAALseAAAAAAAAyB4AAAAAAAAAAAAAyB4AAAAAAADIHgAAAAAAAAQAAAB2ZWxv",
+					"AQAAAAAAAAABAAAAux4AAAAAAAC/HgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					471,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAADsuAAAAAAAAPC4AAAAAAAAAAAAAPC4AAAAAAABALgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAOy4AAAAAAAA7LgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					472,
+					1,
+					"paste",
+					null,
+					"AQAAAEAuAAAAAAAA4C4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAQC4AAAAAAABALgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					477,
+					4,
+					"left_delete",
+					null,
+					"BAAAAEMuAAAAAAAAQy4AAAAAAAABAAAAIEIuAAAAAAAAQi4AAAAAAAABAAAAIEEuAAAAAAAAQS4AAAAAAAABAAAAIEAuAAAAAAAAQC4AAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAARC4AAAAAAABELgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					480,
+					1,
+					"insert",
+					{
+						"characters": "Dash"
+					},
+					"BQAAALEtAAAAAAAAsi0AAAAAAAAAAAAAsi0AAAAAAACyLQAAAAAAAAgAAABQbGF5YWJsZbItAAAAAAAAsy0AAAAAAAAAAAAAsy0AAAAAAAC0LQAAAAAAAAAAAAC0LQAAAAAAALUtAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAuS0AAAAAAACxLQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					488,
+					1,
+					"paste",
+					null,
+					"AgAAALEuAAAAAAAAvi4AAAAAAAAAAAAAvi4AAAAAAAC+LgAAAAAAABEAAABQbGF5YWJsZUNvbXBvbmVudA",
+					"AQAAAAAAAAABAAAAsS4AAAAAAADCLgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					504,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAANQuAAAAAAAA1S4AAAAAAAAAAAAA1S4AAAAAAADZLgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1C4AAAAAAADULgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					505,
+					1,
+					"paste",
+					null,
+					"AQAAANkuAAAAAAAAdS8AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA2S4AAAAAAADZLgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					510,
+					4,
+					"left_delete",
+					null,
+					"BAAAANwuAAAAAAAA3C4AAAAAAAABAAAAINsuAAAAAAAA2y4AAAAAAAABAAAAINouAAAAAAAA2i4AAAAAAAABAAAAINkuAAAAAAAA2S4AAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAA3S4AAAAAAADdLgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					513,
+					1,
+					"insert",
+					{
+						"characters": "hy"
+					},
+					"AwAAAOwuAAAAAAAA7S4AAAAAAAAAAAAA7S4AAAAAAADtLgAAAAAAABAAAABsYXlhYmxlQ29tcG9uZW507S4AAAAAAADuLgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA7C4AAAAAAAD8LgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					514,
+					1,
+					"insert_completion",
+					{
+						"completion": "PhysicsComponent",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "PhysicsComponent"
+					},
+					"AgAAAOsuAAAAAAAA6y4AAAAAAAADAAAAUGh56y4AAAAAAAD7LgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA7i4AAAAAAADuLgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					522,
+					1,
+					"paste",
+					null,
+					"AgAAAE0vAAAAAAAAXS8AAAAAAAAAAAAAXS8AAAAAAABdLwAAAAAAAA0AAABEYXNoQ29tcG9uZW50",
+					"AQAAAAAAAAABAAAATS8AAAAAAABaLwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					530,
+					1,
+					"paste",
+					null,
+					"AQAAAM8eAAAAAAAA4x4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAzx4AAAAAAADPHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					538,
+					1,
+					"paste",
+					null,
+					"AQAAAM8eAAAAAAAA4x4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAzx4AAAAAAADPHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					544,
+					1,
+					"paste",
+					null,
+					"AQAAAPceAAAAAAAArh8AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA9x4AAAAAAAD3HgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					554,
+					1,
+					"right_delete",
+					null,
+					"AQAAAM8eAAAAAAAAzx4AAAAAAADgAAAAdm9pZCBFbnRpdHlGYWN0b3J5Ojpsb2FkUGh5c2ljc0NvbXBvbmVudChjb25zdCBqc29uJiBjb21wb25lbnREYXRhLCBzdGQ6OnNoYXJlZF9wdHI8RW50aXR5PiBlbnRpdHkpIHsKCWZsb2F0IGRhc2hUaW1lTGltaXQgPSBjb21wb25lbnREYXRhLnZhbHVlKCJkYXNoVGltZUxpbWl0IiwgMC4xNyk7CgllbnRpdHktPmFkZENvbXBvbmVudDxEYXNoQ29tcG9uZW50PihkYXNoVGltZUxpbWl0KTsKfQo",
+					"AQAAAAAAAAABAAAArx8AAAAAAADPHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					557,
+					2,
+					"left_delete",
+					null,
+					"AgAAANQuAAAAAAAA1C4AAAAAAACeAAAAICAgIGNvbXBvbmVudExvYWRlcnNbIlBoeXNpY3NDb21wb25lbnQiXSA9IFt0aGlzXShjb25zdCBqc29uJiBkYXRhLCBzdGQ6OnNoYXJlZF9wdHI8RW50aXR5PiBlbnRpdHkpIHsKICAgICAgICB0aGlzLT5sb2FkUGh5c2ljc0NvbXBvbmVudChkYXRhLCBlbnRpdHkpOwogICAgfTvTLgAAAAAAANMuAAAAAAAAAQAAAAo",
+					"AQAAAAAAAAABAAAAci8AAAAAAADULgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					570,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAANMuAAAAAAAA1C4AAAAAAAAAAAAA1C4AAAAAAADYLgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA0y4AAAAAAADTLgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					571,
+					1,
+					"paste",
+					null,
+					"AQAAANguAAAAAAAAcC8AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA2C4AAAAAAADYLgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					574,
+					2,
+					"left_delete",
+					null,
+					"AgAAAO8uAAAAAAAA7y4AAAAAAAAMAAAAYmxlQ29tcG9uZW507i4AAAAAAADuLgAAAAAAAAEAAABh",
+					"AQAAAAAAAAABAAAA7y4AAAAAAAD7LgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					575,
+					1,
+					"insert",
+					{
+						"characters": "erTag"
+					},
+					"BQAAAO4uAAAAAAAA7y4AAAAAAAAAAAAA7y4AAAAAAADwLgAAAAAAAAAAAADwLgAAAAAAAPEuAAAAAAAAAAAAAPEuAAAAAAAA8i4AAAAAAAAAAAAA8i4AAAAAAADzLgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA7i4AAAAAAADuLgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					581,
+					1,
+					"paste",
+					null,
+					"AgAAAEUvAAAAAAAATi8AAAAAAAAAAAAATi8AAAAAAABOLwAAAAAAAA0AAABEYXNoQ29tcG9uZW50",
+					"AQAAAAAAAAABAAAARS8AAAAAAABSLwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					597,
+					1,
+					"paste",
+					null,
+					"AQAAAM4eAAAAAAAArB8AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAzh4AAAAAAADOHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					600,
+					1,
+					"insert",
+					{
+						"characters": "PlayerT"
+					},
+					"CAAAAOYeAAAAAAAA5x4AAAAAAAAAAAAA5x4AAAAAAADnHgAAAAAAAA0AAABEYXNoQ29tcG9uZW505x4AAAAAAADoHgAAAAAAAAAAAADoHgAAAAAAAOkeAAAAAAAAAAAAAOkeAAAAAAAA6h4AAAAAAAAAAAAA6h4AAAAAAADrHgAAAAAAAAAAAADrHgAAAAAAAOweAAAAAAAAAAAAAOweAAAAAAAA7R4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA5h4AAAAAAADzHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					601,
+					1,
+					"insert_completion",
+					{
+						"completion": "loadPlayerTag",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "loadPlayerTag"
+					},
+					"AgAAAOIeAAAAAAAA4h4AAAAAAAALAAAAbG9hZFBsYXllclTiHgAAAAAAAO8eAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA7R4AAAAAAADtHgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					611,
+					1,
+					"paste",
+					null,
+					"AgAAAIYfAAAAAAAAkx8AAAAAAAAAAAAAkx8AAAAAAACTHwAAAAAAAA0AAABEYXNoQ29tcG9uZW50",
+					"AQAAAAAAAAABAAAAhh8AAAAAAACTHwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					614,
+					1,
+					"insert",
+					{
+						"characters": "\\"
+					},
+					"AgAAAJUfAAAAAAAAlh8AAAAAAAAAAAAAlh8AAAAAAACWHwAAAAAAAA0AAABkYXNoVGltZUxpbWl0",
+					"AQAAAAAAAAABAAAAlR8AAAAAAACiHwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					615,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJUfAAAAAAAAlR8AAAAAAAABAAAAXA",
+					"AQAAAAAAAAABAAAAlh8AAAAAAACWHwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					618,
+					2,
+					"left_delete",
+					null,
+					"AgAAAC0fAAAAAAAALR8AAAAAAABCAAAACWZsb2F0IGRhc2hUaW1lTGltaXQgPSBjb21wb25lbnREYXRhLnZhbHVlKCJkYXNoVGltZUxpbWl0IiwgMC4xNyk7LB8AAAAAAAAsHwAAAAAAAAEAAAAK",
+					"AQAAAAAAAAABAAAAbx8AAAAAAAAtHwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					621,
+					1,
+					"left_delete",
+					null,
+					"AQAAAEMfAAAAAAAAQx8AAAAAAAAEAAAAbG9hZA",
+					"AQAAAAAAAAABAAAARx8AAAAAAABDHwAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "include/ECS/EntityFactory.h",
+			"settings":
+			{
+				"buffer_size": 2648,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					7,
+					1,
+					"insert",
+					{
+						"characters": "s"
+					},
+					"AQAAAHwCAAAAAAAAfQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfAIAAAAAAAB8AgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					14,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAB0IAAAAAAAAHggAAAAAAAAAAAAAHggAAAAAAAAiCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAHQgAAAAAAAAdCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					15,
+					1,
+					"paste",
+					null,
+					"AQAAACIIAAAAAAAAgggAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAIggAAAAAAAAiCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					18,
+					1,
+					"left_delete",
+					null,
+					"AQAAACcIAAAAAAAAJwgAAAAAAAAPAAAARW50aXR5RmFjdG9yeTo6",
+					"AQAAAAAAAAABAAAANggAAAAAAAAnCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					20,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAAHMIAAAAAAAAdAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAcwgAAAAAAABzCAAAAAAAAP///////+9/"
+				],
+				[
+					30,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAHQIAAAAAAAAdQgAAAAAAAAAAAAAdQgAAAAAAAB5CAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAdAgAAAAAAAB0CAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					31,
+					1,
+					"paste",
+					null,
+					"AQAAAHkIAAAAAAAAywgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAeQgAAAAAAAB5CAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					37,
+					1,
+					"insert",
+					{
+						"characters": "PlayerTag"
+					},
+					"CgAAAIIIAAAAAAAAgwgAAAAAAAAAAAAAgwgAAAAAAACDCAAAAAAAAA0AAABEYXNoQ29tcG9uZW50gwgAAAAAAACECAAAAAAAAAAAAACECAAAAAAAAIUIAAAAAAAAAAAAAIUIAAAAAAAAhggAAAAAAAAAAAAAhggAAAAAAACHCAAAAAAAAAAAAACHCAAAAAAAAIgIAAAAAAAAAAAAAIgIAAAAAAAAiQgAAAAAAAAAAAAAiQgAAAAAAACKCAAAAAAAAAAAAACKCAAAAAAAAIsIAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgggAAAAAAACPCAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "src/PhysicsSystem.cpp",
+			"settings":
+			{
+				"buffer_size": 4723,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+			]
+		},
+		{
+			"file": "include/Components/SpriteComponent.h",
+			"settings":
+			{
+				"buffer_size": 667,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "include/Systems/SyncSystem.h",
+			"redo_stack":
+			[
+				[
+					291,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAGoCAAAAAAAAagIAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAAawIAAAAAAABrAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					288,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAGwCAAAAAAAAbAIAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAAbQIAAAAAAABtAgAAAAAAAAAAAAAAAPC/"
+				]
+			],
+			"settings":
+			{
+				"buffer_size": 812,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					3,
+					1,
+					"paste",
+					null,
+					"AQAAAAAAAAAAAAAAigEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					6,
+					1,
+					"left_delete",
+					null,
+					"AQAAAFoAAAAAAAAAWgAAAAAAAAAWAAAAI2luY2x1ZGUgIlJlcXVlc3RzLmgiCg",
+					"AQAAAAAAAAABAAAAcAAAAAAAAABaAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					13,
+					1,
+					"insert",
+					{
+						"characters": "Sync"
+					},
+					"BQAAAGQAAAAAAAAAZQAAAAAAAAAAAAAAZQAAAAAAAABlAAAAAAAAAAYAAABBdHRhY2tlAAAAAAAAAGYAAAAAAAAAAAAAAGYAAAAAAAAAZwAAAAAAAAAAAAAAZwAAAAAAAABoAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAagAAAAAAAABkAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					27,
+					1,
+					"paste",
+					null,
+					"AgAAAIwAAAAAAAAAlgAAAAAAAAAAAAAAlgAAAAAAAACWAAAAAAAAAAwAAABBdHRhY2tTeXN0ZW0",
+					"AQAAAAAAAAABAAAAjAAAAAAAAACYAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					30,
+					1,
+					"insert",
+					{
+						"characters": "\n#in"
+					},
+					"BAAAAFkAAAAAAAAAWgAAAAAAAAAAAAAAWgAAAAAAAABbAAAAAAAAAAAAAABbAAAAAAAAAFwAAAAAAAAAAAAAAFwAAAAAAAAAXQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAWQAAAAAAAABZAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					31,
+					1,
+					"insert_completion",
+					{
+						"completion": "include",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "include"
+					},
+					"AgAAAFsAAAAAAAAAWwAAAAAAAAACAAAAaW5bAAAAAAAAAGIAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAXQAAAAAAAABdAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					32,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAGIAAAAAAAAAYwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYgAAAAAAAABiAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					33,
+					1,
+					"insert_snippet",
+					{
+						"contents": "\"$0\""
+					},
+					"AQAAAGMAAAAAAAAAZQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYwAAAAAAAABjAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					34,
+					1,
+					"insert",
+					{
+						"characters": "Com"
+					},
+					"AwAAAGQAAAAAAAAAZQAAAAAAAAAAAAAAZQAAAAAAAABmAAAAAAAAAAAAAABmAAAAAAAAAGcAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAZAAAAAAAAABkAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					35,
+					1,
+					"insert_completion",
+					{
+						"completion": "Components",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "Components"
+					},
+					"AgAAAGQAAAAAAAAAZAAAAAAAAAADAAAAQ29tZAAAAAAAAABuAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAZwAAAAAAAABnAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					36,
+					1,
+					"insert",
+					{
+						"characters": "/sp"
+					},
+					"AwAAAG4AAAAAAAAAbwAAAAAAAAAAAAAAbwAAAAAAAABwAAAAAAAAAAAAAABwAAAAAAAAAHEAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAbgAAAAAAAABuAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					37,
+					1,
+					"insert_completion",
+					{
+						"completion": "SpriteComponent",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "SpriteComponent"
+					},
+					"AgAAAG8AAAAAAAAAbwAAAAAAAAACAAAAc3BvAAAAAAAAAH4AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAcQAAAAAAAABxAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					38,
+					1,
+					"insert",
+					{
+						"characters": ".h"
+					},
+					"AgAAAH4AAAAAAAAAfwAAAAAAAAAAAAAAfwAAAAAAAACAAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfgAAAAAAAAB+AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					44,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAIEAAAAAAAAAggAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgQAAAAAAAACBAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					45,
+					1,
+					"paste",
+					null,
+					"AQAAAIIAAAAAAAAAqQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAggAAAAAAAACCAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					48,
+					1,
+					"insert",
+					{
+						"characters": "Tr"
+					},
+					"AwAAAJgAAAAAAAAAmQAAAAAAAAAAAAAAmQAAAAAAAACZAAAAAAAAAAUAAABwcml0ZZkAAAAAAAAAmgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnQAAAAAAAACYAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					49,
+					3,
+					"left_delete",
+					null,
+					"AwAAAJkAAAAAAAAAmQAAAAAAAAABAAAAcpgAAAAAAAAAmAAAAAAAAAABAAAAVJcAAAAAAAAAlwAAAAAAAAABAAAAUw",
+					"AQAAAAAAAAABAAAAmgAAAAAAAACaAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					50,
+					1,
+					"insert",
+					{
+						"characters": "TRan"
+					},
+					"BAAAAJcAAAAAAAAAmAAAAAAAAAAAAAAAmAAAAAAAAACZAAAAAAAAAAAAAACZAAAAAAAAAJoAAAAAAAAAAAAAAJoAAAAAAAAAmwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlwAAAAAAAACXAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					51,
+					3,
+					"left_delete",
+					null,
+					"AwAAAJoAAAAAAAAAmgAAAAAAAAABAAAAbpkAAAAAAAAAmQAAAAAAAAABAAAAYZgAAAAAAAAAmAAAAAAAAAABAAAAUg",
+					"AQAAAAAAAAABAAAAmwAAAAAAAACbAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					52,
+					1,
+					"insert",
+					{
+						"characters": "ransform"
+					},
+					"CAAAAJgAAAAAAAAAmQAAAAAAAAAAAAAAmQAAAAAAAACaAAAAAAAAAAAAAACaAAAAAAAAAJsAAAAAAAAAAAAAAJsAAAAAAAAAnAAAAAAAAAAAAAAAnAAAAAAAAACdAAAAAAAAAAAAAACdAAAAAAAAAJ4AAAAAAAAAAAAAAJ4AAAAAAAAAnwAAAAAAAAAAAAAAnwAAAAAAAACgAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmAAAAAAAAACYAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					55,
+					3,
+					"left_delete",
+					null,
+					"AwAAAN8AAAAAAAAA3wAAAAAAAABPAAAAU3luY1N5c3RlbShzdGQ6OnNoYXJlZF9wdHI8RUNTTWFuYWdlcj4mIGVjc01hbmFnZXIpIDogZWNzTWFuYWdlcihlY3NNYW5hZ2VyKSB7fd4AAAAAAAAA3gAAAAAAAAABAAAACd0AAAAAAAAA3QAAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAA3wAAAAAAAAAuAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					61,
+					1,
+					"right_delete",
+					null,
+					"AQAAADQBAAAAAAAANAEAAAAAAAABAAAAOw",
+					"AQAAAAAAAAABAAAANAEAAAAAAAA0AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					62,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAADQBAAAAAAAANQEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAANAEAAAAAAAA0AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					63,
+					1,
+					"insert_snippet",
+					{
+						"contents": "{$0}"
+					},
+					"AQAAADUBAAAAAAAANwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAANQEAAAAAAAA1AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					64,
+					1,
+					"run_macro_file",
+					{
+						"file": "res://Packages/Default/Add Line in Braces.sublime-macro"
+					},
+					"BgAAADYBAAAAAAAANwEAAAAAAAAAAAAANwEAAAAAAAA4AQAAAAAAAAAAAAA4AQAAAAAAADkBAAAAAAAAAAAAADkBAAAAAAAAOgEAAAAAAAAAAAAANwEAAAAAAAA3AQAAAAAAAAEAAAAJNwEAAAAAAAA5AQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAANgEAAAAAAAA2AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					65,
+					1,
+					"insert",
+					{
+						"characters": "\n\n"
+					},
+					"BgAAADkBAAAAAAAAOgEAAAAAAAAAAAAAOgEAAAAAAAA8AQAAAAAAAAAAAAA3AQAAAAAAADcBAAAAAAAAAgAAAAkJOgEAAAAAAAA7AQAAAAAAAAAAAAA7AQAAAAAAAD0BAAAAAAAAAAAAADgBAAAAAAAAOAEAAAAAAAACAAAACQk",
+					"AQAAAAAAAAABAAAAOQEAAAAAAAA5AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					67,
+					1,
+					"reindent",
+					null,
+					"AQAAADcBAAAAAAAAOQEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAANwEAAAAAAAA3AQAAAAAAAAAAAAAAwFJA"
+				],
+				[
+					68,
+					1,
+					"insert",
+					{
+						"characters": "\nfor"
+					},
+					"BwAAADkBAAAAAAAAOgEAAAAAAAAAAAAAOgEAAAAAAAA8AQAAAAAAAAAAAAA+AQAAAAAAAD4BAAAAAAAAAgAAAAkJNwEAAAAAAAA3AQAAAAAAAAIAAAAJCToBAAAAAAAAOwEAAAAAAAAAAAAAOwEAAAAAAAA8AQAAAAAAAAAAAAA8AQAAAAAAAD0BAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAOQEAAAAAAAA5AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					69,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAD0BAAAAAAAAPwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAPQEAAAAAAAA9AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					70,
+					1,
+					"insert",
+					{
+						"characters": "auto"
+					},
+					"BAAAAD4BAAAAAAAAPwEAAAAAAAAAAAAAPwEAAAAAAABAAQAAAAAAAAAAAABAAQAAAAAAAEEBAAAAAAAAAAAAAEEBAAAAAAAAQgEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAPgEAAAAAAAA+AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					71,
+					4,
+					"left_delete",
+					null,
+					"BAAAAEEBAAAAAAAAQQEAAAAAAAABAAAAb0ABAAAAAAAAQAEAAAAAAAABAAAAdD8BAAAAAAAAPwEAAAAAAAABAAAAdT4BAAAAAAAAPgEAAAAAAAABAAAAYQ",
+					"AQAAAAAAAAABAAAAQgEAAAAAAABCAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					72,
+					1,
+					"insert",
+					{
+						"characters": "auot"
+					},
+					"BAAAAD4BAAAAAAAAPwEAAAAAAAAAAAAAPwEAAAAAAABAAQAAAAAAAAAAAABAAQAAAAAAAEEBAAAAAAAAAAAAAEEBAAAAAAAAQgEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAPgEAAAAAAAA+AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					73,
+					4,
+					"left_delete",
+					null,
+					"BAAAAEEBAAAAAAAAQQEAAAAAAAABAAAAdEABAAAAAAAAQAEAAAAAAAABAAAAbz8BAAAAAAAAPwEAAAAAAAABAAAAdT4BAAAAAAAAPgEAAAAAAAABAAAAYQ",
+					"AQAAAAAAAAABAAAAQgEAAAAAAABCAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					74,
+					1,
+					"insert",
+					{
+						"characters": "auoto"
+					},
+					"BQAAAD4BAAAAAAAAPwEAAAAAAAAAAAAAPwEAAAAAAABAAQAAAAAAAAAAAABAAQAAAAAAAEEBAAAAAAAAAAAAAEEBAAAAAAAAQgEAAAAAAAAAAAAAQgEAAAAAAABDAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAPgEAAAAAAAA+AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					75,
+					3,
+					"left_delete",
+					null,
+					"AwAAAEIBAAAAAAAAQgEAAAAAAAABAAAAb0EBAAAAAAAAQQEAAAAAAAABAAAAdEABAAAAAAAAQAEAAAAAAAABAAAAbw",
+					"AQAAAAAAAAABAAAAQwEAAAAAAABDAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					76,
+					1,
+					"insert",
+					{
+						"characters": "to&"
+					},
+					"AwAAAEABAAAAAAAAQQEAAAAAAAAAAAAAQQEAAAAAAABCAQAAAAAAAAAAAABCAQAAAAAAAEMBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAQAEAAAAAAABAAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					77,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAEMBAAAAAAAARAEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAQwEAAAAAAABDAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					78,
+					1,
+					"insert_completion",
+					{
+						"completion": "entity",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": true,
+						"trigger": "entity"
+					},
+					"AQAAAEQBAAAAAAAASgEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAARAEAAAAAAABEAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					79,
+					1,
+					"insert",
+					{
+						"characters": ":"
+					},
+					"AQAAAEoBAAAAAAAASwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAASgEAAAAAAABKAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					80,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAEsBAAAAAAAATAEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAASwEAAAAAAABLAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					81,
+					2,
+					"left_delete",
+					null,
+					"AgAAAEsBAAAAAAAASwEAAAAAAAABAAAAIEoBAAAAAAAASgEAAAAAAAABAAAAOg",
+					"AQAAAAAAAAABAAAATAEAAAAAAABMAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					82,
+					1,
+					"insert",
+					{
+						"characters": " :"
+					},
+					"AgAAAEoBAAAAAAAASwEAAAAAAAAAAAAASwEAAAAAAABMAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAASgEAAAAAAABKAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					83,
+					1,
+					"insert",
+					{
+						"characters": " en"
+					},
+					"AwAAAEwBAAAAAAAATQEAAAAAAAAAAAAATQEAAAAAAABOAQAAAAAAAAAAAABOAQAAAAAAAE8BAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAATAEAAAAAAABMAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					84,
+					1,
+					"insert_completion",
+					{
+						"completion": "entities",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "entities"
+					},
+					"AgAAAE0BAAAAAAAATQEAAAAAAAACAAAAZW5NAQAAAAAAAFUBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAATwEAAAAAAABPAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					86,
+					1,
+					"insert_snippet",
+					{
+						"contents": "{$0}"
+					},
+					"AQAAAFYBAAAAAAAAWAEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAVgEAAAAAAABWAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					87,
+					1,
+					"run_macro_file",
+					{
+						"file": "res://Packages/Default/Add Line in Braces.sublime-macro"
+					},
+					"BgAAAFcBAAAAAAAAWAEAAAAAAAAAAAAAWAEAAAAAAABaAQAAAAAAAAAAAABaAQAAAAAAAFsBAAAAAAAAAAAAAFsBAAAAAAAAXQEAAAAAAAAAAAAAWAEAAAAAAABYAQAAAAAAAAIAAAAJCVgBAAAAAAAAWwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAVwEAAAAAAABXAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					88,
+					1,
+					"insert",
+					{
+						"characters": "\n\n"
+					},
+					"BgAAAFsBAAAAAAAAXAEAAAAAAAAAAAAAXAEAAAAAAABfAQAAAAAAAAAAAABYAQAAAAAAAFgBAAAAAAAAAwAAAAkJCVwBAAAAAAAAXQEAAAAAAAAAAAAAXQEAAAAAAABgAQAAAAAAAAAAAABZAQAAAAAAAFkBAAAAAAAAAwAAAAkJCQ",
+					"AQAAAAAAAAABAAAAWwEAAAAAAABbAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					90,
+					1,
+					"reindent",
+					null,
+					"AQAAAFkBAAAAAAAAXAEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAWQEAAAAAAABZAQAAAAAAAAAAAAAAAFxA"
+				],
+				[
+					96,
+					1,
+					"left_delete",
+					null,
+					"AwAAAGoBAAAAAAAAagEAAAAAAAAyAAAAcHJpdmF0ZToKCglzdGQ6OnNoYXJlZF9wdHI8RUNTTWFuYWdlcj4gZWNzTWFuYWdlcjtdAQAAAAAAAF0BAAAAAAAAAwAAAAkJCVkBAAAAAAAAWQEAAAAAAAADAAAACQkJ",
+					"AQAAAAAAAAABAAAAnAEAAAAAAABqAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					97,
+					1,
+					"left_delete",
+					null,
+					"AQAAAGMBAAAAAAAAYwEAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAAZAEAAAAAAABkAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					102,
+					1,
+					"reindent",
+					null,
+					"AQAAAFgBAAAAAAAAWwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAWAEAAAAAAABYAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					103,
+					1,
+					"insert",
+					{
+						"characters": "if"
+					},
+					"AgAAAFsBAAAAAAAAXAEAAAAAAAAAAAAAXAEAAAAAAABdAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAWwEAAAAAAABbAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					104,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAF0BAAAAAAAAXwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAXQEAAAAAAABdAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					105,
+					1,
+					"insert",
+					{
+						"characters": "en"
+					},
+					"AgAAAF4BAAAAAAAAXwEAAAAAAAAAAAAAXwEAAAAAAABgAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAXgEAAAAAAABeAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					106,
+					1,
+					"insert_completion",
+					{
+						"completion": "entity",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "entity"
+					},
+					"AgAAAF4BAAAAAAAAXgEAAAAAAAACAAAAZW5eAQAAAAAAAGQBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYAEAAAAAAABgAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					108,
+					1,
+					"insert",
+					{
+						"characters": "/1"
+					},
+					"AgAAAF4BAAAAAAAAXwEAAAAAAAAAAAAAXwEAAAAAAABgAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAXgEAAAAAAABeAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					109,
+					2,
+					"left_delete",
+					null,
+					"AgAAAF8BAAAAAAAAXwEAAAAAAAABAAAAMV4BAAAAAAAAXgEAAAAAAAABAAAALw",
+					"AQAAAAAAAAABAAAAYAEAAAAAAABgAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					110,
+					1,
+					"insert",
+					{
+						"characters": "!"
+					},
+					"AQAAAF4BAAAAAAAAXwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAXgEAAAAAAABeAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					112,
+					1,
+					"insert",
+					{
+						"characters": "->"
+					},
+					"AgAAAGUBAAAAAAAAZgEAAAAAAAAAAAAAZgEAAAAAAABnAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAZQEAAAAAAABlAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					113,
+					1,
+					"insert_completion",
+					{
+						"completion": "isActive",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": true,
+						"trigger": "isActive"
+					},
+					"AQAAAGcBAAAAAAAAbwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAZwEAAAAAAABnAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					115,
+					1,
+					"insert",
+					{
+						"characters": " re"
+					},
+					"AwAAAHABAAAAAAAAcQEAAAAAAAAAAAAAcQEAAAAAAAByAQAAAAAAAAAAAAByAQAAAAAAAHMBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAcAEAAAAAAABwAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					116,
+					2,
+					"left_delete",
+					null,
+					"AgAAAHIBAAAAAAAAcgEAAAAAAAABAAAAZXEBAAAAAAAAcQEAAAAAAAABAAAAcg",
+					"AQAAAAAAAAABAAAAcwEAAAAAAABzAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					117,
+					1,
+					"insert",
+					{
+						"characters": "returl;"
+					},
+					"BwAAAHEBAAAAAAAAcgEAAAAAAAAAAAAAcgEAAAAAAABzAQAAAAAAAAAAAABzAQAAAAAAAHQBAAAAAAAAAAAAAHQBAAAAAAAAdQEAAAAAAAAAAAAAdQEAAAAAAAB2AQAAAAAAAAAAAAB2AQAAAAAAAHcBAAAAAAAAAAAAAHcBAAAAAAAAeAEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAcQEAAAAAAABxAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					118,
+					2,
+					"left_delete",
+					null,
+					"AgAAAHcBAAAAAAAAdwEAAAAAAAABAAAAO3YBAAAAAAAAdgEAAAAAAAABAAAAbA",
+					"AQAAAAAAAAABAAAAeAEAAAAAAAB4AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					119,
+					1,
+					"insert",
+					{
+						"characters": "n;"
+					},
+					"AgAAAHYBAAAAAAAAdwEAAAAAAAAAAAAAdwEAAAAAAAB4AQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAdgEAAAAAAAB2AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					125,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAHgBAAAAAAAAeQEAAAAAAAAAAAAAeQEAAAAAAAB8AQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAeAEAAAAAAAB4AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					126,
+					1,
+					"paste",
+					null,
+					"AQAAAHwBAAAAAAAAmQEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfAEAAAAAAAB8AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					129,
+					1,
+					"left_delete",
+					null,
+					"AQAAAH8BAAAAAAAAfwEAAAAAAAABAAAAIQ",
+					"AQAAAAAAAAABAAAAgAEAAAAAAACAAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					132,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJEBAAAAAAAAkQEAAAAAAAAHAAAAcmV0dXJuOw",
+					"AQAAAAAAAAABAAAAkQEAAAAAAACYAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					135,
+					1,
+					"insert",
+					{
+						"characters": "haS"
+					},
+					"BAAAAIcBAAAAAAAAiAEAAAAAAAAAAAAAiAEAAAAAAACIAQAAAAAAAAgAAABpc0FjdGl2ZYgBAAAAAAAAiQEAAAAAAAAAAAAAiQEAAAAAAACKAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAjwEAAAAAAACHAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					136,
+					1,
+					"insert_completion",
+					{
+						"completion": "hasComponent",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "hasComponent"
+					},
+					"AgAAAIcBAAAAAAAAhwEAAAAAAAADAAAAaGFThwEAAAAAAACTAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAigEAAAAAAACKAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					137,
+					1,
+					"insert",
+					{
+						"characters": "<Tr"
+					},
+					"AwAAAJMBAAAAAAAAlAEAAAAAAAAAAAAAlAEAAAAAAACVAQAAAAAAAAAAAACVAQAAAAAAAJYBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAkwEAAAAAAACTAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					138,
+					1,
+					"insert",
+					{
+						"characters": "ans"
+					},
+					"AwAAAJYBAAAAAAAAlwEAAAAAAAAAAAAAlwEAAAAAAACYAQAAAAAAAAAAAACYAQAAAAAAAJkBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlgEAAAAAAACWAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					139,
+					5,
+					"left_delete",
+					null,
+					"BQAAAJgBAAAAAAAAmAEAAAAAAAABAAAAc5cBAAAAAAAAlwEAAAAAAAABAAAAbpYBAAAAAAAAlgEAAAAAAAABAAAAYZUBAAAAAAAAlQEAAAAAAAABAAAAcpQBAAAAAAAAlAEAAAAAAAABAAAAVA",
+					"AQAAAAAAAAABAAAAmQEAAAAAAACZAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					140,
+					1,
+					"insert",
+					{
+						"characters": "Spr"
+					},
+					"AwAAAJQBAAAAAAAAlQEAAAAAAAAAAAAAlQEAAAAAAACWAQAAAAAAAAAAAACWAQAAAAAAAJcBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlAEAAAAAAACUAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					141,
+					1,
+					"insert_completion",
+					{
+						"completion": "SpriteComponent",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "SpriteComponent"
+					},
+					"AgAAAJQBAAAAAAAAlAEAAAAAAAADAAAAU3BylAEAAAAAAACjAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlwEAAAAAAACXAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					142,
+					1,
+					"insert",
+					{
+						"characters": ">"
+					},
+					"AQAAAKMBAAAAAAAApAEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAowEAAAAAAACjAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					143,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAKQBAAAAAAAApgEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAApAEAAAAAAACkAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					145,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAKYBAAAAAAAApwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAApgEAAAAAAACmAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					146,
+					1,
+					"left_delete",
+					null,
+					"AQAAAKYBAAAAAAAApgEAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAApwEAAAAAAACnAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					147,
+					1,
+					"insert",
+					{
+						"characters": "&&"
+					},
+					"AgAAAKYBAAAAAAAApwEAAAAAAAAAAAAApwEAAAAAAACoAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAApgEAAAAAAACmAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					148,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAKgBAAAAAAAAqQEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAqAEAAAAAAACoAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					149,
+					3,
+					"left_delete",
+					null,
+					"AwAAAKgBAAAAAAAAqAEAAAAAAAABAAAAIKcBAAAAAAAApwEAAAAAAAABAAAAJqYBAAAAAAAApgEAAAAAAAABAAAAJg",
+					"AQAAAAAAAAABAAAAqQEAAAAAAACpAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					150,
+					1,
+					"insert",
+					{
+						"characters": " &&"
+					},
+					"AwAAAKYBAAAAAAAApwEAAAAAAAAAAAAApwEAAAAAAACoAQAAAAAAAAAAAACoAQAAAAAAAKkBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAApgEAAAAAAACmAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					151,
+					1,
+					"insert",
+					{
+						"characters": " en"
+					},
+					"AwAAAKkBAAAAAAAAqgEAAAAAAAAAAAAAqgEAAAAAAACrAQAAAAAAAAAAAACrAQAAAAAAAKwBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAqQEAAAAAAACpAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					152,
+					1,
+					"insert_completion",
+					{
+						"completion": "entity",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "entity"
+					},
+					"AgAAAKoBAAAAAAAAqgEAAAAAAAACAAAAZW6qAQAAAAAAALABAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAArAEAAAAAAACsAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					153,
+					1,
+					"insert",
+					{
+						"characters": "->"
+					},
+					"AgAAALABAAAAAAAAsQEAAAAAAAAAAAAAsQEAAAAAAACyAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAsAEAAAAAAACwAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					154,
+					1,
+					"insert_completion",
+					{
+						"completion": "hasComponent",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": true,
+						"trigger": "hasComponent"
+					},
+					"AQAAALIBAAAAAAAAvgEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAsgEAAAAAAACyAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					155,
+					1,
+					"insert",
+					{
+						"characters": "<Tran"
+					},
+					"BQAAAL4BAAAAAAAAvwEAAAAAAAAAAAAAvwEAAAAAAADAAQAAAAAAAAAAAADAAQAAAAAAAMEBAAAAAAAAAAAAAMEBAAAAAAAAwgEAAAAAAAAAAAAAwgEAAAAAAADDAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAvgEAAAAAAAC+AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					156,
+					1,
+					"insert",
+					{
+						"characters": "sfro"
+					},
+					"BAAAAMMBAAAAAAAAxAEAAAAAAAAAAAAAxAEAAAAAAADFAQAAAAAAAAAAAADFAQAAAAAAAMYBAAAAAAAAAAAAAMYBAAAAAAAAxwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAwwEAAAAAAADDAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					157,
+					2,
+					"left_delete",
+					null,
+					"AgAAAMYBAAAAAAAAxgEAAAAAAAABAAAAb8UBAAAAAAAAxQEAAAAAAAABAAAAcg",
+					"AQAAAAAAAAABAAAAxwEAAAAAAADHAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					158,
+					1,
+					"insert",
+					{
+						"characters": "ormComponent"
+					},
+					"DAAAAMUBAAAAAAAAxgEAAAAAAAAAAAAAxgEAAAAAAADHAQAAAAAAAAAAAADHAQAAAAAAAMgBAAAAAAAAAAAAAMgBAAAAAAAAyQEAAAAAAAAAAAAAyQEAAAAAAADKAQAAAAAAAAAAAADKAQAAAAAAAMsBAAAAAAAAAAAAAMsBAAAAAAAAzAEAAAAAAAAAAAAAzAEAAAAAAADNAQAAAAAAAAAAAADNAQAAAAAAAM4BAAAAAAAAAAAAAM4BAAAAAAAAzwEAAAAAAAAAAAAAzwEAAAAAAADQAQAAAAAAAAAAAADQAQAAAAAAANEBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAxQEAAAAAAADFAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					159,
+					1,
+					"insert",
+					{
+						"characters": "."
+					},
+					"AQAAANEBAAAAAAAA0gEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA0QEAAAAAAADRAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					160,
+					1,
+					"left_delete",
+					null,
+					"AQAAANEBAAAAAAAA0QEAAAAAAAABAAAALg",
+					"AQAAAAAAAAABAAAA0gEAAAAAAADSAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					161,
+					1,
+					"insert",
+					{
+						"characters": ">"
+					},
+					"AQAAANEBAAAAAAAA0gEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA0QEAAAAAAADRAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					162,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAANIBAAAAAAAA1AEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA0gEAAAAAAADSAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					165,
+					1,
+					"insert_snippet",
+					{
+						"contents": "{$0}"
+					},
+					"AQAAANUBAAAAAAAA1wEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1QEAAAAAAADVAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					166,
+					1,
+					"run_macro_file",
+					{
+						"file": "res://Packages/Default/Add Line in Braces.sublime-macro"
+					},
+					"BgAAANYBAAAAAAAA1wEAAAAAAAAAAAAA1wEAAAAAAADaAQAAAAAAAAAAAADaAQAAAAAAANsBAAAAAAAAAAAAANsBAAAAAAAA3gEAAAAAAAAAAAAA1wEAAAAAAADXAQAAAAAAAAMAAAAJCQnXAQAAAAAAANsBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1gEAAAAAAADWAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					167,
+					1,
+					"insert",
+					{
+						"characters": "\n\n"
+					},
+					"BgAAANsBAAAAAAAA3AEAAAAAAAAAAAAA3AEAAAAAAADgAQAAAAAAAAAAAADXAQAAAAAAANcBAAAAAAAABAAAAAkJCQncAQAAAAAAAN0BAAAAAAAAAAAAAN0BAAAAAAAA4QEAAAAAAAAAAAAA2AEAAAAAAADYAQAAAAAAAAQAAAAJCQkJ",
+					"AQAAAAAAAAABAAAA2wEAAAAAAADbAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					169,
+					1,
+					"reindent",
+					null,
+					"AQAAANcBAAAAAAAA2wEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1wEAAAAAAADXAQAAAAAAAAAAAAAAwGJA"
+				],
+				[
+					170,
+					1,
+					"insert",
+					{
+						"characters": "\nauto"
+					},
+					"CAAAANsBAAAAAAAA3AEAAAAAAAAAAAAA3AEAAAAAAADgAQAAAAAAAAAAAADiAQAAAAAAAOIBAAAAAAAABAAAAAkJCQnXAQAAAAAAANcBAAAAAAAABAAAAAkJCQncAQAAAAAAAN0BAAAAAAAAAAAAAN0BAAAAAAAA3gEAAAAAAAAAAAAA3gEAAAAAAADfAQAAAAAAAAAAAADfAQAAAAAAAOABAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA2wEAAAAAAADbAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					171,
+					1,
+					"insert",
+					{
+						"characters": " sp"
+					},
+					"AwAAAOABAAAAAAAA4QEAAAAAAAAAAAAA4QEAAAAAAADiAQAAAAAAAAAAAADiAQAAAAAAAOMBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA4AEAAAAAAADgAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					172,
+					1,
+					"insert",
+					{
+						"characters": "ri"
+					},
+					"AgAAAOMBAAAAAAAA5AEAAAAAAAAAAAAA5AEAAAAAAADlAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA4wEAAAAAAADjAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					173,
+					2,
+					"left_delete",
+					null,
+					"AgAAAOQBAAAAAAAA5AEAAAAAAAABAAAAaeMBAAAAAAAA4wEAAAAAAAABAAAAcg",
+					"AQAAAAAAAAABAAAA5QEAAAAAAADlAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					174,
+					1,
+					"insert",
+					{
+						"characters": "riteComp"
+					},
+					"CAAAAOMBAAAAAAAA5AEAAAAAAAAAAAAA5AEAAAAAAADlAQAAAAAAAAAAAADlAQAAAAAAAOYBAAAAAAAAAAAAAOYBAAAAAAAA5wEAAAAAAAAAAAAA5wEAAAAAAADoAQAAAAAAAAAAAADoAQAAAAAAAOkBAAAAAAAAAAAAAOkBAAAAAAAA6gEAAAAAAAAAAAAA6gEAAAAAAADrAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA4wEAAAAAAADjAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					175,
+					1,
+					"insert",
+					{
+						"characters": " ="
+					},
+					"AgAAAOsBAAAAAAAA7AEAAAAAAAAAAAAA7AEAAAAAAADtAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA6wEAAAAAAADrAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					176,
+					1,
+					"insert",
+					{
+						"characters": " enti"
+					},
+					"BQAAAO0BAAAAAAAA7gEAAAAAAAAAAAAA7gEAAAAAAADvAQAAAAAAAAAAAADvAQAAAAAAAPABAAAAAAAAAAAAAPABAAAAAAAA8QEAAAAAAAAAAAAA8QEAAAAAAADyAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA7QEAAAAAAADtAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					177,
+					1,
+					"insert_completion",
+					{
+						"completion": "entity",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "entity"
+					},
+					"AgAAAO4BAAAAAAAA7gEAAAAAAAAEAAAAZW50ae4BAAAAAAAA9AEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA8gEAAAAAAADyAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					178,
+					1,
+					"insert",
+					{
+						"characters": "->ge"
+					},
+					"BAAAAPQBAAAAAAAA9QEAAAAAAAAAAAAA9QEAAAAAAAD2AQAAAAAAAAAAAAD2AQAAAAAAAPcBAAAAAAAAAAAAAPcBAAAAAAAA+AEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA9AEAAAAAAAD0AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					179,
+					1,
+					"insert_completion",
+					{
+						"completion": "getComponent",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "getComponent"
+					},
+					"AgAAAPYBAAAAAAAA9gEAAAAAAAACAAAAZ2X2AQAAAAAAAAICAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA+AEAAAAAAAD4AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					180,
+					1,
+					"insert",
+					{
+						"characters": "<Sp"
+					},
+					"AwAAAAICAAAAAAAAAwIAAAAAAAAAAAAAAwIAAAAAAAAEAgAAAAAAAAAAAAAEAgAAAAAAAAUCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAAgIAAAAAAAACAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					181,
+					1,
+					"insert_completion",
+					{
+						"completion": "SpriteComponent",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "SpriteComponent"
+					},
+					"AgAAAAMCAAAAAAAAAwIAAAAAAAACAAAAU3ADAgAAAAAAABICAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAABQIAAAAAAAAFAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					182,
+					1,
+					"insert",
+					{
+						"characters": ">"
+					},
+					"AQAAABICAAAAAAAAEwIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAEgIAAAAAAAASAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					183,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAABMCAAAAAAAAFQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAEwIAAAAAAAATAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					185,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAABUCAAAAAAAAFgIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAFQIAAAAAAAAVAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					186,
+					1,
+					"insert",
+					{
+						"characters": "\nauto"
+					},
+					"BgAAABYCAAAAAAAAFwIAAAAAAAAAAAAAFwIAAAAAAAAbAgAAAAAAAAAAAAAbAgAAAAAAABwCAAAAAAAAAAAAABwCAAAAAAAAHQIAAAAAAAAAAAAAHQIAAAAAAAAeAgAAAAAAAAAAAAAeAgAAAAAAAB8CAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAFgIAAAAAAAAWAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					187,
+					1,
+					"insert",
+					{
+						"characters": " transComp"
+					},
+					"CgAAAB8CAAAAAAAAIAIAAAAAAAAAAAAAIAIAAAAAAAAhAgAAAAAAAAAAAAAhAgAAAAAAACICAAAAAAAAAAAAACICAAAAAAAAIwIAAAAAAAAAAAAAIwIAAAAAAAAkAgAAAAAAAAAAAAAkAgAAAAAAACUCAAAAAAAAAAAAACUCAAAAAAAAJgIAAAAAAAAAAAAAJgIAAAAAAAAnAgAAAAAAAAAAAAAnAgAAAAAAACgCAAAAAAAAAAAAACgCAAAAAAAAKQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAHwIAAAAAAAAfAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					188,
+					1,
+					"insert",
+					{
+						"characters": " ="
+					},
+					"AgAAACkCAAAAAAAAKgIAAAAAAAAAAAAAKgIAAAAAAAArAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAKQIAAAAAAAApAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					189,
+					1,
+					"insert",
+					{
+						"characters": " en"
+					},
+					"AwAAACsCAAAAAAAALAIAAAAAAAAAAAAALAIAAAAAAAAtAgAAAAAAAAAAAAAtAgAAAAAAAC4CAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAKwIAAAAAAAArAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					190,
+					1,
+					"insert_completion",
+					{
+						"completion": "entity",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "entity"
+					},
+					"AgAAACwCAAAAAAAALAIAAAAAAAACAAAAZW4sAgAAAAAAADICAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAALgIAAAAAAAAuAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					191,
+					1,
+					"insert",
+					{
+						"characters": "->ge"
+					},
+					"BAAAADICAAAAAAAAMwIAAAAAAAAAAAAAMwIAAAAAAAA0AgAAAAAAAAAAAAA0AgAAAAAAADUCAAAAAAAAAAAAADUCAAAAAAAANgIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAMgIAAAAAAAAyAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					192,
+					1,
+					"insert_completion",
+					{
+						"completion": "getComponent",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "getComponent"
+					},
+					"AgAAADQCAAAAAAAANAIAAAAAAAACAAAAZ2U0AgAAAAAAAEACAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAANgIAAAAAAAA2AgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					193,
+					1,
+					"insert",
+					{
+						"characters": "<Tr"
+					},
+					"AwAAAEACAAAAAAAAQQIAAAAAAAAAAAAAQQIAAAAAAABCAgAAAAAAAAAAAABCAgAAAAAAAEMCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAQAIAAAAAAABAAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					194,
+					1,
+					"insert_completion",
+					{
+						"completion": "TransformComponent",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "TransformComponent"
+					},
+					"AgAAAEECAAAAAAAAQQIAAAAAAAACAAAAVHJBAgAAAAAAAFMCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAQwIAAAAAAABDAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					195,
+					1,
+					"insert",
+					{
+						"characters": ">"
+					},
+					"AQAAAFMCAAAAAAAAVAIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAUwIAAAAAAABTAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					196,
+					2,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AgAAAFQCAAAAAAAAVgIAAAAAAAAAAAAAVQIAAAAAAABXAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAVAIAAAAAAABUAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					198,
+					1,
+					"left_delete",
+					null,
+					"AQAAAFYCAAAAAAAAVgIAAAAAAAABAAAAKQ",
+					"AQAAAAAAAAABAAAAVwIAAAAAAABXAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					199,
+					1,
+					"run_macro_file",
+					{
+						"file": "res://Packages/Default/Delete Left Right.sublime-macro"
+					},
+					"AgAAAFUCAAAAAAAAVQIAAAAAAAABAAAAKFUCAAAAAAAAVQIAAAAAAAABAAAAKQ",
+					"AQAAAAAAAAABAAAAVgIAAAAAAABWAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					203,
+					1,
+					"insert",
+					{
+						"characters": ");"
+					},
+					"AgAAAFUCAAAAAAAAVgIAAAAAAAAAAAAAVgIAAAAAAABXAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAVQIAAAAAAABVAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					204,
+					1,
+					"insert",
+					{
+						"characters": "\n\nif"
+					},
+					"BwAAAFcCAAAAAAAAWAIAAAAAAAAAAAAAWAIAAAAAAABcAgAAAAAAAAAAAABcAgAAAAAAAF0CAAAAAAAAAAAAAF0CAAAAAAAAYQIAAAAAAAAAAAAAWAIAAAAAAABYAgAAAAAAAAQAAAAJCQkJXQIAAAAAAABeAgAAAAAAAAAAAABeAgAAAAAAAF8CAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAVwIAAAAAAABXAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					205,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAF8CAAAAAAAAYQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAXwIAAAAAAABfAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					206,
+					1,
+					"insert",
+					{
+						"characters": "p"
+					},
+					"AQAAAGACAAAAAAAAYQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYAIAAAAAAABgAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					207,
+					1,
+					"left_delete",
+					null,
+					"AQAAAGACAAAAAAAAYAIAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAYQIAAAAAAABhAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					208,
+					1,
+					"insert",
+					{
+						"characters": "sp"
+					},
+					"AgAAAGACAAAAAAAAYQIAAAAAAAAAAAAAYQIAAAAAAABiAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYAIAAAAAAABgAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					209,
+					1,
+					"insert_completion",
+					{
+						"completion": "SpriteComponent",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "SpriteComponent"
+					},
+					"AgAAAGACAAAAAAAAYAIAAAAAAAACAAAAc3BgAgAAAAAAAG8CAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYgIAAAAAAABiAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					210,
+					15,
+					"left_delete",
+					null,
+					"DwAAAG4CAAAAAAAAbgIAAAAAAAABAAAAdG0CAAAAAAAAbQIAAAAAAAABAAAAbmwCAAAAAAAAbAIAAAAAAAABAAAAZWsCAAAAAAAAawIAAAAAAAABAAAAbmoCAAAAAAAAagIAAAAAAAABAAAAb2kCAAAAAAAAaQIAAAAAAAABAAAAcGgCAAAAAAAAaAIAAAAAAAABAAAAbWcCAAAAAAAAZwIAAAAAAAABAAAAb2YCAAAAAAAAZgIAAAAAAAABAAAAQ2UCAAAAAAAAZQIAAAAAAAABAAAAZWQCAAAAAAAAZAIAAAAAAAABAAAAdGMCAAAAAAAAYwIAAAAAAAABAAAAaWICAAAAAAAAYgIAAAAAAAABAAAAcmECAAAAAAAAYQIAAAAAAAABAAAAcGACAAAAAAAAYAIAAAAAAAABAAAAUw",
+					"AQAAAAAAAAABAAAAbwIAAAAAAABvAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					211,
+					1,
+					"insert",
+					{
+						"characters": "spr"
+					},
+					"AwAAAGACAAAAAAAAYQIAAAAAAAAAAAAAYQIAAAAAAABiAgAAAAAAAAAAAABiAgAAAAAAAGMCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYAIAAAAAAABgAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					213,
+					1,
+					"insert_completion",
+					{
+						"completion": "spriteComp",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "spriteComp"
+					},
+					"AgAAAGACAAAAAAAAYAIAAAAAAAADAAAAc3ByYAIAAAAAAABqAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYwIAAAAAAABjAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					214,
+					1,
+					"insert",
+					{
+						"characters": "&&tra"
+					},
+					"BQAAAGoCAAAAAAAAawIAAAAAAAAAAAAAawIAAAAAAABsAgAAAAAAAAAAAABsAgAAAAAAAG0CAAAAAAAAAAAAAG0CAAAAAAAAbgIAAAAAAAAAAAAAbgIAAAAAAABvAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAagIAAAAAAABqAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					215,
+					1,
+					"insert_completion",
+					{
+						"completion": "transComp",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "transComp"
+					},
+					"AgAAAGwCAAAAAAAAbAIAAAAAAAADAAAAdHJhbAIAAAAAAAB1AgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAbwIAAAAAAABvAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					217,
+					1,
+					"insert_snippet",
+					{
+						"contents": "{$0}"
+					},
+					"AQAAAHYCAAAAAAAAeAIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAdgIAAAAAAAB2AgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					218,
+					1,
+					"run_macro_file",
+					{
+						"file": "res://Packages/Default/Add Line in Braces.sublime-macro"
+					},
+					"BgAAAHcCAAAAAAAAeAIAAAAAAAAAAAAAeAIAAAAAAAB8AgAAAAAAAAAAAAB8AgAAAAAAAH0CAAAAAAAAAAAAAH0CAAAAAAAAgQIAAAAAAAAAAAAAeAIAAAAAAAB4AgAAAAAAAAQAAAAJCQkJeAIAAAAAAAB9AgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAdwIAAAAAAAB3AgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					219,
+					1,
+					"insert",
+					{
+						"characters": "spr"
+					},
+					"AwAAAH0CAAAAAAAAfgIAAAAAAAAAAAAAfgIAAAAAAAB/AgAAAAAAAAAAAAB/AgAAAAAAAIACAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfQIAAAAAAAB9AgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					221,
+					1,
+					"insert_completion",
+					{
+						"completion": "spriteComp",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "spriteComp"
+					},
+					"AgAAAH0CAAAAAAAAfQIAAAAAAAADAAAAc3ByfQIAAAAAAACHAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgAIAAAAAAACAAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					222,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAIcCAAAAAAAAiAIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAhwIAAAAAAACHAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					223,
+					1,
+					"left_delete",
+					null,
+					"AQAAAIcCAAAAAAAAhwIAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAAiAIAAAAAAACIAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					224,
+					1,
+					"insert",
+					{
+						"characters": ".des"
+					},
+					"BAAAAIcCAAAAAAAAiAIAAAAAAAAAAAAAiAIAAAAAAACJAgAAAAAAAAAAAACJAgAAAAAAAIoCAAAAAAAAAAAAAIoCAAAAAAAAiwIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAhwIAAAAAAACHAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					225,
+					2,
+					"left_delete",
+					null,
+					"AgAAAIoCAAAAAAAAigIAAAAAAAABAAAAc4kCAAAAAAAAiQIAAAAAAAABAAAAZQ",
+					"AQAAAAAAAAABAAAAiwIAAAAAAACLAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					226,
+					1,
+					"insert",
+					{
+						"characters": "stRect."
+					},
+					"BwAAAIkCAAAAAAAAigIAAAAAAAAAAAAAigIAAAAAAACLAgAAAAAAAAAAAACLAgAAAAAAAIwCAAAAAAAAAAAAAIwCAAAAAAAAjQIAAAAAAAAAAAAAjQIAAAAAAACOAgAAAAAAAAAAAACOAgAAAAAAAI8CAAAAAAAAAAAAAI8CAAAAAAAAkAIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAiQIAAAAAAACJAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					227,
+					1,
+					"insert",
+					{
+						"characters": "w"
+					},
+					"AQAAAJACAAAAAAAAkQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAkAIAAAAAAACQAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					228,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAJECAAAAAAAAkgIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAkQIAAAAAAACRAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					230,
+					1,
+					"left_delete",
+					null,
+					"AQAAAIcCAAAAAAAAhwIAAAAAAAABAAAALg",
+					"AQAAAAAAAAABAAAAiAIAAAAAAACIAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					231,
+					1,
+					"insert",
+					{
+						"characters": "-?"
+					},
+					"AgAAAIcCAAAAAAAAiAIAAAAAAAAAAAAAiAIAAAAAAACJAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAhwIAAAAAAACHAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					232,
+					1,
+					"left_delete",
+					null,
+					"AQAAAIgCAAAAAAAAiAIAAAAAAAABAAAAPw",
+					"AQAAAAAAAAABAAAAiQIAAAAAAACJAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					233,
+					1,
+					"insert",
+					{
+						"characters": ">"
+					},
+					"AQAAAIgCAAAAAAAAiQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAiAIAAAAAAACIAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					236,
+					1,
+					"insert",
+					{
+						"characters": "=="
+					},
+					"AgAAAJMCAAAAAAAAlAIAAAAAAAAAAAAAlAIAAAAAAACVAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAkwIAAAAAAACTAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					237,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJQCAAAAAAAAlAIAAAAAAAABAAAAPQ",
+					"AQAAAAAAAAABAAAAlQIAAAAAAACVAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					238,
+					1,
+					"insert",
+					{
+						"characters": " trans"
+					},
+					"BgAAAJQCAAAAAAAAlQIAAAAAAAAAAAAAlQIAAAAAAACWAgAAAAAAAAAAAACWAgAAAAAAAJcCAAAAAAAAAAAAAJcCAAAAAAAAmAIAAAAAAAAAAAAAmAIAAAAAAACZAgAAAAAAAAAAAACZAgAAAAAAAJoCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlAIAAAAAAACUAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					239,
+					1,
+					"insert_completion",
+					{
+						"completion": "transComp",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "transComp"
+					},
+					"AgAAAJUCAAAAAAAAlQIAAAAAAAAFAAAAdHJhbnOVAgAAAAAAAJ4CAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmgIAAAAAAACaAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					240,
+					1,
+					"insert",
+					{
+						"characters": "->w"
+					},
+					"AwAAAJ4CAAAAAAAAnwIAAAAAAAAAAAAAnwIAAAAAAACgAgAAAAAAAAAAAACgAgAAAAAAAKECAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAngIAAAAAAACeAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					241,
+					1,
+					"insert",
+					{
+						"characters": "idth"
+					},
+					"BAAAAKECAAAAAAAAogIAAAAAAAAAAAAAogIAAAAAAACjAgAAAAAAAAAAAACjAgAAAAAAAKQCAAAAAAAAAAAAAKQCAAAAAAAApQIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAoQIAAAAAAAChAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					242,
+					1,
+					"insert",
+					{
+						"characters": " *"
+					},
+					"AgAAAKUCAAAAAAAApgIAAAAAAAAAAAAApgIAAAAAAACnAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAApQIAAAAAAAClAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					243,
+					1,
+					"insert",
+					{
+						"characters": " trans"
+					},
+					"BgAAAKcCAAAAAAAAqAIAAAAAAAAAAAAAqAIAAAAAAACpAgAAAAAAAAAAAACpAgAAAAAAAKoCAAAAAAAAAAAAAKoCAAAAAAAAqwIAAAAAAAAAAAAAqwIAAAAAAACsAgAAAAAAAAAAAACsAgAAAAAAAK0CAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAApwIAAAAAAACnAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					244,
+					1,
+					"insert_completion",
+					{
+						"completion": "transComp",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "transComp"
+					},
+					"AgAAAKgCAAAAAAAAqAIAAAAAAAAFAAAAdHJhbnOoAgAAAAAAALECAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAArQIAAAAAAACtAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					245,
+					1,
+					"insert",
+					{
+						"characters": "-<>"
+					},
+					"AwAAALECAAAAAAAAsgIAAAAAAAAAAAAAsgIAAAAAAACzAgAAAAAAAAAAAACzAgAAAAAAALQCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAsQIAAAAAAACxAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					246,
+					2,
+					"left_delete",
+					null,
+					"AgAAALMCAAAAAAAAswIAAAAAAAABAAAAPrICAAAAAAAAsgIAAAAAAAABAAAAPA",
+					"AQAAAAAAAAABAAAAtAIAAAAAAAC0AgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					247,
+					1,
+					"insert",
+					{
+						"characters": ">sca"
+					},
+					"BAAAALICAAAAAAAAswIAAAAAAAAAAAAAswIAAAAAAAC0AgAAAAAAAAAAAAC0AgAAAAAAALUCAAAAAAAAAAAAALUCAAAAAAAAtgIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAsgIAAAAAAACyAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					248,
+					1,
+					"insert",
+					{
+						"characters": "le"
+					},
+					"AgAAALYCAAAAAAAAtwIAAAAAAAAAAAAAtwIAAAAAAAC4AgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAtgIAAAAAAAC2AgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					251,
+					1,
+					"insert",
+					{
+						"characters": "("
+					},
+					"AQAAAJUCAAAAAAAAlgIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlQIAAAAAAACVAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					253,
+					1,
+					"insert",
+					{
+						"characters": ");"
+					},
+					"AgAAALkCAAAAAAAAugIAAAAAAAAAAAAAugIAAAAAAAC7AgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAuQIAAAAAAAC5AgAAAAAAAP///////+9/"
+				],
+				[
+					256,
+					1,
+					"insert",
+					{
+						"characters": "(int)"
+					},
+					"BQAAAJUCAAAAAAAAlgIAAAAAAAAAAAAAlgIAAAAAAACXAgAAAAAAAAAAAACXAgAAAAAAAJgCAAAAAAAAAAAAAJgCAAAAAAAAmQIAAAAAAAAAAAAAmQIAAAAAAACaAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAlQIAAAAAAACVAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					264,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAMACAAAAAAAAwQIAAAAAAAAAAAAAwQIAAAAAAADGAgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAwAIAAAAAAADAAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					265,
+					1,
+					"paste",
+					null,
+					"AQAAAMYCAAAAAAAACQMAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAxgIAAAAAAADGAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					268,
+					1,
+					"insert",
+					{
+						"characters": "h"
+					},
+					"AgAAANoCAAAAAAAA2wIAAAAAAAAAAAAA2wIAAAAAAADbAgAAAAAAAAEAAAB3",
+					"AQAAAAAAAAABAAAA2wIAAAAAAADaAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					271,
+					1,
+					"insert",
+					{
+						"characters": "hedith"
+					},
+					"BwAAAO8CAAAAAAAA8AIAAAAAAAAAAAAA8AIAAAAAAADwAgAAAAAAAAUAAAB3aWR0aPACAAAAAAAA8QIAAAAAAAAAAAAA8QIAAAAAAADyAgAAAAAAAAAAAADyAgAAAAAAAPMCAAAAAAAAAAAAAPMCAAAAAAAA9AIAAAAAAAAAAAAA9AIAAAAAAAD1AgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA7wIAAAAAAAD0AgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					272,
+					4,
+					"left_delete",
+					null,
+					"BAAAAPQCAAAAAAAA9AIAAAAAAAABAAAAaPMCAAAAAAAA8wIAAAAAAAABAAAAdPICAAAAAAAA8gIAAAAAAAABAAAAafECAAAAAAAA8QIAAAAAAAABAAAAZA",
+					"AQAAAAAAAAABAAAA9QIAAAAAAAD1AgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					273,
+					1,
+					"insert",
+					{
+						"characters": "ight"
+					},
+					"BAAAAPECAAAAAAAA8gIAAAAAAAAAAAAA8gIAAAAAAADzAgAAAAAAAAAAAADzAgAAAAAAAPQCAAAAAAAAAAAAAPQCAAAAAAAA9QIAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA8QIAAAAAAADxAgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					275,
+					1,
+					"left_delete",
+					null,
+					"AQAAABADAAAAAAAAEAMAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAAEQMAAAAAAAARAwAAAAAAAAAAAAAAkINA"
+				]
+			]
+		},
+		{
+			"file": "include/Systems/Systems.h",
+			"settings":
+			{
+				"buffer_size": 482,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					5,
+					1,
+					"insert",
+					{
+						"characters": "\n#in"
+					},
+					"BAAAAHYBAAAAAAAAdwEAAAAAAAAAAAAAdwEAAAAAAAB4AQAAAAAAAAAAAAB4AQAAAAAAAHkBAAAAAAAAAAAAAHkBAAAAAAAAegEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAdgEAAAAAAAB2AQAAAAAAAP///////+9/"
+				],
+				[
+					6,
+					1,
+					"insert_completion",
+					{
+						"completion": "include",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "include"
+					},
+					"AgAAAHgBAAAAAAAAeAEAAAAAAAACAAAAaW54AQAAAAAAAH8BAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAegEAAAAAAAB6AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					7,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAH8BAAAAAAAAgAEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfwEAAAAAAAB/AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					8,
+					1,
+					"insert_snippet",
+					{
+						"contents": "\"$0\""
+					},
+					"AQAAAIABAAAAAAAAggEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgAEAAAAAAACAAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					9,
+					1,
+					"insert",
+					{
+						"characters": "SyncSys"
+					},
+					"BwAAAIEBAAAAAAAAggEAAAAAAAAAAAAAggEAAAAAAACDAQAAAAAAAAAAAACDAQAAAAAAAIQBAAAAAAAAAAAAAIQBAAAAAAAAhQEAAAAAAAAAAAAAhQEAAAAAAACGAQAAAAAAAAAAAACGAQAAAAAAAIcBAAAAAAAAAAAAAIcBAAAAAAAAiAEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgQEAAAAAAACBAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					10,
+					1,
+					"insert",
+					{
+						"characters": "tem.h"
+					},
+					"BQAAAIgBAAAAAAAAiQEAAAAAAAAAAAAAiQEAAAAAAACKAQAAAAAAAAAAAACKAQAAAAAAAIsBAAAAAAAAAAAAAIsBAAAAAAAAjAEAAAAAAAAAAAAAjAEAAAAAAACNAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAiAEAAAAAAACIAQAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "include/Requests.h",
+			"settings":
+			{
+				"buffer_size": 590,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/Game.cpp",
+			"settings":
+			{
+				"buffer_size": 5993,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					20,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAJ8IAAAAAAAAoAgAAAAAAAAAAAAAoAgAAAAAAACkCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAnwgAAAAAAACfCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					21,
+					1,
+					"paste",
+					null,
+					"AQAAAKQIAAAAAAAA/AgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAApAgAAAAAAACkCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					24,
+					1,
+					"left_delete",
+					null,
+					"AQAAAKQIAAAAAAAApAgAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAApQgAAAAAAAClCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					27,
+					2,
+					"left_delete",
+					null,
+					"AgAAAOIIAAAAAAAA4ggAAAAAAAABAAAAMOEIAAAAAAAA4QgAAAAAAAABAAAAMg",
+					"AQAAAAAAAAABAAAA4wgAAAAAAADjCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					28,
+					1,
+					"insert",
+					{
+						"characters": "16"
+					},
+					"AgAAAOEIAAAAAAAA4ggAAAAAAAAAAAAA4ggAAAAAAADjCAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA4QgAAAAAAADhCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					29,
+					2,
+					"swap_line_up",
+					null,
+					"BAAAAKAIAAAAAAAAoAgAAAAAAABcAAAAICAgIGVjc01hbmFnZXItPmFkZFN5c3RlbTxNaWRkbGVFdmVudFN5c3RlbT4oU3lzdGVtR3JvdXA6OkV2ZW50LCAxNjAsIGV2ZW50TWFuYWdlci0+Z2V0KCkpOwpECAAAAAAAAKAIAAAAAAAAAAAAAEQIAAAAAAAARAgAAAAAAABcAAAAICAgIGVjc01hbmFnZXItPmFkZFN5c3RlbTxNaWRkbGVFdmVudFN5c3RlbT4oU3lzdGVtR3JvdXA6OkV2ZW50LCAxNjAsIGV2ZW50TWFuYWdlci0+Z2V0KCkpOwr/BwAAAAAAAFsIAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA4wgAAAAAAADjCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					30,
+					1,
+					"swap_line_down",
+					null,
+					"AgAAAKAIAAAAAAAA/AgAAAAAAAAAAAAA/wcAAAAAAAD/BwAAAAAAAFwAAAAgICAgZWNzTWFuYWdlci0+YWRkU3lzdGVtPE1pZGRsZUV2ZW50U3lzdGVtPihTeXN0ZW1Hcm91cDo6RXZlbnQsIDE2MCwgZXZlbnRNYW5hZ2VyLT5nZXQoKSk7Cg",
+					"AQAAAAAAAAABAAAAQggAAAAAAABCCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					34,
+					1,
+					"insert",
+					{
+						"characters": "Logic"
+					},
+					"BgAAAH4IAAAAAAAAfwgAAAAAAAAAAAAAfwgAAAAAAAB/CAAAAAAAAAUAAABFdmVudH8IAAAAAAAAgAgAAAAAAAAAAAAAgAgAAAAAAACBCAAAAAAAAAAAAACBCAAAAAAAAIIIAAAAAAAAAAAAAIIIAAAAAAAAgwgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAgwgAAAAAAAB+CAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					39,
+					1,
+					"left_delete",
+					null,
+					"AQAAAIgIAAAAAAAAiAgAAAAAAAAVAAAALCBldmVudE1hbmFnZXItPmdldCgp",
+					"AQAAAAAAAAABAAAAiAgAAAAAAACdCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					44,
+					1,
+					"insert",
+					{
+						"characters": "Sync"
+					},
+					"BQAAAF4IAAAAAAAAXwgAAAAAAAAAAAAAXwgAAAAAAABfCAAAAAAAAAsAAABNaWRkbGVFdmVudF8IAAAAAAAAYAgAAAAAAAAAAAAAYAgAAAAAAABhCAAAAAAAAAAAAABhCAAAAAAAAGIIAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAaQgAAAAAAABeCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					49,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAMcFAAAAAAAAygUAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAxgUAAAAAAADGBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					57,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAA4GAAAAAAAAEQYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAADQYAAAAAAAANBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					59,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAGYGAAAAAAAAaQYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAZQYAAAAAAABlBgAAAAAAAAAAAAAAADxA"
+				],
+				[
+					61,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAKkGAAAAAAAArAYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAqAYAAAAAAACoBgAAAAAAAAAAAAAAADxA"
+				],
+				[
+					64,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAA8IAAAAAAAAEggAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAADggAAAAAAAAOCAAAAAAAAAAAAAAAADxA"
+				],
+				[
+					66,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAFcIAAAAAAAAWggAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAVggAAAAAAABWCAAAAAAAAAAAAAAAADxA"
+				],
+				[
+					68,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAJoIAAAAAAAAnQgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAmQgAAAAAAACZCAAAAAAAAAAAAAAAADxA"
+				],
+				[
+					70,
+					1,
+					"left_delete",
+					null,
+					"AQAAAEwJAAAAAAAATAkAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAATQkAAAAAAABNCQAAAAAAAAAAAAAAADxA"
+				],
+				[
+					75,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAA4GAAAAAAAADgYAAAAAAAADAAAALy8g",
+					"AQAAAAAAAAABAAAADwYAAAAAAAAPBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					84,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAGMGAAAAAAAAYwYAAAAAAAADAAAALy8g",
+					"AQAAAAAAAAABAAAAZAYAAAAAAABkBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					86,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAKMGAAAAAAAAowYAAAAAAAADAAAALy8g",
+					"AQAAAAAAAAABAAAAowYAAAAAAACjBgAAAAAAAAAAAAAAgEJA"
+				],
+				[
+					89,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAAYIAAAAAAAABggAAAAAAAADAAAALy8g",
+					"AQAAAAAAAAABAAAABggAAAAAAAAGCAAAAAAAAAAAAAAAgEJA"
+				],
+				[
+					94,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAEsIAAAAAAAASwgAAAAAAAADAAAALy8g",
+					"AQAAAAAAAAABAAAASwgAAAAAAABLCAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					101,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAIsIAAAAAAAAiwgAAAAAAAADAAAALy8g",
+					"AQAAAAAAAAABAAAAiwgAAAAAAACLCAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "src/GameplayScene.cpp",
+			"settings":
+			{
+				"buffer_size": 1792,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					10,
+					1,
+					"insert",
+					{
+						"characters": "4"
+					},
+					"AgAAAHYBAAAAAAAAdwEAAAAAAAAAAAAAdwEAAAAAAAB3AQAAAAAAAAEAAAAy",
+					"AQAAAAAAAAABAAAAdwEAAAAAAAB2AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					21,
+					1,
+					"insert",
+					{
+						"characters": "2"
+					},
+					"AgAAAHYBAAAAAAAAdwEAAAAAAAAAAAAAdwEAAAAAAAB3AQAAAAAAAAEAAAA0",
+					"AQAAAAAAAAABAAAAdwEAAAAAAAB2AQAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "src/AnimationComponent.cpp",
+			"settings":
+			{
+				"buffer_size": 3269,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					9,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAAMcDAAAAAAAAyAMAAAAAAAAAAAAAyAMAAAAAAADMAwAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAxwMAAAAAAADHAwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					10,
+					1,
+					"paste",
+					null,
+					"AQAAAMwDAAAAAAAAMgQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAzAMAAAAAAADMAwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					13,
+					1,
+					"left_delete",
+					null,
+					"AQAAAMwDAAAAAAAAzAMAAAAAAAAEAAAAICAgIA",
+					"AQAAAAAAAAABAAAA0AMAAAAAAADQAwAAAAAAAAAAAAAAwFJA"
+				],
+				[
+					14,
+					12,
+					"right_delete",
+					null,
+					"DAAAAMwDAAAAAAAAzAMAAAAAAAABAAAAc8wDAAAAAAAAzAMAAAAAAAABAAAAdMwDAAAAAAAAzAMAAAAAAAABAAAAZMwDAAAAAAAAzAMAAAAAAAABAAAAOswDAAAAAAAAzAMAAAAAAAABAAAAOswDAAAAAAAAzAMAAAAAAAABAAAAc8wDAAAAAAAAzAMAAAAAAAABAAAAdMwDAAAAAAAAzAMAAAAAAAABAAAAcswDAAAAAAAAzAMAAAAAAAABAAAAacwDAAAAAAAAzAMAAAAAAAABAAAAbswDAAAAAAAAzAMAAAAAAAABAAAAZ8wDAAAAAAAAzAMAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAAzAMAAAAAAADMAwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					20,
+					1,
+					"right_delete",
+					null,
+					"AQAAAOADAAAAAAAA4AMAAAAAAAAeAAAAOwogICAgaWYodHlwZVN0ciA9PSAiT2JqZWN0Iikg",
+					"AQAAAAAAAAABAAAA4AMAAAAAAAD+AwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					28,
+					1,
+					"right_delete",
+					null,
+					"AQAAAOADAAAAAAAA4AMAAAAAAAAIAAAAZmlsZW5hbWU",
+					"AQAAAAAAAAABAAAA4AMAAAAAAADoAwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					32,
+					1,
+					"insert",
+					{
+						"characters": "//"
+					},
+					"AgAAAMwDAAAAAAAAzQMAAAAAAAAAAAAAzQMAAAAAAADOAwAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAzAMAAAAAAADMAwAAAAAAAAAAAAAAgEJA"
+				],
+				[
+					37,
+					1,
+					"insert",
+					{
+						"characters": "~~~"
+					},
+					"BAAAAOcDAAAAAAAA6AMAAAAAAAAAAAAA6AMAAAAAAADoAwAAAAAAAAYAAABvYmplY3ToAwAAAAAAAOkDAAAAAAAAAAAAAOkDAAAAAAAA6gMAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA7QMAAAAAAADnAwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					40,
+					1,
+					"left_delete",
+					null,
+					"AQAAAOEDAAAAAAAA4QMAAAAAAAAGAAAAIiArPSAi",
+					"AQAAAAAAAAABAAAA5wMAAAAAAADhAwAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "src/EventSystem.cpp",
+			"redo_stack":
+			[
+				[
+					129,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAFkGAAAAAAAAXAYAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAWQYAAAAAAABZBgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					126,
+					1,
+					"toggle_comment",
+					{
+						"block": false
+					},
+					"AQAAAFkKAAAAAAAAXAoAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAWQoAAAAAAABZCgAAAAAAAAAAAAAAAPC/"
+				]
+			],
+			"settings":
+			{
+				"buffer_size": 6971,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					84,
+					1,
+					"left_delete",
+					null,
+					"AQAAAIUEAAAAAAAAhQQAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAAhgQAAAAAAACGBAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					94,
+					1,
+					"cut",
+					null,
+					"AQAAAPwDAAAAAAAA/AMAAAAAAAAoAAAAc3RkOjpzaGFyZWRfcHRyPERhc2hDb21wb25lbnQ+IGRhc2hDb21wOw",
+					"AQAAAAAAAAABAAAA/AMAAAAAAAAkBAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
 		{
 			"file": "src/CommandSystem.cpp",
 			"settings":
@@ -529,21 +4173,21 @@
 			},
 			"undo_stack":
 			[
-				[
-					5,
-					1,
-					"left_delete",
-					null,
-					"AQAAACsCAAAAAAAAKwIAAAAAAAAtAAAAICYmIGVudGl0eS0+aGFzQ29tcG9uZW50PFBsYXlhYmxlQ29tcG9uZW50Pigp",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAArAgAAAAAAAFgCAAAAAAAAAAAAAAAA8L8"
-				]
 			]
 		},
 		{
-			"file": "src/MiddleEventSystem.cpp",
+			"file": "include/Systems/AnimationSystem.h",
 			"settings":
 			{
-				"buffer_size": 1713,
+				"buffer_size": 619,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "include/Events/EventSystem.h",
+			"settings":
+			{
+				"buffer_size": 977,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			},
@@ -552,2170 +4196,126 @@
 				[
 					3,
 					1,
-					"toggle_comment",
-					{
-						"block": false
-					},
-					"HwAAANIGAAAAAAAA0gYAAAAAAAADAAAALy8gqQYAAAAAAACpBgAAAAAAAAMAAAAvLyB8BgAAAAAAAHwGAAAAAAAAAwAAAC8vICYGAAAAAAAAJgYAAAAAAAADAAAALy8gBQYAAAAAAAAFBgAAAAAAAAMAAAAvLyDaBQAAAAAAANoFAAAAAAAAAwAAAC8vIKYFAAAAAAAApgUAAAAAAAADAAAALy8gegUAAAAAAAB6BQAAAAAAAAMAAAAvLyAkBQAAAAAAACQFAAAAAAAAAwAAAC8vIAMFAAAAAAAAAwUAAAAAAAADAAAALy8g+wQAAAAAAAD7BAAAAAAAAAMAAAAvLyDCBAAAAAAAAMIEAAAAAAAAAwAAAC8vILsEAAAAAAAAuwQAAAAAAAADAAAALy8gpgQAAAAAAACmBAAAAAAAAAMAAAAvLyBjBAAAAAAAAGMEAAAAAAAAAwAAAC8vIFsEAAAAAAAAWwQAAAAAAAADAAAALy8gOgQAAAAAAAA6BAAAAAAAAAMAAAAvLyDvAwAAAAAAAO8DAAAAAAAAAwAAAC8vIM4DAAAAAAAAzgMAAAAAAAADAAAALy8gxQMAAAAAAADFAwAAAAAAAAMAAAAvLyC8AwAAAAAAALwDAAAAAAAAAwAAAC8vIKMDAAAAAAAAowMAAAAAAAADAAAALy8gcAMAAAAAAABwAwAAAAAAAAMAAAAvLyBAAwAAAAAAAEADAAAAAAAAAwAAAC8vIDcDAAAAAAAANwMAAAAAAAADAAAALy8gHgMAAAAAAAAeAwAAAAAAAAMAAAAvLyDrAgAAAAAAAOsCAAAAAAAAAwAAAC8vILYCAAAAAAAAtgIAAAAAAAADAAAALy8ghwIAAAAAAACHAgAAAAAAAAMAAAAvLyBkAgAAAAAAAGQCAAAAAAAAAwAAAC8vIDECAAAAAAAAMQIAAAAAAAADAAAALy8g",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAwAgAAAAAAAPUGAAAAAAAAAAAAAAAA8L8"
-				]
-			]
-		},
-		{
-			"file": "src/EntityFactory.cpp",
-			"settings":
-			{
-				"buffer_size": 10199,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-				[
-					5,
-					1,
-					"insert",
-					{
-						"characters": "\nene"
-					},
-					"BQAAABccAAAAAAAAGBwAAAAAAAAAAAAAGBwAAAAAAAAZHAAAAAAAAAAAAAAZHAAAAAAAABocAAAAAAAAAAAAABocAAAAAAAAGxwAAAAAAAAAAAAAGxwAAAAAAAAcHAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAXHAAAAAAAABccAAAAAAAAAAAAAAAA8L8"
+					"left_delete",
+					null,
+					"AQAAAPkCAAAAAAAA+QIAAAAAAAABAAAACQ",
+					"AQAAAAAAAAABAAAA+gIAAAAAAAD6AgAAAAAAAAAAAAAAAPC/"
 				],
 				[
-					6,
+					4,
 					1,
-					"insert_completion",
-					{
-						"completion": "enemy",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "enemy"
-					},
-					"AgAAABkcAAAAAAAAGRwAAAAAAAADAAAAZW5lGRwAAAAAAAAeHAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAcHAAAAAAAABwcAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					7,
-					1,
-					"insert",
-					{
-						"characters": "->ad"
-					},
-					"BAAAAB4cAAAAAAAAHxwAAAAAAAAAAAAAHxwAAAAAAAAgHAAAAAAAAAAAAAAgHAAAAAAAACEcAAAAAAAAAAAAACEcAAAAAAAAIhwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAeHAAAAAAAAB4cAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					8,
-					1,
-					"insert_completion",
-					{
-						"completion": "addComponent",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "addComponent"
-					},
-					"AgAAACAcAAAAAAAAIBwAAAAAAAACAAAAYWQgHAAAAAAAACwcAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAiHAAAAAAAACIcAAAAAAAAAAAAAAAA8L8"
+					"paste",
+					null,
+					"AQAAAPkCAAAAAAAAIQMAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA+QIAAAAAAAD5AgAAAAAAAAAAAAAAAPC/"
 				],
 				[
 					9,
 					1,
 					"insert",
 					{
-						"characters": "<Plaa"
+						"characters": "\n#in"
 					},
-					"BQAAACwcAAAAAAAALRwAAAAAAAAAAAAALRwAAAAAAAAuHAAAAAAAAAAAAAAuHAAAAAAAAC8cAAAAAAAAAAAAAC8cAAAAAAAAMBwAAAAAAAAAAAAAMBwAAAAAAAAxHAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAsHAAAAAAAACwcAAAAAAAAAAAAAAAA8L8"
+					"BAAAAEUAAAAAAAAARgAAAAAAAAAAAAAARgAAAAAAAABHAAAAAAAAAAAAAABHAAAAAAAAAEgAAAAAAAAAAAAAAEgAAAAAAAAASQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAARQAAAAAAAABFAAAAAAAAAAAAAAAAAPC/"
 				],
 				[
 					10,
 					1,
-					"insert",
+					"insert_completion",
 					{
-						"characters": "bl"
+						"completion": "include",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "include"
 					},
-					"AgAAADEcAAAAAAAAMhwAAAAAAAAAAAAAMhwAAAAAAAAzHAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAxHAAAAAAAADEcAAAAAAAAAAAAAAAA8L8"
+					"AgAAAEcAAAAAAAAARwAAAAAAAAACAAAAaW5HAAAAAAAAAE4AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAASQAAAAAAAABJAAAAAAAAAAAAAAAAAPC/"
 				],
 				[
 					11,
 					1,
-					"insert_completion",
+					"insert",
 					{
-						"completion": "PlayableComponent",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "PlayableComponent"
+						"characters": " "
 					},
-					"AgAAAC0cAAAAAAAALRwAAAAAAAAGAAAAUGxhYWJsLRwAAAAAAAA+HAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAzHAAAAAAAADMcAAAAAAAAAAAAAAAA8L8"
+					"AQAAAE4AAAAAAAAATwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAATgAAAAAAAABOAAAAAAAAAAAAAAAAAPC/"
 				],
 				[
 					12,
-					1,
-					"insert",
-					{
-						"characters": ">"
-					},
-					"AQAAAD4cAAAAAAAAPxwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA+HAAAAAAAAD4cAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					13,
-					1,
-					"insert_snippet",
-					{
-						"contents": "($0)"
-					},
-					"AQAAAD8cAAAAAAAAQRwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA/HAAAAAAAAD8cAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					15,
-					1,
-					"insert",
-					{
-						"characters": ";"
-					},
-					"AQAAAEEcAAAAAAAAQhwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABBHAAAAAAAAEEcAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					20,
-					1,
-					"insert",
-					{
-						"characters": "\nenemy"
-					},
-					"BwAAAEIcAAAAAAAAQxwAAAAAAAAAAAAAQxwAAAAAAABEHAAAAAAAAAAAAABEHAAAAAAAAEUcAAAAAAAAAAAAAEUcAAAAAAAARhwAAAAAAAAAAAAARhwAAAAAAABHHAAAAAAAAAAAAABHHAAAAAAAAEgcAAAAAAAAAAAAAEgcAAAAAAAASRwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABCHAAAAAAAAEIcAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					21,
-					1,
-					"insert",
-					{
-						"characters": "0>"
-					},
-					"AgAAAEkcAAAAAAAAShwAAAAAAAAAAAAAShwAAAAAAABLHAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABJHAAAAAAAAEkcAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					22,
-					2,
-					"left_delete",
-					null,
-					"AgAAAEocAAAAAAAAShwAAAAAAAABAAAAPkkcAAAAAAAASRwAAAAAAAABAAAAMA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABLHAAAAAAAAEscAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					23,
-					1,
-					"insert",
-					{
-						"characters": "->a"
-					},
-					"AwAAAEkcAAAAAAAAShwAAAAAAAAAAAAAShwAAAAAAABLHAAAAAAAAAAAAABLHAAAAAAAAEwcAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABJHAAAAAAAAEkcAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					24,
-					1,
-					"insert_completion",
-					{
-						"completion": "addComponent",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "addComponent"
-					},
-					"AgAAAEscAAAAAAAASxwAAAAAAAABAAAAYUscAAAAAAAAVxwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABMHAAAAAAAAEwcAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					28,
-					3,
-					"left_delete",
-					null,
-					"AwAAABkcAAAAAAAAGRwAAAAAAAApAAAAZW5lbXktPmFkZENvbXBvbmVudDxQbGF5YWJsZUNvbXBvbmVudD4oKTsYHAAAAAAAABgcAAAAAAAAAQAAAAkXHAAAAAAAABccAAAAAAAAAQAAAAo",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABCHAAAAAAAABkcAAAAAAAAAAAAAACAQkA"
-				],
-				[
-					30,
-					1,
-					"insert",
-					{
-						"characters": "<phy"
-					},
-					"BAAAACwcAAAAAAAALRwAAAAAAAAAAAAALRwAAAAAAAAuHAAAAAAAAAAAAAAuHAAAAAAAAC8cAAAAAAAAAAAAAC8cAAAAAAAAMBwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAsHAAAAAAAACwcAAAAAAAAAAAAAAAwdkA"
-				],
-				[
-					31,
-					1,
-					"insert_completion",
-					{
-						"completion": "PhysicsComponent",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "PhysicsComponent"
-					},
-					"AgAAAC0cAAAAAAAALRwAAAAAAAADAAAAcGh5LRwAAAAAAAA9HAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAwHAAAAAAAADAcAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					32,
-					1,
-					"insert",
-					{
-						"characters": ">*"
-					},
-					"AgAAAD0cAAAAAAAAPhwAAAAAAAAAAAAAPhwAAAAAAAA/HAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA9HAAAAAAAAD0cAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					33,
-					1,
-					"left_delete",
-					null,
-					"AQAAAD4cAAAAAAAAPhwAAAAAAAABAAAAKg",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA/HAAAAAAAAD8cAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					34,
-					1,
-					"insert_snippet",
-					{
-						"contents": "($0)"
-					},
-					"AQAAAD4cAAAAAAAAQBwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA+HAAAAAAAAD4cAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					36,
-					1,
-					"insert",
-					{
-						"characters": ";"
-					},
-					"AQAAAEAcAAAAAAAAQRwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABAHAAAAAAAAEAcAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					38,
-					1,
-					"insert",
-					{
-						"characters": "Body"
-					},
-					"BAAAAD8cAAAAAAAAQBwAAAAAAAAAAAAAQBwAAAAAAABBHAAAAAAAAAAAAABBHAAAAAAAAEIcAAAAAAAAAAAAAEIcAAAAAAAAQxwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA/HAAAAAAAAD8cAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					39,
-					1,
-					"insert_completion",
-					{
-						"completion": "BodyType",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "BodyType"
-					},
-					"AgAAAD8cAAAAAAAAPxwAAAAAAAAEAAAAQm9keT8cAAAAAAAARxwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABDHAAAAAAAAEMcAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					40,
-					1,
-					"insert",
-					{
-						"characters": "::D"
-					},
-					"AwAAAEccAAAAAAAASBwAAAAAAAAAAAAASBwAAAAAAABJHAAAAAAAAAAAAABJHAAAAAAAAEocAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABHHAAAAAAAAEccAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					41,
-					1,
-					"insert_completion",
-					{
-						"completion": "Dynamic",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "Dynamic"
-					},
-					"AgAAAEkcAAAAAAAASRwAAAAAAAABAAAAREkcAAAAAAAAUBwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABKHAAAAAAAAEocAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					71,
-					1,
-					"paste",
-					null,
-					"AQAAAB8eAAAAAAAAXSIAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAfHgAAAAAAAB8eAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					75,
-					1,
-					"insert",
-					{
-						"characters": "\t"
-					},
-					"AQAAAB8eAAAAAAAAIB4AAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAfHgAAAAAAAB8eAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					77,
-					1,
-					"right_delete",
-					null,
-					"AQAAACAeAAAAAAAAIB4AAAAAAAAsAAAAZWNzTWFuYWdlci0+c2V0RW50aXR5TmFtZShwbGF5ZXIsICJwbGF5ZXIiKTs",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAgHgAAAAAAAEweAAAAAAAA////////738"
-				],
-				[
-					80,
-					1,
-					"cut",
-					null,
-					"AQAAACMeAAAAAAAAIx4AAAAAAAAZAAAAZ2VuZXJhbFVuaXQocGxheWVyLCByZXEpOw",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAjHgAAAAAAADweAAAAAAAA////////738"
-				],
-				[
-					83,
-					1,
-					"right_delete",
-					null,
-					"AQAAACUeAAAAAAAAJR4AAAAAAAAiAAAAcGxheWVyLT5hZGRDb21wb25lbnQ8UGxheWVyVGFnPigpOw",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAlHgAAAAAAAEceAAAAAAAA////////738"
-				],
-				[
-					86,
-					11,
-					"swap_line_up",
-					null,
-					"FgAAAPQbAAAAAAAA9BsAAAAAAAAkAAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGxheWVyMlRhZz4oKTsKoxsAAAAAAADHGwAAAAAAAAAAAACjGwAAAAAAAKMbAAAAAAAAJAAAAAllbmVteS0+YWRkQ29tcG9uZW50PFBsYXllcjJUYWc+KCk7CmgbAAAAAAAAjBsAAAAAAAAAAAAAaBsAAAAAAABoGwAAAAAAACQAAAAJZW5lbXktPmFkZENvbXBvbmVudDxQbGF5ZXIyVGFnPigpOwpnGwAAAAAAAIsbAAAAAAAAAAAAAGcbAAAAAAAAZxsAAAAAAAAkAAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGxheWVyMlRhZz4oKTsKTBsAAAAAAABwGwAAAAAAAAAAAABMGwAAAAAAAEwbAAAAAAAAJAAAAAllbmVteS0+YWRkQ29tcG9uZW50PFBsYXllcjJUYWc+KCk7CjEbAAAAAAAAVRsAAAAAAAAAAAAAMRsAAAAAAAAxGwAAAAAAACQAAAAJZW5lbXktPmFkZENvbXBvbmVudDxQbGF5ZXIyVGFnPigpOwr3GgAAAAAAABsbAAAAAAAAAAAAAPcaAAAAAAAA9xoAAAAAAAAkAAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGxheWVyMlRhZz4oKTsK9hoAAAAAAAAaGwAAAAAAAAAAAAD2GgAAAAAAAPYaAAAAAAAAJAAAAAllbmVteS0+YWRkQ29tcG9uZW50PFBsYXllcjJUYWc+KCk7CsUaAAAAAAAA6RoAAAAAAAAAAAAAxRoAAAAAAADFGgAAAAAAACQAAAAJZW5lbXktPmFkZENvbXBvbmVudDxQbGF5ZXIyVGFnPigpOwrEGgAAAAAAAOgaAAAAAAAAAAAAAMQaAAAAAAAAxBoAAAAAAAAkAAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGxheWVyMlRhZz4oKTsKhxoAAAAAAACrGgAAAAAAAAAAAACHGgAAAAAAAIcaAAAAAAAAJAAAAAllbmVteS0+YWRkQ29tcG9uZW50PFBsYXllcjJUYWc+KCk7CoYaAAAAAAAAqhoAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAEHAAAAAAAAAQcAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					88,
-					1,
-					"left_delete",
-					null,
-					"AQAAAKkaAAAAAAAAqRoAAAAAAAABAAAACg",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACqGgAAAAAAAKoaAAAAAAAAAAAAAABAZkA"
-				],
-				[
-					91,
-					1,
-					"cut",
-					null,
-					"AQAAAFEeAAAAAAAAUR4AAAAAAAArAAAACXBsYXllci0+YWRkQ29tcG9uZW50PERhc2hDb21wb25lbnQ+KDAuMmYpOw",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB8HgAAAAAAAFEeAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					94,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AgAAAKkaAAAAAAAAqhoAAAAAAAAAAAAAqhoAAAAAAACrGgAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACpGgAAAAAAAKkaAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					95,
-					1,
-					"paste",
-					null,
-					"AQAAAKsaAAAAAAAA1hoAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACrGgAAAAAAAKsaAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					107,
-					1,
-					"paste",
-					null,
-					"AgAAAKwaAAAAAAAAsRoAAAAAAAAAAAAAsRoAAAAAAACxGgAAAAAAAAYAAABwbGF5ZXI",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACsGgAAAAAAALIaAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					110,
-					1,
-					"unindent",
-					null,
-					"AQAAAKoaAAAAAAAAqhoAAAAAAAABAAAACQ",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACrGgAAAAAAAKsaAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					113,
-					3,
-					"right_delete",
-					null,
-					"AwAAAE4eAAAAAAAATh4AAAAAAAAtAAAACQoJcGxheWVyLT5hZGRDb21wb25lbnQ8UGxheWFibGVDb21wb25lbnQ+KCk7Th4AAAAAAABOHgAAAAAAAAEAAAAKTh4AAAAAAABOHgAAAAAAAAEAAAAK",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB7HgAAAAAAAE4eAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					117,
-					1,
-					"right_delete",
-					null,
-					"AQAAAE4eAAAAAAAATh4AAAAAAAA9AAAACXBsYXllci0+YWRkQ29tcG9uZW50PFNwcml0ZUNvbXBvbmVudD4oIm9yYzMiLCA2NCwgNjQsIDIuMGYpOw",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABOHgAAAAAAAIseAAAAAAAA////////738"
-				],
-				[
-					118,
-					3,
-					"left_delete",
-					null,
-					"AwAAAE0eAAAAAAAATR4AAAAAAAABAAAACkweAAAAAAAATB4AAAAAAAABAAAACUseAAAAAAAASx4AAAAAAAABAAAACg",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABOHgAAAAAAAE4eAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					121,
-					1,
-					"right_delete",
-					null,
-					"AQAAAE0eAAAAAAAATR4AAAAAAAAxAAAACXBsYXllci0+YWRkQ29tcG9uZW50PFN0YXR1c0NvbXBvbmVudD4oMTAwLCAxMDApOw",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABNHgAAAAAAAH4eAAAAAAAA////////738"
-				],
-				[
-					122,
-					3,
-					"left_delete",
-					null,
-					"AwAAAEweAAAAAAAATB4AAAAAAAABAAAACkseAAAAAAAASx4AAAAAAAABAAAACkoeAAAAAAAASh4AAAAAAAABAAAACg",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABNHgAAAAAAAE0eAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					127,
-					1,
-					"right_delete",
-					null,
-					"AQAAAE4eAAAAAAAATh4AAAAAAAA6AAAAcGxheWVyLT5hZGRDb21wb25lbnQ8UGh5c2ljc0NvbXBvbmVudD4oQm9keVR5cGU6OkR5bmFtaWMpOw",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABOHgAAAAAAAIgeAAAAAAAA////////738"
-				],
-				[
-					129,
-					7,
-					"swap_line_up",
-					null,
-					"DgAAAEIcAAAAAAAAQhwAAAAAAAA7AAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGh5c2ljc0NvbXBvbmVudD4oQm9keVR5cGU6OkR5bmFtaWMpOwrxGwAAAAAAACwcAAAAAAAAAAAAAPEbAAAAAAAA8RsAAAAAAAA7AAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGh5c2ljc0NvbXBvbmVudD4oQm9keVR5cGU6OkR5bmFtaWMpOwq2GwAAAAAAAPEbAAAAAAAAAAAAALYbAAAAAAAAthsAAAAAAAA7AAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGh5c2ljc0NvbXBvbmVudD4oQm9keVR5cGU6OkR5bmFtaWMpOwq1GwAAAAAAAPAbAAAAAAAAAAAAALUbAAAAAAAAtRsAAAAAAAA7AAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGh5c2ljc0NvbXBvbmVudD4oQm9keVR5cGU6OkR5bmFtaWMpOwqaGwAAAAAAANUbAAAAAAAAAAAAAJobAAAAAAAAmhsAAAAAAAA7AAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGh5c2ljc0NvbXBvbmVudD4oQm9keVR5cGU6OkR5bmFtaWMpOwp/GwAAAAAAALobAAAAAAAAAAAAAH8bAAAAAAAAfxsAAAAAAAA7AAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGh5c2ljc0NvbXBvbmVudD4oQm9keVR5cGU6OkR5bmFtaWMpOwpFGwAAAAAAAIAbAAAAAAAAAAAAAEUbAAAAAAAARRsAAAAAAAA7AAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGh5c2ljc0NvbXBvbmVudD4oQm9keVR5cGU6OkR5bmFtaWMpOwpEGwAAAAAAAH8bAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABDHAAAAAAAAEMcAAAAAAAAAAAAAACAQkA"
-				],
-				[
-					131,
-					1,
-					"swap_line_up",
-					null,
-					"AgAAABMbAAAAAAAAExsAAAAAAAAxAAAACWVuZW15LT5hZGRDb21wb25lbnQ8U3RhdHVzQ29tcG9uZW50PigxMDAsIDEwMCk7ChIbAAAAAAAAQxsAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAUGwAAAAAAABQbAAAAAAAAAAAAAACAQkA"
-				],
-				[
-					133,
-					1,
-					"swap_line_up",
-					null,
-					"AgAAAEMbAAAAAAAAQxsAAAAAAAABAAAAChIbAAAAAAAAExsAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABDGwAAAAAAAEMbAAAAAAAAAAAAAACAQkA"
-				],
-				[
-					135,
-					1,
-					"swap_line_up",
-					null,
-					"AgAAABMbAAAAAAAAExsAAAAAAAAxAAAACWVuZW15LT5hZGRDb21wb25lbnQ8U3RhdHVzQ29tcG9uZW50PigxMDAsIDEwMCk7ChIbAAAAAAAAQxsAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAUGwAAAAAAABQbAAAAAAAAAAAAAACAQkA"
-				],
-				[
-					137,
-					1,
-					"swap_line_up",
-					null,
-					"AgAAAEQbAAAAAAAARBsAAAAAAAA7AAAACWVuZW15LT5hZGRDb21wb25lbnQ8UGh5c2ljc0NvbXBvbmVudD4oQm9keVR5cGU6OkR5bmFtaWMpOwpDGwAAAAAAAH4bAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABFGwAAAAAAAEUbAAAAAAAAAAAAAACAQkA"
-				],
-				[
-					142,
-					2,
-					"right_delete",
-					null,
-					"AgAAAFIeAAAAAAAAUh4AAAAAAABwAAAAYXV0byBjb2xDb21wID0gcGxheWVyLT5nZXRDb21wb25lbnQ8Q29sbGlkZXJDb21wb25lbnQ+KCk7Cgljb2xDb21wLT5vZmZzZXRYID0gLTEuMGY7Cgljb2xDb21wLT5vZmZzZXRZID0gLTYuMGY7ClIeAAAAAAAAUh4AAAAAAAABAAAACg",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADCHgAAAAAAAFIeAAAAAAAAAAAAAACAQkA"
-				],
-				[
-					146,
-					1,
-					"right_delete",
-					null,
-					"AQAAAFIeAAAAAAAAUh4AAAAAAAABAAAACQ",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABSHgAAAAAAAFIeAAAAAAAAAAAAAACAQkA"
-				],
-				[
-					148,
-					6,
-					"left_delete",
-					null,
-					"BgAAAE4eAAAAAAAATh4AAAAAAAABAAAACk0eAAAAAAAATR4AAAAAAAABAAAACUweAAAAAAAATB4AAAAAAAABAAAACkseAAAAAAAASx4AAAAAAAABAAAACkoeAAAAAAAASh4AAAAAAAABAAAACkkeAAAAAAAASR4AAAAAAAABAAAACQ",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABPHgAAAAAAAE8eAAAAAAAAAAAAAACAQkA"
-				],
-				[
-					151,
-					1,
-					"left_delete",
-					null,
-					"AQAAAEseAAAAAAAASx4AAAAAAAC5AAAACWF1dG8gc3RhdHVzQ29tcCA9IHBsYXllci0+Z2V0Q29tcG9uZW50PFN0YXR1c0NvbXBvbmVudD4oKTsKCXBsYXllci0+YWRkQ29tcG9uZW50PENvb2xkb3duQ29tcG9uZW50PigiYXR0YWNrIiwgMS4wZi9zdGF0dXNDb21wLT5hdHRhY2tTcGVlZCk7CglwbGF5ZXItPmFkZENvbXBvbmVudDxDb21tYW5kQ29tcG9uZW50PigpOwo",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAEHwAAAAAAAEseAAAAAAAAAAAAAAAAAAA"
-				],
-				[
-					154,
-					4,
-					"left_delete",
-					null,
-					"BAAAAEweAAAAAAAATB4AAAAAAACpAAAACWF1dG8gYW5pbUNvbXAgPSBwbGF5ZXItPmdldENvbXBvbmVudDxBbmltYXRpb25Db21wb25lbnQ+KCk7CglhbmltQ29tcC0+YXR0YWNrRmFzdCA9IHN0YXR1c0NvbXAtPmF0dGFja1NwZWVkOwoJYW5pbUNvbXAtPm1vdmVGYXN0ID0gIHN0YXR1c0NvbXAtPm1vdmVtZW50U3BlZWQgLyAxMDAuMGY7CkseAAAAAAAASx4AAAAAAAABAAAACkoeAAAAAAAASh4AAAAAAAABAAAACkkeAAAAAAAASR4AAAAAAAABAAAACg",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAD1HgAAAAAAAEweAAAAAAAAAAAAAAAAAAA"
-				],
-				[
-					163,
-					1,
-					"paste",
-					null,
-					"AgAAAA4EAAAAAAAAFQQAAAAAAAAAAAAAFQQAAAAAAAAVBAAAAAAAAAcAAABEeW5hbWlj",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAOBAAAAAAAABUEAAAAAAAAAAAAAAAA8L8"
-				]
-			]
-		},
-		{
-			"file": "src/PhysicsSystem.cpp",
-			"settings":
-			{
-				"buffer_size": 4727,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-				[
-					5,
-					1,
-					"cut",
-					null,
-					"AQAAAP0HAAAAAAAA/QcAAAAAAABiAQAACiAgICAgICAgICAgIGlmKGVudGl0eS0+aGFzQ29tcG9uZW50PFBsYXllclRhZz4oKSl7CiAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgIGIyTWFzc0RhdGEgbXlNYXNzRGF0YTsKICAgICAgICAgICAgICAgIG15TWFzc0RhdGEubWFzcyA9IDAuMGY7CgogICAgICAgICAgICAgICAgYjJCb2R5X1NldEZpeGVkUm90YXRpb24ocGh5c0NvbXAtPmJvZHksIHRydWUpOwogICAgICAgICAgICAgICAgYjJCb2R5X1NldEdyYXZpdHlTY2FsZShwaHlzQ29tcC0+Ym9keSwgMC4wZiApOwogICAgICAgICAgICAgICAgYjJCb2R5X1NldE1hc3NEYXRhKHBoeXNDb21wLT5ib2R5LCBteU1hc3NEYXRhKTsKCiAgICAgICAgICAgIH0K",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABfCQAAAAAAAP0HAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					10,
-					1,
-					"reindent",
-					null,
-					"AQAAABILAAAAAAAAIgsAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAASCwAAAAAAABILAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					13,
-					1,
-					"reindent",
-					null,
-					"AQAAAFgNAAAAAAAAaA0AAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABYDQAAAAAAAFgNAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					14,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"BAAAAGgNAAAAAAAAaQ0AAAAAAAAAAAAAaQ0AAAAAAAB5DQAAAAAAAAAAAABYDQAAAAAAAFgNAAAAAAAAEAAAACAgICAgICAgICAgICAgICASCwAAAAAAABILAAAAAAAAEAAAACAgICAgICAgICAgICAgICA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABoDQAAAAAAAGgNAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					15,
-					1,
-					"paste",
-					null,
-					"AQAAAFkNAAAAAAAAuw4AAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABZDQAAAAAAAFkNAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					17,
-					1,
-					"indent",
-					null,
-					"CAAAAFoNAAAAAAAAXg0AAAAAAAAAAAAAkQ0AAAAAAACVDQAAAAAAAAAAAACmDQAAAAAAAKoNAAAAAAAAAAAAANENAAAAAAAA1Q0AAAAAAAAAAAAA/g0AAAAAAAACDgAAAAAAAAAAAABBDgAAAAAAAEUOAAAAAAAAAAAAAIQOAAAAAAAAiA4AAAAAAAAAAAAAyQ4AAAAAAADNDgAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAC7DgAAAAAAAFoNAAAAAAAAAAAAAAAAAAA"
-				],
-				[
-					21,
-					1,
-					"cut",
-					null,
-					"AQAAAEgNAAAAAAAASA0AAAAAAACSAQAACiAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgIGlmKGVudGl0eS0+aGFzQ29tcG9uZW50PFBsYXllclRhZz4oKSl7CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgYjJNYXNzRGF0YSBteU1hc3NEYXRhOwogICAgICAgICAgICAgICAgICAgIG15TWFzc0RhdGEubWFzcyA9IDAuMGY7CgogICAgICAgICAgICAgICAgICAgIGIyQm9keV9TZXRGaXhlZFJvdGF0aW9uKHBoeXNDb21wLT5ib2R5LCB0cnVlKTsKICAgICAgICAgICAgICAgICAgICBiMkJvZHlfU2V0R3Jhdml0eVNjYWxlKHBoeXNDb21wLT5ib2R5LCAwLjBmICk7CiAgICAgICAgICAgICAgICAgICAgYjJCb2R5X1NldE1hc3NEYXRhKHBoeXNDb21wLT5ib2R5LCBteU1hc3NEYXRhKTsKCiAgICAgICAgICAgICAgICB9",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADaDgAAAAAAAEgNAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					24,
-					1,
-					"reindent",
-					null,
-					"AgAAAKUKAAAAAAAAsQoAAAAAAAAAAAAAVA0AAAAAAABkDQAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAIAAAClCgAAAAAAAKUKAAAAAAAAAAAAAAAA8L9IDQAAAAAAAEgNAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					25,
-					1,
-					"paste",
-					null,
-					"AgAAAGQNAAAAAAAA9g4AAAAAAAAAAAAAsQoAAAAAAABDDAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAIAAACxCgAAAAAAALEKAAAAAAAAAAAAAAAA8L9kDQAAAAAAAGQNAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					28,
-					1,
-					"unindent",
-					null,
-					"CAAAAMMKAAAAAAAAwwoAAAAAAAAEAAAAICAgIPYKAAAAAAAA9goAAAAAAAAEAAAAICAgIAcLAAAAAAAABwsAAAAAAAAEAAAAICAgIC4LAAAAAAAALgsAAAAAAAAEAAAAICAgIFcLAAAAAAAAVwsAAAAAAAAEAAAAICAgIJYLAAAAAAAAlgsAAAAAAAAEAAAAICAgINULAAAAAAAA1QsAAAAAAAAEAAAAICAgIBYMAAAAAAAAFgwAAAAAAAAEAAAAICAgIA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADSCgAAAAAAAEMMAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					35,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"BAAAACMMAAAAAAAAJAwAAAAAAAAAAAAAJAwAAAAAAAAwDAAAAAAAAAAAAADTDgAAAAAAANMOAAAAAAAAEAAAACAgICAgICAgICAgICAgICClCgAAAAAAAKUKAAAAAAAADAAAACAgICAgICAgICAgIA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAjDAAAAAAAACMMAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					42,
-					1,
-					"cut",
-					null,
-					"AQAAAMEKAAAAAAAAwQoAAAAAAABWAQAAICBpZihlbnRpdHktPmhhc0NvbXBvbmVudDxQbGF5ZXJUYWc+KCkpewogICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICBiMk1hc3NEYXRhIG15TWFzc0RhdGE7CiAgICAgICAgICAgICAgICBteU1hc3NEYXRhLm1hc3MgPSAwLjBmOwoKICAgICAgICAgICAgICAgIGIyQm9keV9TZXRGaXhlZFJvdGF0aW9uKHBoeXNDb21wLT5ib2R5LCB0cnVlKTsKICAgICAgICAgICAgICAgIGIyQm9keV9TZXRHcmF2aXR5U2NhbGUocGh5c0NvbXAtPmJvZHksIDAuMGYgKTsKICAgICAgICAgICAgICAgIGIyQm9keV9TZXRNYXNzRGF0YShwaHlzQ29tcC0+Ym9keSwgbXlNYXNzRGF0YSk7CgogICAgICAgICAgICB9",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAXDAAAAAAAAMEKAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					45,
-					1,
-					"reindent",
-					null,
-					"AQAAADsLAAAAAAAASwsAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAA7CwAAAAAAADsLAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					46,
-					1,
-					"paste",
-					null,
-					"AQAAAEsLAAAAAAAAoQwAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABLCwAAAAAAAEsLAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					49,
-					1,
-					"indent",
-					null,
-					"CAAAADsLAAAAAAAAPwsAAAAAAAAAAAAAeAsAAAAAAAB8CwAAAAAAAAAAAACNCwAAAAAAAJELAAAAAAAAAAAAALgLAAAAAAAAvAsAAAAAAAAAAAAA5QsAAAAAAADpCwAAAAAAAAAAAAAoDAAAAAAAACwMAAAAAAAAAAAAAGsMAAAAAAAAbwwAAAAAAAAAAAAAsAwAAAAAAAC0DAAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAChDAAAAAAAAEgLAAAAAAAAAAAAAACAXkA"
-				],
-				[
-					52,
-					2,
-					"right_delete",
-					null,
-					"AwAAAEwLAAAAAAAATAsAAAAAAAADAAAAICAgwgoAAAAAAADCCgAAAAAAAAwAAAAgICAgICAgICAgICBACwAAAAAAAEALAAAAAAAAAgAAACAg",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABMCwAAAAAAAEwLAAAAAAAAAAAAAADgY0A"
-				],
-				[
-					53,
-					1,
-					"left_delete",
-					null,
-					"AQAAAD8LAAAAAAAAPwsAAAAAAAABAAAAIA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABACwAAAAAAAEALAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					68,
-					1,
-					"right_delete",
-					null,
-					"AQAAAPcOAAAAAAAA9w4AAAAAAACBAQAAICAgICAgICAgICAgICAgIGlmKGVudGl0eS0+aGFzQ29tcG9uZW50PFBsYXllclRhZz4oKSl7CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgYjJNYXNzRGF0YSBteU1hc3NEYXRhOwogICAgICAgICAgICAgICAgICAgIG15TWFzc0RhdGEubWFzcyA9IDAuMGY7CgogICAgICAgICAgICAgICAgICAgIGIyQm9keV9TZXRGaXhlZFJvdGF0aW9uKHBoeXNDb21wLT5ib2R5LCB0cnVlKTsKICAgICAgICAgICAgICAgICAgICBiMkJvZHlfU2V0R3Jhdml0eVNjYWxlKHBoeXNDb21wLT5ib2R5LCAwLjBmICk7CiAgICAgICAgICAgICAgICAgICAgYjJCb2R5X1NldE1hc3NEYXRhKHBoeXNDb21wLT5ib2R5LCBteU1hc3NEYXRhKTsKCiAgICAgICAgICAgICAgICB9Cg",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAB4EAAAAAAAAPcOAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					69,
-					2,
-					"left_delete",
-					null,
-					"AgAAAPYOAAAAAAAA9g4AAAAAAAABAAAACvIOAAAAAAAA8g4AAAAAAAAEAAAAICAgIA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAD3DgAAAAAAAPcOAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					148,
-					2,
-					"left_delete",
-					null,
-					"AgAAAKYKAAAAAAAApgoAAAAAAAAcAAAAICAgICAgICAgICAgICAgIAogICAgICAgICAgCqUKAAAAAAAApQoAAAAAAAABAAAACg",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADCCgAAAAAAAKYKAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					163,
-					1,
-					"insert",
-					{
-						"characters": "="
-					},
-					"AgAAANUOAAAAAAAA1g4AAAAAAAAAAAAA1g4AAAAAAADWDgAAAAAAAAEAAAAK",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADWDgAAAAAAANUOAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					164,
-					6,
-					"left_delete",
-					null,
-					"BgAAANUOAAAAAAAA1Q4AAAAAAAABAAAAPdEOAAAAAAAA0Q4AAAAAAAAEAAAAICAgIM0OAAAAAAAAzQ4AAAAAAAAEAAAAICAgIMkOAAAAAAAAyQ4AAAAAAAAEAAAAICAgIMgOAAAAAAAAyA4AAAAAAAABAAAACscOAAAAAAAAxw4AAAAAAAABAAAACg",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAADWDgAAAAAAANYOAAAAAAAAAAAAAAAA8L8"
-				],
-				[
-					165,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AgAAAMcOAAAAAAAAyA4AAAAAAAAAAAAAyA4AAAAAAADYDgAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAxw4AAAAAAADHDgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					17,
-					1,
-					"swap_line_up",
-					null,
-					"BgAAAPINAAAAAAAA8g0AAAAAAAAuAAAAICAgICAgICAgICAgICAgICAgICAvLyDtlL3shYDihpLrr7jthLAg67OA7ZmYCvENAAAAAAAAEQ4AAAAAAAAAAAAA8Q0AAAAAAADxDQAAAAAAAC4AAAAgICAgICAgICAgICAgICAgICAgIC8vIO2UveyFgOKGkuuvuO2EsCDrs4DtmZgKrw0AAAAAAADPDQAAAAAAAAAAAACvDQAAAAAAAK8NAAAAAAAALgAAACAgICAgICAgICAgICAgICAgICAgLy8g7ZS97IWA4oaS66+47YSwIOuzgO2ZmApbDQAAAAAAAHsNAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAABg4AAAAAAAAGDgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					104,
-					2,
-					"left_delete",
-					null,
-					"AgAAAGsFAAAAAAAAawUAAAAAAAABAAAACmoFAAAAAAAAagUAAAAAAAABAAAACg",
-					"AQAAAAAAAAABAAAAbAUAAAAAAABsBQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					107,
-					1,
-					"insert",
-					{
-						"characters": "els"
-					},
-					"AwAAAL4GAAAAAAAAvwYAAAAAAAAAAAAAvwYAAAAAAADABgAAAAAAAAAAAADABgAAAAAAAMEGAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAvgYAAAAAAAC+BgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					108,
-					1,
-					"insert_completion",
-					{
-						"completion": "else",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "else"
-					},
-					"AgAAAL4GAAAAAAAAvgYAAAAAAAADAAAAZWxzvgYAAAAAAADCBgAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAwQYAAAAAAADBBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					109,
-					1,
-					"insert",
-					{
-						"characters": " if"
-					},
-					"AwAAAMIGAAAAAAAAwwYAAAAAAAAAAAAAwwYAAAAAAADEBgAAAAAAAAAAAADEBgAAAAAAAMUGAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAwgYAAAAAAADCBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					110,
-					3,
-					"left_delete",
-					null,
-					"AwAAAMQGAAAAAAAAxAYAAAAAAAABAAAAZsMGAAAAAAAAwwYAAAAAAAABAAAAacIGAAAAAAAAwgYAAAAAAAABAAAAIA",
-					"AQAAAAAAAAABAAAAxQYAAAAAAADFBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					111,
-					1,
-					"insert_snippet",
-					{
-						"contents": "{$0}"
-					},
-					"AQAAAMIGAAAAAAAAxAYAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAwgYAAAAAAADCBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					112,
-					1,
-					"run_macro_file",
-					{
-						"file": "res://Packages/Default/Add Line in Braces.sublime-macro"
-					},
-					"BgAAAMMGAAAAAAAAxAYAAAAAAAAAAAAAxAYAAAAAAADQBgAAAAAAAAAAAADQBgAAAAAAANEGAAAAAAAAAAAAANEGAAAAAAAA3QYAAAAAAAAAAAAAxAYAAAAAAADEBgAAAAAAAAwAAAAgICAgICAgICAgICDEBgAAAAAAANQGAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAwwYAAAAAAADDBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					118,
-					1,
-					"paste",
-					null,
-					"AQAAANQGAAAAAAAA8gYAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA1AYAAAAAAADUBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					143,
-					1,
-					"insert",
-					{
-						"characters": "entity0-"
-					},
-					"CAAAAOcMAAAAAAAA6AwAAAAAAAAAAAAA6AwAAAAAAADpDAAAAAAAAAAAAADpDAAAAAAAAOoMAAAAAAAAAAAAAOoMAAAAAAAA6wwAAAAAAAAAAAAA6wwAAAAAAADsDAAAAAAAAAAAAADsDAAAAAAAAO0MAAAAAAAAAAAAAO0MAAAAAAAA7gwAAAAAAAAAAAAA7gwAAAAAAADvDAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA5wwAAAAAAADnDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					144,
-					2,
-					"left_delete",
-					null,
-					"AgAAAO4MAAAAAAAA7gwAAAAAAAABAAAALe0MAAAAAAAA7QwAAAAAAAABAAAAMA",
-					"AQAAAAAAAAABAAAA7wwAAAAAAADvDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					145,
-					1,
-					"insert",
-					{
-						"characters": "->"
-					},
-					"AgAAAO0MAAAAAAAA7gwAAAAAAAAAAAAA7gwAAAAAAADvDAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA7QwAAAAAAADtDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					146,
-					9,
-					"left_delete",
-					null,
-					"CQAAAO4MAAAAAAAA7gwAAAAAAAABAAAAPu0MAAAAAAAA7QwAAAAAAAABAAAALewMAAAAAAAA7AwAAAAAAAABAAAAeesMAAAAAAAA6wwAAAAAAAABAAAAdOoMAAAAAAAA6gwAAAAAAAABAAAAaekMAAAAAAAA6QwAAAAAAAABAAAAdOgMAAAAAAAA6AwAAAAAAAABAAAAbucMAAAAAAAA5wwAAAAAAAABAAAAZeYMAAAAAAAA5gwAAAAAAAABAAAAKA",
-					"AQAAAAAAAAABAAAA7wwAAAAAAADvDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					147,
-					1,
-					"insert",
-					{
-						"characters": "(phys"
-					},
-					"BQAAAOYMAAAAAAAA5wwAAAAAAAAAAAAA5wwAAAAAAADoDAAAAAAAAAAAAADoDAAAAAAAAOkMAAAAAAAAAAAAAOkMAAAAAAAA6gwAAAAAAAAAAAAA6gwAAAAAAADrDAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA5gwAAAAAAADmDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					148,
-					1,
-					"insert",
-					{
-						"characters": "Comp=="
-					},
-					"BgAAAOsMAAAAAAAA7AwAAAAAAAAAAAAA7AwAAAAAAADtDAAAAAAAAAAAAADtDAAAAAAAAO4MAAAAAAAAAAAAAO4MAAAAAAAA7wwAAAAAAAAAAAAA7wwAAAAAAADwDAAAAAAAAAAAAADwDAAAAAAAAPEMAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA6wwAAAAAAADrDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					149,
-					2,
-					"left_delete",
-					null,
-					"AgAAAPAMAAAAAAAA8AwAAAAAAAABAAAAPe8MAAAAAAAA7wwAAAAAAAABAAAAPQ",
-					"AQAAAAAAAAABAAAA8QwAAAAAAADxDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					150,
-					1,
-					"insert",
-					{
-						"characters": "0"
-					},
-					"AQAAAO8MAAAAAAAA8AwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA7wwAAAAAAADvDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					151,
-					1,
-					"left_delete",
-					null,
-					"AQAAAO8MAAAAAAAA7wwAAAAAAAABAAAAMA",
-					"AQAAAAAAAAABAAAA8AwAAAAAAADwDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					152,
-					1,
-					"insert",
-					{
-						"characters": "->bodyType"
-					},
-					"CgAAAO8MAAAAAAAA8AwAAAAAAAAAAAAA8AwAAAAAAADxDAAAAAAAAAAAAADxDAAAAAAAAPIMAAAAAAAAAAAAAPIMAAAAAAAA8wwAAAAAAAAAAAAA8wwAAAAAAAD0DAAAAAAAAAAAAAD0DAAAAAAAAPUMAAAAAAAAAAAAAPUMAAAAAAAA9gwAAAAAAAAAAAAA9gwAAAAAAAD3DAAAAAAAAAAAAAD3DAAAAAAAAPgMAAAAAAAAAAAAAPgMAAAAAAAA+QwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA7wwAAAAAAADvDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					153,
-					1,
-					"insert",
-					{
-						"characters": " =="
-					},
-					"AwAAAPkMAAAAAAAA+gwAAAAAAAAAAAAA+gwAAAAAAAD7DAAAAAAAAAAAAAD7DAAAAAAAAPwMAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA+QwAAAAAAAD5DAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					154,
-					1,
-					"insert",
-					{
-						"characters": " \""
-					},
-					"AgAAAPwMAAAAAAAA/QwAAAAAAAAAAAAA/QwAAAAAAAD+DAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA/AwAAAAAAAD8DAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					155,
-					1,
-					"left_delete",
-					null,
-					"AQAAAP0MAAAAAAAA/QwAAAAAAAABAAAAIg",
-					"AQAAAAAAAAABAAAA/gwAAAAAAAD+DAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					156,
-					1,
-					"insert",
-					{
-						"characters": "BO"
-					},
-					"AgAAAP0MAAAAAAAA/gwAAAAAAAAAAAAA/gwAAAAAAAD/DAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA/QwAAAAAAAD9DAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					157,
-					1,
-					"left_delete",
-					null,
-					"AQAAAP4MAAAAAAAA/gwAAAAAAAABAAAATw",
-					"AQAAAAAAAAABAAAA/wwAAAAAAAD/DAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					158,
-					1,
-					"insert",
-					{
-						"characters": "odyTpe"
-					},
-					"BgAAAP4MAAAAAAAA/wwAAAAAAAAAAAAA/wwAAAAAAAAADQAAAAAAAAAAAAAADQAAAAAAAAENAAAAAAAAAAAAAAENAAAAAAAAAg0AAAAAAAAAAAAAAg0AAAAAAAADDQAAAAAAAAAAAAADDQAAAAAAAAQNAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA/gwAAAAAAAD+DAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					159,
-					2,
-					"left_delete",
-					null,
-					"AgAAAAMNAAAAAAAAAw0AAAAAAAABAAAAZQINAAAAAAAAAg0AAAAAAAABAAAAcA",
-					"AQAAAAAAAAABAAAABA0AAAAAAAAEDQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					160,
-					1,
-					"insert",
-					{
-						"characters": "ype::k"
-					},
-					"BgAAAAINAAAAAAAAAw0AAAAAAAAAAAAAAw0AAAAAAAAEDQAAAAAAAAAAAAAEDQAAAAAAAAUNAAAAAAAAAAAAAAUNAAAAAAAABg0AAAAAAAAAAAAABg0AAAAAAAAHDQAAAAAAAAAAAAAHDQAAAAAAAAgNAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAg0AAAAAAAACDQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					161,
-					1,
-					"left_delete",
-					null,
-					"AQAAAAcNAAAAAAAABw0AAAAAAAABAAAAaw",
-					"AQAAAAAAAAABAAAACA0AAAAAAAAIDQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					162,
-					1,
-					"insert",
-					{
-						"characters": "KE"
-					},
-					"AgAAAAcNAAAAAAAACA0AAAAAAAAAAAAACA0AAAAAAAAJDQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAABw0AAAAAAAAHDQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					163,
-					2,
-					"left_delete",
-					null,
-					"AgAAAAgNAAAAAAAACA0AAAAAAAABAAAARQcNAAAAAAAABw0AAAAAAAABAAAASw",
-					"AQAAAAAAAAABAAAACQ0AAAAAAAAJDQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					164,
-					1,
-					"insert",
-					{
-						"characters": "D"
-					},
-					"AQAAAAcNAAAAAAAACA0AAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAABw0AAAAAAAAHDQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					165,
-					1,
-					"insert",
-					{
-						"characters": "ynamic"
-					},
-					"BgAAAAgNAAAAAAAACQ0AAAAAAAAAAAAACQ0AAAAAAAAKDQAAAAAAAAAAAAAKDQAAAAAAAAsNAAAAAAAAAAAAAAsNAAAAAAAADA0AAAAAAAAAAAAADA0AAAAAAAANDQAAAAAAAAAAAAANDQAAAAAAAA4NAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAACA0AAAAAAAAIDQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					166,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAA4NAAAAAAAADw0AAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAADg0AAAAAAAAODQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					167,
-					1,
-					"insert",
-					{
-						"characters": "&&"
-					},
-					"AgAAAA8NAAAAAAAAEA0AAAAAAAAAAAAAEA0AAAAAAAARDQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAADw0AAAAAAAAPDQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					168,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAABENAAAAAAAAEg0AAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAEQ0AAAAAAAARDQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					175,
-					1,
-					"left_delete",
-					null,
-					"AQAAAOcMAAAAAAAA5wwAAAAAAAArAAAAcGh5c0NvbXAtPmJvZHlUeXBlID09IEJvZHlUeXBlOjpEeW5hbWljICYmIA",
-					"AQAAAAAAAAABAAAAEg0AAAAAAADnDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					211,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AgAAAPUOAAAAAAAA9g4AAAAAAAAAAAAA9g4AAAAAAAAKDwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA9Q4AAAAAAAD1DgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					212,
-					1,
-					"paste",
-					null,
-					"AQAAAAoPAAAAAAAAOQ8AAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAACg8AAAAAAAAKDwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					217,
-					1,
-					"cut",
-					null,
-					"AQAAAAoPAAAAAAAACg8AAAAAAAAvAAAAYjJXb3JsZF9TdGVwKHdvcmxkSWQsIGRlbHRhVGltZSwgc3ViU3RlcENvdW50KTs",
-					"AQAAAAAAAAABAAAAOQ8AAAAAAAAKDwAAAAAAAAAAAAAAYGdA"
-				],
-				[
-					220,
-					1,
-					"cut",
-					null,
-					"AQAAAOMMAAAAAAAA4wwAAAAAAABRAgAAaWYgKGVudGl0eS0+aGFzQ29tcG9uZW50PFZlbG9jaXR5Q29tcG9uZW50PigpKSB7CiAgICAgICAgICAgICAgICAgICAgLy8gdmVsb2NpdHlDb21wb25lbnQg65Ox7JeQ7IScIOyWu+ydgCB2eCwgdnkKICAgICAgICAgICAgICAgICAgICBhdXRvIHZlbG9Db21wID0gZW50aXR5LT5nZXRDb21wb25lbnQ8VmVsb2NpdHlDb21wb25lbnQ+KCk7CgogICAgICAgICAgICAgICAgICAgIC8vIO2UveyFgOKGkuuvuO2EsCDrs4DtmZgKICAgICAgICAgICAgICAgICAgICBmbG9hdCB2eCA9IHZlbG9Db21wLT54KCkgLyBQSVhFTFNfUEVSX01FVEVSOyAvLyBwaXhlbC9zZWMgb3Igc28KICAgICAgICAgICAgICAgICAgICBmbG9hdCB2eSA9IC12ZWxvQ29tcC0+eSgpIC8gUElYRUxTX1BFUl9NRVRFUjsKCiAgICAgICAgICAgICAgICAgICAgYjJWZWMyIHZlbDsKICAgICAgICAgICAgICAgICAgICB2ZWwueCA9IHZ4OwogICAgICAgICAgICAgICAgICAgIHZlbC55ID0gdnk7CgogICAgICAgICAgICAgICAgICAgIGIyQm9keV9TZXRMaW5lYXJWZWxvY2l0eShwaHlzQ29tcC0+Ym9keSwgdmVsKTsKICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgIH0",
-					"AQAAAAAAAAABAAAA4wwAAAAAAAAcDwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					223,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AwAAAL8MAAAAAAAAwAwAAAAAAAAAAAAAwAwAAAAAAADUDAAAAAAAAAAAAADoDAAAAAAAAOgMAAAAAAAAEAAAACAgICAgICAgICAgICAgICA",
-					"AQAAAAAAAAABAAAAvwwAAAAAAAC/DAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					224,
-					1,
-					"paste",
-					null,
-					"AQAAANQMAAAAAAAADQ8AAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA1AwAAAAAAADUDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					227,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AgAAAL8MAAAAAAAAwAwAAAAAAAAAAAAAwAwAAAAAAADUDAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAvwwAAAAAAAC/DAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					230,
-					1,
-					"insert",
-					{
-						"characters": "\t"
-					},
-					"AgAAACEPAAAAAAAAJQ8AAAAAAAAAAAAAwAwAAAAAAADADAAAAAAAABQAAAAgICAgICAgICAgICAgICAgICAgIA",
-					"AQAAAAAAAAABAAAAIQ8AAAAAAAAhDwAAAAAAAAAAAAAAwGJA"
-				],
-				[
-					233,
-					1,
-					"indent",
-					null,
-					"CgAAAAYNAAAAAAAACg0AAAAAAAAAAAAAQQ0AAAAAAABFDQAAAAAAAAAAAACVDQAAAAAAAJkNAAAAAAAAAAAAALkNAAAAAAAAvQ0AAAAAAAAAAAAAEQ4AAAAAAAAVDgAAAAAAAAAAAABYDgAAAAAAAFwOAAAAAAAAAAAAAHwOAAAAAAAAgA4AAAAAAAAAAAAAoA4AAAAAAACkDgAAAAAAAAAAAADFDgAAAAAAAMkOAAAAAAAAAAAAAAwPAAAAAAAAEA8AAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA/A4AAAAAAAAaDQAAAAAAAAAAAAAAYGdA"
-				],
-				[
-					259,
-					1,
-					"insert",
-					{
-						"characters": "\n\n"
-					},
-					"BQAAAMMOAAAAAAAAxA4AAAAAAAAAAAAAxA4AAAAAAADcDgAAAAAAAAAAAADcDgAAAAAAAN0OAAAAAAAAAAAAAN0OAAAAAAAA9Q4AAAAAAAAAAAAAxA4AAAAAAADEDgAAAAAAABgAAAAgICAgICAgICAgICAgICAgICAgICAgICA",
-					"AQAAAAAAAAABAAAAww4AAAAAAADDDgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					260,
-					1,
-					"paste",
-					null,
-					"AQAAAN0OAAAAAAAAPQ8AAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA3Q4AAAAAAADdDgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					262,
-					1,
-					"insert",
-					{
-						"characters": "\t\t\t\t\t\t"
-					},
-					"BgAAAPsOAAAAAAAA/w4AAAAAAAAAAAAA/w4AAAAAAAADDwAAAAAAAAAAAAADDwAAAAAAAAcPAAAAAAAAAAAAAAcPAAAAAAAACw8AAAAAAAAAAAAACw8AAAAAAAAPDwAAAAAAAAAAAAAPDwAAAAAAABMPAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA+w4AAAAAAAD7DgAAAAAAAAAAAAAAAAAA"
-				],
-				[
-					356,
-					1,
-					"toggle_comment",
-					{
-						"block": false
-					},
-					"AgAAAN0LAAAAAAAA4AsAAAAAAAAAAAAAsgsAAAAAAAC1CwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA9AsAAAAAAACeCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					359,
-					1,
-					"toggle_comment",
-					{
-						"block": false
-					},
-					"AQAAAJYMAAAAAAAAmQwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAlgwAAAAAAACWDAAAAAAAAAAAAAAAYGdA"
-				],
-				[
-					364,
-					2,
-					"left_delete",
-					null,
-					"AgAAAM0OAAAAAAAAzQ4AAAAAAACRAAAACiAgICAgICAgICAgICAgICAgICAgICAgIGIyVmVjMiBkZXNpcmVkVmVsb2NpdHkgPSB2ZWw7CiAgICAgICAgICAgICAgICAgICAgICAgIGIyVmVjMiBjdXJyZW50VmVsb2NpdHkgPSBiMkJvZHlfR2V0TGluZWFyVmVsb2NpdHkocGh5c0NvbXAtPmJvZHkpO8wOAAAAAAAAzA4AAAAAAAABAAAACg",
-					"AQAAAAAAAAABAAAAXg8AAAAAAADNDgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					373,
-					1,
-					"left_delete",
-					null,
-					"AQAAAIIMAAAAAAAAggwAAAAAAABGAAAAICAgICAgICAgICAgICAgICAgICAvLyBiMkJvZHlfU2V0TWFzc0RhdGEocGh5c0NvbXAtPmJvZHksIG15TWFzc0RhdGEpOw",
-					"AQAAAAAAAAABAAAAyAwAAAAAAACCDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					376,
-					2,
-					"left_delete",
-					null,
-					"AgAAAJ4LAAAAAAAAngsAAAAAAABdAAAAICAgICAgICAgICAgICAgICAgICAvLyBiMk1hc3NEYXRhIG15TWFzc0RhdGE7CiAgICAgICAgICAgICAgICAgICAgLy8gbXlNYXNzRGF0YS5tYXNzID0gMC4wZjsKnQsAAAAAAACdCwAAAAAAAAEAAAAK",
-					"AQAAAAAAAAABAAAA+wsAAAAAAACeCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					379,
-					1,
-					"left_delete",
-					null,
-					"AQAAACQMAAAAAAAAJAwAAAAAAAABAAAACg",
-					"AQAAAAAAAAABAAAAJQwAAAAAAAAlDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					382,
-					1,
-					"insert",
-					{
-						"characters": " **"
-					},
-					"AwAAAIYLAAAAAAAAhwsAAAAAAAAAAAAAhwsAAAAAAACICwAAAAAAAAAAAACICwAAAAAAAIkLAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAhgsAAAAAAACGCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					383,
-					2,
-					"left_delete",
-					null,
-					"AgAAAIgLAAAAAAAAiAsAAAAAAAABAAAAKocLAAAAAAAAhwsAAAAAAAABAAAAKg",
-					"AQAAAAAAAAABAAAAiQsAAAAAAACJCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					384,
-					1,
-					"insert",
-					{
-						"characters": "&&"
-					},
-					"AgAAAIcLAAAAAAAAiAsAAAAAAAAAAAAAiAsAAAAAAACJCwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAhwsAAAAAAACHCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					385,
-					1,
-					"insert",
-					{
-						"characters": " eni"
-					},
-					"BAAAAIkLAAAAAAAAigsAAAAAAAAAAAAAigsAAAAAAACLCwAAAAAAAAAAAACLCwAAAAAAAIwLAAAAAAAAAAAAAIwLAAAAAAAAjQsAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAiQsAAAAAAACJCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					386,
-					1,
-					"insert_completion",
-					{
-						"completion": "entity",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "entity"
-					},
-					"AgAAAIoLAAAAAAAAigsAAAAAAAADAAAAZW5pigsAAAAAAACQCwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAjQsAAAAAAACNCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					387,
-					1,
-					"insert",
-					{
-						"characters": "->h"
-					},
-					"AwAAAJALAAAAAAAAkQsAAAAAAAAAAAAAkQsAAAAAAACSCwAAAAAAAAAAAACSCwAAAAAAAJMLAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAkAsAAAAAAACQCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					388,
-					1,
-					"insert_completion",
-					{
-						"completion": "hasComponent",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "hasComponent"
-					},
-					"AgAAAJILAAAAAAAAkgsAAAAAAAABAAAAaJILAAAAAAAAngsAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAkwsAAAAAAACTCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					390,
-					2,
-					"left_delete",
-					null,
-					"AgAAAIgLAAAAAAAAiAsAAAAAAAABAAAAJocLAAAAAAAAhwsAAAAAAAABAAAAJg",
-					"AQAAAAAAAAABAAAAiQsAAAAAAACJCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					391,
-					1,
-					"insert",
-					{
-						"characters": "||"
-					},
-					"AgAAAIcLAAAAAAAAiAsAAAAAAAAAAAAAiAsAAAAAAACJCwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAhwsAAAAAAACHCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					394,
-					1,
-					"insert",
-					{
-						"characters": "<"
-					},
-					"AQAAAJ4LAAAAAAAAnwsAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAngsAAAAAAACeCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					395,
-					1,
-					"insert",
-					{
-						"characters": "has"
-					},
-					"AwAAAJ8LAAAAAAAAoAsAAAAAAAAAAAAAoAsAAAAAAAChCwAAAAAAAAAAAAChCwAAAAAAAKILAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAnwsAAAAAAACfCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					396,
-					4,
-					"left_delete",
-					null,
-					"BAAAAKELAAAAAAAAoQsAAAAAAAABAAAAc6ALAAAAAAAAoAsAAAAAAAABAAAAYZ8LAAAAAAAAnwsAAAAAAAABAAAAaJ4LAAAAAAAAngsAAAAAAAABAAAAPA",
-					"AQAAAAAAAAABAAAAogsAAAAAAACiCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					397,
-					1,
-					"insert",
-					{
-						"characters": "M<pka"
-					},
-					"BQAAAJ4LAAAAAAAAnwsAAAAAAAAAAAAAnwsAAAAAAACgCwAAAAAAAAAAAACgCwAAAAAAAKELAAAAAAAAAAAAAKELAAAAAAAAogsAAAAAAAAAAAAAogsAAAAAAACjCwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAngsAAAAAAACeCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					398,
-					3,
-					"left_delete",
-					null,
-					"AwAAAKILAAAAAAAAogsAAAAAAAABAAAAYaELAAAAAAAAoQsAAAAAAAABAAAAa6ALAAAAAAAAoAsAAAAAAAABAAAAcA",
-					"AQAAAAAAAAABAAAAowsAAAAAAACjCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					399,
-					1,
-					"insert",
-					{
-						"characters": "Pkay"
-					},
-					"BAAAAKALAAAAAAAAoQsAAAAAAAAAAAAAoQsAAAAAAACiCwAAAAAAAAAAAACiCwAAAAAAAKMLAAAAAAAAAAAAAKMLAAAAAAAApAsAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAoAsAAAAAAACgCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					400,
-					3,
-					"left_delete",
-					null,
-					"AwAAAKMLAAAAAAAAowsAAAAAAAABAAAAeaILAAAAAAAAogsAAAAAAAABAAAAYaELAAAAAAAAoQsAAAAAAAABAAAAaw",
-					"AQAAAAAAAAABAAAApAsAAAAAAACkCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					401,
-					1,
-					"insert",
-					{
-						"characters": "layer2T"
-					},
-					"BwAAAKELAAAAAAAAogsAAAAAAAAAAAAAogsAAAAAAACjCwAAAAAAAAAAAACjCwAAAAAAAKQLAAAAAAAAAAAAAKQLAAAAAAAApQsAAAAAAAAAAAAApQsAAAAAAACmCwAAAAAAAAAAAACmCwAAAAAAAKcLAAAAAAAAAAAAAKcLAAAAAAAAqAsAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAoQsAAAAAAAChCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					402,
-					1,
-					"insert_completion",
-					{
-						"completion": "Player2Tag",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "Player2Tag"
-					},
-					"AgAAAKALAAAAAAAAoAsAAAAAAAAIAAAAUGxheWVyMlSgCwAAAAAAAKoLAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAqAsAAAAAAACoCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					403,
-					1,
-					"insert",
-					{
-						"characters": ">"
-					},
-					"AQAAAKoLAAAAAAAAqwsAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAqgsAAAAAAACqCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					404,
-					1,
-					"insert_snippet",
-					{
-						"contents": "($0)"
-					},
-					"AQAAAKsLAAAAAAAArQsAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAqwsAAAAAAACrCwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					419,
-					1,
-					"insert",
-					{
-						"characters": " ||"
-					},
-					"AwAAAI0MAAAAAAAAjgwAAAAAAAAAAAAAjgwAAAAAAACPDAAAAAAAAAAAAACPDAAAAAAAAJAMAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAjQwAAAAAAACNDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					420,
-					2,
-					"left_delete",
-					null,
-					"AgAAAI8MAAAAAAAAjwwAAAAAAAABAAAAfI4MAAAAAAAAjgwAAAAAAAABAAAAfA",
-					"AQAAAAAAAAABAAAAkAwAAAAAAACQDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					421,
-					1,
-					"insert",
-					{
-						"characters": "&&"
-					},
-					"AgAAAI4MAAAAAAAAjwwAAAAAAAAAAAAAjwwAAAAAAACQDAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAjgwAAAAAAACODAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					422,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAJAMAAAAAAAAkQwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAkAwAAAAAAACQDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					423,
-					1,
-					"insert",
-					{
-						"characters": "en"
-					},
-					"AgAAAJEMAAAAAAAAkgwAAAAAAAAAAAAAkgwAAAAAAACTDAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAkQwAAAAAAACRDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					424,
-					1,
-					"insert_completion",
-					{
-						"completion": "entity",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "entity"
-					},
-					"AgAAAJEMAAAAAAAAkQwAAAAAAAACAAAAZW6RDAAAAAAAAJcMAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAkwwAAAAAAACTDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					425,
-					1,
-					"insert",
-					{
-						"characters": "->"
-					},
-					"AgAAAJcMAAAAAAAAmAwAAAAAAAAAAAAAmAwAAAAAAACZDAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAlwwAAAAAAACXDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					426,
-					1,
-					"insert_completion",
-					{
-						"completion": "hasComponent",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": true,
-						"trigger": "hasComponent"
-					},
-					"AQAAAJkMAAAAAAAApQwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAmQwAAAAAAACZDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					427,
-					1,
-					"insert",
-					{
-						"characters": "<Plaa"
-					},
-					"BQAAAKUMAAAAAAAApgwAAAAAAAAAAAAApgwAAAAAAACnDAAAAAAAAAAAAACnDAAAAAAAAKgMAAAAAAAAAAAAAKgMAAAAAAAAqQwAAAAAAAAAAAAAqQwAAAAAAACqDAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAApQwAAAAAAAClDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					428,
-					1,
-					"insert",
-					{
-						"characters": "bl"
-					},
-					"AgAAAKoMAAAAAAAAqwwAAAAAAAAAAAAAqwwAAAAAAACsDAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAqgwAAAAAAACqDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					429,
-					1,
-					"insert_completion",
-					{
-						"completion": "PlayableComponent",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "PlayableComponent"
-					},
-					"AgAAAKYMAAAAAAAApgwAAAAAAAAGAAAAUGxhYWJspgwAAAAAAAC3DAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAArAwAAAAAAACsDAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					430,
-					1,
-					"insert",
-					{
-						"characters": ">"
-					},
-					"AQAAALcMAAAAAAAAuAwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAtwwAAAAAAAC3DAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					431,
-					1,
-					"insert_snippet",
-					{
-						"contents": "($0)"
-					},
-					"AQAAALgMAAAAAAAAugwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAuAwAAAAAAAC4DAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					438,
-					1,
-					"insert",
-					{
-						"characters": "\n#incldue"
-					},
-					"CQAAAMoAAAAAAAAAywAAAAAAAAAAAAAAywAAAAAAAADMAAAAAAAAAAAAAADMAAAAAAAAAM0AAAAAAAAAAAAAAM0AAAAAAAAAzgAAAAAAAAAAAAAAzgAAAAAAAADPAAAAAAAAAAAAAADPAAAAAAAAANAAAAAAAAAAAAAAANAAAAAAAAAA0QAAAAAAAAAAAAAA0QAAAAAAAADSAAAAAAAAAAAAAADSAAAAAAAAANMAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAygAAAAAAAADKAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					439,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAANMAAAAAAAAA1AAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA0wAAAAAAAADTAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					440,
 					1,
 					"insert_snippet",
 					{
 						"contents": "\"$0\""
 					},
-					"AQAAANQAAAAAAAAA1gAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA1AAAAAAAAADUAAAAAAAAAAAAAAAAAPC/"
+					"AQAAAE8AAAAAAAAAUQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAATwAAAAAAAABPAAAAAAAAAAAAAAAAAPC/"
 				],
 				[
-					441,
+					13,
 					1,
 					"insert",
 					{
-						"characters": "Com"
+						"characters": "Components/"
 					},
-					"AwAAANUAAAAAAAAA1gAAAAAAAAAAAAAA1gAAAAAAAADXAAAAAAAAAAAAAADXAAAAAAAAANgAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA1QAAAAAAAADVAAAAAAAAAAAAAAAAAPC/"
+					"CwAAAFAAAAAAAAAAUQAAAAAAAAAAAAAAUQAAAAAAAABSAAAAAAAAAAAAAABSAAAAAAAAAFMAAAAAAAAAAAAAAFMAAAAAAAAAVAAAAAAAAAAAAAAAVAAAAAAAAABVAAAAAAAAAAAAAABVAAAAAAAAAFYAAAAAAAAAAAAAAFYAAAAAAAAAVwAAAAAAAAAAAAAAVwAAAAAAAABYAAAAAAAAAAAAAABYAAAAAAAAAFkAAAAAAAAAAAAAAFkAAAAAAAAAWgAAAAAAAAAAAAAAWgAAAAAAAABbAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAUAAAAAAAAABQAAAAAAAAAAAAAAAAAPC/"
 				],
 				[
-					442,
-					1,
-					"insert_completion",
-					{
-						"completion": "Components",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "Components"
-					},
-					"AgAAANUAAAAAAAAA1QAAAAAAAAADAAAAQ29t1QAAAAAAAADfAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA2AAAAAAAAADYAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					443,
+					14,
 					1,
 					"insert",
 					{
-						"characters": "/Plya"
+						"characters": "E"
 					},
-					"BQAAAN8AAAAAAAAA4AAAAAAAAAAAAAAA4AAAAAAAAADhAAAAAAAAAAAAAADhAAAAAAAAAOIAAAAAAAAAAAAAAOIAAAAAAAAA4wAAAAAAAAAAAAAA4wAAAAAAAADkAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA3wAAAAAAAADfAAAAAAAAAAAAAAAAAPC/"
+					"AQAAAFsAAAAAAAAAXAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAWwAAAAAAAABbAAAAAAAAAAAAAAAAAPC/"
 				],
 				[
-					444,
-					1,
-					"insert_completion",
-					{
-						"completion": "PlayableComponent",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "PlayableComponent"
-					},
-					"AgAAAOAAAAAAAAAA4AAAAAAAAAAEAAAAUGx5YeAAAAAAAAAA8QAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA5AAAAAAAAADkAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					445,
-					1,
-					"insert",
-					{
-						"characters": ">"
-					},
-					"AQAAAPEAAAAAAAAA8gAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA8QAAAAAAAADxAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					446,
+					15,
 					1,
 					"left_delete",
 					null,
-					"AQAAAPEAAAAAAAAA8QAAAAAAAAABAAAAPg",
-					"AQAAAAAAAAABAAAA8gAAAAAAAADyAAAAAAAAAAAAAAAAAPC/"
+					"AQAAAFsAAAAAAAAAWwAAAAAAAAABAAAARQ",
+					"AQAAAAAAAAABAAAAXAAAAAAAAABcAAAAAAAAAAAAAAAAAPC/"
 				],
 				[
-					447,
+					16,
+					1,
+					"insert",
+					{
+						"characters": "Dash"
+					},
+					"BAAAAFsAAAAAAAAAXAAAAAAAAAAAAAAAXAAAAAAAAABdAAAAAAAAAAAAAABdAAAAAAAAAF4AAAAAAAAAAAAAAF4AAAAAAAAAXwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAWwAAAAAAAABbAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					17,
+					1,
+					"insert_completion",
+					{
+						"completion": "DashComponent",
+						"format": "text",
+						"keep_prefix": false,
+						"must_insert": false,
+						"trigger": "DashComponent"
+					},
+					"AgAAAFsAAAAAAAAAWwAAAAAAAAAEAAAARGFzaFsAAAAAAAAAaAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAXwAAAAAAAABfAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					18,
 					1,
 					"insert",
 					{
 						"characters": ".h"
 					},
-					"AgAAAPEAAAAAAAAA8gAAAAAAAAAAAAAA8gAAAAAAAADzAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA8QAAAAAAAADxAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					450,
-					2,
-					"left_delete",
-					null,
-					"AgAAANEAAAAAAAAA0QAAAAAAAAABAAAAddAAAAAAAAAA0AAAAAAAAAABAAAAZA",
-					"AQAAAAAAAAABAAAA0gAAAAAAAADSAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					451,
-					1,
-					"insert",
-					{
-						"characters": "ud"
-					},
-					"AgAAANAAAAAAAAAA0QAAAAAAAAAAAAAA0QAAAAAAAADSAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA0AAAAAAAAADQAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					456,
-					1,
-					"left_delete",
-					null,
-					"AQAAAMgLAAAAAAAAyAsAAAAAAAABAAAATQ",
-					"AQAAAAAAAAABAAAAyQsAAAAAAADJCwAAAAAAAAAAAAAAAPC/"
+					"AgAAAGgAAAAAAAAAaQAAAAAAAAAAAAAAaQAAAAAAAABqAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAaAAAAAAAAABoAAAAAAAAAAAAAAAAAPC/"
 				]
 			]
-		},
-		{
-			"file": "src/ECSManager.cpp",
-			"settings":
-			{
-				"buffer_size": 5085,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-			]
-		},
-		{
-			"file": "include/ECS/Entity.h",
-			"settings":
-			{
-				"buffer_size": 2052,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-				[
-					3,
-					1,
-					"toggle_comment",
-					{
-						"block": false
-					},
-					"AQAAABkDAAAAAAAAHAMAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAFwMAAAAAAAAXAwAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		},
-		{
-			"file": "src/EventSystem.cpp",
-			"settings":
-			{
-				"buffer_size": 7016,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-				[
-					3,
-					1,
-					"insert",
-					{
-						"characters": " &&"
-					},
-					"AwAAAKwEAAAAAAAArQQAAAAAAAAAAAAArQQAAAAAAACuBAAAAAAAAAAAAACuBAAAAAAAAK8EAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAArAQAAAAAAACsBAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					4,
-					1,
-					"insert",
-					{
-						"characters": " prea"
-					},
-					"BQAAAK8EAAAAAAAAsAQAAAAAAAAAAAAAsAQAAAAAAACxBAAAAAAAAAAAAACxBAAAAAAAALIEAAAAAAAAAAAAALIEAAAAAAAAswQAAAAAAAAAAAAAswQAAAAAAAC0BAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAArwQAAAAAAACvBAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					5,
-					1,
-					"insert_completion",
-					{
-						"completion": "PlayerTag",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "PlayerTag"
-					},
-					"AgAAALAEAAAAAAAAsAQAAAAAAAAEAAAAcHJlYbAEAAAAAAAAuQQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAtAQAAAAAAAC0BAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					6,
-					1,
-					"insert_snippet",
-					{
-						"contents": "{$0}"
-					},
-					"AQAAALkEAAAAAAAAuwQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAuQQAAAAAAAC5BAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					7,
-					1,
-					"run_macro_file",
-					{
-						"file": "res://Packages/Default/Delete Left Right.sublime-macro"
-					},
-					"AgAAALkEAAAAAAAAuQQAAAAAAAABAAAAe7kEAAAAAAAAuQQAAAAAAAABAAAAfQ",
-					"AQAAAAAAAAABAAAAugQAAAAAAAC6BAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					8,
-					9,
-					"left_delete",
-					null,
-					"CQAAALgEAAAAAAAAuAQAAAAAAAABAAAAZ7cEAAAAAAAAtwQAAAAAAAABAAAAYbYEAAAAAAAAtgQAAAAAAAABAAAAVLUEAAAAAAAAtQQAAAAAAAABAAAAcrQEAAAAAAAAtAQAAAAAAAABAAAAZbMEAAAAAAAAswQAAAAAAAABAAAAebIEAAAAAAAAsgQAAAAAAAABAAAAYbEEAAAAAAAAsQQAAAAAAAABAAAAbLAEAAAAAAAAsAQAAAAAAAABAAAAUA",
-					"AQAAAAAAAAABAAAAuQQAAAAAAAC5BAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					9,
-					1,
-					"insert",
-					{
-						"characters": "press"
-					},
-					"BQAAALAEAAAAAAAAsQQAAAAAAAAAAAAAsQQAAAAAAACyBAAAAAAAAAAAAACyBAAAAAAAALMEAAAAAAAAAAAAALMEAAAAAAAAtAQAAAAAAAAAAAAAtAQAAAAAAAC1BAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAsAQAAAAAAACwBAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					10,
-					1,
-					"insert_completion",
-					{
-						"completion": "pressed",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "pressed"
-					},
-					"AgAAALAEAAAAAAAAsAQAAAAAAAAFAAAAcHJlc3OwBAAAAAAAALcEAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAtQQAAAAAAAC1BAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					11,
-					1,
-					"insert_snippet",
-					{
-						"contents": "{$0}"
-					},
-					"AQAAALcEAAAAAAAAuQQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAtwQAAAAAAAC3BAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					12,
-					1,
-					"run_macro_file",
-					{
-						"file": "res://Packages/Default/Delete Left Right.sublime-macro"
-					},
-					"AgAAALcEAAAAAAAAtwQAAAAAAAABAAAAe7cEAAAAAAAAtwQAAAAAAAABAAAAfQ",
-					"AQAAAAAAAAABAAAAuAQAAAAAAAC4BAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					13,
-					1,
-					"insert",
-					{
-						"characters": "]"
-					},
-					"AQAAALcEAAAAAAAAuAQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAtwQAAAAAAAC3BAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					14,
-					1,
-					"left_delete",
-					null,
-					"AQAAALcEAAAAAAAAtwQAAAAAAAABAAAAXQ",
-					"AQAAAAAAAAABAAAAuAQAAAAAAAC4BAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					20,
-					1,
-					"paste",
-					null,
-					"AQAAALcEAAAAAAAAzwQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAtwQAAAAAAAC3BAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					30,
-					4,
-					"left_delete",
-					null,
-					"BAAAAMoEAAAAAAAAygQAAAAAAAAEAAAAdHJ1ZckEAAAAAAAAyQQAAAAAAAABAAAAIMgEAAAAAAAAyAQAAAAAAAABAAAAPccEAAAAAAAAxwQAAAAAAAABAAAAIA",
-					"AQAAAAAAAAABAAAAygQAAAAAAADOBAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					31,
-					1,
-					"right_delete",
-					null,
-					"AQAAAMcEAAAAAAAAxwQAAAAAAAABAAAAOw",
-					"AQAAAAAAAAABAAAAxwQAAAAAAADHBAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					33,
-					1,
-					"insert",
-					{
-						"characters": "!"
-					},
-					"AQAAALAEAAAAAAAAsQQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAsAQAAAAAAACwBAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					36,
-					1,
-					"toggle_comment",
-					{
-						"block": false
-					},
-					"AQAAANgFAAAAAAAA2AUAAAAAAAADAAAALy8g",
-					"AQAAAAAAAAABAAAA2AUAAAAAAAD9BQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					42,
-					1,
-					"toggle_comment",
-					{
-						"block": false
-					},
-					"AQAAAH8GAAAAAAAAfwYAAAAAAAADAAAALy8g",
-					"AQAAAAAAAAABAAAAfwYAAAAAAAChBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					84,
-					1,
-					"cut",
-					null,
-					"AQAAAOkKAAAAAAAA6QoAAAAAAABGAAAACQkJCWlmKGRhc2hDb21wKXsKCQkJCQkJCWRhc2hDb21wLT5wcmVzc2VkKGV2dC5rZXkpOwkJCQkJCQkJCQoJCQkJCQl9Cg",
-					"AQAAAAAAAAABAAAALwsAAAAAAADpCgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					87,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AgAAAK4HAAAAAAAArwcAAAAAAAAAAAAArwcAAAAAAAC4BwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAArgcAAAAAAACuBwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					88,
-					1,
-					"paste",
-					null,
-					"AQAAALgHAAAAAAAA/gcAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAuAcAAAAAAAC4BwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					91,
-					5,
-					"left_delete",
-					null,
-					"BQAAALsHAAAAAAAAuwcAAAAAAAAOAAAACWlmKGRhc2hDb21wKXu6BwAAAAAAALoHAAAAAAAAAQAAAAm5BwAAAAAAALkHAAAAAAAAAQAAAAm4BwAAAAAAALgHAAAAAAAAAQAAAAm3BwAAAAAAALcHAAAAAAAAAQAAAAk",
-					"AQAAAAAAAAABAAAAuwcAAAAAAADJBwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					94,
-					1,
-					"left_delete",
-					null,
-					"AgAAAOcHAAAAAAAA5wcAAAAAAAAEAAAACQkJfa8HAAAAAAAArwcAAAAAAAAIAAAACQkJCQkJCQk",
-					"AQAAAAAAAAABAAAA6wcAAAAAAADnBwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					97,
-					1,
-					"insert",
-					{
-						"characters": "\t\t"
-					},
-					"AgAAALcHAAAAAAAAuAcAAAAAAAAAAAAAuAcAAAAAAAC5BwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAtwcAAAAAAAC3BwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					100,
-					5,
-					"left_delete",
-					null,
-					"BQAAAOAHAAAAAAAA4AcAAAAAAAABAAAACd8HAAAAAAAA3wcAAAAAAAABAAAACd4HAAAAAAAA3gcAAAAAAAABAAAACd0HAAAAAAAA3QcAAAAAAAABAAAACtwHAAAAAAAA3AcAAAAAAAABAAAACQ",
-					"AQAAAAAAAAABAAAA4QcAAAAAAADhBwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					101,
-					1,
-					"right_delete",
-					null,
-					"AQAAANwHAAAAAAAA3AcAAAAAAAABAAAACg",
-					"AQAAAAAAAAABAAAA3AcAAAAAAADcBwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					107,
-					1,
-					"left_delete",
-					null,
-					"AQAAANUHAAAAAAAA1QcAAAAAAAAJAAAACQkJCQkJCQkJ",
-					"AQAAAAAAAAABAAAA1QcAAAAAAADeBwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					108,
-					1,
-					"right_delete",
-					null,
-					"AQAAANUHAAAAAAAA1QcAAAAAAAABAAAACg",
-					"AQAAAAAAAAABAAAA1QcAAAAAAADVBwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					109,
-					1,
-					"left_delete",
-					null,
-					"AQAAANQHAAAAAAAA1AcAAAAAAAABAAAACQ",
-					"AQAAAAAAAAABAAAA1QcAAAAAAADVBwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					110,
-					1,
-					"insert",
-					{
-						"characters": "\n"
-					},
-					"AgAAANQHAAAAAAAA1QcAAAAAAAAAAAAA1QcAAAAAAADeBwAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA1AcAAAAAAADUBwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					111,
-					8,
-					"right_delete",
-					null,
-					"CAAAAN4HAAAAAAAA3gcAAAAAAAABAAAACd4HAAAAAAAA3gcAAAAAAAABAAAACd4HAAAAAAAA3gcAAAAAAAABAAAACd4HAAAAAAAA3gcAAAAAAAABAAAACd4HAAAAAAAA3gcAAAAAAAABAAAACd4HAAAAAAAA3gcAAAAAAAABAAAACd4HAAAAAAAA3gcAAAAAAAABAAAACd4HAAAAAAAA3gcAAAAAAAABAAAACQ",
-					"AQAAAAAAAAABAAAA3gcAAAAAAADeBwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					112,
-					1,
-					"left_delete",
-					null,
-					"AQAAAN0HAAAAAAAA3QcAAAAAAAABAAAACQ",
-					"AQAAAAAAAAABAAAA3gcAAAAAAADeBwAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					114,
-					1,
-					"left_delete",
-					null,
-					"AQAAAK4HAAAAAAAArgcAAAAAAAABAAAACg",
-					"AQAAAAAAAAABAAAArwcAAAAAAACvBwAAAAAAAAAAAAAAsHJA"
-				],
-				[
-					119,
-					1,
-					"toggle_comment",
-					{
-						"block": false
-					},
-					"AQAAAH8GAAAAAAAAggYAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAngYAAAAAAAB2BgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					122,
-					1,
-					"toggle_comment",
-					{
-						"block": false
-					},
-					"AQAAANgFAAAAAAAA2wUAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA+gUAAAAAAADPBQAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		},
-		{
-			"file": "Makefile",
-			"redo_stack":
-			[
-			],
-			"settings":
-			{
-				"buffer_size": 1011,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-				[
-					13,
-					1,
-					"left_delete",
-					null,
-					"BAAAAHEAAAAAAAAAcQAAAAAAAAATAAAAQzovU0RMMi13NjQvaW5jbHVkZXAAAAAAAAAAcAAAAAAAAAABAAAAIG8AAAAAAAAAbwAAAAAAAAABAAAASW4AAAAAAAAAbgAAAAAAAAABAAAALQ",
-					"AQAAAAAAAAABAAAAhAAAAAAAAABxAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					14,
-					1,
-					"right_delete",
-					null,
-					"AQAAAG4AAAAAAAAAbgAAAAAAAAABAAAAIA",
-					"AQAAAAAAAAABAAAAbgAAAAAAAABuAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					26,
-					1,
-					"right_delete",
-					null,
-					"AQAAAG0AAAAAAAAAbQAAAAAAAAAsAAAAIC1JIEM6L1VzZXJzL2dlYW1pL0Rlc2t0b3AvRGV2L2JveDJkL2luY2x1ZGU",
-					"AQAAAAAAAAABAAAAmQAAAAAAAABtAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					69,
-					1,
-					"left_delete",
-					null,
-					"AQAAAIUAAAAAAAAAhQAAAAAAAAAMAAAAQzovU0RMMi13NjQv",
-					"AQAAAAAAAAABAAAAkQAAAAAAAACFAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					74,
-					16,
-					"left_delete",
-					null,
-					"EAAAAMwAAAAAAAAAzAAAAAAAAAAqAAAAQzovVXNlcnMvZ2VhbWkvRGVza3RvcC9EZXYvYm94MmQvYnVpbGQvc3JjywAAAAAAAADLAAAAAAAAAAEAAAAgygAAAAAAAADKAAAAAAAAAAEAAABMyQAAAAAAAADJAAAAAAAAAAEAAAAtyAAAAAAAAADIAAAAAAAAAAEAAAAgxwAAAAAAAADHAAAAAAAAAAEAAAAgxgAAAAAAAADGAAAAAAAAAAEAAAAgxQAAAAAAAADFAAAAAAAAAAEAAAAgxAAAAAAAAADEAAAAAAAAAAEAAAAgwwAAAAAAAADDAAAAAAAAAAEAAAAgwgAAAAAAAADCAAAAAAAAAAEAAAAgwQAAAAAAAADBAAAAAAAAAAEAAAAgwAAAAAAAAADAAAAAAAAAAAEAAAAgvwAAAAAAAAC/AAAAAAAAAAEAAAAgvgAAAAAAAAC+AAAAAAAAAAEAAAAKvQAAAAAAAAC9AAAAAAAAAAEAAABc",
-					"AQAAAAAAAAABAAAA9gAAAAAAAADMAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					75,
-					1,
-					"left_delete",
-					null,
-					"AQAAALwAAAAAAAAAvAAAAAAAAAABAAAAIA",
-					"AQAAAAAAAAABAAAAvQAAAAAAAAC9AAAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		},
-		{
-			"file": "include/Components/PhysicsComponent.h",
-			"settings":
-			{
-				"buffer_size": 345,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "Searching 30 files for \"playable\"\n\nC:\\Users\\geami\\Desktop\\Dev\\Physics 2D Platformer SDL\\src\\CommandSystem.cpp:\n    6  #include \"Components/StateComponent.h\"\n    7  #include \"Components/CooldownComponent.h\"\n    8: #include \"Components/PlayableComponent.h\"\n    9  #include <iostream>\n   10  \n   ..\n   18  \t\tif(entity){\n   19  \n   20: \t\t\tif(entity->isActive && entity->hasComponent<CommandComponent>() && entity->hasComponent<PlayableComponent>()){\n   21  \t\t\t\tauto commandComp = entity->getComponent<CommandComponent>();\n   22  \t\t\t\tauto veloComp = entity->getComponent<VelocityComponent>();\n\nC:\\Users\\geami\\Desktop\\Dev\\Physics 2D Platformer SDL\\src\\EntityFactory.cpp:\n   33  \tgeneralUnit(player, req);\n   34  \tplayer->addComponent<PlayerTag>();\n   35: \tplayer->addComponent<PlayableComponent>();\n   36  \tplayer->addComponent<DashComponent>(0.2f);\n   37  \tplayer->addComponent<SpriteComponent>(\"orc3\", 64, 64, 2.0f);\n\nC:\\Users\\geami\\Desktop\\Dev\\Physics 2D Platformer SDL\\src\\EventSystem.cpp:\n    2  #include \"Components/PositionComponent.h\"\n    3  #include \"Components/DirectionComponent.h\"\n    4: #include \"Components/PlayableComponent.h\"\n    5  #include \"Components/StateComponent.h\"\n    6  #include \"Components/CommandComponent.h\"\n    .\n   32  \t\n   33  \tfor(auto& entity : entities){\n   34: \t\tif(entity->isActive && entity->hasComponent<PlayableComponent>() && entity->hasComponent<CommandComponent>()){\n   35  \n   36  \n   37: \t\t\tauto playComp = entity->getComponent<PlayableComponent>();\n   38  \t\t\tauto commandComp = entity->getComponent<CommandComponent>();\n   39  \n   ..\n  207  \t\t\tauto posComp = entity->getComponent<PositionComponent>();\n  208  \t\t\tauto directComp = entity->getComponent<DirectionComponent>();\n  209: \t\t\tauto playComp = entity->getComponent<PlayableComponent>();\n  210  \t\t\tauto stateComp = entity->getComponent<StateComponent>();\t\t\t\n  211  \t\t\tif(posComp && playComp && directComp){\n\nC:\\Users\\geami\\Desktop\\Dev\\Physics 2D Platformer SDL\\src\\InputSystem.cpp:\n    1  #include <SDL2/SDL.h>\n    2  #include \"Systems/InputSystem.h\"\n    3: #include \"Components/PlayableComponent.h\"\n    4  #include \"Components/StateComponent.h\"\n    5  #include <iostream>\n\nC:\\Users\\geami\\Desktop\\Dev\\Physics 2D Platformer SDL\\src\\MiddleEventSystem.cpp:\n    1  #include \"Events/MiddleEventSystem.h\"\n    2: #include \"Components/PlayableComponent.h\"\n    3  #include \"Components/CommandComponent.h\"\n    4  #include \"Groups.h\"\n    .\n   24  \n   25  \t\t// \tif(entity->hasComponent<PlayerTag>() && \n   26: \t\t// \t\tentity->hasComponent<PlayableComponent>() && \n   27  \t\t// \t\tentity->hasComponent<CommandComponent>()) {\n   28  \t\t// \t\tplayer1 = entity;\n   ..\n   48  \t\t// // if(player2->hasComponent<PlayerTag>()) player2->removeComponent<PlayerTag>();\n   49  \t\t// player1->removeComponent<PlayerTag>();\n   50: \t\t// player1->removeComponent<PlayableComponent>();\n   51  \t\t// player1->addComponent<Player2Tag>();\n   52  \n   ..\n   55  \t\t// player2->removeComponent<Player2Tag>();\n   56  \t\t// player2->addComponent<PlayerTag>();\n   57: \t\t// player2->addComponent<PlayableComponent>();\n   58  \n   59  \t}\n\n12 matches across 5 files\n",
-			"settings":
-			{
-				"buffer_size": 3108,
-				"line_ending": "Windows",
-				"name": "Find Results",
-				"scratch": true
-			}
 		}
 	],
 	"build_system": "Packages/Makefile/Make.sublime-build",
@@ -2799,6 +4399,7 @@
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Events",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Factory",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Input",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/nlohmann",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems",
@@ -2807,41 +4408,71 @@
 	],
 	"file_history":
 	[
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Events/EventSystem.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/MenuScene.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/SyncSystem.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/EventSystem.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/EntityFactory.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/MiddleEventSystem.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/InputSystem.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/MovementSystem.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/PhysicsSystem.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/RenderSystem.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/MenuScene.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS/EntityFactory.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/TransformComponent.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/OwnerComponent.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS/Entity.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/DirectionComponent.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/PositionComponent.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/AttackSystem.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/CollisionSystem.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/DamageSystem.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/ECSManager.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/DamageSystem.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS/ECSManager.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Requests.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/AttackSystem.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/StatusComponent.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/EntityFactory.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/Game.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/AnimationSystem.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/AnimationComponent.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/AnimationComponent.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/CooldownComponent.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/ColliderComponent.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/GameplayScene.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/Components.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/DamageComponent.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/UnitEntityFactory.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Factory/UnitEntityFactory.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/ObjectEntityFactory.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Factory/ObjectEntityFactory.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/AttackEntityFactory.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Factory/AttackEntityFactory.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/StateComponent.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/VelocityComponent.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Groups.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Factory/UIEntityFactory.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/UIEntityFactory.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/PhysicsComponent.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/CommandSystem.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/MiddleEventSystem.cpp",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS/UnitEntityFactory.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS/AttackEntityFactory.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS/UIFactory.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/Makefile",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Events/EventSystem.h",
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/InputSystem.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/obj/CommandSystem.d",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/Systems.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/CommandSystem.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/CommandComponent.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Game.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/Game.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/ECSManager.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Events/EventManager.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS/ECSManager.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Events/MiddleEventSystem.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Events/EventQueue.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/PhysicsSystem.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/InputManager.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/PhysicsSystem.h",
 		"/C/SDL2-w64/include/SDL2/SDL_keycode.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/KeyCode.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/PhysicsComponent.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Groups.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/SecondPlayerComponent.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/CollisionSystem.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/MovementSystem.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/GameplayScene.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/VelocityComponent.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/RenderSystem.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/AttackSystem.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS/EntityFactory.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Renderer.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/AttackSystem.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/Makefile",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/CollisionSystem.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/MovementSystem.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/main.cpp",
@@ -2849,33 +4480,19 @@
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/RenderSystem.h",
 		"/C/SDL2-w64/include/SDL2/SDL_render.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/Renderer.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/TransformComponent.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/Components.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/KeyboardController.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/DamageSystem.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/SolidComponent.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Collision.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/StateComponent.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/ExpireSystem.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/AnimationSystem.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/TimerSystem.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/DashComponent.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/assets/animations.json",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/AnimationComponent.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/assets/animations2.json",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/AnimationSystem.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/AnimationComponent.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/DirectionComponent.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/AttackComponent.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/StatusComponent.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/DamageSystem.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Requests.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/ColliderComponent.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/PositionComponent.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/CollisionSystem.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/Collision.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/SpriteComponent.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/MenuScene.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/UIRenderSystem.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS/System.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/GroupComponent.h",
@@ -2891,7 +4508,6 @@
 		"/C/SDL2-w64/include/SDL2/SDL_ttf.h",
 		"/C/SDL2-w64/include/SDL2/begin_code.h",
 		"/C/SDL2-w64/include/SDL2/SDL_pixels.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/CooldownComponent.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/HealthComponent.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/KeyboardController.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Vector2D.h",
@@ -2899,7 +4515,6 @@
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/Component.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/CommandSystem.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/GameplayScene.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/MenuScene.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Components/LifeTimeComponent.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/HitSystem.h",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/Collision.h",
@@ -2920,25 +4535,11 @@
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/Scene.cpp",
 		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/EventQueue.h",
 		"/C/SDL2-w64/include/SDL2/SDL_image.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/projectileSystem.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS/projectileSystem",
-		"/C/SDL2-w64/include/SDL2/SDL_keyboard.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/TextureManager.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/IRenderer.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/Pysics 2D platformer SDL.sublime-project",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/ECS.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Entity.h",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/SceneManager.cpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/main.o",
-		"/C/Users/geami/AppData/Roaming/Sublime Text/Packages/User/Makefile.sublime-build",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/RenderWindow.hpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Entity.hpp",
-		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/src/RenderWindow.cpp",
-		"/C/SDL2-w64/include/SDL2/SDL_video.h"
+		"/C/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/include/Systems/projectileSystem.h"
 	],
 	"find":
 	{
-		"height": 41.0
+		"height": 43.0
 	},
 	"find_in_files":
 	{
@@ -2962,6 +4563,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"req.type",
+			"type",
 			"dashcomp",
 			"dash",
 			"play",
@@ -3049,83 +4652,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/CommandSystem.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3060,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								473,
-								473
-							]
-						],
-						"settings":
-						{
-							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/src/CommandSystem.cpp",
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/MiddleEventSystem.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1713,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1136,
-								1136
-							]
-						],
-						"settings":
-						{
-							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/src/MiddleEventSystem.cpp",
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 240.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "src/EntityFactory.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10199,
+						"buffer_size": 12269,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2145,
-								2152
+								5363,
+								5363
 							]
 						],
 						"settings":
@@ -3136,28 +4675,60 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1800.0,
+						"translation.y": 2715.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 5,
 					"stack_multiselect": false,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "src/PhysicsSystem.cpp",
+					"buffer": 1,
+					"file": "include/ECS/EntityFactory.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4727,
+						"buffer_size": 2648,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4725,
-								4725
+								1825,
+								1825
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/include/ECS/EntityFactory.h",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 240.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/PhysicsSystem.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4723,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2597,
+								2597
 							]
 						],
 						"settings":
@@ -3168,244 +4739,60 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1380.0,
+						"translation.y": 2100.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "include/Components/SpriteComponent.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 667,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/include/Components/SpriteComponent.h",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
 					"stack_multiselect": false,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "src/ECSManager.cpp",
+					"file": "include/Systems/SyncSystem.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5085,
+						"buffer_size": 812,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								459,
-								459
-							]
-						],
-						"settings":
-						{
-							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/src/ECSManager.cpp",
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "include/ECS/Entity.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2052,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								776,
-								776
-							]
-						],
-						"settings":
-						{
-							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/include/ECS/Entity.h",
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 300.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "src/EventSystem.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7016,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2043,
-								2043
-							]
-						],
-						"settings":
-						{
-							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/src/EventSystem.cpp",
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1214.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "Makefile",
-					"selected": true,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1011,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								188,
-								188
-							]
-						],
-						"settings":
-						{
-							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/Makefile",
-							"syntax": "Packages/Makefile/Makefile.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "include/Components/PhysicsComponent.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 345,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								168,
-								168
-							]
-						],
-						"settings":
-						{
-							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/include/Components/PhysicsComponent.h",
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3108,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										234,
-										242
-									],
-									[
-										423,
-										431
-									],
-									[
-										771,
-										779
-									],
-									[
-										1115,
-										1123
-									],
-									[
-										1336,
-										1344
-									],
-									[
-										1466,
-										1474
-									],
-									[
-										1760,
-										1768
-									],
-									[
-										2073,
-										2081
-									],
-									[
-										2321,
-										2329
-									],
-									[
-										2520,
-										2528
-									],
-									[
-										2822,
-										2830
-									],
-									[
-										3041,
-										3049
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								2328,
-								2328
+								792,
+								792
 							]
 						],
 						"settings":
@@ -3421,21 +4808,303 @@
 									"selector": "punctuation.accessor"
 								}
 							],
-							"detect_indentation": false,
-							"line_numbers": false,
-							"lsp_uri": "buffer:498",
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ \t].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/include/Systems/SyncSystem.h",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 900.0,
+						"translation.y": 60.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 13,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "include/Systems/Systems.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 482,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								397,
+								397
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/include/Systems/Systems.h",
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "include/Requests.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 590,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/include/Requests.h",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/Game.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5993,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1694,
+								1694
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/src/Game.cpp",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/GameplayScene.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1792,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								375,
+								375
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/src/GameplayScene.cpp",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/AnimationComponent.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3269,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								568,
+								568
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/src/AnimationComponent.cpp",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 360.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "src/EventSystem.cpp",
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6971,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3306,
+								3319
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/src/EventSystem.cpp",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1995.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "src/CommandSystem.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3060,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1396,
+								1396
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/src/CommandSystem.cpp",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 420.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "include/Systems/AnimationSystem.h",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 619,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/include/Systems/AnimationSystem.h",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 240.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "include/Events/EventSystem.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 977,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								106,
+								106
+							]
+						],
+						"settings":
+						{
+							"lsp_uri": "file:///C:/Users/geami/Desktop/Dev/Physics%202D%20Platformer%20SDL/include/Events/EventSystem.h",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"stack_multiselect": false,
 					"type": "text"
 				}

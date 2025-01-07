@@ -58,6 +58,7 @@ obj/ECSManager.o: src/ECSManager.cpp include/ECS/ECSManager.h \
  include/box2d/math_functions.h include/box2d/id.h include/box2d/types.h \
  include/Components/PlayableComponent.h \
  include/Components/PositionComponent.h \
+ include/Components/ProjectileComponent.h \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
  include/Components/StateComponent.h include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
@@ -136,6 +137,7 @@ include/box2d/id.h:
 include/box2d/types.h:
 include/Components/PlayableComponent.h:
 include/Components/PositionComponent.h:
+include/Components/ProjectileComponent.h:
 include/Components/SolidComponent.h:
 include/Components/SpriteComponent.h:
 include/Components/StateComponent.h:

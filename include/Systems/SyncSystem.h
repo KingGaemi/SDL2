@@ -5,6 +5,8 @@
 #include "ECS/ECSManager.h"
 #include "Components/SpriteComponent.h"
 #include "Components/TransformComponent.h"
+#include "Components/ColliderComponent.h"
+#include <iostream>
 
 
 
@@ -17,15 +19,24 @@ public:
 
 		for(auto& entity : entities){
 			if(!entity->isActive) return;
-			if(entity->hasComponent<SpriteComponent>() && entity->hasComponent<TransformComponent>()){
-
+			if(entity->hasComponent<TransformComponent>() &&
+			(entity->hasComponent<SpriteComponent>() || entity->hasComponent<ColliderComponent>())
+			){
 				auto spriteComp = entity->getComponent<SpriteComponent>();
 				auto transComp = entity->getComponent<TransformComponent>();
+				// auto colliderComp = entity->getComponent<ColliderComponent>();
 
 				if(spriteComp&&transComp){
+					// std::cout << (int)(transComp->width * transComp->scale) << std::endl;
 					spriteComp->dstRect.w = (int)(transComp->width * transComp->scale);
 					spriteComp->dstRect.h = (int)(transComp->height * transComp->scale);
 				}
+
+				// if(colliderComp&&transComp){
+				// 	// std::cout << (int)(transComp->width * transComp->scale) << std::endl;
+				// 	colliderComp->collider.w = (int)(transComp->width * transComp->scale);
+				// 	colliderComp->collider.h = (int)(transComp->height * transComp->scale);
+				// }
 
 			} 
 

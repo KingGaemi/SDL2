@@ -62,6 +62,7 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/Components/PhysicsComponent.h include/box2d/box2d.h \
  include/box2d/base.h include/box2d/collision.h \
  include/box2d/math_functions.h include/box2d/id.h include/box2d/types.h \
+ include/Components/ProjectileComponent.h \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
  include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
@@ -144,6 +145,7 @@ include/box2d/collision.h:
 include/box2d/math_functions.h:
 include/box2d/id.h:
 include/box2d/types.h:
+include/Components/ProjectileComponent.h:
 include/Components/SolidComponent.h:
 include/Components/SpriteComponent.h:
 include/Components/StatusComponent.h:

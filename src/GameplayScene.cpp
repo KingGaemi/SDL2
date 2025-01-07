@@ -19,9 +19,7 @@ void GameplayScene::onEnter(){
 	req.name = "player";
 	req.x = 145.0f;
 	req.y = 150.0f;
-	req.w = 32;
-	req.h = 39;
-	req.sc = 2.0f;
+	req.hasTransform = false;
 	req.teamCode = TeamCode::Ally;
 	ecsManager->pendingSpawns.push_back(req);
 

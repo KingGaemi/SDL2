@@ -39,9 +39,10 @@ public:
     void loadCooldownComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadDashComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadPlayerTag(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadProjectileComponent(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadDamageComponent(const json& componentData, std::shared_ptr<Entity> entity);
 
-
-    void setValue(std::shared_ptr<Entity> entity, const SpawnRequest& req);
+    void applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req);
     void registerComponentLoaders();
 private:
 

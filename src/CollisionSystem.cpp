@@ -85,6 +85,7 @@ void CollisionSystem::checkCollisions(std::vector<std::shared_ptr<Entity>>& coll
                 colEvt.entityA = colliders[i];
                 colEvt.entityB = colliders[j];
 
+                // std::cout << "Collision" <<std::endl;
                 ecsManager->collisionEvents.push_back(colEvt);
 
             }

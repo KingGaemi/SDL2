@@ -8,7 +8,7 @@
 
 enum class ColliderType{
 	Unit,
-	Attack,
+	Projectile,
 	Portal,
 	Beacon
 };

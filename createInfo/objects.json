@@ -1,5 +1,5 @@
 {
-  "player": {
+  "ground": {
     "components": [
       {
         "name": "PositionComponent",
@@ -8,53 +8,24 @@
       },
       {
         "name": "PhysicsComponent",
-        "bodyType": "Dynamic"
-      },
-      {
-        "name": "StatusComponent",
-        "maxHP": 100,
-        "currentHP": 100,
-        "movementSpeed": 100.0
+        "bodyType": "Static"
       },
       {
         "name": "SpriteComponent",
-        "textureID": "player_tex",
-        "width": 64,
-        "height": 64,
-        "scale": 2.0
-      },
-      {
-        "name": "DashComponent",
-        "dashCooldown": 0.2
-      },
-      {
-        "name": "PlayableComponent",
-        "dashCooldown": 0.2
-      }
-    ]
-  },
-  "goblin": {
-    "components": [
-      {
-        "name": "PositionComponent",
-        "x": 400,
-        "y": 200
-      },
-      {
-        "name": "PhysicsComponent",
-        "bodyType": "Dynamic"
-      },
-      {
-        "name": "HealthComponent",
-        "maxHP": 50,
-        "currentHP": 50
-      },
-      {
-        "name": "SpriteComponent",
-        "textureID": "goblin_tex",
+        "textureID": "dirt_tile",
         "width": 32,
         "height": 32,
-        "scale": 1.5
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 1280,
+        "height": 50,
+        "scale": 1.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
       }
     ]
   }
