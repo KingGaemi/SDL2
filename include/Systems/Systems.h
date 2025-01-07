@@ -10,6 +10,7 @@
 #include "PhysicsSystem.h"
 #include "CommandSystem.h"
 #include "WorldRenderSystem.h"
+#include "SyncSystem.h"
 #include "UIRenderSystem.h"
 #include "CollisionSystem.h"
 #include "DamageSystem.h"

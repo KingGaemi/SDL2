@@ -42,9 +42,8 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 
 			if(commandComp){
 
-				std::shared_ptr<DashComponent> dashComp;
+				
 				if(entity->hasComponent<DashComponent>()) dashComp = entity->getComponent<DashComponent>();
-
 
 				if(evt.type == EventType::KEYDOWN && !pressed[toInt(evt.key)]){
 					if(isControl(evt.key)){
@@ -214,7 +213,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 			auto playComp = entity->getComponent<PlayableComponent>();
 			auto stateComp = entity->getComponent<StateComponent>();			
 			if(posComp && playComp && directComp){
-				std::cout << "(" << posComp->x() << ", " << posComp->y() << " | " << directComp->direction.hDir << ", " << directComp->direction.vDir << ")"  ;
+				std::cout << "(" << posComp->x << ", " << posComp->y << " | " << directComp->direction.hDir << ", " << directComp->direction.vDir << ")"  ;
 			}
 			if(stateComp && playComp){
 				// if(stateComp->currentState == States::Idle) std::cout << "Idle" << std::endl;

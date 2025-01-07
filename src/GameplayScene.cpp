@@ -15,8 +15,8 @@ void GameplayScene::onEnter(){
 
 	SpawnRequest req;
 
-
-	req.type = "player";
+	req.entityType = EntityType::Unit;
+	req.name = "player";
 	req.x = 145.0f;
 	req.y = 150.0f;
 	req.w = 32;
@@ -25,8 +25,8 @@ void GameplayScene::onEnter(){
 	req.teamCode = TeamCode::Ally;
 	ecsManager->pendingSpawns.push_back(req);
 
-
-	req.type = "enemy";
+	req.entityType = EntityType::Unit;
+	req.name = "enemy";
 	req.x = 500.0f;
 	req.y = 300.0f;
 	req.w = 32;
@@ -35,32 +35,46 @@ void GameplayScene::onEnter(){
 	req.teamCode = TeamCode::Enemy;
 	ecsManager->pendingSpawns.push_back(req);
 
-
-
-
-	req.type = "farmer";
+	req.entityType = EntityType::Unit;
+	req.name = "farmer";
 	req.x = 500.0f;
 	req.y = 600.0f;
+	req.w = 21;
+	req.h = 28;
+	req.sc = 2.0f;
 	req.teamCode = TeamCode::Ally;
 	ecsManager->pendingSpawns.push_back(req);
 
-
-	req.type = "eri" ;
+	req.entityType = EntityType::Unit;
+	req.name = "eri" ;
 	req.x = 200.0f;
 	req.y = 200.0f;
+	req.w = 31;
+	req.h = 38;
+	req.sc = 2.0f;
 	req.teamCode = TeamCode::Enemy;
 	ecsManager->pendingSpawns.push_back(req);
 
-	req.type = "text" ;
+
+	req.entityType = EntityType::UI;
+	req.name = "text" ;
 	req.x = 500.0f;
 	req.y = 200.0f;
+	req.w = 100;
+	req.h = 50;
+	req.sc = 1.0f;
 	ecsManager->pendingSpawns.push_back(req);
 
-	req.type = "ground" ;
+
+	req.entityType = EntityType::Object;
+	req.name = "ground" ;
+	req.x = 640;
+	req.y = 775;
+	req.w = 1280;
+	req.h = 50;
+	req.sc = 1.0f;
 	ecsManager->pendingSpawns.push_back(req);
 
-
-	
 	std::cout << "GameplayScene initialized!" << std::endl;
 
 }

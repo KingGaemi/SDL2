@@ -22,18 +22,18 @@ void MenuScene::onEnter(){
         std::cerr << "MenuScene initialized with a nullptr manager!" << std::endl;
     }
 
+	SpawnRequest req;
 
-	auto entityFactory = ecsManager->shareFactory();
-
-
-	if(entityFactory){
-		entityFactory->createBackgroundEntity("background_main");
-	}else{
-
-		std::cerr << "nullptr factory!" << std::endl;
-	}
-
-	background = ecsManager->getEntityByName("background");
+	req.entityType = EntityType::UI;
+	req.name = "background";
+	req.x = 640.0f;
+	req.y = 400.0f;
+	// req.hasPosition = true;
+	req.w = 1280;
+	req.h = 800;
+	req.sc = 1.0f;
+	// req.hasTransform = true;
+	ecsManager->pendingSpawns.push_back(req);
 	
 }
 

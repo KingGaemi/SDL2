@@ -1,6 +1,7 @@
 #pragma once
 #include "ECS/System.h"
 #include "Events/EventManager.h"
+#include "Components/DashComponent.h"
 #include "KeyCode.h"
 #include <type_traits>
 
@@ -29,7 +30,7 @@ public:
 private:
 	EventManager* eventManager;
 	bool pressed[toInt(KeyCode::NUM_OF_KEY_CODES)]; 
-		
+	std::shared_ptr<DashComponent> dashComp;
 	KeyCode lastHorizontalKey = KeyCode::Unknown;
 	KeyCode lastVerticalKey = KeyCode::Unknown;
 	KeyCode lastArrowKey = KeyCode::Unknown;

@@ -1,10 +1,9 @@
 # 변수 정의
 CXX = g++
 # 원래 있던 -o my_app를 빼주고, 중복된 -Wall도 하나만 남깁니다.
-CXXFLAGS = -g -Wall -std=c++17 -m64 -I include -I C:/SDL2-w64/include -I C:/Users/geami/Desktop/Dev/box2d/include -MMD -MP
+CXXFLAGS = -g -Wall -std=c++17 -m64 -I include -MMD -MP
 
-LDFLAGS = -L C:/SDL2-w64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf \
-          -L C:/Users/geami/Desktop/Dev/box2d/build/src -lbox2d
+LDFLAGS = -L lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lbox2d
 
 SRC_DIR = src
 OBJ_DIR = obj

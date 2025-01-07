@@ -49,13 +49,10 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     auto entityFactory = std::make_shared<EntityFactory>(ecsManager);
     ecsManager->setFactory(entityFactory);  
 
-
-
-
     // Add Systems
     ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer);
     ecsManager->addSystem<UIRenderSystem>(SystemGroup::UI, 200, *renderer);
-    ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
+    // ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
     ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager->get());
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
     ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40);
@@ -64,10 +61,10 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<ExpireSystem>(SystemGroup::Logic, 90);
     ecsManager->addSystem<DamageSystem>(SystemGroup::Logic, 100, ecsManager);
     ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
+    ecsManager->addSystem<SyncSystem>(SystemGroup::Logic, 160);
     ecsManager->addSystem<MiddleEventSystem>(SystemGroup::Event, 200, eventManager->get());
     // auto animSys = ecsManager->getSystem<AnimationSystem>();
     // animSys->Init();
-
     ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager);
     ecsManager->addSystem<CooldownSystem>(SystemGroup::Logic, 250);
 
@@ -97,6 +94,7 @@ void Game::textureLoading(){
     textureManager->loadTexture("orc3", "res/gfx/SpriteSheet/Orc/orc3_sprite_sheet.png");
     textureManager->loadTexture("dirt_tile", "res/gfx/dirt_tile.png");
     textureManager->loadTexture("box1", "res/gfx/box1.png");
+    textureManager->loadTexture("unknown", "res/gfx/player2.png");
     
 
     uiTextureManager->loadText("Hello World!");

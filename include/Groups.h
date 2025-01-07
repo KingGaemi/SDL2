@@ -27,14 +27,13 @@ class IMGTag : public Component{};
 
 class SceneTag : public Component{
 public:
-    SceneCode sceneCode = SceneCode::Global;
-    SceneTag();
+    SceneCode sceneCode;
     SceneTag(SceneCode sceneCode) : sceneCode(sceneCode) {}
 };
 
 
-class TeamComponent : public Component{
+class TeamTag : public Component{
 public:
-	TeamCode teamCode = TeamCode::Neutral;
-	TeamComponent(TeamCode teamCode) : teamCode(teamCode) {}
+	TeamCode teamCode;
+	TeamTag(TeamCode teamCode) : teamCode(teamCode) {}
 };

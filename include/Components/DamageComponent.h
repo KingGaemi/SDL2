@@ -8,16 +8,16 @@
 
 
 
-class AttackComponent : public Component{
+class DamageComponent : public Component{
 
 public:
 	// isProcessed = false;
 	int damage = 1;
 
-	std::unordered_set<EntityID> hitTargets;
+	std::unordered_set<std::size_t> hitTargets;
 
-	AttackComponent() {}
-	AttackComponent(int damage) : damage(damage) {}
+	DamageComponent() {}
+	DamageComponent(int damage) : damage(damage) {}
 	// AttackComponent(bool isProcessed) : isProcessed(isProcessed) {}
 
 

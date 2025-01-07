@@ -69,7 +69,7 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
             auto posComp = entity->getComponent<PositionComponent>();
             
             if(posComp){
-                bodyDef.position = (b2Vec2){posComp->x() / PIXELS_PER_METER, (SCREEN_HEIGHT - posComp->y()) / PIXELS_PER_METER };
+                bodyDef.position = (b2Vec2){posComp->x / PIXELS_PER_METER, (SCREEN_HEIGHT - posComp->y) / PIXELS_PER_METER };
             }
 
             physComp->body = b2CreateBody(worldId, &bodyDef);

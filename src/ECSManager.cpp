@@ -91,46 +91,16 @@ void ECSManager::renderSystems(float deltaTime) {
 void ECSManager::processSpawnRequests() {
 
     for(auto& req : pendingSpawns){
-        if(req.type == "player"){
-            entityFactory->createPlayerEntity(req);
-        }
-        if(req.type == "farmer"){
-            entityFactory->createFarmerEntity(req);
-        }
-        if(req.type == "eri"){
-
-            entityFactory->createEri(req);
-        }
-        if(req.type == "text"){
-
-            entityFactory->createText(req);
-        }
-        if(req.type == "enemy"){
-
-            entityFactory->createEnemyDummy(req);
-        }
-        if(req.type == "box"){
-            entityFactory->createBox(req);
-        }
-        if(req.type == "ground"){
-            entityFactory->createGround();
-        }
+        entityFactory->createEntity(req);
     }
     pendingSpawns.clear();
     
-
-
-    auto attackSys = getSystem<AttackSystem>();
-
-    if(attackSys){
-        for(auto& req : attackSys->requests)
-        {
-            if(req.type == "slash"){
-                entityFactory->createSlashEntity(req);
-            }
-        }
-        attackSys->requests.clear();
+    for(auto& req : pendingProjectiles){
+         entityFactory->createEntity(req);
     }
+    pendingProjectiles.clear();
+   
+    
 }
 
 void ECSManager::processCollisionEvents(){

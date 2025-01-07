@@ -112,13 +112,13 @@ public:
     void processSpawnRequests();
     void processCollisionEvents();
     void processMiddleEvents();
-
     void cleanUpEntities();
     void cleanUpAllEntities();
     void cleanUpEntitiesByScene(SceneCode sceneCode);
     // 엔티티 이름 관리 (선택 사항)
 
     std::vector<SpawnRequest> pendingSpawns;
+    std::vector<ProjectileRequest> pendingProjectiles;
     std::vector<CollisionEvent> collisionEvents;
 private:
     std::size_t nextID = 0;

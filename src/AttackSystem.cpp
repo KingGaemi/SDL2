@@ -31,41 +31,38 @@ void AttackSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 				auto directComp = entity->getComponent<DirectionComponent>();
 				auto spriteComp = entity->getComponent<SpriteComponent>();
 				auto statusComp = entity->getComponent<StatusComponent>();
-				auto teamComp = entity->getComponent<TeamComponent>();
+				auto teamComp = entity->getComponent<TeamTag>();
 				
 				if(posComp && directComp && spriteComp && statusComp && teamComp){
 					
 
 
-					// AttackRequest req;
+					ProjectileRequest req;
 
-					// req.type = "slash";
+					req.entityType = EntityType::Projectile;
+					req.name = "slash";
 			
+					req.x = posComp->x + directComp->hDir() * spriteComp->dstRect.w;
+					req.y = posComp->y + directComp->vDir() * spriteComp->dstRect.h;
+					req.hDir = directComp->direction.hDir;
+					req.vDir = directComp->direction.vDir;
+					req.damage = statusComp->physicalDamage;
+					req.hasDamage = true;
+					req.sc = 1.0f;
+					req.duration = 0.1f;
+					req.teamCode = teamComp->teamCode;
+
+					// SpawnRequest req;
+
+					// req.type = "box";
+
 					// req.x = posComp->x() + directComp->hDir() * spriteComp->dstRect.w;
 					// req.y = posComp->y() + directComp->vDir() * spriteComp->dstRect.h;
-					// req.hDir = directComp->direction.hDir;
-					// req.vDir = directComp->direction.vDir;
-					// req.damage = statusComp->physicalDamage;
-					// req.scale = 1;
-					// req.duration = 0.1f;
-					// req.teamCode = teamComp->teamCode;
-
-					SpawnRequest req;
-
-					req.type = "box";
-
-					req.x = posComp->x() + directComp->hDir() * spriteComp->dstRect.w;
-					req.y = posComp->y() + directComp->vDir() * spriteComp->dstRect.h;
 
 
 					ecsManager->pendingSpawns.push_back(req);
 
 					stateComp->callAttack = false;
-
-
-
-
-
 
 				}
 			}

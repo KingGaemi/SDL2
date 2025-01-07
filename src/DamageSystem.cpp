@@ -1,7 +1,8 @@
 #include "Systems/DamageSystem.h"
-#include "Components/AttackComponent.h"
+#include "Components/DamageComponent.h"
 #include "Components/StatusComponent.h"
 #include "Components/StateComponent.h"
+#include "Groups.h"
 #include <iostream>
 
 
@@ -34,12 +35,12 @@ void DamageSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 }
 
 void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr<Entity> target) {
-    if (attacker->hasComponent<AttackComponent>() && target->hasComponent<StatusComponent>()
-    	&& attacker->hasComponent<TeamComponent>() && target->hasComponent<TeamComponent>()) {
-        auto attackComp = attacker->getComponent<AttackComponent>();
+    if (attacker->hasComponent<DamageComponent>() && target->hasComponent<StatusComponent>()
+    	&& attacker->hasComponent<TeamTag>() && target->hasComponent<TeamTag>()) {
+        auto attackComp = attacker->getComponent<DamageComponent>();
         auto statusComp = target->getComponent<StatusComponent>();
-        auto teamCompA = attacker->getComponent<TeamComponent>();
-        auto teamCompT = target->getComponent<TeamComponent>();
+        auto teamCompA = attacker->getComponent<TeamTag>();
+        auto teamCompT = target->getComponent<TeamTag>();
 
         if(!statusComp->alive) return;
 
@@ -52,12 +53,12 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 	    		stateComp->changeState(States::Hurt, 0.7f);
 	    	}
 
-	        statusComp->hp -= attackComp->damage;
+	        statusComp->currentHp -= attackComp->damage;
 	        attackComp->hitTargets.insert(target->getID());
 
-	        std::cout << statusComp->hp << "/" << statusComp->maxHp << std::endl;
-	        if(statusComp->hp <= 0){
-	        	statusComp->hp = 0;
+	        std::cout << statusComp->currentHp << "/" << statusComp->maxHp << std::endl;
+	        if(statusComp->currentHp <= 0){
+	        	statusComp->currentHp = 0;
 		        if(target->hasComponent<StateComponent>()){
 		    		auto stateComp = target->getComponent<StateComponent>();
 		    		stateComp->changeState(States::Death, 1.0f);

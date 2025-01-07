@@ -13,8 +13,11 @@ public:
 
     DirectionComponent() : direction{0, 1} {}
     DirectionComponent(int dx, int dy) : direction{dx, dy} {}
+    DirectionComponent(Direction direction) : direction(direction) {}
+
 
     void set(int dx, int dy) { direction.hDir = dx; direction.vDir = dy; }
+    void set(Direction p_direction) {direction = p_direction;}
     int hDir() const { return direction.hDir; }
     int vDir() const { return direction.vDir; }
 

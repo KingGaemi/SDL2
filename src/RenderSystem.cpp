@@ -64,8 +64,8 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             SDL_Rect srcRect = toSDLRect(sprite->srcRect);
             SDL_Rect dstRect = toSDLRect(sprite->dstRect);
 
-            dstRect.x = static_cast<int>(posComp->x()) - (dstRect.w/2);
-            dstRect.y = static_cast<int>(posComp->y()) - (dstRect.h/2);
+            dstRect.x = static_cast<int>(posComp->x) - (dstRect.w/2);
+            dstRect.y = static_cast<int>(posComp->y) - (dstRect.h/2);
 
             SDL_RendererFlip flip = SDL_FLIP_NONE;
             float rot = 0.0f;

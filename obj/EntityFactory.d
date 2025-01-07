@@ -1,16 +1,5 @@
 obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
- include/Requests.h include/Groups.h include/ECS/Component.h \
- include/ECS/ECSManager.h include/Systems/PhysicsSystem.h \
- C:/Users/geami/Desktop/Dev/box2d/include/box2d/box2d.h \
- C:/Users/geami/Desktop/Dev/box2d/include/box2d/base.h \
- C:/Users/geami/Desktop/Dev/box2d/include/box2d/collision.h \
- C:/Users/geami/Desktop/Dev/box2d/include/box2d/math_functions.h \
- C:/Users/geami/Desktop/Dev/box2d/include/box2d/id.h \
- C:/Users/geami/Desktop/Dev/box2d/include/box2d/types.h \
- include/ECS/Entity.h include/ECS/System.h \
- include/Components/Components.h include/Components/AttackComponent.h \
- include/Components/AnimationComponent.h include/nlohmann/json.hpp \
- include/nlohmann/adl_serializer.hpp \
+ include/nlohmann/json.hpp include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
  include/nlohmann/detail/conversions/from_json.hpp \
  include/nlohmann/detail/exceptions.hpp \
@@ -53,37 +42,28 @@ obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
  include/nlohmann/detail/conversions/to_chars.hpp \
  include/nlohmann/ordered_map.hpp \
  include/nlohmann/detail/macro_unscope.hpp \
- include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
+ include/nlohmann/thirdparty/hedley/hedley_undef.hpp include/Requests.h \
+ include/Groups.h include/ECS/Component.h include/Components/Components.h \
+ include/Components/AnimationComponent.h \
  include/Components/ColliderComponent.h include/Rect.h include/Vector2D.h \
  include/Components/CommandComponent.h \
  include/Components/DirectionComponent.h \
  include/Components/CooldownComponent.h \
- include/Components/DashComponent.h include/KeyCode.h \
- include/Components/LifeTimeComponent.h \
- include/Components/PhysicsComponent.h \
+ include/Components/DamageComponent.h include/Components/DashComponent.h \
+ include/KeyCode.h include/Components/LifeTimeComponent.h \
+ include/Components/OwnerComponent.h \
+ include/Components/PhysicsComponent.h include/box2d/box2d.h \
+ include/box2d/base.h include/box2d/collision.h \
+ include/box2d/math_functions.h include/box2d/id.h include/box2d/types.h \
  include/Components/PlayableComponent.h \
  include/Components/PositionComponent.h \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
  include/Components/StateComponent.h include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
- include/Components/VelocityComponent.h
+ include/Components/VelocityComponent.h include/ECS/ECSManager.h \
+ include/Systems/PhysicsSystem.h include/ECS/Entity.h \
+ include/ECS/System.h
 include/ECS/EntityFactory.h:
-include/Requests.h:
-include/Groups.h:
-include/ECS/Component.h:
-include/ECS/ECSManager.h:
-include/Systems/PhysicsSystem.h:
-C:/Users/geami/Desktop/Dev/box2d/include/box2d/box2d.h:
-C:/Users/geami/Desktop/Dev/box2d/include/box2d/base.h:
-C:/Users/geami/Desktop/Dev/box2d/include/box2d/collision.h:
-C:/Users/geami/Desktop/Dev/box2d/include/box2d/math_functions.h:
-C:/Users/geami/Desktop/Dev/box2d/include/box2d/id.h:
-C:/Users/geami/Desktop/Dev/box2d/include/box2d/types.h:
-include/ECS/Entity.h:
-include/ECS/System.h:
-include/Components/Components.h:
-include/Components/AttackComponent.h:
-include/Components/AnimationComponent.h:
 include/nlohmann/json.hpp:
 include/nlohmann/adl_serializer.hpp:
 include/nlohmann/detail/abi_macros.hpp:
@@ -130,16 +110,29 @@ include/nlohmann/detail/conversions/to_chars.hpp:
 include/nlohmann/ordered_map.hpp:
 include/nlohmann/detail/macro_unscope.hpp:
 include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
+include/Requests.h:
+include/Groups.h:
+include/ECS/Component.h:
+include/Components/Components.h:
+include/Components/AnimationComponent.h:
 include/Components/ColliderComponent.h:
 include/Rect.h:
 include/Vector2D.h:
 include/Components/CommandComponent.h:
 include/Components/DirectionComponent.h:
 include/Components/CooldownComponent.h:
+include/Components/DamageComponent.h:
 include/Components/DashComponent.h:
 include/KeyCode.h:
 include/Components/LifeTimeComponent.h:
+include/Components/OwnerComponent.h:
 include/Components/PhysicsComponent.h:
+include/box2d/box2d.h:
+include/box2d/base.h:
+include/box2d/collision.h:
+include/box2d/math_functions.h:
+include/box2d/id.h:
+include/box2d/types.h:
 include/Components/PlayableComponent.h:
 include/Components/PositionComponent.h:
 include/Components/SolidComponent.h:
@@ -148,3 +141,7 @@ include/Components/StateComponent.h:
 include/Components/StatusComponent.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
+include/ECS/ECSManager.h:
+include/Systems/PhysicsSystem.h:
+include/ECS/Entity.h:
+include/ECS/System.h:

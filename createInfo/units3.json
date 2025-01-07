@@ -1,0 +1,67 @@
+{
+  "player": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "PhysicsComponent",
+        "bodyType": "Dynamic"
+      },
+      {
+        "name": "StatusComponent",
+        "maxHP": 100,
+        "currentHP": 100,
+        "movementSpeed": 100.0
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "orc3",
+        "width": 64,
+        "height": 64,
+        "scale": 2.0
+      },
+      {
+        "name": "DashComponent",
+        "dashCooldown": 0.2
+      },
+      {
+        "name": "PlayableComponent",
+        "dashCooldown": 0.2
+      },
+      {
+        "name": "TransformComponent",
+        "width": 32,
+        "height": 39,
+        "scale": 2.0
+      }
+    ]
+  },
+  "default": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 400,
+        "y": 200
+      },
+      {
+        "name": "PhysicsComponent",
+        "bodyType": "Dynamic"
+      },
+      {
+        "name": "HealthComponent",
+        "maxHP": 50,
+        "currentHP": 50
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "goblin_tex",
+        "width": 32,
+        "height": 32,
+        "scale": 1.5
+      }
+    ]
+  }
+}

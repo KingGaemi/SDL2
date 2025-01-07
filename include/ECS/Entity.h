@@ -26,7 +26,7 @@ public:
             std::cout << "Component already exists on this entity!" << std::endl;
             return;
         }else{
-            std::cout << "add Component complete" << std::endl;
+            // std::cout << "add Component complete" << std::endl;
         }
         auto component = std::make_shared<T>(std::forward<Args>(args)...);
         componentArray[typeID] = component;
@@ -54,7 +54,7 @@ public:
         if (componentBitSet[typeID]) {
             componentBitSet[typeID] = false;
             componentArray[typeID] = nullptr;
-            std::cout << "Remove component complete" << std::endl;
+            // std::cout << "Remove component complete" << std::endl;
         }else{
             std::cout << "There is no that Component!" << std::endl;
         }

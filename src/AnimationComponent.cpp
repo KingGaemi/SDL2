@@ -2,7 +2,7 @@
 #include <fstream>
 
 
-void AnimationComponent::playAnimation(const std::string animName){
+void AnimationComponent::playAnimation(const std::string& animName){
 		if (animations.find(animName) != animations.end()) {
             currentAnimation = animName;
             currentFrameIndex = 0;
@@ -32,7 +32,8 @@ AnimationFrame* AnimationComponent::getCurrentFrame(){
 
 
 
-bool AnimationComponent::loadAnimationsFromFile(const std::string& filename, std::shared_ptr<AnimationComponent> animComp) {
+bool AnimationComponent::loadAnimationsFromFile(const std::string& spriteName) {
+    //filename = "assets/~~~Animations.json";
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Failed to open " << filename << std::endl;
@@ -42,13 +43,12 @@ bool AnimationComponent::loadAnimationsFromFile(const std::string& filename, std
     json j;
     file >> j;
 
-    // j["animations"] 객체 접근
-    // if (!j.contains("animations")) {
-    //     std::cerr << "No 'animations' field in " << filename << std::endl;
-    //     return false;
-    // }
+    if (!j.contains(spriteName)) {
+        std::cerr << "Sprite name " << spriteName << " not found in " << filename << std::endl;
+        return false;
+    }
 
-    auto animationsJson = j;
+    auto animationsJson = j[spriteName];
 
     for (auto it = animationsJson.begin(); it != animationsJson.end(); ++it) {
         std::string animName = it.key();
@@ -73,7 +73,7 @@ bool AnimationComponent::loadAnimationsFromFile(const std::string& filename, std
             animData.frames.push_back({x, y, w, h, duration});
         }
 
-        animComp->animations[animName] = animData;
+        animations[animName] = animData;
     }
 
     return true;
@@ -87,6 +87,30 @@ bool AnimationComponent::isAnimationComplete() const {
     }
     return true;
 }
+
+
+
+
+
+// json AnimationComponent::createAnimation(const std::string& name, const std::string& type, bool loop,
+//                      int startX, int startY, int frameCount, int gap, float duration) {
+//     json animation;
+//     animation["type"] = type;
+//     animation["loop"] = loop;
+
+//     // 프레임 생성
+//     for (int i = 0; i < frameCount; ++i) {
+//         animation["frames"].push_back({
+//             {"x", startX + i * gap},
+//             {"y", startY},
+//             {"w", gap},
+//             {"h", gap},
+//             {"duration", duration}
+//         });
+//     }
+
+//     return animation;
+// }
 
 
 

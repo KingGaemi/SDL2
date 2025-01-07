@@ -3,7 +3,6 @@
 #include "ECS/System.h"
 #include "ECS/ECSManager.h"
 #include "ECS/Entity.h"
-#include "Groups.h"
 #include <unordered_set>
 
 

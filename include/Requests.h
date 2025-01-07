@@ -1,29 +1,38 @@
 #pragma once
 #include "Groups.h"
 
-struct SpawnRequest {
 
-    std::string type; // "player" , "enemy" ...
-    float x, y, w, h, sc;
-    int directionX;
-    int directionY;
-    TeamCode teamCode;
-    
-
+enum class EntityType {
+    UI,
+    Object,
+    Unit,
+    Projectile
 };
 
 
 
-struct AttackRequest {
-    std::string type;  // 예: "slash"
-    float x, y;
-    int hDir;
-    int vDir;
-    int damage;
-    int scale;
-    float duration;// 필요하다면 데미지, 크기, 지속시간 등 추가
-    TeamCode teamCode;
+struct Request {
 
+
+};
+
+struct SpawnRequest {
+    EntityType entityType;
+    std::string name; // "player" , "enemy" ...
+    float x, y, w, h, sc;
+    int hDir, vDir;
+    TeamCode teamCode;
+    bool hasPosition = true;
+    bool hasDirection = false;
+    bool hasTransform = true;
+    bool hasOwner = false;
+    std::size_t ownerId;
+};
+
+struct ProjectileRequest : public SpawnRequest {
+    int damage;
+    float duration;// 필요하다면 데미지, 크기, 지속시간 등 추가
+    bool hasDamage = false;
 };
 
 

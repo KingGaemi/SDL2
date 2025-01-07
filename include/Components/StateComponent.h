@@ -26,6 +26,8 @@ public:
 	bool isWalking = false;
 	bool isRunning = false;
 
+	StateComponent(States state) : currentState(state) {}
+
 	
 	void changeState(States newState){
 		if(currentState == States::Death) return;

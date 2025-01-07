@@ -56,8 +56,8 @@ void CollisionSystem::updateCollidersPosition(std::vector<std::shared_ptr<Entity
         auto colComp = entity->getComponent<ColliderComponent>();
 
         // 매 프레임 '대입'
-        colComp->collider.x = posComp->x() + colComp->offsetX - colComp->collider.w/2.0f;
-        colComp->collider.y = posComp->y() + colComp->offsetY - colComp->collider.h/2.0f;
+        colComp->collider.x = posComp->x + colComp->offsetX - colComp->collider.w/2.0f;
+        colComp->collider.y = posComp->y + colComp->offsetY - colComp->collider.h/2.0f;
         // colComp->collider.x = posComp->x() + colComp->offsetX; etc...
     }
 }

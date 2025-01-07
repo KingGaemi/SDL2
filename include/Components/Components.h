@@ -1,14 +1,15 @@
 #pragma once
 
 // #include "ActionComponent.h"
-#include "AttackComponent.h"
 #include "AnimationComponent.h"
 #include "ColliderComponent.h"
 #include "CommandComponent.h"
 #include "CooldownComponent.h"
+#include "DamageComponent.h"
 #include "DashComponent.h"
 #include "DirectionComponent.h"
 #include "LifeTimeComponent.h"
+#include "OwnerComponent.h"
 #include "PhysicsComponent.h"
 #include "PlayableComponent.h"
 #include "PositionComponent.h"
