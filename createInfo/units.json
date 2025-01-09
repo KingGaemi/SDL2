@@ -18,6 +18,9 @@
         "name": "CommandComponent"
       },
       {
+        "name": "MovementCommandComponent"
+      },
+      {
         "name": "CooldownComponent",
         "abilityName": "basicAttack",
         "cooldownTime": 1.0

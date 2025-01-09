@@ -4,6 +4,7 @@
 #include "AnimationComponent.h"
 #include "ColliderComponent.h"
 #include "CommandComponent.h"
+#include "MovementCommandComponent.h"
 #include "CooldownComponent.h"
 #include "DamageComponent.h"
 #include "DashComponent.h"

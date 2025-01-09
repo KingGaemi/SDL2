@@ -1,10 +1,10 @@
 #include "Events/EventSystem.h"
 #include "Components/PositionComponent.h"
-#include "Components/DirectionComponent.h"
+
 #include "Components/PlayableComponent.h"
-#include "Components/StateComponent.h"
+// #include "Components/StateComponent.h"
 #include "Components/CommandComponent.h"
-#include "Components/DashComponent.h"
+#include "Components/MovementCommandComponent.h"
 #include "ECS/Entity.h"
 #include "ECS/EntityFactory.h"
 #include "Groups.h"
@@ -13,6 +13,14 @@
 
 
 void EventSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+
+	if(leftDoubleTapTime > 0){
+		leftDoubleTapTime -= deltaTime;
+	}else{
+		leftDoubleTapTime = 0;
+	}
+
+
 	Event evt;
 	while(eventManager->pollEvent(evt)){
 		handleEvent(evt, entities);
@@ -23,176 +31,38 @@ void EventSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float d
 
 void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Entity>>& entities){
 
+	if(evt.type == EventType::KEYDOWN && !pressed[toInt(evt.key)]){
+		pressed[toInt(evt.key)] = true;
+		if(evt.key == lastArrowKey && leftDoubleTapTime > 0 ){
+			isArrowKeyDoubleTapped = true;
+		}else if(evt.key == lastAbilityKey && leftDoubleTapTime > 0 ){
+			isAbilityKeyDoubleTapped = true;
+		}else{
+			leftDoubleTapTime = doubleTapTime;
+			isArrowKeyDoubleTapped = false;
+			isAbilityKeyDoubleTapped = false;
+		}
+	}
+	
+
+	if(evt.type == EventType::KEYUP) pressed[toInt(evt.key)] = false;
+  	direction = getDirection(evt);
+	
+	
 
 	// Find Target
-
-
-	//==========================
-	//To command
-	//
-	
 	for(auto& entity : entities){
 		if(entity->isActive &&
 			entity->hasComponent<PlayerTag>() &&
 			entity->hasComponent<PlayableComponent>() &&
-			entity->hasComponent<CommandComponent>()){
+			(entity->hasComponent<CommandComponent>() || entity->hasComponent<MovementCommandComponent>())){
 
-			auto commandComp = entity->getComponent<CommandComponent>();
-
-			if(commandComp){
-
-				
-				if(entity->hasComponent<DashComponent>()) dashComp = entity->getComponent<DashComponent>();
-
-				if(evt.type == EventType::KEYDOWN && !pressed[toInt(evt.key)]){
-					if(isControl(evt.key)){
-						pressed[toInt(evt.key)] = true;
-						if(isArrow(evt.key)){
-							lastArrowKey = evt.key;
-							if(isHorizontal(evt.key)){
-								lastHorizontalKey = evt.key;
-								if(evt.key == KeyCode::Left){
-									
-								}else{
-									// std::cout << "Right" << std::endl;
-								}
-							}
-
-							if(isVertical(evt.key)){
-								lastVerticalKey = evt.key;
-								if(evt.key == KeyCode::Up){
-									// std::cout << "Up" << std::endl;
-								}else{
-									// std::cout << "Down" << std::endl;
-								}
-							}
-							if(dashComp){
-								if(dashComp->lastArrowKey == evt.key && dashComp->currentTime > 0){
-									dashComp->isDashing = true;
-								}else{
-									dashComp->lastArrowKey = evt.key;
-									dashComp->pressed(evt.key);
-								}			
-							}				
-						}
-					}
-				}
-
-				if(evt.type == EventType::KEYUP){
-
-					pressed[toInt(evt.key)] = false;
-					// std::cout << "KeyUp : ";
-
-					if(evt.key == KeyCode::Left){
-						// std::cout << "Left" << std::endl;
-						if(pressed[toInt(KeyCode::Right)]) lastHorizontalKey = KeyCode::Right;
-					}
-					if(evt.key == KeyCode::Right){
-						// std::cout << "Right" << std::endl;
-						if(pressed[toInt(KeyCode::Left)]) lastHorizontalKey = KeyCode::Left;
-					}
-
-					if(evt.key == KeyCode::Up){
-						// std::cout << "Up" << std::endl;
-						if(pressed[toInt(KeyCode::Down)]) lastVerticalKey = KeyCode::Down;
-					}
-
-					if(evt.key == KeyCode::Down){
-						// std::cout << "Down" << std::endl;
-						if(pressed[toInt(KeyCode::Up)]) lastVerticalKey = KeyCode::Up;
-					}
-
-					if(isArrow(evt.key)){
-
-		
-
-					}
-
-
-					if(pressed[toInt(KeyCode::Left)]) lastArrowKey = KeyCode::Left;
-					if(pressed[toInt(KeyCode::Right)]) lastArrowKey = KeyCode::Right;
-					if(pressed[toInt(KeyCode::Up)]) lastArrowKey = KeyCode::Up;
-					if(pressed[toInt(KeyCode::Down)]) lastArrowKey = KeyCode::Down;
-
-				}
-
-
-
-				if(pressed[toInt(KeyCode::Left)] || pressed[toInt(KeyCode::Right)]){
-
-					if(lastHorizontalKey == KeyCode::Left){
-						commandComp->commandData.moveDirection.hDir = -1;
-					}else{
-						commandComp->commandData.moveDirection.hDir = 1;
-					}
-
-				}else{
-					commandComp->commandData.moveDirection.hDir = 0;
-				}
-
-
-				if(pressed[toInt(KeyCode::Up)] || pressed[toInt(KeyCode::Down)]){
-
-					if(lastVerticalKey == KeyCode::Up){
-						commandComp->commandData.moveDirection.vDir = -1;
-					}else{
-						commandComp->commandData.moveDirection.vDir = 1;
-					}
-
-				}else{
-					commandComp->commandData.moveDirection.vDir = 0;
-				}
-
-
-
-
-				if(pressed[toInt(KeyCode::Left)] || pressed[toInt(KeyCode::Right)] || pressed[toInt(KeyCode::Up)] || pressed[toInt(KeyCode::Down)]){
-
-					if(dashComp){
-						if(!dashComp->isDashing){
-							commandComp->commandData.type = CommandType::Move;
-						}else{
-							commandComp->commandData.type = CommandType::Run;
-						}
-					}
-
-				}else{
-					commandComp->commandData.type = CommandType::None;
-					// if(dashComp->isDashing) dashComp->currentTime = 0;
-					if(dashComp) dashComp->isDashing = false;
-				}
-
-				if(evt.type == EventType::KEYDOWN && evt.key == KeyCode::Space){
-					
-					if(lastArrowKey == KeyCode::Left) commandComp->commandData.moveDirection.hDir = -1;
-					if(lastArrowKey == KeyCode::Right) commandComp->commandData.moveDirection.hDir = 1;
-					if(lastArrowKey == KeyCode::Up) commandComp->commandData.moveDirection.vDir = -1;
-					if(lastArrowKey == KeyCode::Down) commandComp->commandData.moveDirection.vDir = 1;
-
-					commandComp->commandData.type = CommandType::Attack;
-				}
-			}
+			targetEntity = entity;
 		}
 	}
-
-		
-///=============================================================================
-	
-
-	
-
-
-	if (evt.type == EventType::KEYDOWN && evt.key == KeyCode::Key_2) {
-		std::cout << "2" << std::endl;
-        // Event characterChangeEvent;
-        // characterChangeEvent.type = EventType::CHARACTER_CHANGE;
-        // eventManager->pushMiddleEvent(characterChangeEvent);
-    }
-
-
-	
-
-
+	//==========================
+	//To command
+	//
 
 	if (evt.type == EventType::KEYDOWN && evt.key == KeyCode::Enter) {
         Event sceneChangeEvent;
@@ -201,23 +71,35 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
         eventManager->pushBigEvent(sceneChangeEvent);
     }
 
-    if (evt.type == EventType::KEYDOWN && evt.key == KeyCode::Escape) {
+	if(!targetEntity) return;
+	auto commandComp = targetEntity->getComponent<CommandComponent>();
+	auto moveCommandComp = targetEntity->getComponent<MovementCommandComponent>();
 
-    	for(auto& entity : entities){
-			auto posComp = entity->getComponent<PositionComponent>();
-			auto directComp = entity->getComponent<DirectionComponent>();
-			auto playComp = entity->getComponent<PlayableComponent>();
-			auto stateComp = entity->getComponent<StateComponent>();			
-			if(posComp && playComp && directComp){
-				std::cout << "(" << posComp->x << ", " << posComp->y << " | " << directComp->direction.hDir << ", " << directComp->direction.vDir << ")"  ;
-			}
-			if(stateComp && playComp){
-				// if(stateComp->currentState == States::Idle) std::cout << "Idle" << std::endl;
-				// if(stateComp->currentState == States::Attack) std::cout << "Attack" << std::endl;
-				
-			}
+	if(moveCommandComp){
+		moveCommandComp->direction = direction;
+		moveCommandComp->doubleTap = isArrowKeyDoubleTapped;				
+		if(arrowIsPressed()){
+			moveCommandComp->moveCommandType = MovementCommandType::Move;
+		}else{
+			moveCommandComp->moveCommandType = MovementCommandType::Stop;
 		}
-    }
+	}
+
+	if(commandComp){
+		commandComp->direction = direction;
+		commandComp->doubleTap = isAbilityKeyDoubleTapped;
+		// attack is pressed
+		if(pressed[toInt(KeyCode::Space)]){
+			commandComp->commandType = CommandType::BasicAttack;
+		}else{
+			commandComp->commandType = CommandType::None;
+		}
+	}
+
+		
+///=============================================================================
+
+
 }
 
 
@@ -225,31 +107,133 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 
 
 
+Direction EventSystem::getDirection(const Event& evt){
 
-
-
-
-
-
-bool EventSystem::isControl(const KeyCode& key){
-
-	if(key == KeyCode::Up ||
-		key == KeyCode::Down ||
-		key == KeyCode::Left ||
-		key == KeyCode::Right ||
-		key == KeyCode::Space)
-	{
-		return true;
+	if(evt.type == EventType::KEYDOWN){	
+		if(isArrowKey(evt.key)){
+			lastArrowKey = evt.key;
+			if(isHorizontal(evt.key)) lastHorizontalKey = evt.key;
+			else if(isVertical(evt.key)) lastVerticalKey = evt.key;		
+		}
+	}	
+           
+	if(evt.type == EventType::KEYUP){
+		if(isArrowKey(evt.key)){
+			// std::cout << "KeyUp : ";
+			if(evt.key == KeyCode::Left){
+				// std::cout << "Left" << std::endl;
+				if(pressed[toInt(KeyCode::Right)]) lastHorizontalKey = KeyCode::Right;
+			}else if(evt.key == KeyCode::Right){
+				// std::cout << "Right" << std::endl;
+				if(pressed[toInt(KeyCode::Left)]) lastHorizontalKey = KeyCode::Left;
+			}else if(evt.key == KeyCode::Up){
+				// std::cout << "Up" << std::endl;
+				if(pressed[toInt(KeyCode::Down)]) lastVerticalKey = KeyCode::Down;
+			}else if(evt.key == KeyCode::Down){
+				// std::cout << "Down" << std::endl;
+				if(pressed[toInt(KeyCode::Up)]) lastVerticalKey = KeyCode::Up;
+			}
+		}
 	}
+
+	// Set direction
+	if(pressed[toInt(KeyCode::Left)] && lastHorizontalKey == KeyCode::Left) direction.hDir = -1;
+	if(pressed[toInt(KeyCode::Right)] && lastHorizontalKey == KeyCode::Right) direction.hDir = 1;
+	if(!pressed[toInt(KeyCode::Right)] && !pressed[toInt(KeyCode::Left)]) direction.hDir = 0;
+
+	if(pressed[toInt(KeyCode::Up)] && lastVerticalKey == KeyCode::Up) direction.vDir = -1;
+	if(pressed[toInt(KeyCode::Down)] && lastVerticalKey == KeyCode::Down) direction.vDir = 1;
+	if(!pressed[toInt(KeyCode::Up)] && !pressed[toInt(KeyCode::Down)]) direction.vDir = 0;
+
+
+	// When all arrow keys up
+	if(!pressed[toInt(KeyCode::Left)] &&
+	   !pressed[toInt(KeyCode::Right)] &&
+	   !pressed[toInt(KeyCode::Up)] &&
+	   !pressed[toInt(KeyCode::Down)]){
+   		// follow last arrow key
+		if(lastArrowKey == KeyCode::Left) direction.hDir = -1;
+		else if(lastArrowKey == KeyCode::Right) direction.hDir = 1;
+		else if(lastArrowKey == KeyCode::Up) direction.vDir = -1;
+		else if(lastArrowKey == KeyCode::Down) direction.vDir = 1;
+	}
+
+
+	
+	return direction;
+		
+
+	// // Decide command
+	// if(pressed[toInt(KeyCode::Left)] || pressed[toInt(KeyCode::Right)] || pressed[toInt(KeyCode::Up)] || pressed[toInt(KeyCode::Down)]){
+	// 	moveComandComp->moveCommandType = MovementCommandType::Walk;
+	// }else{
+	// 	if(lastArrowKey == KeyCode::Left) commandComp->commandData.moveDirection.hDir = -1;
+	// 	else if(lastArrowKey == KeyCode::Right) commandComp->commandData.moveDirection.hDir = 1;
+	// 	else if(lastArrowKey == KeyCode::Up) commandComp->commandData.moveDirection.vDir = -1;
+	// 	else if(lastArrowKey == KeyCode::Down) commandComp->commandData.moveDirection.vDir = 1;
+	// 	moveComandComp->moveCommandType = MovementCommandType::Stop;
+	// }
+}
+
+
+bool EventSystem::checkArrowKeyDoubleTapped(const Event& evt){
+
+	if(!isArrowKey(evt.key)) return false;
+
+
+	if(evt.key == lastArrowKey && leftDoubleTapTime >= 0 ) return true;
 
 	return false;
 }
 
 
-bool EventSystem::isArrow(const KeyCode& key){
+bool EventSystem::checkAbilityKeyDoubleTapped(const Event& evt){
+
+	if(!isAbilityKey(evt.key)) return false;
+
+
+	if(evt.key == lastAbilityKey && leftDoubleTapTime >= 0 ) return true;
+	
+	if(evt.type == EventType::KEYDOWN) lastAbilityKey = evt.key;
+
+
+	return false;
+}
+
+
+
+
+
+// bool EventSystem::isControl(const KeyCode& key){
+
+// 	if(isArrowKey(key) || isAbilityKey(key))
+// 	{
+// 		return true;
+// 	}
+
+// 	return false;
+// }
+
+bool EventSystem::arrowIsPressed(){
+	if(pressed[toInt(KeyCode::Left)] || pressed[toInt(KeyCode::Right)] || pressed[toInt(KeyCode::Up)] || pressed[toInt(KeyCode::Down)]){
+		return true;
+	}
+	return false;
+}
+
+bool EventSystem::isArrowKey(const KeyCode& key){
 	if(key == KeyCode::Up || key == KeyCode::Down || key == KeyCode::Left || key == KeyCode::Right) return true;
 	return false;
 }
+bool EventSystem::isAbilityKey(const KeyCode& key){
+	if(key == KeyCode::Space ||
+		key == KeyCode::q ||
+		key == KeyCode::w ||
+		key == KeyCode::e ||
+		key == KeyCode::r) return true;
+	return false;
+}
+	
 
 bool EventSystem::isHorizontal(const KeyCode& key){
 	if(key == KeyCode::Left || key == KeyCode::Right) return true;

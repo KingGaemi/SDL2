@@ -21,7 +21,7 @@ public:
 		agility, 
 		intelligence, 
 		physicalDamage;
-	float attackSpeed, movementSpeed;
+	float attackSpeed, movementSpeed, runningSpeed;
 
 	//float timeSpeed
 
@@ -32,6 +32,7 @@ public:
 		currentmp = 1;
 		movementSpeed = 0.0f;
 		attackSpeed = 1.0f;   // ms,     can attack (attackSpeed/1000) per one second
+		runningSpeed = 2.0f;
 		strength = 1;
 		agility = 1;
 		intelligence = 1;
@@ -43,6 +44,7 @@ public:
 		currentmp = maxMp;
 		movementSpeed = 200.0f;
 		attackSpeed = 2.0f;
+		runningSpeed = 2.0f;
 		strength = 1;
 		agility = 1;
 		intelligence = 1;

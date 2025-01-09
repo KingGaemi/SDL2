@@ -50,6 +50,7 @@ obj/DamageSystem.o: src/DamageSystem.cpp include/Systems/DamageSystem.h \
  include/Components/ColliderComponent.h include/Rect.h include/Vector2D.h \
  include/Components/CommandComponent.h \
  include/Components/DirectionComponent.h \
+ include/Components/MovementCommandComponent.h \
  include/Components/CooldownComponent.h \
  include/Components/DamageComponent.h include/Components/DashComponent.h \
  include/KeyCode.h include/Components/LifeTimeComponent.h \
@@ -125,6 +126,7 @@ include/Rect.h:
 include/Vector2D.h:
 include/Components/CommandComponent.h:
 include/Components/DirectionComponent.h:
+include/Components/MovementCommandComponent.h:
 include/Components/CooldownComponent.h:
 include/Components/DamageComponent.h:
 include/Components/DashComponent.h:

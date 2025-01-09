@@ -1,7 +1,7 @@
 #pragma once
 #include "ECS/System.h"
 #include "Events/EventManager.h"
-#include "Components/DashComponent.h"
+#include "Components/DirectionComponent.h"
 #include "KeyCode.h"
 #include <type_traits>
 
@@ -21,18 +21,30 @@ public:
 
 	void handleEvent(const Event& evt, std::vector<std::shared_ptr<Entity>>&entities);
 
-	bool isControl(const KeyCode& key);
-	bool isArrow(const KeyCode& key);
+	// bool isControl(const KeyCode& key);
+	bool isArrowKey(const KeyCode& key);
+	bool isAbilityKey(const KeyCode& key);
 	bool isHorizontal(const KeyCode& key);
 	bool isVertical(const KeyCode& key);
 	bool isAttack(const KeyCode& key);
+	bool checkArrowKeyDoubleTapped(const Event& evt);
+	bool checkAbilityKeyDoubleTapped(const Event& evt);
+	bool arrowIsPressed();
+	Direction getDirection(const Event& evt);
 
 private:
 	EventManager* eventManager;
 	bool pressed[toInt(KeyCode::NUM_OF_KEY_CODES)]; 
-	std::shared_ptr<DashComponent> dashComp;
+	bool isArrowKeyDoubleTapped = false;
+	bool isAbilityKeyDoubleTapped = false;
 	KeyCode lastHorizontalKey = KeyCode::Unknown;
 	KeyCode lastVerticalKey = KeyCode::Unknown;
-	KeyCode lastArrowKey = KeyCode::Unknown;
+	KeyCode lastArrowKey = KeyCode::Down;
+	KeyCode lastAbilityKey = KeyCode::Unknown;
+	float doubleTapTime = 0.17; // sec
+	float leftDoubleTapTime = 0;
+	Direction direction = {0, 0};
+
+	std::shared_ptr<Entity> targetEntity;
 
 };

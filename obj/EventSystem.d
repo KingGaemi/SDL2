@@ -1,12 +1,11 @@
 obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/ECS/System.h include/Events/EventManager.h \
  include/Events/EventQueue.h include/KeyCode.h \
- include/Components/DashComponent.h include/ECS/Component.h \
- include/Components/PositionComponent.h include/Vector2D.h \
- include/Components/DirectionComponent.h \
+ include/Components/DirectionComponent.h include/ECS/Component.h \
+ include/Vector2D.h include/Components/PositionComponent.h \
  include/Components/PlayableComponent.h \
- include/Components/StateComponent.h \
- include/Components/CommandComponent.h include/ECS/Entity.h \
+ include/Components/CommandComponent.h \
+ include/Components/MovementCommandComponent.h include/ECS/Entity.h \
  include/ECS/EntityFactory.h include/nlohmann/json.hpp \
  include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
@@ -56,7 +55,7 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/Components/AnimationComponent.h \
  include/Components/ColliderComponent.h include/Rect.h \
  include/Components/CooldownComponent.h \
- include/Components/DamageComponent.h \
+ include/Components/DamageComponent.h include/Components/DashComponent.h \
  include/Components/LifeTimeComponent.h \
  include/Components/OwnerComponent.h \
  include/Components/PhysicsComponent.h include/box2d/box2d.h \
@@ -64,7 +63,7 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/box2d/math_functions.h include/box2d/id.h include/box2d/types.h \
  include/Components/ProjectileComponent.h \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
- include/Components/StatusComponent.h \
+ include/Components/StateComponent.h include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
  include/Components/VelocityComponent.h
 include/Events/EventSystem.h:
@@ -72,14 +71,13 @@ include/ECS/System.h:
 include/Events/EventManager.h:
 include/Events/EventQueue.h:
 include/KeyCode.h:
-include/Components/DashComponent.h:
-include/ECS/Component.h:
-include/Components/PositionComponent.h:
-include/Vector2D.h:
 include/Components/DirectionComponent.h:
+include/ECS/Component.h:
+include/Vector2D.h:
+include/Components/PositionComponent.h:
 include/Components/PlayableComponent.h:
-include/Components/StateComponent.h:
 include/Components/CommandComponent.h:
+include/Components/MovementCommandComponent.h:
 include/ECS/Entity.h:
 include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
@@ -136,6 +134,7 @@ include/Components/ColliderComponent.h:
 include/Rect.h:
 include/Components/CooldownComponent.h:
 include/Components/DamageComponent.h:
+include/Components/DashComponent.h:
 include/Components/LifeTimeComponent.h:
 include/Components/OwnerComponent.h:
 include/Components/PhysicsComponent.h:
@@ -148,6 +147,7 @@ include/box2d/types.h:
 include/Components/ProjectileComponent.h:
 include/Components/SolidComponent.h:
 include/Components/SpriteComponent.h:
+include/Components/StateComponent.h:
 include/Components/StatusComponent.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:

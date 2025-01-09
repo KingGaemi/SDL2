@@ -50,7 +50,7 @@ public:
 
 	bool busy = false;
 
-
+	
 	void playAnimation(const std::string& animName);
 	bool loadAnimationsFromFile(const std::string& spriteName);
 	bool isAnimationComplete() const;

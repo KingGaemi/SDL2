@@ -198,16 +198,7 @@ void EntityFactory::loadColliderComponent(const json& componentData, std::shared
 
 void EntityFactory::loadStateComponent(const json& componentData, std::shared_ptr<Entity> entity){
 
-	States state;
-
-	std::string typeStr = componentData.value("state", "Idle");
-	if(typeStr == "Idle") state = States::Idle;
-	else if(typeStr == "Walk") state = States::Walk;
-	else if(typeStr == "Run") state = States::Run;
-	else if(typeStr == "Death") state = States::Death;
-	else if(typeStr == "Hurt") state = States::Hurt;
-
-	entity->addComponent<StateComponent>(state);
+	entity->addComponent<StateComponent>();
 }
 
 void EntityFactory::loadStatusComponent(const json& componentData, std::shared_ptr<Entity> entity){
@@ -221,6 +212,11 @@ void EntityFactory::loadStatusComponent(const json& componentData, std::shared_p
 void EntityFactory::loadCommandComponent(const json& componentData, std::shared_ptr<Entity> entity){
 	entity->addComponent<CommandComponent>();
 }
+
+void EntityFactory::loadMovementCommandComponent(const json& componentData, std::shared_ptr<Entity> entity){
+	entity->addComponent<MovementCommandComponent>();
+}
+
 
 void EntityFactory::loadPlayableComponent(const json& componentData, std::shared_ptr<Entity> entity){
 	entity->addComponent<PlayableComponent>();
@@ -339,6 +335,9 @@ void EntityFactory::registerComponentLoaders() {
     };
     componentLoaders["CommandComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadCommandComponent(data, entity);
+    };
+    componentLoaders["MovementCommandComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadMovementCommandComponent(data, entity);
     };
     componentLoaders["DashComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadPlayableComponent(data, entity);

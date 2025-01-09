@@ -35,6 +35,7 @@ public:
     void loadStateComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadStatusComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadCommandComponent(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadMovementCommandComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadPlayableComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadCooldownComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadDashComponent(const json& componentData, std::shared_ptr<Entity> entity);

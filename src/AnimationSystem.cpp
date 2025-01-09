@@ -24,155 +24,50 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
 
                 	int hDir = directComp->direction.hDir;
                 	int vDir = directComp->direction.vDir;
+                    std::string animName = "";
 
-                    if(stateComp->currentState == States::Death){
-                        if(vDir != 0){
-                            if(vDir == 1){
-                                if(animComp->currentAnimation != "d_death") animComp->playAnimation("d_death");
-                            }
-                            if(vDir == -1){
-                                if(animComp->currentAnimation != "u_death") animComp->playAnimation("u_death");
-                            }
-                        }else{
-                            if(hDir == -1){
-                                if(animComp->currentAnimation != "l_death") animComp->playAnimation("l_death");
-                            }
-                            if (hDir == 1){
-                                if(animComp->currentAnimation != "r_death") animComp->playAnimation("r_death");
-                            }
+                    if(vDir != 0){
+                        if(vDir == 1){
+                           animName += "d";
                         }
+                        if(vDir == -1){
+                            animName += "u";
+                        }
+                    }else{
+                        if(hDir == -1){
+                            animName += "l";
+                        }
+                        if (hDir == 1){
+                            animName += "r";
+                        }
+                    }
+
+                    if(stateComp->actionState == ActionStates::Death){
+                        animName += "_death";
                         if(animComp->currentAnimation == "d_death" || animComp->currentAnimation == "u_death" 
                             ||animComp->currentAnimation == "l_death" || animComp->currentAnimation == "r_death"){
                             animComp->busy =true;
                         }
+                        animComp->playAnimation(animName);
                     }
 
 
                     if(!animComp->busy){
-                        if(stateComp->currentState == States::Attack){
-                            if(vDir != 0){
-                                if(vDir == 1){
-                                    if(stateComp->isWalking){
-                                        animComp->playAnimation("d_walk_attack");
-                                    }else if(stateComp->isRunning){
-                                        animComp->playAnimation("d_run_attack");
-                                    }else{
-                                        animComp->playAnimation("d_attack");
-                                    }
-                                }
-                                if(vDir == -1){
-                                    if(stateComp->isWalking){
-                                        animComp->playAnimation("u_walk_attack");
-                                    }else if(stateComp->isRunning){
-                                        animComp->playAnimation("u_run_attack");
-                                    }else{
-                                        animComp->playAnimation("u_attack");
-                                    }
-                                }
-                            }else{
-                                if(hDir == -1){
-                                    if(stateComp->isWalking){
-                                        animComp->playAnimation("l_walk_attack");
-                                    }else if(stateComp->isRunning){
-                                        animComp->playAnimation("l_run_attack");
-                                    }else{
-                                        animComp->playAnimation("l_attack");
-                                    }
-                                }
-                                if (hDir == 1){
-                                    if(stateComp->isWalking){
-                                        animComp->playAnimation("r_walk_attack");
-                                    }else if(stateComp->isRunning){
-                                        animComp->playAnimation("r_run_attack");
-                                    }else{
-                                        animComp->playAnimation("r_attack");
-                                    }
-                                }
-                            }
-                            if(animComp->currentAnimation == "d_attack" || animComp->currentAnimation == "u_attack" 
-                                ||animComp->currentAnimation == "l_attack" || animComp->currentAnimation == "r_attack"
+                        if(stateComp->movementState == MovementStates::Stop &&
+                            stateComp->actionState == ActionStates::Idle) animName += "_idle";
+                        else if(stateComp->movementState == MovementStates::Walk) animName += "_walk";
+                        else if(stateComp->movementState == MovementStates::Run) animName += "_run";
 
-                                ||animComp->currentAnimation == "d_walk_attack" || animComp->currentAnimation == "u_walk_attack" 
-                                ||animComp->currentAnimation == "l_walk_attack" || animComp->currentAnimation == "r_walk_attack"
-
-                                ||animComp->currentAnimation == "d_run_attack" || animComp->currentAnimation == "u_run_attack" 
-                                ||animComp->currentAnimation == "l_run_attack" || animComp->currentAnimation == "r_run_attack"
-                                ){
-                                animComp->busy = true;
-                            }   
-                        }else if(stateComp->currentState == States::Hurt){
-                            if(vDir != 0){
-                                if(vDir == 1){
-                                    if(animComp->currentAnimation != "d_hurt") animComp->playAnimation("d_hurt");
-                                }
-                                if(vDir == -1){
-                                    if(animComp->currentAnimation != "u_hurt") animComp->playAnimation("u_hurt");
-                                }
-                            }else{
-                                if(hDir == -1){
-                                    if(animComp->currentAnimation != "l_hurt") animComp->playAnimation("l_hurt");
-                                }
-                                if (hDir == 1){
-                                    if(animComp->currentAnimation != "r_hurt") animComp->playAnimation("r_hurt");
-                                }
-                            }
-                            if(animComp->currentAnimation == "d_hurt" || animComp->currentAnimation == "u_hurt" 
-                                ||animComp->currentAnimation == "l_hurt" || animComp->currentAnimation == "r_hurt"){
-                                animComp->busy =true;
-                            }
-                        }else if(stateComp->currentState == States::Run){
-
-                                if(vDir != 0){
-                                    if(vDir == 1){
-                                        if(animComp->currentAnimation != "d_run") animComp->playAnimation("d_run");
-                                    }
-                                    if(vDir == -1){
-                                        if(animComp->currentAnimation != "u_run") animComp->playAnimation("u_run");
-                                    }
-                                }else{
-                                    if(hDir == -1){
-                                        if(animComp->currentAnimation != "l_run") animComp->playAnimation("l_run");
-                                    }
-                                    if (hDir == 1){
-                                        if(animComp->currentAnimation != "r_run") animComp->playAnimation("r_run");
-                                    }
-                                }
-                        }else if(stateComp->currentState == States::Idle){
-
-                            if(hDir == -1){
-                                if(animComp->currentAnimation != "l_idle") animComp->playAnimation("l_idle");
-                            }
-                            if (hDir == 1){
-                                if(animComp->currentAnimation != "r_idle") animComp->playAnimation("r_idle");
-                            }
-                            if(vDir == 1){
-                                if(animComp->currentAnimation != "d_idle") animComp->playAnimation("d_idle");
-                            }
-                            if(vDir == -1){
-                                if(animComp->currentAnimation != "u_idle") animComp->playAnimation("u_idle");
-                            }
-
-                        }else if(stateComp->currentState == States::Walk){
-                            if(vDir != 0){
-                                if(vDir == 1){
-                                    if(animComp->currentAnimation != "d_walk") animComp->playAnimation("d_walk");
-                                }
-                                if(vDir == -1){
-                                    if(animComp->currentAnimation != "u_walk") animComp->playAnimation("u_walk");
-                                }
-                            }else{
-                                if(hDir == -1){
-                                    if(animComp->currentAnimation != "l_walk") animComp->playAnimation("l_walk");
-                                }
-                                if (hDir == 1){
-                                    if(animComp->currentAnimation != "r_walk") animComp->playAnimation("r_walk");
-                                }
-                            }
+                        if(stateComp->actionState == ActionStates::Attack){
+                            animName += "_attack";
+                            animComp->busy = true;
                         }
-
-
+                        if(stateComp->actionState == ActionStates::Hurt){
+                            animName += "_hurt";
+                            animComp->busy = true;
+                        }
+                        if(animComp->currentAnimation != animName)animComp->playAnimation(animName);
                     }
-
 
                     if (animComp && spriteComp) {
                         updateAnimation(animComp, spriteComp, deltaTime);

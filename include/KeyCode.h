@@ -12,7 +12,11 @@ enum class KeyCode {
     Space,
     NUM_OF_KEY_CODES,
     Key_1,
-    Key_2
+    Key_2,
+    q,
+    w,
+    e,
+    r
     // 필요한 키 추가...
 };
 

@@ -11,19 +11,17 @@
 
 enum class CommandType{
     None,
-    Move,
-    Run,
-    Attack,
+    BasicAttack,
+    SpecialAttack,
     Skill
 };
 
 
-struct CommandData{
-    CommandType type = CommandType::None;
-    Direction moveDirection;
-    std::optional<std::string> skillName;
-    
-};
+// struct CommandData{
+//     CommandType type = CommandType::None;
+//     Direction direction;
+//     std::optional<std::string> skillName;
+// };
 
 
 
@@ -33,8 +31,10 @@ class CommandComponent : public Component {
 
 public:
     // std::vector<CommandData> commandDatas;
-
-    CommandData commandData;
+    CommandType commandType = CommandType::None;
+    Direction direction;
+    bool doubleTap = false;
+    std::optional<std::string> skillName;
 
     // CommandComponent(CommandType type, Vector2D moveDirection) {
     //      commandData.type = type;
