@@ -6,6 +6,7 @@
 #include "Components/SpriteComponent.h"
 #include "Components/TransformComponent.h"
 #include "Components/ColliderComponent.h"
+#include "Components/ItemComponent.h"
 #include <iostream>
 
 
@@ -28,14 +29,14 @@ public:
 
 				if(spriteComp&&transComp){
 					// std::cout << (int)(transComp->width * transComp->scale) << std::endl;
+					if(entity->hasComponent<ItemComponent>()) continue;
 					spriteComp->dstRect.w = (int)(transComp->width * transComp->scale);
 					spriteComp->dstRect.h = (int)(transComp->height * transComp->scale);
 				}
 
 				// if(colliderComp&&transComp){
 				// 	// std::cout << (int)(transComp->width * transComp->scale) << std::endl;
-				// 	colliderComp->collider.w = (int)(transComp->width * transComp->scale);
-				// 	colliderComp->collider.h = (int)(transComp->height * transComp->scale);
+				// 	colliderComp->rotation = transComp->rotation;
 				// }
 
 			} 

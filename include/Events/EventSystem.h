@@ -41,7 +41,7 @@ private:
 	KeyCode lastVerticalKey = KeyCode::Unknown;
 	KeyCode lastArrowKey = KeyCode::Down;
 	KeyCode lastAbilityKey = KeyCode::Unknown;
-	float doubleTapTime = 0.17; // sec
+	float doubleTapTime = 0.25; // sec
 	float leftDoubleTapTime = 0;
 	Direction direction = {0, 0};
 

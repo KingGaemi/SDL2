@@ -1,0 +1,28 @@
+{
+  "background": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "background_main",
+        "width": 384,
+        "height": 240,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 384,
+        "height": 240,
+        "scale": 2.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Menu"
+      }
+    ]
+  }
+}

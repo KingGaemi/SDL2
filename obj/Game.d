@@ -91,15 +91,18 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
  include/Components/StateComponent.h include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
- include/Components/VelocityComponent.h include/Systems/PhysicsSystem.h \
- include/ECS/Entity.h include/ECS/System.h include/Systems/Systems.h \
- include/Systems/AnimationSystem.h include/Systems/InputSystem.h \
- include/Systems/MovementSystem.h include/Systems/RenderSystem.h \
- include/Systems/TimerSystem.h include/Systems/ExpireSystem.h \
- include/Systems/AttackSystem.h include/Systems/CooldownSystem.h \
- include/Systems/CommandSystem.h include/Systems/WorldRenderSystem.h \
- include/Systems/SyncSystem.h include/Systems/UIRenderSystem.h \
- include/Systems/CollisionSystem.h include/Systems/DamageSystem.h \
+ include/Components/VelocityComponent.h \
+ include/Components/ItemComponent.h include/ECS/Entity.h \
+ include/Components/FloatingEffectComponent.h \
+ include/Systems/PhysicsSystem.h include/ECS/System.h \
+ include/Systems/Systems.h include/Systems/AnimationSystem.h \
+ include/Systems/InputSystem.h include/Systems/MovementSystem.h \
+ include/Systems/RenderSystem.h include/Systems/TimerSystem.h \
+ include/Systems/ExpireSystem.h include/Systems/AttackSystem.h \
+ include/Systems/CooldownSystem.h include/Systems/CommandSystem.h \
+ include/Systems/WorldRenderSystem.h include/Systems/SyncSystem.h \
+ include/Systems/UIRenderSystem.h include/Systems/CollisionSystem.h \
+ include/Systems/DamageSystem.h include/Systems/EffectSystem.h \
  include/Input/InputManager.h include/Events/EventManager.h \
  include/Events/EventSystem.h include/Events/MiddleEventSystem.h
 include/Game.h:
@@ -244,8 +247,10 @@ include/Components/StateComponent.h:
 include/Components/StatusComponent.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
-include/Systems/PhysicsSystem.h:
+include/Components/ItemComponent.h:
 include/ECS/Entity.h:
+include/Components/FloatingEffectComponent.h:
+include/Systems/PhysicsSystem.h:
 include/ECS/System.h:
 include/Systems/Systems.h:
 include/Systems/AnimationSystem.h:
@@ -262,6 +267,7 @@ include/Systems/SyncSystem.h:
 include/Systems/UIRenderSystem.h:
 include/Systems/CollisionSystem.h:
 include/Systems/DamageSystem.h:
+include/Systems/EffectSystem.h:
 include/Input/InputManager.h:
 include/Events/EventManager.h:
 include/Events/EventSystem.h:

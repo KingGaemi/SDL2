@@ -51,7 +51,6 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 								} 
 							}
 
-
 							directComp->direction = moveCommandComp->direction;
 							Vector2D velo = directComp->dirToVector();							
 							velo = velo * statusComp->movementSpeed;
@@ -85,9 +84,15 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 							// veloComp->set(velo);
 		
 							if(!stateComp->inMotion){
-								stateComp->changeActionState(ActionStates::Attack, cooldownComp->cooldownAbilities["basicAttack"].cooldownTime);
-								// std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
-								cooldownComp->resetCooldown("basicAttack");
+								if(!commandComp->doubleTap){
+									stateComp->changeActionState(ActionStates::Attack, cooldownComp->cooldownAbilities["basicAttack"].cooldownTime);
+									// std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
+									cooldownComp->resetCooldown("basicAttack");
+								}else{
+									stateComp->changeActionState(ActionStates::Attack, cooldownComp->cooldownAbilities["basicAttack"].cooldownTime);
+									// std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
+									cooldownComp->resetCooldown("basicAttack");
+								}
 							}
 						}else{
 							stateComp->changeActionState(ActionStates::Idle, 0);

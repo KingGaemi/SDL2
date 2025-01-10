@@ -14,3 +14,4 @@
 #include "UIRenderSystem.h"
 #include "CollisionSystem.h"
 #include "DamageSystem.h"
+#include "EffectSystem.h"

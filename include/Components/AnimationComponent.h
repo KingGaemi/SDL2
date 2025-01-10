@@ -32,6 +32,7 @@ public:
 	AnimationComponent(const std::string& filename, const std::string& spriteName) : filename(filename) {
 		if(loadAnimationsFromFile(spriteName)){
 			//
+			std::cout << "Load animation sucesse. :" << filename << std::endl;
 		}else{
 			std::cout << "Load animation failed. :" << filename << std::endl;
 		}
@@ -46,15 +47,12 @@ public:
 	float currentTime = 0.0f;
 	int currentFrameIndex = 0;
 
-
-
 	bool busy = false;
 
 	
 	void playAnimation(const std::string& animName);
 	bool loadAnimationsFromFile(const std::string& spriteName);
 	bool isAnimationComplete() const;
-
 
 	AnimationData* getCurrentAnimationData();
 	AnimationFrame* getCurrentFrame();

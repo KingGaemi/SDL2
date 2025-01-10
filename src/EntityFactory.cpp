@@ -12,6 +12,7 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
 	else if(req.entityType == EntityType::Projectile) j = projectilesJson;
 	else if(req.entityType == EntityType::UI) j = uiJson;
 	else if(req.entityType == EntityType::Object) j = objectsJson;
+	else if(req.entityType == EntityType::Item) j = itemsJson;
 	else{
 		std::cerr << "EntityType is \'default\'. Can't create " << std::endl;
 		return;
@@ -124,6 +125,7 @@ void EntityFactory::loadAnimationComponent(const json& componentData, std::share
 	else if(typeStr == "UI") filename += "uiAnimations.json";
 	else if(typeStr == "Attack") filename += "attackAnimations.json";
 	else if(typeStr == "Unit") filename += "unitAnimations.json";
+	else if(typeStr == "Item") filename += "itemAnimations.json";
 
 	entity->addComponent<AnimationComponent>(filename, spriteName);
 }
@@ -255,6 +257,19 @@ void EntityFactory::loadDamageComponent(const json& componentData, std::shared_p
 	entity->addComponent<DamageComponent>(damage);
 }
 
+void EntityFactory::loadItemComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+
+	int itemId = componentData.value("itemId", 1);
+	bool stackable = componentData.value("stackable", false);
+	int maxStackCounts = componentData.value("maxStackCounts", 1);
+
+	entity->addComponent<ItemComponent>(itemId, stackable, maxStackCounts);
+}
+void EntityFactory::loadFloatingEffectComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+	entity->addComponent<FloatingEffectComponent>();
+}
+
+
 
 
 
@@ -356,5 +371,11 @@ void EntityFactory::registerComponentLoaders() {
     };
     componentLoaders["DamageComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadDamageComponent(data, entity);
+    };
+    componentLoaders["ItemComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadItemComponent(data, entity);
+    };
+    componentLoaders["FloatingEffectComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadFloatingEffectComponent(data, entity);
     };
 }

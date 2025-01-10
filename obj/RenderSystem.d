@@ -30,7 +30,8 @@ obj/RenderSystem.o: src/RenderSystem.cpp include/Systems/RenderSystem.h \
  include/Components/PositionComponent.h include/Vector2D.h \
  include/Components/SpriteComponent.h include/Rect.h \
  include/Components/ColliderComponent.h \
- include/Components/Transformcomponent.h
+ include/Components/Transformcomponent.h \
+ include/Components/FloatingEffectComponent.h
 include/Systems/RenderSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -97,3 +98,4 @@ include/Components/SpriteComponent.h:
 include/Rect.h:
 include/Components/ColliderComponent.h:
 include/Components/Transformcomponent.h:
+include/Components/FloatingEffectComponent.h:

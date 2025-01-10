@@ -44,10 +44,8 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 		}
 	}
 	
-
 	if(evt.type == EventType::KEYUP) pressed[toInt(evt.key)] = false;
   	direction = getDirection(evt);
-	
 	
 
 	// Find Target

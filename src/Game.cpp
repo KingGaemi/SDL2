@@ -60,6 +60,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<CollisionSystem>(SystemGroup::Logic, 60, ecsManager);
     ecsManager->addSystem<ExpireSystem>(SystemGroup::Logic, 90);
     ecsManager->addSystem<DamageSystem>(SystemGroup::Logic, 100, ecsManager);
+    ecsManager->addSystem<EffectSystem>(SystemGroup::Logic, 110);
     ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
     ecsManager->addSystem<SyncSystem>(SystemGroup::Logic, 160);
     ecsManager->addSystem<MiddleEventSystem>(SystemGroup::Event, 200, eventManager->get());
@@ -95,6 +96,7 @@ void Game::textureLoading(){
     textureManager->loadTexture("dirt_tile", "res/gfx/dirt_tile.png");
     textureManager->loadTexture("box1", "res/gfx/box1.png");
     textureManager->loadTexture("unknown", "res/gfx/player2.png");
+    textureManager->loadTexture("potion_cap", "res/gfx/potion_cap2.png");
     
 
     uiTextureManager->loadText("Hello World!");

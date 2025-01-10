@@ -1,6 +1,6 @@
 #include "Components/AnimationComponent.h"
 #include <fstream>
-
+#include <iostream>
 
 void AnimationComponent::playAnimation(const std::string& animName){
 		if (animations.find(animName) != animations.end()) {
@@ -29,15 +29,15 @@ AnimationFrame* AnimationComponent::getCurrentFrame(){
         return nullptr;
 }
 
-
-
-
 bool AnimationComponent::loadAnimationsFromFile(const std::string& spriteName) {
     //filename = "assets/~~~Animations.json";
     std::ifstream file(filename);
+    
     if (!file.is_open()) {
         std::cerr << "Failed to open " << filename << std::endl;
         return false;
+    }else{
+        std::cout << "open " << filename << std::endl;
     }
 
     json j;
@@ -75,6 +75,7 @@ bool AnimationComponent::loadAnimationsFromFile(const std::string& spriteName) {
 
         animations[animName] = animData;
     }
+
 
     return true;
 }

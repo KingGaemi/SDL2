@@ -73,6 +73,16 @@ void GameplayScene::onEnter(){
 	req.sc = 1.0f;
 	ecsManager->pendingSpawns.push_back(req);
 
+
+
+
+	req.entityType = EntityType::Item;
+	req.name = "potionCap";
+	req.x = 700.0f;
+	req.y = 400.0f;
+	req.teamCode = TeamCode::Ally;
+	ecsManager->pendingSpawns.push_back(req);
+
 	std::cout << "GameplayScene initialized!" << std::endl;
 
 }

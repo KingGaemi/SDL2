@@ -8,6 +8,7 @@
 
 enum class ColliderType{
 	Unit,
+	Object,
 	Projectile,
 	Portal,
 	Beacon
@@ -22,6 +23,7 @@ public:
 	ColliderType colliderType;
 	float offsetX = 0.0f;
 	float offsetY = 0.0f;
+	float rotation = 0.0f;
 
 	ColliderComponent() {}
 	// ColliderComponent(Vector2D position, std::string tag) : position(position), tag(tag) {

@@ -5,6 +5,7 @@
 #include "Components/SpriteComponent.h"
 #include "Components/ColliderComponent.h"
 #include "Components/Transformcomponent.h"
+#include "Components/FloatingEffectComponent.h"
 #include <iostream>
 
 
@@ -64,8 +65,13 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             SDL_Rect srcRect = toSDLRect(sprite->srcRect);
             SDL_Rect dstRect = toSDLRect(sprite->dstRect);
 
+            float offsetY = 0.0f;
+            if(entity->hasComponent<FloatingEffectComponent>()) {
+                offsetY = entity->getComponent<FloatingEffectComponent>()->renderOffsetY;
+            }
+
             dstRect.x = static_cast<int>(posComp->x) - (dstRect.w/2);
-            dstRect.y = static_cast<int>(posComp->y) - (dstRect.h/2);
+            dstRect.y = static_cast<int>(posComp->y + offsetY) - (dstRect.h/2);
 
             SDL_RendererFlip flip = SDL_FLIP_NONE;
             float rot = 0.0f;

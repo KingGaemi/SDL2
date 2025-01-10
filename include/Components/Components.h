@@ -21,5 +21,7 @@
 #include "StatusComponent.h"
 #include "TransformComponent.h"
 #include "VelocityComponent.h"
+#include "ItemComponent.h"
+#include "FloatingEffectComponent.h"
 
 // #include "GroupComponent.h"

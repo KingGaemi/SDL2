@@ -63,8 +63,11 @@ obj/ECSManager.o: src/ECSManager.cpp include/ECS/ECSManager.h \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
  include/Components/StateComponent.h include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
- include/Components/VelocityComponent.h include/Systems/PhysicsSystem.h \
- include/ECS/Entity.h include/ECS/System.h include/Systems/AttackSystem.h
+ include/Components/VelocityComponent.h \
+ include/Components/ItemComponent.h include/ECS/Entity.h \
+ include/Components/FloatingEffectComponent.h \
+ include/Systems/PhysicsSystem.h include/ECS/System.h \
+ include/Systems/AttackSystem.h
 include/ECS/ECSManager.h:
 include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
@@ -146,7 +149,9 @@ include/Components/StateComponent.h:
 include/Components/StatusComponent.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
-include/Systems/PhysicsSystem.h:
+include/Components/ItemComponent.h:
 include/ECS/Entity.h:
+include/Components/FloatingEffectComponent.h:
+include/Systems/PhysicsSystem.h:
 include/ECS/System.h:
 include/Systems/AttackSystem.h:

@@ -1,6 +1,7 @@
 #include "Systems/AnimationSystem.h"
 #include "Components/DirectionComponent.h"
 #include "Components/StateComponent.h"
+#include "Components/ItemComponent.h"
 #include <iostream>
 #include <fstream>
 
@@ -19,7 +20,9 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                 auto spriteComp = entity->getComponent<SpriteComponent>();
                 auto directComp = entity->getComponent<DirectionComponent>();
                 auto stateComp = entity->getComponent<StateComponent>();
+                auto itemComp = entity->getComponent<ItemComponent>();
 
+                // Unit or Objects
                 if(spriteComp && directComp && stateComp){
 
                 	int hDir = directComp->direction.hDir;
@@ -73,6 +76,15 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                         updateAnimation(animComp, spriteComp, deltaTime);
                     }
                 }
+
+                // Items
+
+                if(spriteComp && itemComp){
+                    if (animComp && spriteComp) {
+                        updateAnimation(animComp, spriteComp, deltaTime);
+                    }
+                }
+
             }
         }
     }

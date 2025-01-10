@@ -7,6 +7,7 @@
 enum class ActionStates{
 	Idle,
 	Attack,
+	SpecialAttack,
 	Hurt,
 	Death
 };

@@ -65,7 +65,9 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
  include/Components/StateComponent.h include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
- include/Components/VelocityComponent.h
+ include/Components/VelocityComponent.h \
+ include/Components/ItemComponent.h \
+ include/Components/FloatingEffectComponent.h
 include/Events/EventSystem.h:
 include/ECS/System.h:
 include/Events/EventManager.h:
@@ -151,3 +153,5 @@ include/Components/StateComponent.h:
 include/Components/StatusComponent.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
+include/Components/ItemComponent.h:
+include/Components/FloatingEffectComponent.h:

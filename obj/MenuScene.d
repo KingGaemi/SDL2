@@ -64,8 +64,10 @@ obj/MenuScene.o: src/MenuScene.cpp include/MenuScene.h include/Scene.h \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
  include/Components/StateComponent.h include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
- include/Components/VelocityComponent.h include/Systems/PhysicsSystem.h \
- include/ECS/Entity.h include/ECS/System.h
+ include/Components/VelocityComponent.h \
+ include/Components/ItemComponent.h include/ECS/Entity.h \
+ include/Components/FloatingEffectComponent.h \
+ include/Systems/PhysicsSystem.h include/ECS/System.h
 include/MenuScene.h:
 include/Scene.h:
 include/Events/EventQueue.h:
@@ -150,6 +152,8 @@ include/Components/StateComponent.h:
 include/Components/StatusComponent.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
-include/Systems/PhysicsSystem.h:
+include/Components/ItemComponent.h:
 include/ECS/Entity.h:
+include/Components/FloatingEffectComponent.h:
+include/Systems/PhysicsSystem.h:
 include/ECS/System.h:

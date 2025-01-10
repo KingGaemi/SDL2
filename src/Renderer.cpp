@@ -86,6 +86,5 @@ void Renderer::SetRenderDrawColor(int r, int g, int b, int a){
 }
 
 void Renderer::RenderDrawRect(SDL_Rect &debugRect){
-
     SDL_RenderDrawRect(SDL_renderer, &debugRect);
 }

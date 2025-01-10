@@ -5,7 +5,8 @@ obj/PhysicsSystem.o: src/PhysicsSystem.cpp \
  include/ECS/Entity.h include/ECS/Component.h include/ECS/System.h \
  include/Components/PositionComponent.h include/Vector2D.h \
  include/Components/PhysicsComponent.h \
- include/Components/Transformcomponent.h \
+ include/Components/ColliderComponent.h include/Rect.h \
+ include/Components/TransformComponent.h \
  include/Components/VelocityComponent.h \
  include/Components/PlayableComponent.h include/Groups.h
 include/Systems/PhysicsSystem.h:
@@ -21,7 +22,9 @@ include/ECS/System.h:
 include/Components/PositionComponent.h:
 include/Vector2D.h:
 include/Components/PhysicsComponent.h:
-include/Components/Transformcomponent.h:
+include/Components/ColliderComponent.h:
+include/Rect.h:
+include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
 include/Components/PlayableComponent.h:
 include/Groups.h:

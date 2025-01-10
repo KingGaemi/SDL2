@@ -65,8 +65,10 @@ obj/CollisionSystem.o: src/CollisionSystem.cpp \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
  include/Components/StateComponent.h include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
- include/Components/VelocityComponent.h include/Systems/PhysicsSystem.h \
- include/ECS/System.h include/Collision.h
+ include/Components/VelocityComponent.h \
+ include/Components/ItemComponent.h \
+ include/Components/FloatingEffectComponent.h \
+ include/Systems/PhysicsSystem.h include/ECS/System.h include/Collision.h
 include/Systems/CollisionSystem.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
@@ -150,6 +152,8 @@ include/Components/StateComponent.h:
 include/Components/StatusComponent.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
+include/Components/ItemComponent.h:
+include/Components/FloatingEffectComponent.h:
 include/Systems/PhysicsSystem.h:
 include/ECS/System.h:
 include/Collision.h:

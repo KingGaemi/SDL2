@@ -40,10 +40,6 @@ struct CollisionEvent {
 
 class ECSManager {
 public:
-
-
-
-
     std::shared_ptr<Entity> createEntity();
     void destroyEntity(std::shared_ptr<Entity> entity);
 
@@ -93,9 +89,6 @@ public:
             registeredSystems.end()
         );
     }
-
-
-
     // Temporary
     void takeSingleRequest(const SpawnRequest& req);
 

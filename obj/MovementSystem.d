@@ -66,7 +66,10 @@ obj/MovementSystem.o: src/MovementSystem.cpp \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
  include/Components/StateComponent.h include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
- include/Components/VelocityComponent.h include/Systems/PhysicsSystem.h
+ include/Components/VelocityComponent.h \
+ include/Components/ItemComponent.h \
+ include/Components/FloatingEffectComponent.h \
+ include/Systems/PhysicsSystem.h
 include/Systems/MovementSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -152,4 +155,6 @@ include/Components/StateComponent.h:
 include/Components/StatusComponent.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
+include/Components/ItemComponent.h:
+include/Components/FloatingEffectComponent.h:
 include/Systems/PhysicsSystem.h:

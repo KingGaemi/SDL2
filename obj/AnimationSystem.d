@@ -48,7 +48,7 @@ obj/AnimationSystem.o: src/AnimationSystem.cpp \
  include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
  include/Components/SpriteComponent.h include/Rect.h \
  include/Components/DirectionComponent.h include/Vector2D.h \
- include/Components/StateComponent.h
+ include/Components/StateComponent.h include/Components/ItemComponent.h
 include/Systems/AnimationSystem.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
@@ -105,3 +105,4 @@ include/Rect.h:
 include/Components/DirectionComponent.h:
 include/Vector2D.h:
 include/Components/StateComponent.h:
+include/Components/ItemComponent.h:
