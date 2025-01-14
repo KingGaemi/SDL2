@@ -14,9 +14,11 @@ public:
 	std::string displayName;
 	std::string discription;
 
+	bool consumed = false;
 	bool stackable;
 	int maxStackCounts;
+	int currentStack = 1;
 
-	ItemComponent(ItemId itemId, bool stackable, int maxStackCounts ) : itemId(itemId), stackable(stackable), maxStackCounts(maxStackCounts) {} 
+	ItemComponent(ItemId itemId, bool stackable, int maxStackCounts ) : itemId(itemId), stackable(stackable), maxStackCounts(maxStackCounts) {  } 
 
 };

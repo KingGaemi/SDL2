@@ -50,8 +50,9 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->setFactory(entityFactory);  
 
     // Add Systems
+    ecsManager->addSystem<MapSystem>(SystemGroup::Render, 50, *renderer, ecsManager);
     ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer);
-    ecsManager->addSystem<UIRenderSystem>(SystemGroup::UI, 200, *renderer);
+    ecsManager->addSystem<UIRenderSystem>(SystemGroup::Render, 200, *renderer);
     // ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
     ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager->get());
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
@@ -63,6 +64,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<EffectSystem>(SystemGroup::Logic, 110);
     ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
     ecsManager->addSystem<SyncSystem>(SystemGroup::Logic, 160);
+    ecsManager->addSystem<CollisionEventHandlerSystem>(SystemGroup::Event, 180, ecsManager);
     ecsManager->addSystem<MiddleEventSystem>(SystemGroup::Event, 200, eventManager->get());
     // auto animSys = ecsManager->getSystem<AnimationSystem>();
     // animSys->Init();
@@ -86,7 +88,6 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
 void Game::textureLoading(){
 
     textureManager = std::make_unique<TextureManager>(*renderer);
-    uiTextureManager = std::make_unique<TextureManager>(*renderer);
     textureManager->loadTexture("background_main", "res/gfx/SunnyLand/Environment/back.png");
     textureManager->loadTexture("eri", "res/gfx/eri_copy2.png");
     textureManager->loadTexture("streetlamp", "res/gfx/streetlamp3.png");
@@ -97,9 +98,9 @@ void Game::textureLoading(){
     textureManager->loadTexture("box1", "res/gfx/box1.png");
     textureManager->loadTexture("unknown", "res/gfx/player2.png");
     textureManager->loadTexture("potion_cap", "res/gfx/potion_cap2.png");
-    
+    textureManager->loadTexture("grass_tileset", "res/gfx/TX_Tileset_Grass.png");
 
-    uiTextureManager->loadText("Hello World!");
+    textureManager->loadText("Hello World!");
     // textureManager->loadTexture("farm_map",);
 
 
@@ -107,10 +108,16 @@ void Game::textureLoading(){
 
 
     auto worldRenderSys = ecsManager->getSystem<WorldRenderSystem>();
-    worldRenderSys->setTextureManager(std::move(textureManager));
+    worldRenderSys->setTextureManager(*textureManager.get());
 
     auto uiRenderSys = ecsManager->getSystem<UIRenderSystem>();
-    uiRenderSys->setTextureManager(std::move(uiTextureManager));
+    uiRenderSys->setTextureManager(*textureManager.get());
+
+    auto mapSys = ecsManager->getSystem<MapSystem>();
+    mapSys->setTextureManager(*textureManager.get());
+    mapSys->init(ecsManager->getEntities());
+    
+    
 
 }
 
@@ -130,7 +137,6 @@ void Game::run() {
 
         // 2. ECS 시스템 업데이트 → EventSystem이 SCENE_CHANGE 이벤트 발생 가능
         ecsManager->updateSystems(deltaTime);
-
         ecsManager->renderSystems(deltaTime);
         ecsManager->processSpawnRequests();
         ecsManager->processCollisionEvents();

@@ -6,6 +6,8 @@
 #include "Components/SpriteComponent.h"
 #include "Components/TransformComponent.h"
 #include "Components/ColliderComponent.h"
+#include "Components/AnimationComponent.h"
+#include "Components/StatusComponent.h"
 #include "Components/ItemComponent.h"
 #include <iostream>
 
@@ -40,6 +42,20 @@ public:
 				// }
 
 			} 
+
+			if(entity->hasComponent<AnimationComponent>() && entity->hasComponent<StatusComponent>()){
+
+				auto animComp = entity->getComponent<AnimationComponent>();
+				auto statusComp = entity->getComponent<StatusComponent>();
+
+				if(animComp&&statusComp){
+					
+					animComp->attackFast = statusComp->attackSpeed;
+					animComp->moveFast = statusComp->movementSpeed / 100.0f;
+
+				}
+
+			}
 
 
 		}

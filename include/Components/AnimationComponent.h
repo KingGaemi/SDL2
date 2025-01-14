@@ -32,9 +32,9 @@ public:
 	AnimationComponent(const std::string& filename, const std::string& spriteName) : filename(filename) {
 		if(loadAnimationsFromFile(spriteName)){
 			//
-			std::cout << "Load animation sucesse. :" << filename << std::endl;
+			// std::cout << "Load animation sucesse. :" << filename << std::endl;
 		}else{
-			std::cout << "Load animation failed. :" << filename << std::endl;
+			// std::cout << "Load animation failed. :" << filename << std::endl;
 		}
 	}
 

@@ -47,7 +47,7 @@ public:
     std::shared_ptr<Entity> getEntityById(std::size_t id);
     void setEntityName(std::shared_ptr<Entity> entity, const std::string& name);
     std::shared_ptr<Entity> getEntityByName(const std::string& name);
-
+    std::vector<std::shared_ptr<Entity>>& getEntities(){return entities;}
     // 시스템 추가/업데이트
     template<typename S, typename... Args>
     void addSystem(SystemGroup group, int priority ,Args&&... args) {
@@ -101,13 +101,15 @@ public:
 
     void setFactory(std::shared_ptr<EntityFactory>& factory);
     void setPhysicsSystem(std::shared_ptr<PhysicsSystem>& physSystem);
-    void setVelocity(std::shared_ptr<Entity> entity, float x, float y);
+    void setVelocity(std::shared_ptr<Entity>& entity, float x, float y);
+    void setMapEntity(std::shared_ptr<Entity>& entity) { mapEntity = entity;}
     void processSpawnRequests();
     void processCollisionEvents();
     void processMiddleEvents();
     void cleanUpEntities();
     void cleanUpAllEntities();
     void cleanUpEntitiesByScene(SceneCode sceneCode);
+    void activeMapEntity();
     // 엔티티 이름 관리 (선택 사항)
 
     std::vector<SpawnRequest> pendingSpawns;
@@ -116,16 +118,16 @@ public:
 private:
     std::size_t nextID = 0;
     std::vector<std::shared_ptr<Entity>> entities;
-
-
+    std::shared_ptr<Entity> mapEntity;
     // 이름 관리 (원한다면 유지)
     std::unordered_map<std::string, std::shared_ptr<Entity>> entityByName;
     std::unordered_map<std::shared_ptr<Entity>, std::string> entityNames;
 
     std::shared_ptr<EntityFactory> entityFactory;
-
     std::shared_ptr<PhysicsSystem> physicsSystem;
     // SystemArray systemArray{};
     // SystemBitset systemBitset;
     std::vector<SystemRegistration> registeredSystems;
+
+    bool activeMap = false;
 };

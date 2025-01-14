@@ -100,11 +100,6 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 
 }
 
-
-
-
-
-
 Direction EventSystem::getDirection(const Event& evt){
 
 	if(evt.type == EventType::KEYDOWN){	
@@ -142,7 +137,6 @@ Direction EventSystem::getDirection(const Event& evt){
 	if(pressed[toInt(KeyCode::Up)] && lastVerticalKey == KeyCode::Up) direction.vDir = -1;
 	if(pressed[toInt(KeyCode::Down)] && lastVerticalKey == KeyCode::Down) direction.vDir = 1;
 	if(!pressed[toInt(KeyCode::Up)] && !pressed[toInt(KeyCode::Down)]) direction.vDir = 0;
-
 
 	// When all arrow keys up
 	if(!pressed[toInt(KeyCode::Left)] &&

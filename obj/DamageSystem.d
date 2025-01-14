@@ -67,7 +67,7 @@ obj/DamageSystem.o: src/DamageSystem.cpp include/Systems/DamageSystem.h \
  include/Components/VelocityComponent.h \
  include/Components/ItemComponent.h include/ECS/Entity.h \
  include/Components/FloatingEffectComponent.h \
- include/Systems/PhysicsSystem.h
+ include/Components/MapComponent.h include/Systems/PhysicsSystem.h
 include/Systems/DamageSystem.h:
 include/ECS/System.h:
 include/ECS/ECSManager.h:
@@ -154,4 +154,5 @@ include/Components/VelocityComponent.h:
 include/Components/ItemComponent.h:
 include/ECS/Entity.h:
 include/Components/FloatingEffectComponent.h:
+include/Components/MapComponent.h:
 include/Systems/PhysicsSystem.h:

@@ -69,7 +69,7 @@ obj/MovementSystem.o: src/MovementSystem.cpp \
  include/Components/VelocityComponent.h \
  include/Components/ItemComponent.h \
  include/Components/FloatingEffectComponent.h \
- include/Systems/PhysicsSystem.h
+ include/Components/MapComponent.h include/Systems/PhysicsSystem.h
 include/Systems/MovementSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -157,4 +157,5 @@ include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
 include/Components/ItemComponent.h:
 include/Components/FloatingEffectComponent.h:
+include/Components/MapComponent.h:
 include/Systems/PhysicsSystem.h:

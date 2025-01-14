@@ -1,0 +1,54 @@
+#include "Systems/CollisionEventHandlerSystem.h"
+#include "Components/StatusComponent.h"
+#include "Components/ItemComponent.h"
+#include "Groups.h"
+#include <iostream>
+
+void CollisionEventHandlerSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+
+	auto& collisionEvents = ecsManager->getCollisionEvents();
+
+	if(!collisionEvents.empty()){
+		for(auto& colEvt : collisionEvents){
+
+			auto entityA = colEvt.entityA;
+			auto entityB = colEvt.entityB;
+
+			// EntityID A = entityA->getID();
+        	// EntityID B = entityB->getID();
+
+			if(!entityA->isActive || !entityB->isActive) continue;
+
+			if(entityA->hasComponent<ItemComponent>() || entityB->hasComponent<ItemComponent>()){
+				
+				applyRoot(entityA, entityB);
+				applyRoot(entityB, entityA);
+			}
+		}
+	}
+}
+
+
+
+void CollisionEventHandlerSystem::applyRoot(std::shared_ptr<Entity> charactor, std::shared_ptr<Entity> item) {
+    if (charactor->hasComponent<StatusComponent>() && item->hasComponent<ItemComponent>()
+    	&& charactor->hasComponent<TeamTag>()) {
+        auto statusComp = charactor->getComponent<StatusComponent>();
+    	auto itemComp = item->getComponent<ItemComponent>();
+        auto teamComp = charactor->getComponent<TeamTag>();
+
+        if(!statusComp->alive) return;
+
+        if(teamComp->teamCode != TeamCode::Ally) return;
+
+	    if (!itemComp->consumed) {
+	    	statusComp->currentHp = statusComp->maxHp;
+	    	statusComp->attackSpeed += 1.0f;
+	    	std::cout << statusComp->attackSpeed << std::endl;
+	    	statusComp->movementSpeed += 30.0f;
+	    	itemComp->consumed = true;
+	    	itemComp->currentStack -= 1;
+	    	if(itemComp->currentStack <= 0) item->terminate = true;
+	    } 
+    }
+}

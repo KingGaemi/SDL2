@@ -9,15 +9,15 @@
       {
         "name": "SpriteComponent",
         "textureID": "background_main",
-        "width": 384,
-        "height": 240,
+        "width": 1280,
+        "height": 800,
         "scale": 1.0
       },
       {
         "name": "TransformComponent",
-        "width": 384,
-        "height": 240,
-        "scale": 2.0
+        "width": 1280,
+        "height": 800,
+        "scale": 1.0
       },
       {
         "name": "SceneTag",

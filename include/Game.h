@@ -49,6 +49,7 @@ private:
     std::shared_ptr<ECSManager> ecsManager;
     std::shared_ptr<EntityFactory> entityFactory;
     std::shared_ptr<EventManager> eventManager;
+    std::unique_ptr<TextureManager> mapTextureManager;
     std::unique_ptr<TextureManager> textureManager;
     std::unique_ptr<TextureManager> uiTextureManager;
     std::unique_ptr<InputManager> inputManager;

@@ -89,7 +89,7 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
                 b2CreatePolygonShape(physComp->body, &bodyShapeDef, &bodyBox);
             }
 
-            if(posComp && colliderComp && transComp) std::cout << colliderComp->collider.h << ", " << transComp->height << std::endl;
+            // if(posComp && colliderComp && transComp) std::cout << colliderComp->collider.h << ", " << transComp->height << std::endl;
 
         }
     }

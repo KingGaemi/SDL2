@@ -47,9 +47,9 @@ std::pair<int, int> RenderSystem::getTextureSize(const std::string& textureID){
 }
 
 
-void RenderSystem::setTextureManager(std::unique_ptr<TextureManager> p_textureManager){
+void RenderSystem::setTextureManager(TextureManager& p_textureManager){
 
-    textureManager = std::move(p_textureManager);
+    textureManager = &p_textureManager;
 }
 
 

@@ -34,10 +34,10 @@ bool AnimationComponent::loadAnimationsFromFile(const std::string& spriteName) {
     std::ifstream file(filename);
     
     if (!file.is_open()) {
-        std::cerr << "Failed to open " << filename << std::endl;
+        // std::cerr << "Failed to open " << filename << std::endl;
         return false;
     }else{
-        std::cout << "open " << filename << std::endl;
+        // std::cout << "open " << filename << std::endl;
     }
 
     json j;

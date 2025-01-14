@@ -43,6 +43,8 @@ std::shared_ptr<Entity> ECSManager::getEntityById(std::size_t id) {
 
 void ECSManager::updateSystems(float deltaTime) {
 
+        if(mapEntity) mapEntity->isActive = activeMap;
+
         std::sort(registeredSystems.begin(), registeredSystems.end(),
             [](const SystemRegistration& a, const SystemRegistration& b) {
                 return a.priority < b.priority;
@@ -60,9 +62,6 @@ void ECSManager::updateSystems(float deltaTime) {
                 reg.system->update(entities, deltaTime);
             }
         }
-
-
-
 }
 
 void ECSManager::renderSystems(float deltaTime) {
@@ -183,4 +182,7 @@ void ECSManager::takeSingleRequest(const SpawnRequest& req){
 
 
 
+}
+void ECSManager::activeMapEntity(){
+    activeMap = true;
 }

@@ -23,5 +23,6 @@
 #include "VelocityComponent.h"
 #include "ItemComponent.h"
 #include "FloatingEffectComponent.h"
+#include "MapComponent.h"
 
 // #include "GroupComponent.h"

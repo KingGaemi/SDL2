@@ -67,7 +67,7 @@ obj/AttackSystem.o: src/AttackSystem.cpp include/Systems/AttackSystem.h \
  include/Components/VelocityComponent.h \
  include/Components/ItemComponent.h \
  include/Components/FloatingEffectComponent.h \
- include/Systems/PhysicsSystem.h
+ include/Components/MapComponent.h include/Systems/PhysicsSystem.h
 include/Systems/AttackSystem.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
@@ -154,4 +154,5 @@ include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
 include/Components/ItemComponent.h:
 include/Components/FloatingEffectComponent.h:
+include/Components/MapComponent.h:
 include/Systems/PhysicsSystem.h:

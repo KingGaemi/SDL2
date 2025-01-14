@@ -73,46 +73,22 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 					}
 
 				if(commandComp){
-						if(commandComp->commandType == CommandType::BasicAttack && cooldownComp->isOnCooldown("basicAttack")){
-		
-							// directComp->direction = commandComp->commandData.moveDirection;
-							
-							// Vector2D velo = directComp->dirToVector();
-		
-							// velo = velo * statusComp->movementSpeed;
-		
-							// veloComp->set(velo);
-		
+						if(commandComp->commandType == CommandType::BasicAttack){		
 							if(!stateComp->inMotion){
 								if(!commandComp->doubleTap){
-									stateComp->changeActionState(ActionStates::Attack, cooldownComp->cooldownAbilities["basicAttack"].cooldownTime);
-									// std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
-									cooldownComp->resetCooldown("basicAttack");
+									stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
+									// // std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
+									// cooldownComp->resetCooldown("basicAttack");
 								}else{
-									stateComp->changeActionState(ActionStates::Attack, cooldownComp->cooldownAbilities["basicAttack"].cooldownTime);
+									stateComp->changeActionState(ActionStates::SpecialAttack, (1.0f / statusComp->attackSpeed));
 									// std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
-									cooldownComp->resetCooldown("basicAttack");
+									
 								}
 							}
 						}else{
 							stateComp->changeActionState(ActionStates::Idle, 0);
 						}
-						// else if(commandComp->commandType == CommandType::SpecialAttack && cooldownComp->isOnCooldown("specialAttack")){
-		
-						// 	// directComp->direction = commandComp->commandData.moveDirection;
-							
-						// 	// Vector2D velo = directComp->dirToVector();
-		
-						// 	// velo = velo * statusComp->movementSpeed;
-		
-						// 	// veloComp->set(velo);
-		
-						// 	if(!stateComp->inMotion){
-						// 		stateComp->changeState(States::Attack, cooldownComp->cooldownAbilities["specialAttack"].cooldownTime);
-						// 		// std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
-						// 		cooldownComp->resetCooldown("specialAttack");
-						// 	}
-						// }
+
 					}
 				}
 			}

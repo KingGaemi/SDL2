@@ -65,6 +65,7 @@ public:
 
 
 
+
 private:
 	Renderer* renderer;
 	std::unordered_map<std::string, SDL_Texture*> textures;

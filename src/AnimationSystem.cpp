@@ -69,11 +69,16 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                             animName += "_hurt";
                             animComp->busy = true;
                         }
-                        if(animComp->currentAnimation != animName)animComp->playAnimation(animName);
+                        if(animComp->currentAnimation == animName && animComp->animations[animName].loop) {
+
+                        }else{
+                            animComp->playAnimation(animName);
+                        }
                     }
 
                     if (animComp && spriteComp) {
                         updateAnimation(animComp, spriteComp, deltaTime);
+                        if(animComp->isAnimationComplete()) stateComp->inMotion = false;
                     }
                 }
 
