@@ -93,12 +93,13 @@ void Game::textureLoading(){
     textureManager->loadTexture("streetlamp", "res/gfx/streetlamp3.png");
     textureManager->loadTexture("farmer", "res/gfx/1/player_sprite_sheet.png");
     textureManager->loadTexture("water_tile", "res/gfx/water_tile.png");
-    textureManager->loadTexture("orc3", "res/gfx/SpriteSheet/Orc/orc3_sprite_sheet.png");
+    textureManager->loadTexture("orc3", "res/gfx/sprite_sheets/Orc/orc3_sprite_sheet.png");
     textureManager->loadTexture("dirt_tile", "res/gfx/dirt_tile.png");
     textureManager->loadTexture("box1", "res/gfx/box1.png");
     textureManager->loadTexture("unknown", "res/gfx/player2.png");
     textureManager->loadTexture("potion_cap", "res/gfx/potion_cap2.png");
-    textureManager->loadTexture("grass_tileset", "res/gfx/TX_Tileset_Grass.png");
+    textureManager->loadTexture("grass_tileset", "res/gfx/sprite_sheets/map/TX_Tileset_Grass.png");
+    textureManager->loadTexture("props_tileset", "res/gfx/sprite_sheets/map/TX_Props.png");
 
     textureManager->loadText("Hello World!");
     // textureManager->loadTexture("farm_map",);
