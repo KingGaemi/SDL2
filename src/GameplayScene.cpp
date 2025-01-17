@@ -2,6 +2,7 @@
 #include "ECS/ECSManager.h"
 #include "ECS/Entity.h"
 #include "ECS/EntityFactory.h"
+#include "Systems/MapSystem.h"
 #include "KeyCode.h"
 #include "Groups.h"
 #include <iostream>
@@ -80,6 +81,8 @@ void GameplayScene::onEnter(){
 	req.teamCode = TeamCode::Ally;
 	ecsManager->pendingSpawns.push_back(req);
 
+	auto mapSystem = ecsManager->getSystem<MapSystem>();
+	mapSystem->init();  
 	ecsManager->activeMapEntity();
 
 	std::cout << "GameplayScene initialized!" << std::endl;

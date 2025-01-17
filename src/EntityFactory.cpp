@@ -13,6 +13,10 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
 	else if(req.entityType == EntityType::UI) j = uiJson;
 	else if(req.entityType == EntityType::Object) j = objectsJson;
 	else if(req.entityType == EntityType::Item) j = itemsJson;
+	else if(req.entityType == EntityType::Props){
+		makeProps(req);
+		return;
+	}
 	else{
 		std::cerr << "EntityType is \'default\'. Can't create " << std::endl;
 		return;
@@ -41,6 +45,15 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
     }
 
     applyRequests(entity, req);
+}
+
+void EntityFactory::makeProps(const SpawnRequest& req){
+	auto prop = ecsManager->createEntity();
+	prop->addComponent<PositionComponent>((req.x + req.w/2) * 2, (req.y + req.h/2) * 2);
+    prop->addComponent<ColliderComponent>(req.w, req.h, req.sc, ColliderType::Wall);
+    prop->addComponent<TransformComponent>(req.w, req.h, req.sc);
+    prop->addComponent<PhysicsComponent>(BodyType::Static);
+    prop->addComponent<SceneTag>(SceneCode::Game);
 }
 
 void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req) {

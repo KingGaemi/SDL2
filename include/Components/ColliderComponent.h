@@ -11,6 +11,7 @@ enum class ColliderType{
 	Object,
 	Projectile,
 	Portal,
+	Wall,
 	Beacon
 };
 

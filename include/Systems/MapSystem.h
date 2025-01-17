@@ -20,7 +20,7 @@ public:
 
 	
 	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
-	void init(std::vector<std::shared_ptr<Entity>>& entities);
+	void init();
 	void parseTileLayer(const json& layerJson);
 	void parseObjectLayer(const json& layerJson);
 	std::shared_ptr<Entity> getMapEntity(){return mapEntity;}

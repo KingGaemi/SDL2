@@ -7,6 +7,7 @@ enum class EntityType {
     Object,
     Unit,
     Projectile,
+    Props,
     Item
 };
 

@@ -1,11 +1,13 @@
 #pragma once
 #include "ECS/Component.h"
 #include <iostream>
+#include <utility>
 
 
 struct LayerInfo{
 	std::string layerName;
 	std::string textureID;
+	std::pair<int, int> textureResolution;
 	std::vector<int> tileData;
 	int firstGid = 1;
 };
@@ -29,13 +31,8 @@ public:
 		layerMap.insert({layerName, layer});
 	}
 
-	void addData(const std::string& layerName, int data){
-		for(auto& pair : layerMap){
-			if(pair.first == layerName){
-				auto layerInfo = pair.second;
-				layerInfo.tileData.push_back(data);
-			}
-		}
+	void addData(const std::string& layerName, int data) {
+	    layerMap[layerName].tileData.push_back(data);
 	}
 
 	

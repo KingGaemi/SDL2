@@ -46,6 +46,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager = std::make_shared<ECSManager>();
     eventManager = std::make_shared<EventManager>();
     inputManager = std::make_unique<InputManager>(eventManager->get());
+    
     auto entityFactory = std::make_shared<EntityFactory>(ecsManager);
     ecsManager->setFactory(entityFactory);  
 
@@ -116,7 +117,7 @@ void Game::textureLoading(){
 
     auto mapSys = ecsManager->getSystem<MapSystem>();
     mapSys->setTextureManager(*textureManager.get());
-    mapSys->init(ecsManager->getEntities());
+    
     
     
 
