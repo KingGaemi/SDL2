@@ -81,6 +81,13 @@ void GameplayScene::onEnter(){
 	req.teamCode = TeamCode::Ally;
 	ecsManager->pendingSpawns.push_back(req);
 
+
+
+	req.entityType = EntityType::Camera;
+	req.name = "camera";
+	ecsManager->pendingSpawns.push_back(req);
+
+	
 	auto mapSystem = ecsManager->getSystem<MapSystem>();
 	mapSystem->init();  
 	ecsManager->activeMapEntity();

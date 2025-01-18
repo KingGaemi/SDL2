@@ -16,6 +16,9 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
 	else if(req.entityType == EntityType::Props){
 		makeProps(req);
 		return;
+	}else if(req.entityType == EntityType::Camera){
+		makeCamera(req);
+		return;
 	}
 	else{
 		std::cerr << "EntityType is \'default\'. Can't create " << std::endl;
@@ -51,9 +54,19 @@ void EntityFactory::makeProps(const SpawnRequest& req){
 	auto prop = ecsManager->createEntity();
 	prop->addComponent<PositionComponent>((req.x + req.w/2) * 2, (req.y + req.h/2) * 2);
     prop->addComponent<ColliderComponent>(req.w, req.h, req.sc, ColliderType::Wall);
+    // prop->addComponent<SpriteComponent>("dirt_tile", req.w, req.h, req.sc);
     prop->addComponent<TransformComponent>(req.w, req.h, req.sc);
     prop->addComponent<PhysicsComponent>(BodyType::Static);
     prop->addComponent<SceneTag>(SceneCode::Game);
+}
+
+void EntityFactory::makeCamera(const SpawnRequest& req){
+	auto cameraEntity = ecsManager->createEntity();
+	ecsManager->setEntityName(cameraEntity, "camera");
+	cameraEntity->addComponent<CameraComponent>(1280, 800);
+	cameraEntity->addComponent<SceneTag>(SceneCode::Game);
+
+	std::cout << "makeCamera" << std::endl;
 }
 
 void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req) {

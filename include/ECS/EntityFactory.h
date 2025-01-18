@@ -23,6 +23,7 @@ public:
     }
     void createEntity(const SpawnRequest& req);
     void makeProps(const SpawnRequest& req);
+    void makeCamera(const SpawnRequest& req);
 
     void loadPositionComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadPhysicsComponent(const json& componentData, std::shared_ptr<Entity> entity);

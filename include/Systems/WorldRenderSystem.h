@@ -10,11 +10,15 @@ public:
 
     void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override {
 
+        for(auto& entity : entities){
+            if(entity->hasComponent<CameraComponent>()) cameraEntity = entity;
+        }
         for (auto& entity : entities) {
             if (!entity->isActive) continue;
             if (entity->hasComponent<UITag>()) continue;
             if (entity->hasComponent<PositionComponent>() && entity->hasComponent<SpriteComponent>()) drawEntity(entity);
-        }    
+        }   
     }
-
+private:
+    // std::shared_ptr<Entity> cameraEntity;
 };

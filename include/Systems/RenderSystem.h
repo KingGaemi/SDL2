@@ -18,7 +18,7 @@ class RenderSystem : public System{
 
 public:
 
-    bool debugMode = true;
+    bool debugMode = false;
 
 	RenderSystem(Renderer& renderer) : renderer(&renderer), textureManager(nullptr) {}
     void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
@@ -30,7 +30,8 @@ protected:
     Renderer* renderer; // SDL_Renderer 래핑 클래스
     TextureManager* textureManager;
     void drawEntity(const std::shared_ptr<Entity>& entity);
-   
+    std::shared_ptr<Entity> cameraEntity;
+    
 private:
 
 };

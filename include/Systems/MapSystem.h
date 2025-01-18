@@ -29,6 +29,7 @@ private:
 	int mapWidth, mapHeight, tileWidth, tileHeight;
 	std::shared_ptr<ECSManager> ecsManager;
 	std::shared_ptr<Entity> mapEntity;
+	std::shared_ptr<Entity> cameraEntity;
 	std::shared_ptr<MapComponent> mapComp;
 	json mapJson;
 	json tileJson;

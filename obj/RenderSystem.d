@@ -31,7 +31,8 @@ obj/RenderSystem.o: src/RenderSystem.cpp include/Systems/RenderSystem.h \
  include/Components/SpriteComponent.h include/Rect.h \
  include/Components/ColliderComponent.h \
  include/Components/Transformcomponent.h \
- include/Components/FloatingEffectComponent.h
+ include/Components/FloatingEffectComponent.h \
+ include/Components/CameraComponent.h
 include/Systems/RenderSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -99,3 +100,4 @@ include/Rect.h:
 include/Components/ColliderComponent.h:
 include/Components/Transformcomponent.h:
 include/Components/FloatingEffectComponent.h:
+include/Components/CameraComponent.h:

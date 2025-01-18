@@ -2,6 +2,8 @@
 #include "Components/ColliderComponent.h"
 #include "Components/PhysicsComponent.h"
 #include "Components/PositionComponent.h"
+#include "Components/CameraComponent.h"
+
 #include <iostream>
 
 
@@ -14,6 +16,7 @@ void MapSystem::init(){
     mapComp->addLayer("props", "props_tileset", 1);
     mapComp->addLayer("ground", "grass_tileset", 1025);
 
+    
     ecsManager->setMapEntity(mapEntity);
 
     if(mapComp){
@@ -37,10 +40,10 @@ void MapSystem::init(){
 
 void MapSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
 	renderer->clear(); 
+    cameraEntity = ecsManager->getEntityByName("camera");
 	if(!mapEntity) return;
     if(!mapEntity->isActive) return;
 	if(!mapComp) return;
-
     if(!mapComp->layerMap.empty()){
         for(const auto& pair: mapComp->layerMap){
             const std::string& layerName = pair.first;
@@ -63,8 +66,14 @@ void MapSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float del
                     int srcY = (adjustedID / tilesPerRow) * mapComp->tileHeight;
 
                     // 화면(또는 월드)에서 그려질 위치
+
                     int dstX = col * mapComp->tileWidth;
                     int dstY = row * mapComp->tileHeight;
+                    if(cameraEntity){
+                        auto cameraComp = cameraEntity->getComponent<CameraComponent>();
+                        dstX -= cameraComp->x/2;
+                        dstY -= cameraComp->y/2;
+                    }
                     // 실제 SDL draw 호출 (pseudo)
 
                     SDL_Rect srcRect = { srcX, srcY, mapComp->tileWidth, mapComp->tileHeight };
@@ -125,7 +134,6 @@ void MapSystem::parseObjectLayer(const json& layerJson) {
         // object->addComponent<PhysicsComponent>(BodyType::Static);
         // object->addComponent<SceneTag>(SceneCode::Game);
         // // object->isActive = false;
-        std::cout << "object created" << std::endl;
     }
 }
 

@@ -24,5 +24,6 @@
 #include "ItemComponent.h"
 #include "FloatingEffectComponent.h"
 #include "MapComponent.h"
+#include "CameraComponent.h"
 
 // #include "GroupComponent.h"

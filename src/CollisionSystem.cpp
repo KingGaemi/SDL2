@@ -7,16 +7,12 @@
 #include <iostream>
 
 void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
-
-    
     auto colliders = getColliders(entities);
 
     if(!colliders.empty()){
         updateCollidersPosition(colliders);
         checkCollisions(colliders);
     }
-   
-    
 }
 
 std::vector<std::shared_ptr<Entity>> CollisionSystem::getColliders(std::vector<std::shared_ptr<Entity>>& entities){
@@ -43,11 +39,6 @@ std::vector<std::shared_ptr<Entity>> CollisionSystem::getSolidColliders(std::vec
     }
     return colliders;
 }
-
-
-
-
-
 
 void CollisionSystem::updateCollidersPosition(std::vector<std::shared_ptr<Entity>>& colliders){
 

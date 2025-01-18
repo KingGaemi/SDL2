@@ -66,8 +66,9 @@ obj/ECSManager.o: src/ECSManager.cpp include/ECS/ECSManager.h \
  include/Components/VelocityComponent.h \
  include/Components/ItemComponent.h include/ECS/Entity.h \
  include/Components/FloatingEffectComponent.h \
- include/Components/MapComponent.h include/Systems/PhysicsSystem.h \
- include/ECS/System.h include/Systems/AttackSystem.h
+ include/Components/MapComponent.h include/Components/CameraComponent.h \
+ include/Systems/PhysicsSystem.h include/ECS/System.h \
+ include/Systems/AttackSystem.h
 include/ECS/ECSManager.h:
 include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
@@ -153,6 +154,7 @@ include/Components/ItemComponent.h:
 include/ECS/Entity.h:
 include/Components/FloatingEffectComponent.h:
 include/Components/MapComponent.h:
+include/Components/CameraComponent.h:
 include/Systems/PhysicsSystem.h:
 include/ECS/System.h:
 include/Systems/AttackSystem.h:

@@ -6,6 +6,7 @@
 #include "Components/ColliderComponent.h"
 #include "Components/Transformcomponent.h"
 #include "Components/FloatingEffectComponent.h"
+#include "Components/CameraComponent.h"
 #include <iostream>
 
 
@@ -24,7 +25,6 @@ void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
     // 화면 클리어
     renderer->clear();
 
-   
     for (auto& entity : entities) {
 
        drawEntity(entity);
@@ -54,27 +54,43 @@ void RenderSystem::setTextureManager(TextureManager& p_textureManager){
 
 
 void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
+    
+    
     if (!entity->isActive) return;
     if(entity->hasComponent<PositionComponent>() && entity->hasComponent<SpriteComponent>()){
         auto posComp = entity->getComponent<PositionComponent>();
         auto sprite = entity->getComponent<SpriteComponent>();
-        if (posComp && sprite) {
 
-            auto texture = textureManager->getTexture(sprite->getTextureID());
+        if (posComp && sprite) {
 
             SDL_Rect srcRect = toSDLRect(sprite->srcRect);
             SDL_Rect dstRect = toSDLRect(sprite->dstRect);
 
-            float offsetY = 0.0f;
+            float offsetY = 0.0f; // for floating effect
             if(entity->hasComponent<FloatingEffectComponent>()) {
                 offsetY = entity->getComponent<FloatingEffectComponent>()->renderOffsetY;
             }
 
-            dstRect.x = static_cast<int>(posComp->x) - (dstRect.w/2);
-            dstRect.y = static_cast<int>(posComp->y + offsetY) - (dstRect.h/2);
+            int worldX = static_cast<int>(posComp->x) - (dstRect.w/2);
+            int worldY = static_cast<int>(posComp->y + offsetY) - (dstRect.h/2);
+
+            int screenX, screenY;
+            screenX = worldX;
+            screenY = worldY;
+            if(cameraEntity){
+                auto camera = cameraEntity->getComponent<CameraComponent>();
+                if(camera){
+                   screenX = worldX - camera->x;
+                   screenY = worldY - camera->y;
+                }
+            }
+
+            dstRect.x = screenX;
+            dstRect.y = screenY;
 
             SDL_RendererFlip flip = SDL_FLIP_NONE;
             float rot = 0.0f;
+            
             if (sprite->flipHorizontal) flip = SDL_FLIP_HORIZONTAL;
             if (sprite->flipVertical) flip = (SDL_RendererFlip)(flip | SDL_FLIP_VERTICAL);
             
@@ -83,6 +99,7 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
                 rot = transComp->rotation;
             }
 
+            auto texture = textureManager->getTexture(sprite->getTextureID());
             renderer->render(texture, &srcRect, &dstRect, rot, nullptr, flip);
         }
     }
@@ -105,6 +122,5 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             renderer->RenderDrawRect(debugRect);
         }
     }
-
 }
 

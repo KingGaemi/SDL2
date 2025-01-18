@@ -17,3 +17,4 @@
 #include "EffectSystem.h"
 #include "CollisionEventHandlerSystem.h"
 #include "MapSystem.h"
+#include "CameraSystem.h"
