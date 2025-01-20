@@ -46,7 +46,6 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
             std::cerr << "No loader for component " << compName << std::endl;
         }
     }
-
     applyRequests(entity, req);
 }
 

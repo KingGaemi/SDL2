@@ -1,5 +1,5 @@
 obj/GameplayScene.o: src/GameplayScene.cpp include/GameplayScene.h \
- include/Scene.h include/Events/EventQueue.h include/KeyCode.h \
+ include/Scene.h include/Events/EventManager.h include/KeyCode.h \
  include/Requests.h include/Groups.h include/ECS/Component.h \
  include/ECS/ECSManager.h include/ECS/EntityFactory.h \
  include/nlohmann/json.hpp include/nlohmann/adl_serializer.hpp \
@@ -99,7 +99,7 @@ obj/GameplayScene.o: src/GameplayScene.cpp include/GameplayScene.h \
  include/SDL2/SDL_misc.h include/SDL2/SDL_image.h include/SDL2/SDL.h
 include/GameplayScene.h:
 include/Scene.h:
-include/Events/EventQueue.h:
+include/Events/EventManager.h:
 include/KeyCode.h:
 include/Requests.h:
 include/Groups.h:

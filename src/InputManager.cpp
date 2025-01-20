@@ -2,8 +2,6 @@
 #include <iostream>    // 필요하다면 디버그용
 
 
-
-
 void InputManager::handleEvents(){
     SDL_Event sdlEvent;
     

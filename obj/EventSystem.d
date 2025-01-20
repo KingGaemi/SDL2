@@ -1,6 +1,5 @@
 obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
- include/ECS/System.h include/Events/EventManager.h \
- include/Events/EventQueue.h include/KeyCode.h \
+ include/ECS/System.h include/Events/EventManager.h include/KeyCode.h \
  include/Components/DirectionComponent.h include/ECS/Component.h \
  include/Vector2D.h include/Components/PositionComponent.h \
  include/Components/PlayableComponent.h \
@@ -73,7 +72,6 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
 include/Events/EventSystem.h:
 include/ECS/System.h:
 include/Events/EventManager.h:
-include/Events/EventQueue.h:
 include/KeyCode.h:
 include/Components/DirectionComponent.h:
 include/ECS/Component.h:

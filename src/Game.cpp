@@ -45,7 +45,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     // Create manager
     ecsManager = std::make_shared<ECSManager>();
     eventManager = std::make_shared<EventManager>();
-    inputManager = std::make_unique<InputManager>(eventManager->get());
+    inputManager = std::make_unique<InputManager>(eventManager);
     
     auto entityFactory = std::make_shared<EntityFactory>(ecsManager);
     ecsManager->setFactory(entityFactory);  
@@ -55,9 +55,9 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer);
     ecsManager->addSystem<UIRenderSystem>(SystemGroup::Render, 200, *renderer);
     // ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
-    ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager->get());
+    ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager);
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
-    ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40);
+    ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40, eventManager);
     ecsManager->addSystem<PhysicsSystem>(SystemGroup::Logic, 50);
     ecsManager->addSystem<CollisionSystem>(SystemGroup::Logic, 60, ecsManager);
     ecsManager->addSystem<CameraSystem>(SystemGroup::Logic, 70);
@@ -67,10 +67,10 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
     ecsManager->addSystem<SyncSystem>(SystemGroup::Logic, 160);
     ecsManager->addSystem<CollisionEventHandlerSystem>(SystemGroup::Event, 180, ecsManager);
-    ecsManager->addSystem<MiddleEventSystem>(SystemGroup::Event, 200, eventManager->get());
+    ecsManager->addSystem<MiddleEventSystem>(SystemGroup::Event, 200, eventManager);
     // auto animSys = ecsManager->getSystem<AnimationSystem>();
     // animSys->Init();
-    ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager);
+    ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager, eventManager);
     ecsManager->addSystem<CooldownSystem>(SystemGroup::Logic, 250);
 
 

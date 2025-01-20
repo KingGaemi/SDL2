@@ -54,7 +54,7 @@ private:
     std::unique_ptr<TextureManager> uiTextureManager;
     std::unique_ptr<InputManager> inputManager;
  
-    EventQueue gameEventQueue;
+    
 
 };
 

@@ -8,7 +8,6 @@
 #include "Components/CooldownComponent.h"
 #include "Components/PlayableComponent.h"
 #include "Components/ActionComponent.h"
-#include "Events/EventManager.h"
 #include <iostream>
 
 
@@ -79,6 +78,10 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 							if(!stateComp->inMotion){
 								if(!command.doubleTap){
 									stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
+									AttackEvent attackEvent;
+									attackEvent.attackerId = entity->getID();
+									attackEvent.attackType = AttackType::Attack;
+									eventManager->pushAttackEvent(attackEvent);
 									// // std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
 									// cooldownComp->resetCooldown("basicAttack");
 								}else{
@@ -90,6 +93,10 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 							}
 						}else if(command.commandType == CommandType::Cast){
 							if(!stateComp->inMotion) stateComp->changeActionState(ActionStates::Cast, (1.0f / statusComp->attackSpeed));
+							AttackEvent attackEvent;
+							attackEvent.attackerId = entity->getID();
+							attackEvent.attackType = AttackType::Cast;
+							eventManager->pushAttackEvent(attackEvent);
 						}else{
 							stateComp->changeActionState(ActionStates::Idle, 0);
 						}

@@ -25,7 +25,7 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/SDL2/SDL_version.h include/SDL2/SDL_locale.h \
  include/SDL2/SDL_misc.h include/SDL2/SDL_ttf.h include/SDL2/SDL.h \
  include/Renderer.h include/IRenderer.h include/SDL2/SDL_image.h \
- include/TextureManager.h include/Scene.h include/Events/EventQueue.h \
+ include/TextureManager.h include/Scene.h include/Events/EventManager.h \
  include/KeyCode.h include/MenuScene.h include/GameplayScene.h \
  include/Requests.h include/Groups.h include/ECS/Component.h \
  include/ECS/ECSManager.h include/ECS/EntityFactory.h \
@@ -107,8 +107,8 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/Systems/EffectSystem.h \
  include/Systems/CollisionEventHandlerSystem.h \
  include/Systems/MapSystem.h include/Systems/CameraSystem.h \
- include/Input/InputManager.h include/Events/EventManager.h \
- include/Events/EventSystem.h include/Events/MiddleEventSystem.h
+ include/Input/InputManager.h include/Events/EventSystem.h \
+ include/Events/MiddleEventSystem.h
 include/Game.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
@@ -167,7 +167,7 @@ include/IRenderer.h:
 include/SDL2/SDL_image.h:
 include/TextureManager.h:
 include/Scene.h:
-include/Events/EventQueue.h:
+include/Events/EventManager.h:
 include/KeyCode.h:
 include/MenuScene.h:
 include/GameplayScene.h:
@@ -279,6 +279,5 @@ include/Systems/CollisionEventHandlerSystem.h:
 include/Systems/MapSystem.h:
 include/Systems/CameraSystem.h:
 include/Input/InputManager.h:
-include/Events/EventManager.h:
 include/Events/EventSystem.h:
 include/Events/MiddleEventSystem.h:

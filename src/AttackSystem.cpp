@@ -13,52 +13,101 @@
 
 void AttackSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
 
-	for(auto& entity : entities){
-		if(!entity->isActive) continue;
+	AttackEvent event;
+	while(eventManager->pollAttackEvent(event)){
+		teskEvent(event);
+	}
+	
+}
 
-		if(entity->hasComponent<StateComponent>() ){
-			auto stateComp = entity->getComponent<StateComponent>();
+void AttackSystem::teskEvent(const AttackEvent& event){
 
-			if(stateComp && stateComp->callAttack){
-					
-				auto posComp = entity->getComponent<PositionComponent>();
-				auto directComp = entity->getComponent<DirectionComponent>();
-				auto spriteComp = entity->getComponent<SpriteComponent>();
-				auto statusComp = entity->getComponent<StatusComponent>();
-				auto teamComp = entity->getComponent<TeamTag>();
-				
-				if(posComp && directComp && spriteComp && statusComp && teamComp){
-					
-					SpawnRequest req;
+	if(event.attackType == AttackType::Attack){
+		basicAttack(event);
+	}else if(event.attackType == AttackType::Cast){
+		castSpell(event);
+	}else{
 
-					req.entityType = EntityType::Projectile;
-					req.name = "slash";
-			
-					req.x = posComp->x + directComp->hDir() * spriteComp->dstRect.w;
-					req.y = posComp->y + directComp->vDir() * spriteComp->dstRect.h;
-					req.hasTransform = false;
-					req.hDir = directComp->direction.hDir;
-					req.vDir = directComp->direction.vDir;
-					req.damage = statusComp->physicalDamage;
-					req.hasDamage = true;
-					req.sc = 1.0f;
-					req.teamCode = teamComp->teamCode;
-					req.ownerId = entity->getID();
-					req.hasOwner = true;
+	}
+	
+}
 
-					// SpawnRequest req;
 
-					// req.type = "box";
+void AttackSystem::basicAttack(const AttackEvent& event){
 
-					// req.x = posComp->x() + directComp->hDir() * spriteComp->dstRect.w;
-					// req.y = posComp->y() + directComp->vDir() * spriteComp->dstRect.h;
+	auto entity = ecsManager->getEntityById(event.attackerId);
+	if(!entity->isActive) return;
 
-					ecsManager->pendingSpawns.push_back(req);
+	auto posComp = entity->getComponent<PositionComponent>();
+	auto directComp = entity->getComponent<DirectionComponent>();
+	auto spriteComp = entity->getComponent<SpriteComponent>();
+	auto statusComp = entity->getComponent<StatusComponent>();
+	auto teamComp = entity->getComponent<TeamTag>();
+	if(posComp && directComp && spriteComp && statusComp && teamComp){
+		
+		SpawnRequest req;
 
-					stateComp->callAttack = false;
+		req.entityType = EntityType::Projectile;
+		req.name = "slash";
+		req.x = posComp->x + directComp->hDir() * spriteComp->dstRect.w;
+		req.y = posComp->y + directComp->vDir() * spriteComp->dstRect.h;
+		req.hasTransform = false;
+		req.hDir = directComp->direction.hDir;
+		req.vDir = directComp->direction.vDir;
+		req.damage = statusComp->physicalDamage;
+		req.hasDamage = true;
+		req.sc = 1.0f;
+		req.teamCode = teamComp->teamCode;
+		req.ownerId = entity->getID();
+		req.hasOwner = true;
 
-				}
-			}
-		}
+		// SpawnRequest req;
+
+		// req.type = "box";
+
+		// req.x = posComp->x() + directComp->hDir() * spriteComp->dstRect.w;
+		// req.y = posComp->y() + directComp->vDir() * spriteComp->dstRect.h;
+
+		ecsManager->pendingSpawns.push_back(req);
+	}
+}
+
+void AttackSystem::castSpell(const AttackEvent& event){
+
+	auto entity = ecsManager->getEntityById(event.attackerId);
+	if(!entity->isActive) return;
+
+	auto posComp = entity->getComponent<PositionComponent>();
+	auto directComp = entity->getComponent<DirectionComponent>();
+	auto spriteComp = entity->getComponent<SpriteComponent>();
+	auto statusComp = entity->getComponent<StatusComponent>();
+	auto teamComp = entity->getComponent<TeamTag>();
+
+	if(posComp && directComp && spriteComp && statusComp && teamComp){
+		
+		SpawnRequest req;
+
+		req.entityType = EntityType::Projectile;
+		req.name = "box";
+		req.x = posComp->x + directComp->hDir() * spriteComp->dstRect.w;
+		req.y = posComp->y + directComp->vDir() * spriteComp->dstRect.h;
+		req.hasTransform = false;
+		req.hDir = directComp->direction.hDir;
+		req.vDir = directComp->direction.vDir;
+		req.damage = statusComp->physicalDamage;
+		req.hasDamage = false;
+		req.sc = 1.0f;
+		req.teamCode = teamComp->teamCode;
+		req.ownerId = entity->getID();
+		req.hasOwner = true;
+
+		// SpawnRequest req;
+
+		// req.type = "box";
+
+		// req.x = posComp->x() + directComp->hDir() * spriteComp->dstRect.w;
+		// req.y = posComp->y() + directComp->vDir() * spriteComp->dstRect.h;
+
+		ecsManager->pendingSpawns.push_back(req);
 	}
 }

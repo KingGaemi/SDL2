@@ -1,10 +1,48 @@
 #pragma once
 
-#include "Events/EventQueue.h"
+#include "KeyCode.h"
 #include <queue>
+#include <optional>
+#include <string>
 // #include <mutex>
 
+enum class EventType {
+    QUIT,
+    KEYDOWN,
+    KEYUP,
+    SCENE_CHANGE,
+    CHARACTER_CHANGE,
+    GAME_OVER,
+    UNKNOWN
+};
 
+enum class AttackType{
+    Attack,
+    Cast
+};
+
+struct SceneChangeEventData {
+    std::string nextSceneName;
+};
+
+struct CharacterChangeEventDate{
+    std::string characterName;
+};
+
+struct Event {
+    EventType type;            // 이벤트 종류 (예: "KEYDOWN", "NETWORK")
+    KeyCode key = KeyCode::Unknown;                     // 키 코드 (키보드 이벤트의 경우)
+    std::optional<std::string>payload;         // 추가 데이터 (네트워크 메시지 등)
+    std::optional<SceneChangeEventData> sceneChangeData;
+};
+
+struct AttackEvent{
+    std::size_t attackerId;
+    std::size_t targetId;
+    AttackType attackType;
+    std::size_t abilityId;
+    std::size_t abilityNumber;
+};
 
 
 class EventManager {
@@ -20,8 +58,8 @@ public:
 	void pushBigEvent(const Event& event){
 		bigEventQueue.push(event);
 	}
-	void pushAttackEvent(const Event& event){
-		attackEventQueue.push(event);
+	void pushAttackEvent(const AttackEvent& event){
+		attackEvents.push(event);
 	}
 	bool pollEvent(Event& outEvent) {
 		// std::lock_guard<std::mutex> lock(mtx);
@@ -42,10 +80,10 @@ public:
 		bigEventQueue.pop();
 		return true;
 	}
-	bool pollAttackEvent(Event& outEvent){
-		if(attackEventQueue.empty()) return false;
-		outEvent = attackEventQueue.front();
-		attackEventQueue.pop();
+	bool pollAttackEvent(AttackEvent& outEvent){
+		if(attackEvents.empty()) return false;
+		outEvent = attackEvents.front();
+		attackEvents.pop();
 		return true;
 	}
 
@@ -53,10 +91,11 @@ public:
 		return this;
 	}
 
+
 private:
 	std::queue<Event> eventQueue;
 	std::queue<Event> bigEventQueue;
 	std::queue<Event> middleEventQueue;
-	std::queue<Event> attackEventQueue;
+	std::queue<AttackEvent> attackEvents;
 	// std::mutex mtx;
 };

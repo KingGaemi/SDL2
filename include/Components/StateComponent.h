@@ -25,7 +25,6 @@ public:
 	ActionStates actionState = ActionStates::Idle;
 	MovementStates movementState = MovementStates::Stop;
 	float stateTimer;
-	bool callAttack = false;
 	bool callSkill = false;
 	bool inMotion = false;
 	
@@ -37,7 +36,6 @@ public:
 		actionState = newState;
 		if(timer != 0) stateTimer = timer;
 		inMotion = true;
-		if(newState == ActionStates::Attack) callAttack = true;
 		if(newState == ActionStates::Cast) callSkill = true;
 	}
 	void setTimer(float timer){stateTimer = timer;}

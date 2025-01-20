@@ -12,7 +12,7 @@ class EventSystem : public System {
 
 public:
 
-	EventSystem(EventManager* eventManager) : eventManager(eventManager) { 
+	EventSystem(std::shared_ptr<EventManager>& eventManager) : eventManager(eventManager) { 
 		
 		std::fill_n(pressed, toInt(KeyCode::NUM_OF_KEY_CODES), false);
 	}  
@@ -33,7 +33,7 @@ public:
 	Direction getDirection(const Event& evt);
 
 private:
-	EventManager* eventManager;
+	std::shared_ptr<EventManager> eventManager;
 	bool pressed[toInt(KeyCode::NUM_OF_KEY_CODES)]; 
 	bool isArrowKeyDoubleTapped = false;
 	bool isAbilityKeyDoubleTapped = false;

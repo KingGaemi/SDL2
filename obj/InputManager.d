@@ -23,8 +23,7 @@ obj/InputManager.o: src/InputManager.cpp include/Input/InputManager.h \
  include/SDL2/SDL_render.h include/SDL2/SDL_shape.h \
  include/SDL2/SDL_system.h include/SDL2/SDL_timer.h \
  include/SDL2/SDL_version.h include/SDL2/SDL_locale.h \
- include/SDL2/SDL_misc.h include/Events/EventQueue.h include/KeyCode.h \
- include/Events/EventManager.h
+ include/SDL2/SDL_misc.h include/Events/EventManager.h include/KeyCode.h
 include/Input/InputManager.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
@@ -76,6 +75,5 @@ include/SDL2/SDL_timer.h:
 include/SDL2/SDL_version.h:
 include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
-include/Events/EventQueue.h:
-include/KeyCode.h:
 include/Events/EventManager.h:
+include/KeyCode.h:

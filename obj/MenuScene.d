@@ -1,5 +1,5 @@
 obj/MenuScene.o: src/MenuScene.cpp include/MenuScene.h include/Scene.h \
- include/Events/EventQueue.h include/KeyCode.h include/ECS/ECSManager.h \
+ include/Events/EventManager.h include/KeyCode.h include/ECS/ECSManager.h \
  include/ECS/EntityFactory.h include/nlohmann/json.hpp \
  include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
@@ -72,7 +72,7 @@ obj/MenuScene.o: src/MenuScene.cpp include/MenuScene.h include/Scene.h \
  include/ECS/System.h
 include/MenuScene.h:
 include/Scene.h:
-include/Events/EventQueue.h:
+include/Events/EventManager.h:
 include/KeyCode.h:
 include/ECS/ECSManager.h:
 include/ECS/EntityFactory.h:
