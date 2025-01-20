@@ -6,7 +6,7 @@
 #include "Components/LifeTimeComponent.h"
 #include "Components/DashComponent.h"
 #include "Components/ProjectileComponent.h"
-
+#include <iostream>
 
 
 
@@ -29,11 +29,10 @@ public:
 				auto projectileComp = entity->getComponent<ProjectileComponent>();
 				if(stateComp){
 					if(stateComp->stateTimer > 0) stateComp->stateTimer -= deltaTime;
-					if(stateComp->stateTimer <= 0) {
+					else{
 						stateComp->stateTimer = 0;
-						if(stateComp->inMotion) stateComp->inMotion = false;
-					}
-					
+						stateComp->inMotion = false;
+					}					
 				}
 
 				if(lifeTimeComp){

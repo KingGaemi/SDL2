@@ -18,10 +18,15 @@ void CameraSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 		auto playerPosComp = playerEntity->getComponent<PositionComponent>();
 		auto cameraComp = cameraEntity->getComponent<CameraComponent>();
 
-	    cameraComp->x = static_cast<int>(playerPosComp->x - (cameraComp->w / 2));
-	    cameraComp->y = static_cast<int>(playerPosComp->y - (cameraComp->h / 2));
-		// 4) 경계 처리
-	    // std::cout << cameraComp->x << std::endl;
+		int targetX = static_cast<int>(playerPosComp->x - (cameraComp->w / 2));
+		int targetY = static_cast<int>(playerPosComp->y - (cameraComp->h / 2));
+
+	    cameraComp->x += (targetX - cameraComp->x) * 0.1f;
+	    cameraComp->y += (targetY - cameraComp->y) * 0.1f;
+		
+		// int mapHeight = 900;
+		// int mapWidth = 1600;
+	    
 	    // if (cameraComp->x < 0) cameraComp->x = 0;
 	    // if (cameraComp->y < 0) cameraComp->y = 0;
 	    // if (cameraComp->x > mapWidth - cameraComp->w) 

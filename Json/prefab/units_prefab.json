@@ -1,0 +1,193 @@
+{
+  "player": {
+    "components": [
+      {
+        "name": "AnimationComponent",
+        "spriteName": "orc3"
+      },
+      {
+        "name": "ColliderComponent",
+        "colliderType": "Unit",
+        "width": 22,
+        "height": 24,
+        "scale": 2.0,
+        "offsetX": -1.0,
+        "offsetY":  0.0
+      },
+      {
+        "name": "CommandComponent"
+      },
+      {
+        "name": "MovementCommandComponent"
+      },
+      {
+        "name": "CooldownComponent",
+        "abilityName": "basicAttack",
+        "cooldownTime": 1.0
+      },
+      {
+        "name": "DashComponent",
+        "dashCooldown": 0.2
+      },
+      {
+        "name": "DirectionComponent"
+      },
+      {
+        "name": "PhysicsComponent",
+        "bodyType": "Dynamic"
+      },
+      {
+        "name": "PlayableComponent"
+      },
+      {
+        "name": "PlayerTag"
+      },
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "orc3",
+        "width": 32,
+        "height": 39,
+        "scale": 1.0
+      },
+      {
+        "name": "StateComponent",
+        "state": "Idle"
+      },
+      {
+        "name": "StatusComponent",
+        "maxHp": 100,
+        "maxMp": 100,
+        "currentHp": 100
+      },
+      {
+        "name": "TeamTag",
+        "teamCode": "Ally"
+      },
+      {
+        "name": "TransformComponent",
+        "width": 32,
+        "height": 39,
+        "scale": 3.5
+      },
+      {
+        "name": "VelocityComponent"
+      }
+    ]
+  },
+  "eri": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "StatusComponent",
+        "maxHP": 100,
+        "currentHP": 100
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "eri",
+        "width": 31,
+        "height": 38,
+        "scale": 2.0
+      },
+      {
+        "name": "ColliderComponent",
+        "colliderType": "Unit",
+        "width": 31,
+        "height": 38,
+        "scale": 2.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      }
+    ]
+  },
+  "enemy": {
+    "components": [
+      {
+        "name": "AnimationComponent",
+        "spriteName": "orc3"
+      },
+      {
+        "name": "ColliderComponent",
+        "colliderType": "Unit",
+        "width": 32,
+        "height": 39,
+        "scale": 2.0,
+        "offsetX": -1.0,
+        "offsetY": -6.0
+      },
+      {
+        "name": "CommandComponent"
+      },
+      {
+        "name": "CooldownComponent",
+        "abilityName": "basicAttack",
+        "cooldownTime": 1.0
+      },
+      {
+        "name": "DashComponent",
+        "dashCooldown": 0.2
+      },
+      {
+        "name": "DirectionComponent"
+      },
+      {
+        "name": "PhysicsComponent",
+        "bodyType": "Dynamic"
+      },
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "orc3",
+        "width": 32,
+        "height": 39,
+        "scale": 1.0
+      },
+      {
+        "name": "StateComponent",
+        "state": "Idle"
+      },
+      {
+        "name": "StatusComponent",
+        "maxHp": 100,
+        "maxMp": 100,
+        "currentHp": 100
+      },
+      {
+        "name": "TeamTag",
+        "teamCode": "Enemy"
+      },
+      {
+        "name": "TransformComponent",
+        "width": 32,
+        "height": 39,
+        "scale": 3.5
+      },
+      {
+        "name": "VelocityComponent"
+      }
+    ]
+  }
+}

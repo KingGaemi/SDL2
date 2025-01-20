@@ -5,6 +5,7 @@
 
 // #include <vector>
 #include <optional>
+#include <queue>
 
 
 
@@ -13,35 +14,35 @@ enum class CommandType{
     None,
     BasicAttack,
     SpecialAttack,
-    Skill
+    Cast
 };
 
-
-// struct CommandData{
-//     CommandType type = CommandType::None;
-//     Direction direction;
-//     std::optional<std::string> skillName;
-// };
-
-
-
+struct Command{
+    CommandType commandType = CommandType::None;
+    Direction direction = {0, 0};
+    bool doubleTap = false;
+    int abilityNumber = 0;
+};
 
 
 class CommandComponent : public Component {
 
 public:
-    // std::vector<CommandData> commandDatas;
-    CommandType commandType = CommandType::None;
-    Direction direction;
-    bool doubleTap = false;
-    std::optional<std::string> skillName;
 
-    // CommandComponent(CommandType type, Vector2D moveDirection) {
-    //      commandData.type = type;
-    //      commandData.moveDirection = moveDirection;
+    void push(Command command){
+        commands.push(command);
+    }
 
-    // }
+    Command pop() {
+        if (!commands.empty()) {
+            Command command = commands.front();
+            commands.pop();
+            return command;
+        }
+        return {CommandType::None, {0, 0}, false}; // 빈 이벤트 반환
+    }
 
+    std::queue<Command> commands;
 };
 
 

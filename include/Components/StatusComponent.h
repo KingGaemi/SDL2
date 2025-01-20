@@ -36,7 +36,7 @@ public:
 		strength = 1;
 		agility = 1;
 		intelligence = 1;
-		physicalDamage = 1;
+		physicalDamage = 30;
 		invincible = true;
 	}
 	StatusComponent(int maxHp, int maxMp) : maxHp(maxHp) , maxMp(maxMp) {
@@ -48,7 +48,7 @@ public:
 		strength = 1;
 		agility = 1;
 		intelligence = 1;
-		physicalDamage = 1;
+		physicalDamage = 30;
 	}
 
 

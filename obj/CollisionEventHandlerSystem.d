@@ -69,7 +69,7 @@ obj/CollisionEventHandlerSystem.o: src/CollisionEventHandlerSystem.cpp \
  include/Components/ItemComponent.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
- include/Systems/PhysicsSystem.h
+ include/Components/AbilityComponent.h include/Systems/PhysicsSystem.h
 include/Systems/CollisionEventHandlerSystem.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
@@ -158,4 +158,5 @@ include/Components/ItemComponent.h:
 include/Components/FloatingEffectComponent.h:
 include/Components/MapComponent.h:
 include/Components/CameraComponent.h:
+include/Components/AbilityComponent.h:
 include/Systems/PhysicsSystem.h:

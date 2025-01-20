@@ -8,6 +8,7 @@
 #include "Components/FloatingEffectComponent.h"
 #include "Components/CameraComponent.h"
 #include <iostream>
+#include <algorithm>
 
 
 SDL_Rect RenderSystem::toSDLRect(const Rect& r) {
@@ -25,8 +26,24 @@ void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
     // 화면 클리어
     renderer->clear();
 
-    for (auto& entity : entities) {
+    std::vector<std::shared_ptr <Entity>> renderables;
+    for (auto& e : entities) {
+        if (e->hasComponent<PositionComponent>() && e->hasComponent<SpriteComponent>()) {
+            renderables.push_back(e);
+        }
+    }
 
+    // 2) 정렬 (y 좌표 기준 오름차순)
+    std::sort(renderables.begin(), renderables.end(), 
+        [](std::shared_ptr <Entity> a, std::shared_ptr <Entity> b){
+            auto pa = a->getComponent<PositionComponent>();
+            auto pb = b->getComponent<PositionComponent>();
+            // 혹은 pa->y + pa->height 등, 원하는 기준
+            return pa->y < pb->y; 
+        }
+    );
+
+    for (auto& entity : renderables) {
        drawEntity(entity);
     }
 
@@ -111,9 +128,22 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             
             // collider 위치(월드 좌표) -> 화면 좌표 변환
             // (camX, camY) 만큼 빼주기, 혹은 camTransform 적용
+            int worldX = static_cast<int>(collider->collider.x);
+            int worldY = static_cast<int>(collider->collider.y);
+
+            int screenX, screenY;
+            screenX = worldX;
+            screenY = worldY;
+            if(cameraEntity){
+                auto camera = cameraEntity->getComponent<CameraComponent>();
+                if(camera){
+                   screenX = worldX - camera->x;                   
+                   screenY = worldY - camera->y;
+                }
+            }
             SDL_Rect debugRect;
-            debugRect.x = static_cast<int>(collider->collider.x);
-            debugRect.y = static_cast<int>(collider->collider.y);
+            debugRect.x = screenX;
+            debugRect.y = screenY;
             debugRect.w = static_cast<int>(collider->collider.w);
             debugRect.h = static_cast<int>(collider->collider.h);
             

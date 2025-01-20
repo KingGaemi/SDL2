@@ -8,6 +8,7 @@ enum class ActionStates{
 	Idle,
 	Attack,
 	SpecialAttack,
+	Cast,
 	Hurt,
 	Death
 };
@@ -19,36 +20,27 @@ enum class MovementStates{
 };
 
 
-
 class StateComponent : public Component {
-
-
 public:
 	ActionStates actionState = ActionStates::Idle;
 	MovementStates movementState = MovementStates::Stop;
 	float stateTimer;
 	bool callAttack = false;
+	bool callSkill = false;
 	bool inMotion = false;
 	
 	void changeMovementState(MovementStates newState){
 		if(movementState != newState) movementState = newState;
-	}
-	
+	}	
 	void changeActionState(ActionStates newState, float timer){
 		if(actionState == ActionStates::Death) return;
 		actionState = newState;
-		stateTimer = timer;
+		if(timer != 0) stateTimer = timer;
 		inMotion = true;
 		if(newState == ActionStates::Attack) callAttack = true;
-		// if(currentState == States::Attack) std::cout << "Attack";
-
-			// std::cout << std::endl;
-
+		if(newState == ActionStates::Cast) callSkill = true;
 	}
-
 	void setTimer(float timer){stateTimer = timer;}
-	
-
 private:
 
 

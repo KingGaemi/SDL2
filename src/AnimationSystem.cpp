@@ -49,9 +49,12 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                         animName += "_death";
                         if(animComp->currentAnimation == "d_death" || animComp->currentAnimation == "u_death" 
                             ||animComp->currentAnimation == "l_death" || animComp->currentAnimation == "r_death"){
+                            
+                        }else{
+                            animComp->playAnimation(animName);
                             animComp->busy =true;
                         }
-                        animComp->playAnimation(animName);
+                        
                     }
 
 
@@ -61,7 +64,7 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                         else if(stateComp->movementState == MovementStates::Walk) animName += "_walk";
                         else if(stateComp->movementState == MovementStates::Run) animName += "_run";
 
-                        if(stateComp->actionState == ActionStates::Attack){
+                        if(stateComp->actionState == ActionStates::Attack || stateComp->actionState == ActionStates::Cast){
                             animName += "_attack";
                             animComp->busy = true;
                         }

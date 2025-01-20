@@ -1,0 +1,48 @@
+{
+  "slash": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "TeamTag"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "water_tile",
+        "width": 32,
+        "height": 32,
+        "scale": 1.0
+      },
+      {
+        "name": "ColliderComponent",
+        "width": 100,
+        "height": 100,
+        "scale": 1.0,
+	"colliderType": "Projectile"
+      },
+      {
+        "name": "DamageComponent",
+        "damage": 10
+      },
+      {
+        "name": "TransformComponent",
+        "width": 100,
+        "height": 100,
+        "scale": 1.0
+      },
+      {
+        "name": "ProjectileComponent",
+        "speed": 1.0,
+        "scale": 1.0,
+        "duration": 0.3
+      }
+    ]
+  }
+}

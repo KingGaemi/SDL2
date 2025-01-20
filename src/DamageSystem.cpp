@@ -61,10 +61,10 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 	        	statusComp->currentHp = 0;
 		        if(target->hasComponent<StateComponent>()){
 		    		auto stateComp = target->getComponent<StateComponent>();
-		    		stateComp->changeActionState(ActionStates::Death, 1.0f);
+		    		stateComp->changeActionState(ActionStates::Death, 0.8f);
 		    	}
 	        	statusComp->alive = false;
-	        	std::cout << "Died" << std::endl;
+	        	// std::cout << "Died" << std::endl;
 	        }
 	    } 
     }

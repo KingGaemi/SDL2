@@ -1,0 +1,13 @@
+{
+  "potionCap": {
+    "abilities": [
+      {
+        "id": 1,
+        "abilityName": "Summon Box",
+	"functionName": "summonBox",
+	"discription": "Summon box infront of charactor",
+	"iconTextureId": "box"
+      }
+    ]
+  }
+}

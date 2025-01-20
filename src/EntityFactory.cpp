@@ -54,7 +54,7 @@ void EntityFactory::makeProps(const SpawnRequest& req){
 	auto prop = ecsManager->createEntity();
 	prop->addComponent<PositionComponent>((req.x + req.w/2) * 2, (req.y + req.h/2) * 2);
     prop->addComponent<ColliderComponent>(req.w, req.h, req.sc, ColliderType::Wall);
-    // prop->addComponent<SpriteComponent>("dirt_tile", req.w, req.h, req.sc);
+    prop->addComponent<SpriteComponent>("dirt_tile", req.w, req.h, req.sc);
     prop->addComponent<TransformComponent>(req.w, req.h, req.sc);
     prop->addComponent<PhysicsComponent>(BodyType::Static);
     prop->addComponent<SceneTag>(SceneCode::Game);
@@ -295,6 +295,14 @@ void EntityFactory::loadFloatingEffectComponent(const json& componentData, std::
 	entity->addComponent<FloatingEffectComponent>();
 }
 
+void EntityFactory::loadAbilityComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+
+	std::string abilityName = componentData.value("name", "none");
+	int abilityId = componentData.value("id", 1);
+
+	entity->addComponent<AbilityComponent>(abilityName, abilityId); 
+}
+
 
 
 
@@ -404,4 +412,8 @@ void EntityFactory::registerComponentLoaders() {
     componentLoaders["FloatingEffectComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadFloatingEffectComponent(data, entity);
     };
+    componentLoaders["loadAbilityComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadAbilityComponent(data, entity);
+    };
+    
 }

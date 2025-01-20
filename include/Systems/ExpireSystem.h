@@ -5,6 +5,7 @@
 #include "Components/LifeTimeComponent.h"
 #include "Components/StatusComponent.h"
 #include "Components/AnimationComponent.h"
+#include "Components/StateComponent.h"
 #include "Components/ProjectileComponent.h"
 #include <iostream>
 
@@ -32,10 +33,10 @@ public:
 
 				auto statusComp = entity->getComponent<StatusComponent>();
 
-				if(entity->hasComponent<AnimationComponent>()){
-					auto animComp = entity->getComponent<AnimationComponent>();
+				if(entity->hasComponent<StateComponent>()){
+					auto stateComp = entity->getComponent<StateComponent>();
 
-					if(statusComp && !statusComp->alive && !animComp->busy) entity->terminate = true;
+					if(statusComp && !statusComp->alive && !stateComp->inMotion) entity->terminate = true;
 				}else{
 
 					if(statusComp && !statusComp->alive) entity->terminate = true;

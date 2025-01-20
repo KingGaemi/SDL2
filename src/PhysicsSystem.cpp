@@ -73,24 +73,32 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
             if(posComp && colliderComp){
                 bodyDef.position = (b2Vec2){(posComp->x) / PIXELS_PER_METER,
                           (SCREEN_HEIGHT - posComp->y) / PIXELS_PER_METER};
+                bodyDef.linearDamping = 10.0f;
+
                 physComp->body = b2CreateBody(worldId, &bodyDef);
+                b2Body_SetGravityScale(physComp->body, 0.0f);
                 b2Polygon bodyBox;
                 bodyBox = b2MakeBox((colliderComp->collider.w) / PIXELS_PER_METER / 2.0,
                                     (colliderComp->collider.h) / PIXELS_PER_METER / 2.0);
                 b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
-                b2CreatePolygonShape(physComp->body, &bodyShapeDef, &bodyBox);
-            }else if(posComp && transComp){
-                bodyDef.position = (b2Vec2){(posComp->x) / PIXELS_PER_METER,
-                          (SCREEN_HEIGHT - posComp->y) / PIXELS_PER_METER};
-                physComp->body = b2CreateBody(worldId, &bodyDef);
-                b2Polygon bodyBox;
-                bodyBox = b2MakeBox(transComp->width * transComp->scale / PIXELS_PER_METER / 2.0, transComp->height * transComp->scale  / PIXELS_PER_METER  / 2.0);
-                b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
+                bodyShapeDef.friction = 0.2f;
+                
                 b2CreatePolygonShape(physComp->body, &bodyShapeDef, &bodyBox);
             }
+            // else
+            // if(posComp && transComp){
+            //     bodyDef.position = (b2Vec2){(posComp->x) / PIXELS_PER_METER,
+            //               (SCREEN_HEIGHT - posComp->y) / PIXELS_PER_METER};
+            //     physComp->body = b2CreateBody(worldId, &bodyDef);
+            //     b2Polygon bodyBox;
+            //     bodyBox = b2MakeBox(transComp->width * transComp->scale / PIXELS_PER_METER / 2.0,
+            //                        transComp->height * transComp->scale  / PIXELS_PER_METER / 2.0);
+            //     b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
+            //     b2CreatePolygonShape(physComp->body, &bodyShapeDef, &bodyBox);
+            // }
 
             // if(posComp && colliderComp && transComp) std::cout << colliderComp->collider.h << ", " << transComp->height << std::endl;
-
+            ;
         }
     }
 }
@@ -136,6 +144,7 @@ void PhysicsSystem::setPositionsFromWorld(std::vector<std::shared_ptr<Entity>>&e
                 b2Rot rot =  b2Body_GetRotation(physComp->body);
                 float renderX = box2dToPixelX(pos.x);
                 float renderY = box2dToPixelY(pos.y);
+                
                 auto colliderComp = entity->getComponent<ColliderComponent>();
                 if(colliderComp){
                     renderX += colliderComp->offsetX;

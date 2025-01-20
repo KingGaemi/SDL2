@@ -95,15 +95,16 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/Components/ItemComponent.h include/ECS/Entity.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
- include/Systems/PhysicsSystem.h include/ECS/System.h \
- include/Systems/Systems.h include/Systems/AnimationSystem.h \
- include/Systems/InputSystem.h include/Systems/MovementSystem.h \
- include/Systems/RenderSystem.h include/Systems/TimerSystem.h \
- include/Systems/ExpireSystem.h include/Systems/AttackSystem.h \
- include/Systems/CooldownSystem.h include/Systems/CommandSystem.h \
- include/Systems/WorldRenderSystem.h include/Systems/SyncSystem.h \
- include/Systems/UIRenderSystem.h include/Systems/CollisionSystem.h \
- include/Systems/DamageSystem.h include/Systems/EffectSystem.h \
+ include/Components/AbilityComponent.h include/Systems/PhysicsSystem.h \
+ include/ECS/System.h include/Systems/Systems.h \
+ include/Systems/AnimationSystem.h include/Systems/InputSystem.h \
+ include/Systems/MovementSystem.h include/Systems/RenderSystem.h \
+ include/Systems/TimerSystem.h include/Systems/ExpireSystem.h \
+ include/Systems/AttackSystem.h include/Systems/CooldownSystem.h \
+ include/Systems/CommandSystem.h include/Systems/WorldRenderSystem.h \
+ include/Systems/SyncSystem.h include/Systems/UIRenderSystem.h \
+ include/Systems/CollisionSystem.h include/Systems/DamageSystem.h \
+ include/Systems/EffectSystem.h \
  include/Systems/CollisionEventHandlerSystem.h \
  include/Systems/MapSystem.h include/Systems/CameraSystem.h \
  include/Input/InputManager.h include/Events/EventManager.h \
@@ -255,6 +256,7 @@ include/ECS/Entity.h:
 include/Components/FloatingEffectComponent.h:
 include/Components/MapComponent.h:
 include/Components/CameraComponent.h:
+include/Components/AbilityComponent.h:
 include/Systems/PhysicsSystem.h:
 include/ECS/System.h:
 include/Systems/Systems.h:

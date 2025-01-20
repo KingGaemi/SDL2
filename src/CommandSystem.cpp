@@ -7,6 +7,8 @@
 #include "Components/StateComponent.h"
 #include "Components/CooldownComponent.h"
 #include "Components/PlayableComponent.h"
+#include "Components/ActionComponent.h"
+#include "Events/EventManager.h"
 #include <iostream>
 
 
@@ -31,7 +33,6 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 				auto cooldownComp = entity->getComponent<CooldownComponent>();
 
 				if(veloComp && directComp && statusComp && stateComp && cooldownComp){
-					
 					if(moveCommandComp){
 						if(moveCommandComp->moveCommandType == MovementCommandType::Move){
 
@@ -72,23 +73,26 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 						}
 					}
 
-				if(commandComp){
-						if(commandComp->commandType == CommandType::BasicAttack){		
+					if(commandComp){
+						Command command = commandComp->pop();
+						if(command.commandType == CommandType::BasicAttack){		
 							if(!stateComp->inMotion){
-								if(!commandComp->doubleTap){
+								if(!command.doubleTap){
 									stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
 									// // std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
 									// cooldownComp->resetCooldown("basicAttack");
 								}else{
 									stateComp->changeActionState(ActionStates::SpecialAttack, (1.0f / statusComp->attackSpeed));
-									// std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
-									
+									// std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;			
 								}
+							}else{
+
 							}
+						}else if(command.commandType == CommandType::Cast){
+							if(!stateComp->inMotion) stateComp->changeActionState(ActionStates::Cast, (1.0f / statusComp->attackSpeed));
 						}else{
 							stateComp->changeActionState(ActionStates::Idle, 0);
 						}
-
 					}
 				}
 			}

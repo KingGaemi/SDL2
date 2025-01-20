@@ -14,11 +14,11 @@ using json = nlohmann::json;
 class EntityFactory {
 public:
     EntityFactory(std::shared_ptr<ECSManager>& ecsManager) : ecsManager(ecsManager) {
-        unitsJson = json::parse(std::ifstream("createInfo/prefabs/units.json"));
-        objectsJson = json::parse(std::ifstream("createInfo/prefabs/objects.json"));
-        uiJson = json::parse(std::ifstream("createInfo/prefabs/ui.json"));
-        projectilesJson = json::parse(std::ifstream("createInfo/prefabs/projectiles.json"));
-        itemsJson = json::parse(std::ifstream("createInfo/prefabs/items.json"));
+        unitsJson = json::parse(std::ifstream("Json/prefab/units_prefab.json"));
+        objectsJson = json::parse(std::ifstream("Json/prefab/objects_prefab.json"));
+        uiJson = json::parse(std::ifstream("Json/prefab/ui_prefab.json"));
+        projectilesJson = json::parse(std::ifstream("Json/prefab/projectiles_prefab.json"));
+        itemsJson = json::parse(std::ifstream("Json/prefab/items_prefab.json"));
         registerComponentLoaders();
     }
     void createEntity(const SpawnRequest& req);
@@ -47,6 +47,8 @@ public:
     void loadDamageComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadItemComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadFloatingEffectComponent(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadAbilityComponent(const json& componentData, std::shared_ptr<Entity> entity);
+    
 
     void applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req);
     void registerComponentLoaders();

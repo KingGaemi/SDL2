@@ -6,13 +6,7 @@
 #include "Components/StateComponent.h"
 #include "Components/StatusComponent.h"
 #include "Groups.h"
-
-
-
 #include <iostream>
-
-
-
 
 
 
@@ -58,7 +52,6 @@ void AttackSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 
 					// req.x = posComp->x() + directComp->hDir() * spriteComp->dstRect.w;
 					// req.y = posComp->y() + directComp->vDir() * spriteComp->dstRect.h;
-
 
 					ecsManager->pendingSpawns.push_back(req);
 

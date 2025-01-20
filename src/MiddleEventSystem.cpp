@@ -40,7 +40,8 @@ void MiddleEventSystem::handleMiddleEvent(const Event& evt, std::vector<std::sha
 			auto commandComp = player1->getComponent<CommandComponent>();
 			if(commandComp)
 			{
-				commandComp->commandType = CommandType::None;
+				Command command;
+				commandComp->push(command);
 			}
 
 			// Step 1: player1의 컴포넌트 변경
