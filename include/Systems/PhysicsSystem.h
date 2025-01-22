@@ -1,7 +1,10 @@
 #pragma once
+
 #include <box2d/box2d.h>
 #include "ECS/Entity.h"
 #include "ECS/System.h"
+
+class ECSManager;
 
 
 
@@ -12,7 +15,7 @@ class PhysicsSystem : public System {
 
 public:
 
-	PhysicsSystem(){
+	PhysicsSystem(std::shared_ptr<ECSManager>& ecsManager) : ecsManager(ecsManager){
 		init();
 	}
 
@@ -36,11 +39,13 @@ public:
     void destroyBody(std::shared_ptr<Entity> entity);
     void createBodies(std::vector<std::shared_ptr<Entity>>&entities);
     void setPositionsFromWorld(std::vector<std::shared_ptr<Entity>>&entities);
-
+    void getContactEvents();
+    std::shared_ptr<Entity> shapeUserDataToEntity(b2ShapeId shapeId);
 
 private:
 	b2WorldDef worldDef;
     b2WorldId worldId;
+    std::shared_ptr<ECSManager> ecsManager;
 
 };
 

@@ -85,7 +85,7 @@ obj/main.o: src/main.cpp include/Game.h include/SDL2/SDL.h \
  include/Components/PhysicsComponent.h include/box2d/box2d.h \
  include/box2d/base.h include/box2d/collision.h \
  include/box2d/math_functions.h include/box2d/id.h include/box2d/types.h \
- include/Components/PlayableComponent.h \
+ include/MyContactListener.h include/Components/PlayableComponent.h \
  include/Components/PositionComponent.h \
  include/Components/ProjectileComponent.h \
  include/Components/SolidComponent.h include/Components/SpriteComponent.h \
@@ -242,6 +242,7 @@ include/box2d/collision.h:
 include/box2d/math_functions.h:
 include/box2d/id.h:
 include/box2d/types.h:
+include/MyContactListener.h:
 include/Components/PlayableComponent.h:
 include/Components/PositionComponent.h:
 include/Components/ProjectileComponent.h:

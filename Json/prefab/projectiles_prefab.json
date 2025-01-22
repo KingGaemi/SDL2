@@ -150,6 +150,10 @@
         "spriteName": "spinning_arrow",
 	"allDirection": false,
 	"entityType": "Projectile"
+      },
+      {
+        "name": "PhysicsComponent",
+        "bodyType": "Kinematic"
       }
     ]
   },"arrow2": {

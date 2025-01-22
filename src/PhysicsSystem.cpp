@@ -6,6 +6,7 @@
 #include "Components/VelocityComponent.h"
 #include "Components/PlayableComponent.h"
 #include "Groups.h"
+#include "ECS/ECSManager.h"
 #include <iostream>
 
 
@@ -14,6 +15,8 @@ void PhysicsSystem::init() {
 
  	worldDef = b2DefaultWorldDef();
     worldDef.gravity = (b2Vec2){0.0f, -10.0f};
+    // MyContactListener myListener;
+    // world.SetContactListener(&myListener);
     worldId = b2CreateWorld(&worldDef);
 
 }
@@ -22,10 +25,9 @@ void PhysicsSystem::init() {
 void PhysicsSystem::update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime){
 
     createBodies(entities);
-
     int subStepCount = 8;
     b2World_Step(worldId, deltaTime, subStepCount);
-
+    getContactEvents();
     setPositionsFromWorld(entities);
 }
 
@@ -55,6 +57,7 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
         if(!physComp->hasBody()){
 
             b2BodyDef bodyDef = b2DefaultBodyDef();
+            bodyDef.userData = reinterpret_cast<void*>(static_cast<intptr_t>(entity->getID()));
 
             if(physComp->bodyType == BodyType::Kinematic){
                 bodyDef.type = b2_kinematicBody;
@@ -82,6 +85,7 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
                                     (colliderComp->collider.h) / PIXELS_PER_METER / 2.0);
                 b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
                 bodyShapeDef.friction = 0.2f;
+                bodyShapeDef.enableContactEvents = true;
                 
                 b2CreatePolygonShape(physComp->body, &bodyShapeDef, &bodyBox);
             }
@@ -109,56 +113,86 @@ void PhysicsSystem::setPositionsFromWorld(std::vector<std::shared_ptr<Entity>>&e
 
     for(auto& entity: entities){
 
-            if(!entity->isActive || !entity->hasComponent<PhysicsComponent>() || !entity->hasComponent<PositionComponent>()) continue;
+        if(!entity->isActive || !entity->hasComponent<PhysicsComponent>() || !entity->hasComponent<PositionComponent>()) continue;
 
-            auto physComp = entity->getComponent<PhysicsComponent>();
+        auto physComp = entity->getComponent<PhysicsComponent>();
 
-            if(physComp->hasBody()){
+        if(physComp->hasBody()){
+            
+            b2Body_SetFixedRotation(physComp->body, true);
+            
+
+            if (entity->hasComponent<VelocityComponent>()) {
+                // velocityComponent 등에서 얻은 vx, vy
+                auto veloComp = entity->getComponent<VelocityComponent>();
+
+                // 픽셀→미터 변환
+                float vx = veloComp->x() / PIXELS_PER_METER; // pixel/sec or so
+                float vy = -veloComp->y() / PIXELS_PER_METER;
+
+                b2Vec2 vel;
+                vel.x = vx;
+                vel.y = vy;
+
+                b2Body_SetLinearVelocity(physComp->body, vel);
                 
-                b2Body_SetFixedRotation(physComp->body, true);
-                
-
-                if (entity->hasComponent<VelocityComponent>()) {
-                    // velocityComponent 등에서 얻은 vx, vy
-                    auto veloComp = entity->getComponent<VelocityComponent>();
-
-                    // 픽셀→미터 변환
-                    float vx = veloComp->x() / PIXELS_PER_METER; // pixel/sec or so
-                    float vy = -veloComp->y() / PIXELS_PER_METER;
-
-                    b2Vec2 vel;
-                    vel.x = vx;
-                    vel.y = vy;
-
-                    b2Body_SetLinearVelocity(physComp->body, vel);
-                    
-                }
-                
-                b2Vec2 pos = b2Body_GetPosition(physComp->body);
-                b2Rot rot =  b2Body_GetRotation(physComp->body);
-                float renderX = box2dToPixelX(pos.x);
-                float renderY = box2dToPixelY(pos.y);
-                
-                auto colliderComp = entity->getComponent<ColliderComponent>();
-                if(colliderComp){
-                    renderX += colliderComp->offsetX;
-                    renderY -= colliderComp->offsetY;
-                }
+            }
+            
+            b2Vec2 pos = b2Body_GetPosition(physComp->body);
+            b2Rot rot =  b2Body_GetRotation(physComp->body);
+            float renderX = box2dToPixelX(pos.x);
+            float renderY = box2dToPixelY(pos.y);
+            
+            auto colliderComp = entity->getComponent<ColliderComponent>();
+            if(colliderComp){
+                renderX += colliderComp->offsetX;
+                renderY -= colliderComp->offsetY;
+            }
 
 
-                auto posComp = entity->getComponent<PositionComponent>();
-                if(posComp){
-                    posComp->set(renderX, renderY);
-                }
+            auto posComp = entity->getComponent<PositionComponent>();
+            if(posComp){
+                posComp->set(renderX, renderY);
+            }
 
-                if(entity->hasComponent<TransformComponent>()){
-                    auto transComp = entity->getComponent<TransformComponent>();
-                    if(transComp){
-                        float degAngle = box2dToPixelAngle(b2Rot_GetAngle(rot));
-                        transComp->rotation = -degAngle; 
-                    }
+            if(entity->hasComponent<TransformComponent>()){
+                auto transComp = entity->getComponent<TransformComponent>();
+                if(transComp){
+                    float degAngle = box2dToPixelAngle(b2Rot_GetAngle(rot));
+                    transComp->rotation = -degAngle; 
                 }
             }
         }
+    }
+}
 
+void PhysicsSystem::getContactEvents(){
+    b2ContactEvents ce = b2World_GetContactEvents(worldId);
+    // BeginTouch
+    for (int i = 0; i < ce.beginCount; i++) {
+        auto evt = ce.beginEvents + i;
+
+        CollisionEvent collision;
+        collision.type = CollisionType::Hit;
+        collision.entityA = shapeUserDataToEntity(evt->shapeIdA);
+        collision.entityB = shapeUserDataToEntity(evt->shapeIdB);
+        ecsManager->collisionEvents.push_back(collision);
+        // std::cout << collision.entityA->getID() << "HIT" << collision.entityB->getID() << std::endl;
+        // shapeIdA, shapeIdB -> userData
+        // push "CollisionBegin" event to ECS
+    }
+
+}
+
+std::shared_ptr<Entity> PhysicsSystem::shapeUserDataToEntity(b2ShapeId shapeId){
+    auto bodyId = b2Shape_GetBody(shapeId);
+    auto udata = b2Body_GetUserData(bodyId);
+    // std::cout << udata << std::endl;
+    if (udata == 0) {
+        return nullptr;
+    }
+    auto entityId =  reinterpret_cast<std::size_t>(udata);
+    std::cout << entityId << std::endl;
+    auto entity = ecsManager->getEntityById(entityId);
+    return entity;
 }

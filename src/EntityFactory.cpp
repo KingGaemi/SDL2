@@ -52,8 +52,8 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
 void EntityFactory::makeProps(const SpawnRequest& req){
 	auto prop = ecsManager->createEntity();
 	prop->addComponent<PositionComponent>((req.x + req.w/2) * 2, (req.y + req.h/2) * 2);
-    prop->addComponent<ColliderComponent>(req.w, req.h, req.sc, ColliderType::Wall);
-    prop->addComponent<SpriteComponent>("dirt_tile", req.w, req.h, req.sc);
+    // prop->addComponent<ColliderComponent>(req.w, req.h, req.sc, ColliderType::Wall);
+    // prop->addComponent<SpriteComponent>("dirt_tile", req.w, req.h, req.sc);
     prop->addComponent<TransformComponent>(req.w, req.h, req.sc);
     prop->addComponent<PhysicsComponent>(BodyType::Static);
     prop->addComponent<SceneTag>(SceneCode::Game);

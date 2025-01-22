@@ -1,7 +1,7 @@
 #pragma once
 #include <box2d/box2d.h>
 #include "ECS/Component.h"
-
+#include "MyContactListener.h"
 
 
 enum class BodyType{
@@ -22,6 +22,4 @@ public:
 	PhysicsComponent(BodyType bodyType) : bodyType(bodyType) {}
 
 	bool hasBody() { return B2_IS_NON_NULL(body);}
-
-
 };

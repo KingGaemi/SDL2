@@ -6,26 +6,26 @@
 
 void CollisionEventHandlerSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
 
-	auto& collisionEvents = ecsManager->getCollisionEvents();
+	// auto& collisionEvents = ecsManager->getCollisionEvents();
 
-	if(!collisionEvents.empty()){
-		for(auto& colEvt : collisionEvents){
+	// if(!collisionEvents.empty()){
+	// 	for(auto& colEvt : collisionEvents){
 
-			auto entityA = colEvt.entityA;
-			auto entityB = colEvt.entityB;
+	// 		auto entityA = colEvt.entityA;
+	// 		auto entityB = colEvt.entityB;
 
-			// EntityID A = entityA->getID();
-        	// EntityID B = entityB->getID();
+	// 		// EntityID A = entityA->getID();
+    //     	// EntityID B = entityB->getID();
 
-			if(!entityA->isActive || !entityB->isActive) continue;
+	// 		if(!entityA->isActive || !entityB->isActive) continue;
 
-			if(entityA->hasComponent<ItemComponent>() || entityB->hasComponent<ItemComponent>()){
+	// 		if(entityA->hasComponent<ItemComponent>() || entityB->hasComponent<ItemComponent>()){
 				
-				applyRoot(entityA, entityB);
-				applyRoot(entityB, entityA);
-			}
-		}
-	}
+	// 			applyRoot(entityA, entityB);
+	// 			applyRoot(entityB, entityA);
+	// 		}
+	// 	}
+	// }
 }
 
 

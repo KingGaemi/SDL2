@@ -13,7 +13,7 @@ void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
     if(!colliders.empty()){
         updateCollidersPosition(colliders);
         updateCollidersRotation(colliders);
-        checkCollisions(colliders);
+        // checkCollisions(colliders);
     }
 }
 
@@ -89,5 +89,5 @@ void CollisionSystem::checkCollisions(std::vector<std::shared_ptr<Entity>>& coll
         }
     }
 }
-
+    
     
