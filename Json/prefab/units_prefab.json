@@ -56,7 +56,8 @@
         "textureID": "orc3",
         "width": 32,
         "height": 39,
-        "scale": 1.0
+        "scale": 1.0,
+	"hasDirectional": true
       },
       {
         "name": "StateComponent",
@@ -143,7 +144,8 @@
         "dashCooldown": 0.2
       },
       {
-        "name": "DirectionComponent"
+        "name": "DirectionComponent",
+	"vDir" : 1
       },
       {
         "name": "PhysicsComponent",
@@ -163,7 +165,8 @@
         "textureID": "orc3",
         "width": 32,
         "height": 39,
-        "scale": 1.0
+        "scale": 1.0,
+	"hasDirectional": true
       },
       {
         "name": "StateComponent",

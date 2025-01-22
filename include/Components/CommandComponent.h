@@ -14,7 +14,8 @@ enum class CommandType{
     None,
     BasicAttack,
     SpecialAttack,
-    Cast
+    Cast,
+    Shoot
 };
 
 struct Command{

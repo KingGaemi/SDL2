@@ -2,6 +2,7 @@
 #include "Components/DamageComponent.h"
 #include "Components/StatusComponent.h"
 #include "Components/StateComponent.h"
+#include "Components/ProjectileComponent.h"
 #include "Groups.h"
 #include <iostream>
 
@@ -55,6 +56,8 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 
 	        statusComp->currentHp -= damageComp->damage;
 	        damageComp->hitTargets.insert(target->getID());
+
+	        if(attacker->hasComponent<ProjectileComponent>()) attacker->terminate = true;
 
 	        std::cout << statusComp->currentHp << "/" << statusComp->maxHp << std::endl;
 	        if(statusComp->currentHp <= 0){

@@ -54,7 +54,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<MapSystem>(SystemGroup::Render, 50, *renderer, ecsManager);
     ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer);
     ecsManager->addSystem<UIRenderSystem>(SystemGroup::Render, 200, *renderer);
-    // ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
+    ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
     ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager);
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
     ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40, eventManager);
@@ -68,8 +68,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<SyncSystem>(SystemGroup::Logic, 160);
     ecsManager->addSystem<CollisionEventHandlerSystem>(SystemGroup::Event, 180, ecsManager);
     ecsManager->addSystem<MiddleEventSystem>(SystemGroup::Event, 200, eventManager);
-    // auto animSys = ecsManager->getSystem<AnimationSystem>();
-    // animSys->Init();
+
     ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager, eventManager);
     ecsManager->addSystem<CooldownSystem>(SystemGroup::Logic, 250);
 
@@ -102,13 +101,10 @@ void Game::textureLoading(){
     textureManager->loadTexture("potion_cap", "res/gfx/potion_cap2.png");
     textureManager->loadTexture("grass_tileset", "res/gfx/sprite_sheets/map/TX_Tileset_Grass.png");
     textureManager->loadTexture("props_tileset", "res/gfx/sprite_sheets/map/TX_Props.png");
+    textureManager->loadTexture("spinning_arrow", "res/gfx/sprite_sheets/projectile/spinning_arrow.png");
 
     textureManager->loadText("Hello World!");
     // textureManager->loadTexture("farm_map",);
-
-
-    
-
 
     auto worldRenderSys = ecsManager->getSystem<WorldRenderSystem>();
     worldRenderSys->setTextureManager(*textureManager.get());
@@ -119,9 +115,6 @@ void Game::textureLoading(){
     auto mapSys = ecsManager->getSystem<MapSystem>();
     mapSys->setTextureManager(*textureManager.get());
     
-    
-    
-
 }
 
 void Game::run() {
@@ -157,7 +150,6 @@ void Game::run() {
             }
         }
 
-
         // 4. 씬의 update, render 호출 (씬이 직접 이벤트 처리 안함)
         if (currentScene) {
             currentScene->update(deltaTime);
@@ -185,7 +177,6 @@ void Game::handleEvents() {
 }
 
 void Game::changeScene(std::string sceneName) {
-
     if (sceneName == "GameplayScene") {
         std::cout << "Switching to Gameplay Scene..." << std::endl;
         currentScene->onExit();
@@ -196,7 +187,6 @@ void Game::changeScene(std::string sceneName) {
 
 void Game::clean() {
     SDL_DestroyWindow(window);
-
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();

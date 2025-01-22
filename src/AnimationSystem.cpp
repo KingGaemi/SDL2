@@ -2,6 +2,7 @@
 #include "Components/DirectionComponent.h"
 #include "Components/StateComponent.h"
 #include "Components/ItemComponent.h"
+#include "Components/ProjectileComponent.h"
 #include <iostream>
 #include <fstream>
 
@@ -21,7 +22,7 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                 auto directComp = entity->getComponent<DirectionComponent>();
                 auto stateComp = entity->getComponent<StateComponent>();
                 auto itemComp = entity->getComponent<ItemComponent>();
-
+                auto projectileComp = entity->getComponent<ProjectileComponent>();
                 // Unit or Objects
                 if(spriteComp && directComp && stateComp){
 
@@ -29,19 +30,21 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                 	int vDir = directComp->direction.vDir;
                     std::string animName = "";
 
-                    if(vDir != 0){
-                        if(vDir == 1){
-                           animName += "d";
-                        }
-                        if(vDir == -1){
-                            animName += "u";
-                        }
-                    }else{
-                        if(hDir == -1){
-                            animName += "l";
-                        }
-                        if (hDir == 1){
-                            animName += "r";
+                    if(spriteComp->hasDirectional){
+                        if(vDir != 0){
+                            if(vDir == 1){
+                               animName += "d";
+                            }
+                            if(vDir == -1){
+                                animName += "u";
+                            }
+                        }else{
+                            if(hDir == -1){
+                                animName += "l";
+                            }
+                            if (hDir == 1){
+                                animName += "r";
+                            }
                         }
                     }
 
@@ -85,14 +88,12 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                     }
                 }
 
-                // Items
+                // projectiles
 
-                if(spriteComp && itemComp){
-                    if (animComp && spriteComp) {
-                        updateAnimation(animComp, spriteComp, deltaTime);
-                    }
+                if(spriteComp && directComp && projectileComp){
+                    if(animComp->currentAnimation != "default") animComp->playAnimation("default");
+                    updateAnimation(animComp, spriteComp, deltaTime);
                 }
-
             }
         }
     }

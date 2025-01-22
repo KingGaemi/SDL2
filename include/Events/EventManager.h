@@ -18,7 +18,8 @@ enum class EventType {
 
 enum class AttackType{
     Attack,
-    Cast
+    Cast,
+    Shoot
 };
 
 struct SceneChangeEventData {

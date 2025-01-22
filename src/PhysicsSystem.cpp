@@ -116,29 +116,23 @@ void PhysicsSystem::setPositionsFromWorld(std::vector<std::shared_ptr<Entity>>&e
             if(physComp->hasBody()){
                 
                 b2Body_SetFixedRotation(physComp->body, true);
-                if(entity->hasComponent<PlayerTag>() || entity->hasComponent<Player2Tag>()){
+                
+
+                if (entity->hasComponent<VelocityComponent>()) {
+                    // velocityComponent 등에서 얻은 vx, vy
+                    auto veloComp = entity->getComponent<VelocityComponent>();
+
+                    // 픽셀→미터 변환
+                    float vx = veloComp->x() / PIXELS_PER_METER; // pixel/sec or so
+                    float vy = -veloComp->y() / PIXELS_PER_METER;
+
+                    b2Vec2 vel;
+                    vel.x = vx;
+                    vel.y = vy;
+
+                    b2Body_SetLinearVelocity(physComp->body, vel);
                     
-                   
-                    b2Body_SetGravityScale(physComp->body, 0.0f );
-
-                    if (entity->hasComponent<VelocityComponent>() && entity->hasComponent<PlayableComponent>()) {
-                        // velocityComponent 등에서 얻은 vx, vy
-                        auto veloComp = entity->getComponent<VelocityComponent>();
-
-                        // 픽셀→미터 변환
-                        float vx = veloComp->x() / PIXELS_PER_METER; // pixel/sec or so
-                        float vy = -veloComp->y() / PIXELS_PER_METER;
-
-                        b2Vec2 vel;
-                        vel.x = vx;
-                        vel.y = vy;
- 
-                        b2Body_SetLinearVelocity(physComp->body, vel);
-                        
-                    }
-
                 }
-
                 
                 b2Vec2 pos = b2Body_GetPosition(physComp->body);
                 b2Rot rot =  b2Body_GetRotation(physComp->body);
@@ -159,7 +153,6 @@ void PhysicsSystem::setPositionsFromWorld(std::vector<std::shared_ptr<Entity>>&e
 
                 if(entity->hasComponent<TransformComponent>()){
                     auto transComp = entity->getComponent<TransformComponent>();
-
                     if(transComp){
                         float degAngle = box2dToPixelAngle(b2Rot_GetAngle(rot));
                         transComp->rotation = -degAngle; 

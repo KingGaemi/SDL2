@@ -30,12 +30,14 @@ struct SpawnRequest {
     int damage;
     float projectileSpeed, projectileScale;
     float duration;
+    float rotation;
 
     bool hasPosition = true;
     bool hasDirection = false;
-    bool hasTransform = true;
+    bool hasTransform = false;
     bool hasOwner = false;
     bool hasDamage = false;
+    bool hasVelocity = false;
 
     std::size_t ownerId;
 

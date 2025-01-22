@@ -13,10 +13,11 @@ public:
 	Rect dstRect;
 	bool flipHorizontal = false;
 	bool flipVertical = false;
-	float scale;
+	float scale = 1.0f;
+	bool hasDirectional = false;
 
 
-	SpriteComponent(const std::string& texID, int w, int h, float sc = 1.0f) : textureID(texID) , scale(sc) {
+	SpriteComponent(const std::string& texID, int w, int h, float sc, bool hasDirectional = false) : textureID(texID) , scale(sc), hasDirectional(hasDirectional) {
 		srcRect = {0, 0, w, h};
 		dstRect = {0, 0, (int)(w*sc), (int)(h*sc)};
 	}

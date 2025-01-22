@@ -2,6 +2,7 @@
 #include "Components/ColliderComponent.h"
 #include "Components/PositionComponent.h"
 #include "Components/SolidComponent.h"
+#include "Components/TransformComponent.h"
 #include "Collision.h"
 
 #include <iostream>
@@ -11,6 +12,7 @@ void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
 
     if(!colliders.empty()){
         updateCollidersPosition(colliders);
+        updateCollidersRotation(colliders);
         checkCollisions(colliders);
     }
 }
@@ -53,6 +55,17 @@ void CollisionSystem::updateCollidersPosition(std::vector<std::shared_ptr<Entity
     }
 }
 
+void CollisionSystem::updateCollidersRotation(std::vector<std::shared_ptr<Entity>>& colliders){
+
+    for(auto& entity : colliders) {
+        if(!entity->hasComponent<TransformComponent>()) continue;
+        auto colComp = entity->getComponent<ColliderComponent>();
+        auto transComp = entity->getComponent<TransformComponent>();
+        // 매 프레임 '대입'
+        colComp->rotation = transComp->rotation;
+    }
+}
+
 void CollisionSystem::checkCollisions(std::vector<std::shared_ptr<Entity>>& colliders){
 
     for (int i = 0; i < (int)colliders.size(); i++){
@@ -65,13 +78,6 @@ void CollisionSystem::checkCollisions(std::vector<std::shared_ptr<Entity>>& coll
                 // 충돌 처리 (로그 출력, 이벤트, 데미지 등)
 
                 CollisionEvent colEvt;
-
-                // if(colEvt.entityA->hasComponent<SolidComponent>()&&colEvt.entityB->hasComponent<SolidComponent>()){
-                //     // 
-                //     colEvt.type = CollisionType::Crash;
-                // }else{
-                // }
-
                 colEvt.type = CollisionType::Hit;
                 colEvt.entityA = colliders[i];
                 colEvt.entityB = colliders[j];

@@ -83,6 +83,14 @@ void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnReq
             posComp->y = req.y;
 	    } 
     }
+    if(req.hasVelocity){
+	    auto veloComp = entity->getComponent<VelocityComponent>();
+	    auto projectileComp = entity->getComponent<ProjectileComponent>();
+	    if (veloComp && projectileComp) {
+            veloComp->set(req.hDir * projectileComp->projectileSpeed, req.vDir * projectileComp->projectileSpeed);
+            // std::cout << veloComp->velo() << std::endl;
+	    } 
+    }
     if(req.hasDirection){
 	    auto directComp = entity->getComponent<DirectionComponent>();
 	    if (directComp) {
@@ -94,9 +102,10 @@ void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnReq
     if(req.hasTransform){
 	    auto transComp = entity->getComponent<TransformComponent>();
 	    if (transComp) {
-            transComp->width = req.w;
-            transComp->height = req.h;
-            transComp->scale = req.sc;
+            // transComp->width = req.w;
+            // transComp->height = req.h;
+            // transComp->scale = req.sc;
+            transComp->rotation = req.rotation;
 	    }
     }
     if(req.hasOwner){
@@ -137,20 +146,22 @@ void EntityFactory::loadSpriteComponent(const json& componentData, std::shared_p
     int w = componentData.value("width", 64);
     int h = componentData.value("height", 64);
     float scale = componentData.value("scale", 1.0f);
+    bool hasDirectional = componentData.value("hasDirectional", false);
 
-    entity->addComponent<SpriteComponent>(texID, w, h, scale);
+    entity->addComponent<SpriteComponent>(texID, w, h, scale, hasDirectional);
 }
 
 void EntityFactory::loadAnimationComponent(const json& componentData, std::shared_ptr<Entity> entity) {
 
 	std::string typeStr = componentData.value("entityType", "Unit");
 	std::string spriteName = componentData.value("spriteName", "unknown");
-	std::string filename = "assets/animations/";
+	std::string filename = "Json/animation/";
 	if(typeStr == "Object") filename += "objectAnimations.json";
 	else if(typeStr == "UI") filename += "uiAnimations.json";
 	else if(typeStr == "Attack") filename += "attackAnimations.json";
 	else if(typeStr == "Unit") filename += "unitAnimations.json";
 	else if(typeStr == "Item") filename += "itemAnimations.json";
+	else if(typeStr == "Projectile") filename += "projectileAnimations.json";
 
 	entity->addComponent<AnimationComponent>(filename, spriteName);
 }
@@ -210,6 +221,7 @@ void EntityFactory::loadColliderComponent(const json& componentData, std::shared
 	std::string typeStr = componentData.value("colliderType", "Unit");
 	float offsetX = componentData.value("offsetX", 0.0f);
 	float offsetY = componentData.value("offsetY", 0.0f);
+	float radius = componentData.value("radius", 0.0f);
 	ColliderType colliderType;
 	if(typeStr == "Unit") colliderType = ColliderType::Unit;
 	else if(typeStr == "Projectile") colliderType = ColliderType::Projectile;
@@ -220,7 +232,11 @@ void EntityFactory::loadColliderComponent(const json& componentData, std::shared
 	int h = componentData.value("height", 64);
 	float sc = componentData.value("scale", 1.0f);
 
-	entity->addComponent<ColliderComponent>(w, h, sc, offsetX, offsetY, colliderType);
+	if(radius == 0.0f){
+		entity->addComponent<ColliderComponent>(w, h, sc, offsetX, offsetY, colliderType);
+	}else{
+		entity->addComponent<ColliderComponent>(radius, offsetX, offsetY, colliderType);
+	}
 }
 
 void EntityFactory::loadStateComponent(const json& componentData, std::shared_ptr<Entity> entity){

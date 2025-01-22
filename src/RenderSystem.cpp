@@ -128,8 +128,8 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             
             // collider 위치(월드 좌표) -> 화면 좌표 변환
             // (camX, camY) 만큼 빼주기, 혹은 camTransform 적용
-            int worldX = static_cast<int>(collider->collider.x);
-            int worldY = static_cast<int>(collider->collider.y);
+            int worldX = collider->collider.x;
+            int worldY = collider->collider.y;
 
             int screenX, screenY;
             screenX = worldX;

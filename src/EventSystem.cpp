@@ -106,6 +106,15 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 			commandComp->push(command);
 		}
 	}
+	if(evt.type == EventType::KEYDOWN && evt.key == KeyCode::w){
+		if(commandComp){
+			Command command;
+			command.abilityNumber = 2;
+			command.commandType = CommandType::Shoot;
+			command.direction = {0,0};
+			commandComp->push(command);
+		}
+	}
 }
 
 // helper function
