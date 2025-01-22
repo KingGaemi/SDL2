@@ -48,19 +48,20 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     inputManager = std::make_unique<InputManager>(eventManager);
     
     auto entityFactory = std::make_shared<EntityFactory>(ecsManager);
-    ecsManager->setFactory(entityFactory);  
+    ecsManager->setFactory(entityFactory);
+    ecsManager->makeCamera();
 
     // Add Systems
     ecsManager->addSystem<MapSystem>(SystemGroup::Render, 50, *renderer, ecsManager);
-    ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer);
-    ecsManager->addSystem<UIRenderSystem>(SystemGroup::Render, 200, *renderer);
+    ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer, ecsManager);
+    ecsManager->addSystem<UIRenderSystem>(SystemGroup::Render, 200, *renderer, ecsManager);
     ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
     ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager);
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
     ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40, eventManager);
     ecsManager->addSystem<PhysicsSystem>(SystemGroup::Logic, 50, ecsManager);
     ecsManager->addSystem<CollisionSystem>(SystemGroup::Logic, 60, ecsManager);
-    ecsManager->addSystem<CameraSystem>(SystemGroup::Logic, 70);
+    ecsManager->addSystem<CameraSystem>(SystemGroup::Logic, 70, ecsManager);
     ecsManager->addSystem<ExpireSystem>(SystemGroup::Logic, 90);
     ecsManager->addSystem<DamageSystem>(SystemGroup::Logic, 100, ecsManager);
     ecsManager->addSystem<EffectSystem>(SystemGroup::Logic, 110);

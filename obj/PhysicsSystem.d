@@ -8,7 +8,8 @@ obj/PhysicsSystem.o: src/PhysicsSystem.cpp \
  include/Components/ColliderComponent.h include/Rect.h \
  include/Components/TransformComponent.h \
  include/Components/VelocityComponent.h \
- include/Components/PlayableComponent.h include/Groups.h \
+ include/Components/PlayableComponent.h \
+ include/Components/ProjectileComponent.h include/Groups.h \
  include/ECS/ECSManager.h include/ECS/EntityFactory.h \
  include/nlohmann/json.hpp include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
@@ -61,11 +62,9 @@ obj/PhysicsSystem.o: src/PhysicsSystem.cpp \
  include/Components/CooldownComponent.h \
  include/Components/DamageComponent.h include/Components/DashComponent.h \
  include/KeyCode.h include/Components/LifeTimeComponent.h \
- include/Components/OwnerComponent.h \
- include/Components/ProjectileComponent.h \
- include/Components/SolidComponent.h include/Components/SpriteComponent.h \
- include/Components/StateComponent.h include/Components/StatusComponent.h \
- include/Components/ItemComponent.h \
+ include/Components/OwnerComponent.h include/Components/SolidComponent.h \
+ include/Components/SpriteComponent.h include/Components/StateComponent.h \
+ include/Components/StatusComponent.h include/Components/ItemComponent.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h
@@ -88,6 +87,7 @@ include/Rect.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
 include/Components/PlayableComponent.h:
+include/Components/ProjectileComponent.h:
 include/Groups.h:
 include/ECS/ECSManager.h:
 include/ECS/EntityFactory.h:
@@ -149,7 +149,6 @@ include/Components/DashComponent.h:
 include/KeyCode.h:
 include/Components/LifeTimeComponent.h:
 include/Components/OwnerComponent.h:
-include/Components/ProjectileComponent.h:
 include/Components/SolidComponent.h:
 include/Components/SpriteComponent.h:
 include/Components/StateComponent.h:

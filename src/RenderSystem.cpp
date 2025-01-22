@@ -94,7 +94,9 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             int screenX, screenY;
             screenX = worldX;
             screenY = worldY;
-            if(cameraEntity){
+
+            cameraEntity = ecsManager->getCamera();
+            if(cameraEntity->isActive){
                 auto camera = cameraEntity->getComponent<CameraComponent>();
                 if(camera){
                    screenX = worldX - camera->x;
@@ -122,35 +124,35 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
     }
 
 
-    if(debugMode){
-        if (entity->hasComponent<ColliderComponent>()) {
-            auto collider = entity->getComponent<ColliderComponent>();
+    // if(debugMode){
+    //     if (entity->hasComponent<ColliderComponent>()) {
+    //         auto collider = entity->getComponent<ColliderComponent>();
             
-            // collider 위치(월드 좌표) -> 화면 좌표 변환
-            // (camX, camY) 만큼 빼주기, 혹은 camTransform 적용
-            int worldX = collider->collider.x;
-            int worldY = collider->collider.y;
+    //         // collider 위치(월드 좌표) -> 화면 좌표 변환
+    //         // (camX, camY) 만큼 빼주기, 혹은 camTransform 적용
+    //         int worldX = collider->collider.x;
+    //         int worldY = collider->collider.y;
 
-            int screenX, screenY;
-            screenX = worldX;
-            screenY = worldY;
-            if(cameraEntity){
-                auto camera = cameraEntity->getComponent<CameraComponent>();
-                if(camera){
-                   screenX = worldX - camera->x;                   
-                   screenY = worldY - camera->y;
-                }
-            }
-            SDL_Rect debugRect;
-            debugRect.x = screenX;
-            debugRect.y = screenY;
-            debugRect.w = static_cast<int>(collider->collider.w);
-            debugRect.h = static_cast<int>(collider->collider.h);
+    //         int screenX, screenY;
+    //         screenX = worldX;
+    //         screenY = worldY;
+    //         if(cameraEntity){
+    //             auto camera = cameraEntity->getComponent<CameraComponent>();
+    //             if(camera){
+    //                screenX = worldX - camera->x;                   
+    //                screenY = worldY - camera->y;
+    //             }
+    //         }
+    //         SDL_Rect debugRect;
+    //         debugRect.x = screenX;
+    //         debugRect.y = screenY;
+    //         debugRect.w = static_cast<int>(collider->collider.w);
+    //         debugRect.h = static_cast<int>(collider->collider.h);
             
-            // 원하는 색상 설정 (빨간색, 투명도 255)
-            renderer->SetRenderDrawColor(255, 0, 0, 255);
-            renderer->RenderDrawRect(debugRect);
-        }
-    }
+    //         // 원하는 색상 설정 (빨간색, 투명도 255)
+    //         renderer->SetRenderDrawColor(255, 0, 0, 255);
+    //         renderer->RenderDrawRect(debugRect);
+    //     }
+    // }
 }
 

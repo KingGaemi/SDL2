@@ -186,3 +186,13 @@ void ECSManager::takeSingleRequest(const SpawnRequest& req){
 void ECSManager::activeMapEntity(){
     activeMap = true;
 }
+
+void ECSManager::makeCamera(){
+    cameraEntity = createEntity();
+    setEntityName(cameraEntity, "camera");
+    cameraEntity->addComponent<CameraComponent>(1280, 800);
+}
+
+std::shared_ptr<Entity> ECSManager::getCamera(){
+    return cameraEntity;
+}

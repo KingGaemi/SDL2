@@ -16,7 +16,7 @@ class MapSystem : public RenderSystem{
 public:
 	using RenderSystem::RenderSystem;
 	MapSystem(Renderer& renderer, std::shared_ptr<ECSManager>& ecsManager)
-			: RenderSystem(renderer), ecsManager(ecsManager){}
+			: RenderSystem(renderer, ecsManager), ecsManager(ecsManager) {}
 
 	
 	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;

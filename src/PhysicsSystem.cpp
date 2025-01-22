@@ -5,9 +5,11 @@
 #include "Components/TransformComponent.h"
 #include "Components/VelocityComponent.h"
 #include "Components/PlayableComponent.h"
+#include "Components/ProjectileComponent.h"
 #include "Groups.h"
 #include "ECS/ECSManager.h"
 #include <iostream>
+// #include <math>
 
 
 
@@ -73,10 +75,14 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
             auto colliderComp = entity->getComponent<ColliderComponent>();
             auto transComp = entity->getComponent<TransformComponent>();
 
+
             if(posComp && colliderComp){
                 bodyDef.position = (b2Vec2){(posComp->x) / PIXELS_PER_METER,
                           (SCREEN_HEIGHT - posComp->y) / PIXELS_PER_METER};
                 bodyDef.linearDamping = 10.0f;
+                bodyDef.rotation.c = cos(angleToRadian(transComp->rotation));
+                bodyDef.rotation.s = sin(angleToRadian(transComp->rotation));
+                
 
                 physComp->body = b2CreateBody(worldId, &bodyDef);
                 b2Body_SetGravityScale(physComp->body, 0.0f);
@@ -88,6 +94,11 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
                 bodyShapeDef.enableContactEvents = true;
                 
                 b2CreatePolygonShape(physComp->body, &bodyShapeDef, &bodyBox);
+                b2Body_SetFixedRotation(physComp->body, true);
+            }
+
+            if(entity->hasComponent<ProjectileComponent>()){
+                b2Body_SetFixedRotation(physComp->body, false);
             }
             // else
             // if(posComp && transComp){
@@ -119,9 +130,6 @@ void PhysicsSystem::setPositionsFromWorld(std::vector<std::shared_ptr<Entity>>&e
 
         if(physComp->hasBody()){
             
-            b2Body_SetFixedRotation(physComp->body, true);
-            
-
             if (entity->hasComponent<VelocityComponent>()) {
                 // velocityComponent 등에서 얻은 vx, vy
                 auto veloComp = entity->getComponent<VelocityComponent>();
@@ -176,8 +184,7 @@ void PhysicsSystem::getContactEvents(){
         collision.type = CollisionType::Hit;
         collision.entityA = shapeUserDataToEntity(evt->shapeIdA);
         collision.entityB = shapeUserDataToEntity(evt->shapeIdB);
-        ecsManager->collisionEvents.push_back(collision);
-        // std::cout << collision.entityA->getID() << "HIT" << collision.entityB->getID() << std::endl;
+        ecsManager->collisionEvents.push_back(collision);       
         // shapeIdA, shapeIdB -> userData
         // push "CollisionBegin" event to ECS
     }
@@ -192,7 +199,6 @@ std::shared_ptr<Entity> PhysicsSystem::shapeUserDataToEntity(b2ShapeId shapeId){
         return nullptr;
     }
     auto entityId =  reinterpret_cast<std::size_t>(udata);
-    std::cout << entityId << std::endl;
     auto entity = ecsManager->getEntityById(entityId);
     return entity;
 }

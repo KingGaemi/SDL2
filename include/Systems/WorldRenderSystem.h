@@ -6,6 +6,8 @@
 class WorldRenderSystem : public RenderSystem {
 public:
 	using RenderSystem::RenderSystem;
+    WorldRenderSystem(Renderer& renderer, std::shared_ptr<ECSManager>& ecsManager)
+            : RenderSystem(renderer, ecsManager), ecsManager(ecsManager) {}
 
 
     void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override {
@@ -43,4 +45,5 @@ public:
     }
 private:
     // std::shared_ptr<Entity> cameraEntity;
+    std::shared_ptr<ECSManager> ecsManager;
 };

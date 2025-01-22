@@ -2,6 +2,7 @@
 
 #include "ECS/System.h"
 #include "ECS/Entity.h"
+#include "ECS/ECSManager.h"
 #include "Groups.h"
 #include "TextureManager.h"
 
@@ -20,7 +21,7 @@ public:
 
     bool debugMode = true;
 
-	RenderSystem(Renderer& renderer) : renderer(&renderer), textureManager(nullptr) {}
+	RenderSystem(Renderer& renderer, std::shared_ptr<ECSManager>& ecsManager) : renderer(&renderer), textureManager(nullptr), ecsManager(ecsManager) {}
     void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
     std::pair<int, int> getTextureSize(const std::string& textureID);
     void setTextureManager(TextureManager& p_textureManager); 
@@ -31,6 +32,7 @@ protected:
     TextureManager* textureManager;
     void drawEntity(const std::shared_ptr<Entity>& entity);
     std::shared_ptr<Entity> cameraEntity;
+    std::shared_ptr<ECSManager> ecsManager;
     
 private:
 

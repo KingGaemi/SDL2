@@ -110,6 +110,8 @@ public:
     void cleanUpAllEntities();
     void cleanUpEntitiesByScene(SceneCode sceneCode);
     void activeMapEntity();
+    void makeCamera();
+    std::shared_ptr<Entity> getCamera();
     // 엔티티 이름 관리 (선택 사항)
 
     std::vector<SpawnRequest> pendingSpawns;
@@ -119,6 +121,7 @@ private:
     std::size_t nextID = 0;
     std::vector<std::shared_ptr<Entity>> entities;
     std::shared_ptr<Entity> mapEntity;
+    std::shared_ptr<Entity> cameraEntity;
     // 이름 관리 (원한다면 유지)
     std::unordered_map<std::string, std::shared_ptr<Entity>> entityByName;
     std::unordered_map<std::shared_ptr<Entity>, std::string> entityNames;

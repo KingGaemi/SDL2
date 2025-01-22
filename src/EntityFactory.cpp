@@ -65,7 +65,6 @@ void EntityFactory::makeCamera(const SpawnRequest& req){
 	cameraEntity->addComponent<CameraComponent>(1280, 800);
 	cameraEntity->addComponent<SceneTag>(SceneCode::Game);
 
-	std::cout << "makeCamera" << std::endl;
 }
 
 void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req) {

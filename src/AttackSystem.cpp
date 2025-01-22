@@ -136,7 +136,6 @@ void AttackSystem::shootArrow(const AttackEvent& event){
 		req.x = posComp->x + directComp->hDir() * spriteComp->dstRect.w;
 		req.y = posComp->y + directComp->vDir() * spriteComp->dstRect.h;
 
-
 		req.hasTransform = true;
 		req.hDir = directComp->direction.hDir;
 		req.vDir = directComp->direction.vDir;
@@ -157,17 +156,17 @@ void AttackSystem::shootArrow(const AttackEvent& event){
 
 
 float AttackSystem::getAngleFromDirection(int hDir, int vDir) {
-    static const std::map<std::pair<int, int>, float> directionToAngle = {
-        {{ 0, -1}, 270.0f},  // 위쪽 (vDir = -1)
-        {{ 1, -1}, 315.0f},  // 오른쪽 위
-        {{ 1,  0}, 0.0f},    // 오른쪽
-        {{ 1,  1}, 45.0f},   // 오른쪽 아래
-        {{ 0,  1}, 90.0f},   // 아래쪽 (vDir = 1)
-        {{-1,  1}, 135.0f},  // 왼쪽 아래
-        {{-1,  0}, 180.0f},  // 왼쪽
-        {{-1, -1}, 225.0f},  // 왼쪽 위
-        {{ 0,  0}, 0.0f}     // 정지 (기본값)    // 정지 (기본값)
-    };
+	static const std::map<std::pair<int, int>, float> directionToAngle = {
+	    {{ 0, -1},  90.0f},  // 위
+	    {{ 1, -1},  45.0f},  // 오른쪽 위
+	    {{ 1,  0},   0.0f},  // 오른쪽
+	    {{ 1,  1}, 315.0f},  // 오른쪽 아래
+	    {{ 0,  1}, 270.0f},  // 아래
+	    {{-1,  1}, 225.0f},  // 왼쪽 아래
+	    {{-1,  0}, 180.0f},  // 왼쪽
+	    {{-1, -1}, 135.0f},  // 왼쪽 위
+	    {{ 0,  0},   0.0f}   // 정지 (기본값)
+	};
 
     auto it = directionToAngle.find({hDir, vDir});
     if (it != directionToAngle.end()) {

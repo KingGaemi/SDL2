@@ -31,6 +31,10 @@ public:
     // 라디안 -> 도 or 그냥 라디안 그대로 SDL_RenderCopyEx에 전달
         return angle * (180.0f / 3.14159f);
     }
+    inline float angleToRadian(float angle) {
+    // 라디안 -> 도 or 그냥 라디안 그대로 SDL_RenderCopyEx에 전달
+        return angle * (3.14159f / 180.0f); 
+    }
 
 
 
