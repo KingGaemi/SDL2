@@ -8,6 +8,9 @@
       },
       {
         "name": "PhysicsComponent",
+        "width": 1280,
+        "height": 50,
+        "scale": 1.0,
         "bodyType": "Static"
       },
       {
@@ -19,13 +22,6 @@
       },
       {
         "name": "TransformComponent",
-        "width": 1280,
-        "height": 50,
-        "scale": 1.0
-      },
-      {
-        "name": "ColliderComponent",
-        "colliderType": "Object",
         "width": 1280,
         "height": 50,
         "scale": 1.0

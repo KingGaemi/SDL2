@@ -53,9 +53,9 @@ void EntityFactory::makeProps(const SpawnRequest& req){
 	auto prop = ecsManager->createEntity();
 	prop->addComponent<PositionComponent>((req.x + req.w/2) * 2, (req.y + req.h/2) * 2);
     // prop->addComponent<ColliderComponent>(req.w, req.h, req.sc, ColliderType::Wall);
-    // prop->addComponent<SpriteComponent>("dirt_tile", req.w, req.h, req.sc);
+    prop->addComponent<SpriteComponent>("dirt_tile", req.w, req.h, req.sc);
     prop->addComponent<TransformComponent>(req.w, req.h, req.sc);
-    prop->addComponent<PhysicsComponent>(BodyType::Static);
+    prop->addComponent<PhysicsComponent>(req.w, req.h, req.sc, BodyType::Static);
     prop->addComponent<SceneTag>(SceneCode::Game);
 }
 
@@ -132,11 +132,19 @@ void EntityFactory::loadPositionComponent(const json& componentData, std::shared
 void EntityFactory::loadPhysicsComponent(const json& componentData, std::shared_ptr<Entity> entity) {
     
     std::string typeStr = componentData.value("bodyType", "Dynamic");
+
+    float offsetX = componentData.value("offsetX", 0.0f);
+	float offsetY = componentData.value("offsetY", 0.0f);
+	float rotation = componentData.value("offsetY", 0.0f);;
+	int w = componentData.value("width", 64);
+	int h = componentData.value("height", 64);
+	float sc = componentData.value("scale", 1.0f);
+
     BodyType bodyType = BodyType::Dynamic;
     if (typeStr == "Kinematic") bodyType = BodyType::Kinematic;
     else if (typeStr == "Static") bodyType = BodyType::Static;
 
-    entity->addComponent<PhysicsComponent>(bodyType);
+    entity->addComponent<PhysicsComponent>(w, h, sc, offsetX, offsetY, rotation, bodyType);
 }
 
 void EntityFactory::loadSpriteComponent(const json& componentData, std::shared_ptr<Entity> entity) {

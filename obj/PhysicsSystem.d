@@ -5,7 +5,6 @@ obj/PhysicsSystem.o: src/PhysicsSystem.cpp \
  include/ECS/Entity.h include/ECS/Component.h include/ECS/System.h \
  include/Components/PositionComponent.h include/Vector2D.h \
  include/Components/PhysicsComponent.h include/MyContactListener.h \
- include/Components/ColliderComponent.h include/Rect.h \
  include/Components/TransformComponent.h \
  include/Components/VelocityComponent.h \
  include/Components/PlayableComponent.h \
@@ -56,6 +55,7 @@ obj/PhysicsSystem.o: src/PhysicsSystem.cpp \
  include/nlohmann/detail/macro_unscope.hpp \
  include/nlohmann/thirdparty/hedley/hedley_undef.hpp include/Requests.h \
  include/Components/Components.h include/Components/AnimationComponent.h \
+ include/Components/ColliderComponent.h include/Rect.h \
  include/Components/CommandComponent.h \
  include/Components/DirectionComponent.h \
  include/Components/MovementCommandComponent.h \
@@ -82,8 +82,6 @@ include/Components/PositionComponent.h:
 include/Vector2D.h:
 include/Components/PhysicsComponent.h:
 include/MyContactListener.h:
-include/Components/ColliderComponent.h:
-include/Rect.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
 include/Components/PlayableComponent.h:
@@ -140,6 +138,8 @@ include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
 include/Requests.h:
 include/Components/Components.h:
 include/Components/AnimationComponent.h:
+include/Components/ColliderComponent.h:
+include/Rect.h:
 include/Components/CommandComponent.h:
 include/Components/DirectionComponent.h:
 include/Components/MovementCommandComponent.h:

@@ -67,8 +67,8 @@ void MapSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float del
 
                     // 화면(또는 월드)에서 그려질 위치
 
-                    int dstX = col * mapComp->tileWidth;
-                    int dstY = row * mapComp->tileHeight;
+                    float dstX = col * mapComp->tileWidth;
+                    float dstY = row * mapComp->tileHeight;
                     if(cameraEntity){
                         auto cameraComp = cameraEntity->getComponent<CameraComponent>();
                         dstX -= cameraComp->x/2;
@@ -76,8 +76,9 @@ void MapSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float del
                     }
                     // 실제 SDL draw 호출 (pseudo)
 
-                    SDL_Rect srcRect = { srcX, srcY, mapComp->tileWidth, mapComp->tileHeight };
-                    SDL_Rect dstRect = { dstX*2, dstY*2, mapComp->tileWidth*2, mapComp->tileHeight*2 };                    
+
+                    SDL_Rect srcRect = { srcX, srcY, mapComp->tileWidth,mapComp->tileHeight };
+                    SDL_FRect dstRect = { dstX*2, dstY*2, static_cast<float>(mapComp->tileWidth*2), static_cast<float>(mapComp->tileHeight*2) };                    
                     renderer->render(texture, &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
                 }
             }

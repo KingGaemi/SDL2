@@ -55,7 +55,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<MapSystem>(SystemGroup::Render, 50, *renderer, ecsManager);
     ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer, ecsManager);
     ecsManager->addSystem<UIRenderSystem>(SystemGroup::Render, 200, *renderer, ecsManager);
-    ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
+    // ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
     ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager);
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
     ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40, eventManager);

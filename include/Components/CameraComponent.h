@@ -5,8 +5,8 @@
 class CameraComponent : public Component {
 
 public:
-	int x = 0;
-	int y = 0;
+	float x = 0;
+	float y = 0;
 	int w, h;
 	CameraComponent(int w, int h) : w(w), h(h) {}
 

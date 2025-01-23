@@ -21,13 +21,6 @@
         "scale": 1.0
       },
       {
-        "name": "ColliderComponent",
-        "width": 100,
-        "height": 100,
-        "scale": 1.0,
-	"colliderType": "Projectile"
-      },
-      {
         "name": "DamageComponent",
         "damage": 10
       },
@@ -42,7 +35,14 @@
         "speed": 1.0,
         "scale": 1.0,
         "duration": 0.3
-      }
+      },
+      {
+        "name": "PhysicsComponent",
+	"width": 100,
+        "height": 100,
+        "scale": 1.0,
+        "bodyType": "Kinematic"
+     }
     ]
   },
 "box": {
@@ -67,13 +67,6 @@
         "scale": 1.0
       },
       {
-        "name": "ColliderComponent",
-        "width": 32,
-        "height": 32,
-        "scale": 1.0,
-	"colliderType": "Projectile"
-      },
-      {
         "name": "DamageComponent",
         "damage": 10
       },
@@ -91,6 +84,9 @@
       },
       {
         "name": "PhysicsComponent",
+	"width": 32,
+        "height": 32,
+        "scale": 1.0,
         "bodyType": "Dynamic"
      }	
     ]
@@ -115,13 +111,6 @@
         "width": 32,
         "height": 32,
         "scale": 1.0
-      },
-      {
-        "name": "ColliderComponent",
-        "width": 64,
-        "height": 12,
-        "scale": 1.0,
-	"colliderType": "Projectile"
       },
       {
         "name": "DamageComponent",
@@ -153,6 +142,9 @@
       },
       {
         "name": "PhysicsComponent",
+        "width": 64,
+        "height": 12,
+        "scale": 1.0,
         "bodyType": "Kinematic"
       }
     ]

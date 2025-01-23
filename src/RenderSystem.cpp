@@ -11,6 +11,15 @@
 #include <algorithm>
 
 
+SDL_FRect RenderSystem::toSDLFRect(const FRect& r) {
+    SDL_FRect rect;
+    rect.x = r.x;
+    rect.y = r.y;
+    rect.w = r.w;
+    rect.h = r.h;
+    return rect;
+}
+
 SDL_Rect RenderSystem::toSDLRect(const Rect& r) {
     SDL_Rect rect;
     rect.x = r.x;
@@ -19,6 +28,7 @@ SDL_Rect RenderSystem::toSDLRect(const Rect& r) {
     rect.h = r.h;
     return rect;
 }
+
 
 
 
@@ -81,17 +91,17 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
         if (posComp && sprite) {
 
             SDL_Rect srcRect = toSDLRect(sprite->srcRect);
-            SDL_Rect dstRect = toSDLRect(sprite->dstRect);
+            SDL_FRect dstRect = toSDLFRect(sprite->dstRect);
 
             float offsetY = 0.0f; // for floating effect
             if(entity->hasComponent<FloatingEffectComponent>()) {
                 offsetY = entity->getComponent<FloatingEffectComponent>()->renderOffsetY;
             }
 
-            int worldX = static_cast<int>(posComp->x) - (dstRect.w/2);
-            int worldY = static_cast<int>(posComp->y + offsetY) - (dstRect.h/2);
+            float worldX = posComp->x - (dstRect.w/2);
+            float worldY = posComp->y + offsetY - (dstRect.h/2);
 
-            int screenX, screenY;
+            float screenX, screenY;
             screenX = worldX;
             screenY = worldY;
 

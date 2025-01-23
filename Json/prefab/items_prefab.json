@@ -20,11 +20,11 @@
         "scale": 0.8
       },
       {
-        "name": "ColliderComponent",
-        "colliderType": "Object",
+        "name": "PhysicsComponent",
         "width": 38,
         "height": 50,
-        "scale": 0.8
+        "scale": 0.8,
+        "bodyType": "Kinematic"
       },
       {
         "name": "SceneTag",

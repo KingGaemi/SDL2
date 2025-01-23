@@ -25,6 +25,7 @@ public:
     void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
     std::pair<int, int> getTextureSize(const std::string& textureID);
     void setTextureManager(TextureManager& p_textureManager); 
+    SDL_FRect toSDLFRect(const FRect& r);
     SDL_Rect toSDLRect(const Rect& r);
 
 protected:

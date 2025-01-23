@@ -15,19 +15,19 @@ enum class ColliderType{
 	Beacon
 };
 
-struct CircleCollider {
-    float offsetX;  // 엔티티 중심(혹은 position)에서의 오프셋 X
-    float offsetY;  // 오프셋 Y
-    float radius;   // 원의 반지름
+// struct CircleCollider {
+//     float offsetX;  // 엔티티 중심(혹은 position)에서의 오프셋 X
+//     float offsetY;  // 오프셋 Y
+//     float radius;   // 원의 반지름
 
-    // 월드 좌표계에서 계산된 실제 중심
-};
+//     // 월드 좌표계에서 계산된 실제 중심
+// };
 
 class ColliderComponent : public Component{
 
 public:
 	Rect collider;
-	CircleCollider circleCollider;
+	// CircleCollider circleCollider;
 	ColliderType colliderType;
 	float offsetX = 0.0f;
 	float offsetY = 0.0f;
@@ -52,11 +52,11 @@ public:
 		offsetX = offX;
 		offsetY = offY;
 	}
-	ColliderComponent(float radius, float offX, float offY, ColliderType colliderType) : colliderType(colliderType){
-		collider.x = 0;
-		collider.y = 0;
-		circleCollider.radius = radius;
-		circleCollider.offsetX = offX;
-		circleCollider.offsetY = offY;
-	}
+	// ColliderComponent(float radius, float offX, float offY, ColliderType colliderType) : colliderType(colliderType){
+	// 	collider.x = 0;
+	// 	collider.y = 0;
+	// 	circleCollider.radius = radius;
+	// 	circleCollider.offsetX = offX;
+	// 	circleCollider.offsetY = offY;
+	// }
 };

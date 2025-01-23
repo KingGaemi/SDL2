@@ -41,16 +41,16 @@ public:
 	    return false;
 	}
 
-	bool static CCC(const ColliderComponent& c1, const ColliderComponent& c2) {
-	    float dx = static_cast<float>(c1.collider.x - c2.collider.x);
-	    float dy = static_cast<float>(c1.collider.y - c2.collider.y);
-	    float distSq = dx * dx + dy * dy;
+	// bool static CCC(const ColliderComponent& c1, const ColliderComponent& c2) {
+	//     float dx = static_cast<float>(c1.collider.x - c2.collider.x);
+	//     float dy = static_cast<float>(c1.collider.y - c2.collider.y);
+	//     float distSq = dx * dx + dy * dy;
 
-	    float radiusSum = c1.circleCollider.radius + c2.circleCollider.radius;
-	    float radiusSumSq = radiusSum * radiusSum;
+	//     float radiusSum = c1.circleCollider.radius + c2.circleCollider.radius;
+	//     float radiusSumSq = radiusSum * radiusSum;
 
-	    return distSq <= radiusSumSq;
-	}
+	//     return distSq <= radiusSumSq;
+	// }
 
 };
 

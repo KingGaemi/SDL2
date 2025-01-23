@@ -6,15 +6,6 @@
         "spriteName": "orc3"
       },
       {
-        "name": "ColliderComponent",
-        "colliderType": "Unit",
-        "width": 22,
-        "height": 24,
-        "scale": 2.0,
-        "offsetX": -1.0,
-        "offsetY":  0.0
-      },
-      {
         "name": "CommandComponent"
       },
       {
@@ -34,6 +25,10 @@
       },
       {
         "name": "PhysicsComponent",
+        "width": 24,
+        "height": 26,
+        "scale": 2.0,
+	"offsetY": -6.0,
         "bodyType": "Dynamic"
       },
       {
@@ -123,15 +118,6 @@
         "spriteName": "orc3"
       },
       {
-        "name": "ColliderComponent",
-        "colliderType": "Unit",
-        "width": 32,
-        "height": 39,
-        "scale": 2.0,
-        "offsetX": -1.0,
-        "offsetY": -6.0
-      },
-      {
         "name": "CommandComponent"
       },
       {
@@ -149,6 +135,11 @@
       },
       {
         "name": "PhysicsComponent",
+	"width": 32,
+        "height": 39,
+        "scale": 2.0,
+        "offsetX": -1.0,
+        "offsetY": -6.0,
         "bodyType": "Dynamic"
       },
       {

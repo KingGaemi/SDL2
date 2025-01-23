@@ -64,9 +64,9 @@ SDL_Texture* Renderer::loadText(const char * textString){
 }
 
 
-void Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* dstRect, double angle, SDL_Point* center, SDL_RendererFlip flip) {
+void Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_FRect* dstRect, double angle, SDL_FPoint* center, SDL_RendererFlip flip) {
 
-    SDL_RenderCopyEx(SDL_renderer, texture, srcRect, dstRect, angle, center, flip);
+    SDL_RenderCopyExF(SDL_renderer, texture, srcRect, dstRect, angle, center, flip);
 
 }
 
