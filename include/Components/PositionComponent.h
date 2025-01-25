@@ -12,6 +12,10 @@ public:
     PositionComponent(const Vector2D& pos) : x(pos.x) , y(pos.y) {}
 
     
+    Vector2D getVector(){
+        Vector2D vector = {x, y};
+        return vector;
+    }
     void set(float xVal, float yVal) { x = xVal; y = yVal; }
     void set(const Vector2D& pos) { x = pos.x; y = pos.y; }
     void add(float xVal, float yVal) { x += xVal; y += yVal; }

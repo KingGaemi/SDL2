@@ -1,8 +1,6 @@
 
 #include "Game.h"
 
-
-
 Game::Game() : window(nullptr),  isRunning(false), lastFrameTime(0) {}
 
 
@@ -26,13 +24,11 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
         return;
     }
 
-
     if (TTF_Init() == -1){
         std::cerr << "TTF_Init Failed: " << TTF_GetError() << std::endl;
         return;
     }
     
-
 	// Create Window
 	window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags);
     if (!window) {
@@ -44,35 +40,36 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
 
     // Create manager
     ecsManager = std::make_shared<ECSManager>();
+    ecsManager->entityFactory = std::make_shared<EntityFactory>(ecsManager);
     eventManager = std::make_shared<EventManager>();
+    ecsManager->eventManager = eventManager;
     inputManager = std::make_unique<InputManager>(eventManager);
-    
-    auto entityFactory = std::make_shared<EntityFactory>(ecsManager);
-    ecsManager->setFactory(entityFactory);
-    ecsManager->makeCamera();
 
     // Add Systems
+
+    // Render
     ecsManager->addSystem<MapSystem>(SystemGroup::Render, 50, *renderer, ecsManager);
     ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer, ecsManager);
     ecsManager->addSystem<UIRenderSystem>(SystemGroup::Render, 200, *renderer, ecsManager);
-    // ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
+    // Logic
     ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager);
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
     ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40, eventManager);
-    ecsManager->addSystem<PhysicsSystem>(SystemGroup::Logic, 50, ecsManager);
+    ecsManager->addSystem<PhysicsSystem>(SystemGroup::Logic, 50, ecsManager, eventManager);
     ecsManager->addSystem<CollisionSystem>(SystemGroup::Logic, 60, ecsManager);
     ecsManager->addSystem<CameraSystem>(SystemGroup::Logic, 70, ecsManager);
     ecsManager->addSystem<ExpireSystem>(SystemGroup::Logic, 90);
+    // ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
     ecsManager->addSystem<DamageSystem>(SystemGroup::Logic, 100, ecsManager);
     ecsManager->addSystem<EffectSystem>(SystemGroup::Logic, 110);
     ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
     ecsManager->addSystem<SyncSystem>(SystemGroup::Logic, 160);
-    ecsManager->addSystem<CollisionEventHandlerSystem>(SystemGroup::Event, 180, ecsManager);
-    ecsManager->addSystem<MiddleEventSystem>(SystemGroup::Event, 200, eventManager);
-
     ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager, eventManager);
     ecsManager->addSystem<CooldownSystem>(SystemGroup::Logic, 250);
-
+    ecsManager->addSystem<AISystem>(SystemGroup::Logic, 300);
+    // Event
+    ecsManager->addSystem<CollisionEventHandlerSystem>(SystemGroup::Event, 180, ecsManager);
+    ecsManager->addSystem<MiddleEventSystem>(SystemGroup::Event, 200, eventManager);
 
     auto physSys = ecsManager->getSystem<PhysicsSystem>();
     ecsManager->setPhysicsSystem(physSys);
@@ -119,9 +116,7 @@ void Game::textureLoading(){
 }
 
 void Game::run() {
-
-
-    
+  
     while (isRunning) {
         frameStart = SDL_GetTicks();
         // 1. 입력 처리 → InputManager가 SDL 이벤트를 EventManager에 푸시
@@ -133,11 +128,12 @@ void Game::run() {
         lastFrameTime = currentFrameTime;
 
         // 2. ECS 시스템 업데이트 → EventSystem이 SCENE_CHANGE 이벤트 발생 가능
+        ecsManager->processTerminatedEntities();
         ecsManager->updateSystems(deltaTime);
         ecsManager->renderSystems(deltaTime);
         ecsManager->processSpawnRequests();
         ecsManager->processCollisionEvents();
-        ecsManager->cleanUpEntities();
+        
 
         // 3. EventManager에서 이벤트 폴링 → SCENE_CHANGE나 QUIT 처리
         Event evt;
@@ -156,13 +152,14 @@ void Game::run() {
             currentScene->update(deltaTime);
             currentScene->render();
         }
+        
+        ecsManager->cleanUpEntities();
 
         frameTime = SDL_GetTicks() - frameStart;
         if (frameDelay > frameTime) {
           SDL_Delay(frameDelay - frameTime);
         }
     }
-
 }
 
 bool Game::running() const {

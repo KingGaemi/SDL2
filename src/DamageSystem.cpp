@@ -19,8 +19,8 @@ void DamageSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 			auto entityA = colEvt.entityA;
 			auto entityB = colEvt.entityB;
 
-			EntityID A = entityA->getID();
-        	EntityID B = entityB->getID();
+			EntityID A = entityA->getId();
+        	EntityID B = entityB->getId();
 
 			if(!entityA->isActive || !entityB->isActive) continue;
 
@@ -47,7 +47,7 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 
         if(teamCompA->teamCode == teamCompT->teamCode) return;
 
-	    if (damageComp->hitTargets.count(target->getID()) == 0) {
+	    if (damageComp->hitTargets.count(target->getId()) == 0) {
 
 	    	if(target->hasComponent<StateComponent>()){
 	    		auto stateComp = target->getComponent<StateComponent>();
@@ -55,7 +55,7 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 	    	}
 
 	        statusComp->currentHp -= damageComp->damage;
-	        damageComp->hitTargets.insert(target->getID());
+	        damageComp->hitTargets.insert(target->getId());
 
 	        if(attacker->hasComponent<ProjectileComponent>()) attacker->terminate = true;
 

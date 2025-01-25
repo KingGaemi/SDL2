@@ -12,9 +12,9 @@ class EventSystem : public System {
 
 public:
 
-	EventSystem(std::shared_ptr<EventManager>& eventManager) : eventManager(eventManager) { 
-		
+	EventSystem(std::shared_ptr<EventManager>& eventManager) : eventManager(eventManager) { 		
 		std::fill_n(pressed, toInt(KeyCode::NUM_OF_KEY_CODES), false);
+
 	}  
 
 	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;

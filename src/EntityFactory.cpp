@@ -86,8 +86,9 @@ void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnReq
 	    auto veloComp = entity->getComponent<VelocityComponent>();
 	    auto projectileComp = entity->getComponent<ProjectileComponent>();
 	    if (veloComp && projectileComp) {
-            veloComp->set(req.hDir * projectileComp->projectileSpeed, req.vDir * projectileComp->projectileSpeed);
-            // std::cout << veloComp->velo() << std::endl;
+	    	// Direction * 
+            veloComp->set(req.hDir * req.projectileSpeed * projectileComp->projectileSpeed,
+            			  req.vDir * req.projectileSpeed * projectileComp->projectileSpeed);
 	    } 
     }
     if(req.hasDirection){
@@ -325,6 +326,12 @@ void EntityFactory::loadAbilityComponent(const json& componentData, std::shared_
 	entity->addComponent<AbilityComponent>(abilityName, abilityId); 
 }
 
+void EntityFactory::loadAIComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+    
+    entity->addComponent<AIComponent>();
+}
+
+
 
 
 
@@ -434,8 +441,10 @@ void EntityFactory::registerComponentLoaders() {
     componentLoaders["FloatingEffectComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadFloatingEffectComponent(data, entity);
     };
-    componentLoaders["loadAbilityComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+    componentLoaders["AbilityComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadAbilityComponent(data, entity);
     };
-    
+    componentLoaders["AIComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadAIComponent(data, entity);
+    };    
 }

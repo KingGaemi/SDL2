@@ -14,8 +14,8 @@ void CollisionEventHandlerSystem::update(std::vector<std::shared_ptr<Entity>>& e
 			auto entityA = colEvt.entityA;
 			auto entityB = colEvt.entityB;
 
-			// EntityID A = entityA->getID();
-        	// EntityID B = entityB->getID();
+			// EntityID A = entityA->getId();
+        	// EntityID B = entityB->getId();
 
 			if(!entityA->isActive || !entityB->isActive) continue;
 
@@ -44,7 +44,6 @@ void CollisionEventHandlerSystem::applyRoot(std::shared_ptr<Entity> charactor, s
 	    if (!itemComp->consumed) {
 	    	statusComp->currentHp = statusComp->maxHp;
 	    	statusComp->attackSpeed += 1.0f;
-	    	std::cout << statusComp->attackSpeed << std::endl;
 	    	statusComp->movementSpeed += 30.0f;
 	    	itemComp->consumed = true;
 	    	itemComp->currentStack -= 1;

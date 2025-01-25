@@ -45,6 +45,11 @@ struct AttackEvent{
     std::size_t abilityNumber;
 };
 
+struct DestroyEvent{
+	std::size_t entityId;
+	// etc...
+};
+
 
 class EventManager {
 
@@ -61,6 +66,9 @@ public:
 	}
 	void pushAttackEvent(const AttackEvent& event){
 		attackEvents.push(event);
+	}
+	void pushDestroyEvent(const DestroyEvent& event){
+		destroyEvents.push_back(event);
 	}
 	bool pollEvent(Event& outEvent) {
 		// std::lock_guard<std::mutex> lock(mtx);
@@ -87,6 +95,13 @@ public:
 		attackEvents.pop();
 		return true;
 	}
+    const std::vector<DestroyEvent>& getDestroyEvents() const {
+        return destroyEvents;
+    }
+
+    void clearDestroyEvents() {
+        destroyEvents.clear();
+    }
 
 	EventManager* get(){
 		return this;
@@ -98,5 +113,6 @@ private:
 	std::queue<Event> bigEventQueue;
 	std::queue<Event> middleEventQueue;
 	std::queue<AttackEvent> attackEvents;
+	std::vector<DestroyEvent> destroyEvents;
 	// std::mutex mtx;
 };

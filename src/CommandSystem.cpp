@@ -55,7 +55,10 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 							Vector2D velo = directComp->dirToVector();							
 							velo = velo * statusComp->movementSpeed;
 							if(stateComp->movementState == MovementStates::Run){
-								velo = velo * statusComp->runningSpeed;
+								// std::cout << statusComp->movementSpeed <<std::endl;
+								velo = velo * statusComp->runningSpeedMultiple;
+							}else{
+								// std::cout <<std::endl;
 							}
 
 							// Adjust diagonal movement speed
@@ -63,7 +66,7 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 							if(dir == 0 || dir == 2 || dir == -2){
 								velo = velo * 0.8f;
 							}
-
+							
 							veloComp->set(velo);
 
 						}else if(moveCommandComp->moveCommandType == MovementCommandType::Stop){
@@ -79,7 +82,7 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 								if(!command.doubleTap){
 									stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
 									AttackEvent attackEvent;
-									attackEvent.attackerId = entity->getID();
+									attackEvent.attackerId = entity->getId();
 									attackEvent.attackType = AttackType::Attack;
 									eventManager->pushAttackEvent(attackEvent);
 									// // std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;
@@ -94,13 +97,13 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 						}else if(command.commandType == CommandType::Cast){
 							if(!stateComp->inMotion) stateComp->changeActionState(ActionStates::Cast, (1.0f / statusComp->attackSpeed));
 							AttackEvent attackEvent;
-							attackEvent.attackerId = entity->getID();
+							attackEvent.attackerId = entity->getId();
 							attackEvent.attackType = AttackType::Cast;
 							eventManager->pushAttackEvent(attackEvent);
 						}else if(command.commandType == CommandType::Shoot){
 							if(!stateComp->inMotion) stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
 							AttackEvent attackEvent;
-							attackEvent.attackerId = entity->getID();
+							attackEvent.attackerId = entity->getId();
 							attackEvent.attackType = AttackType::Shoot;
 							eventManager->pushAttackEvent(attackEvent);
 						}else{

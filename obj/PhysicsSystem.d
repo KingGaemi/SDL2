@@ -3,6 +3,7 @@ obj/PhysicsSystem.o: src/PhysicsSystem.cpp \
  include/box2d/base.h include/box2d/collision.h \
  include/box2d/math_functions.h include/box2d/id.h include/box2d/types.h \
  include/ECS/Entity.h include/ECS/Component.h include/ECS/System.h \
+ include/Events/EventManager.h include/KeyCode.h \
  include/Components/PositionComponent.h include/Vector2D.h \
  include/Components/PhysicsComponent.h include/MyContactListener.h \
  include/Components/TransformComponent.h \
@@ -61,13 +62,13 @@ obj/PhysicsSystem.o: src/PhysicsSystem.cpp \
  include/Components/MovementCommandComponent.h \
  include/Components/CooldownComponent.h \
  include/Components/DamageComponent.h include/Components/DashComponent.h \
- include/KeyCode.h include/Components/LifeTimeComponent.h \
+ include/Components/LifeTimeComponent.h \
  include/Components/OwnerComponent.h include/Components/SolidComponent.h \
  include/Components/SpriteComponent.h include/Components/StateComponent.h \
  include/Components/StatusComponent.h include/Components/ItemComponent.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
- include/Components/AbilityComponent.h
+ include/Components/AbilityComponent.h include/Components/AIComponent.h
 include/Systems/PhysicsSystem.h:
 include/box2d/box2d.h:
 include/box2d/base.h:
@@ -78,6 +79,8 @@ include/box2d/types.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
 include/ECS/System.h:
+include/Events/EventManager.h:
+include/KeyCode.h:
 include/Components/PositionComponent.h:
 include/Vector2D.h:
 include/Components/PhysicsComponent.h:
@@ -146,7 +149,6 @@ include/Components/MovementCommandComponent.h:
 include/Components/CooldownComponent.h:
 include/Components/DamageComponent.h:
 include/Components/DashComponent.h:
-include/KeyCode.h:
 include/Components/LifeTimeComponent.h:
 include/Components/OwnerComponent.h:
 include/Components/SolidComponent.h:
@@ -158,3 +160,4 @@ include/Components/FloatingEffectComponent.h:
 include/Components/MapComponent.h:
 include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
+include/Components/AIComponent.h:

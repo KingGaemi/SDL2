@@ -68,7 +68,7 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/Components/ItemComponent.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
- include/Components/AbilityComponent.h
+ include/Components/AbilityComponent.h include/Components/AIComponent.h
 include/Events/EventSystem.h:
 include/ECS/System.h:
 include/Events/EventManager.h:
@@ -159,3 +159,4 @@ include/Components/FloatingEffectComponent.h:
 include/Components/MapComponent.h:
 include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
+include/Components/AIComponent.h:

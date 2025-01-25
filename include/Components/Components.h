@@ -26,5 +26,5 @@
 #include "MapComponent.h"
 #include "CameraComponent.h"
 #include "AbilityComponent.h"
-
+#include "AIComponent.h"
 // #include "GroupComponent.h"

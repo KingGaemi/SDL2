@@ -48,7 +48,7 @@ public:
     void loadItemComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadFloatingEffectComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadAbilityComponent(const json& componentData, std::shared_ptr<Entity> entity);
-    
+    void loadAIComponent(const json& componentData, std::shared_ptr<Entity> entity);
 
     void applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req);
     void registerComponentLoaders();

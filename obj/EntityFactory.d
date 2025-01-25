@@ -66,7 +66,8 @@ obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
  include/Components/ItemComponent.h include/ECS/Entity.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
- include/Components/AbilityComponent.h include/ECS/ECSManager.h \
+ include/Components/AbilityComponent.h include/Components/AIComponent.h \
+ include/ECS/ECSManager.h include/Events/EventManager.h \
  include/Systems/PhysicsSystem.h include/ECS/System.h
 include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
@@ -155,6 +156,8 @@ include/Components/FloatingEffectComponent.h:
 include/Components/MapComponent.h:
 include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
+include/Components/AIComponent.h:
 include/ECS/ECSManager.h:
+include/Events/EventManager.h:
 include/Systems/PhysicsSystem.h:
 include/ECS/System.h:

@@ -68,8 +68,8 @@ obj/AttackSystem.o: src/AttackSystem.cpp include/Systems/AttackSystem.h \
  include/Components/ItemComponent.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
- include/Components/AbilityComponent.h include/Systems/PhysicsSystem.h \
- include/Events/EventManager.h
+ include/Components/AbilityComponent.h include/Components/AIComponent.h \
+ include/Events/EventManager.h include/Systems/PhysicsSystem.h
 include/Systems/AttackSystem.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
@@ -160,5 +160,6 @@ include/Components/FloatingEffectComponent.h:
 include/Components/MapComponent.h:
 include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
-include/Systems/PhysicsSystem.h:
+include/Components/AIComponent.h:
 include/Events/EventManager.h:
+include/Systems/PhysicsSystem.h:

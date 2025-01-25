@@ -62,7 +62,7 @@ void AttackSystem::basicAttack(const AttackEvent& event){
 		req.hasDamage = true;
 		req.sc = 1.0f;
 		req.teamCode = teamComp->teamCode;
-		req.ownerId = entity->getID();
+		req.ownerId = entity->getId();
 		req.hasOwner = true;
 
 		// SpawnRequest req;
@@ -102,7 +102,7 @@ void AttackSystem::castSpell(const AttackEvent& event){
 		req.hasDamage = false;
 		req.sc = 1.0f;
 		req.teamCode = teamComp->teamCode;
-		req.ownerId = entity->getID();
+		req.ownerId = entity->getId();
 		req.hasOwner = true;
 
 		// SpawnRequest req;
@@ -139,13 +139,15 @@ void AttackSystem::shootArrow(const AttackEvent& event){
 		req.hasTransform = true;
 		req.hDir = directComp->direction.hDir;
 		req.vDir = directComp->direction.vDir;
-		req.rotation = getAngleFromDirection(req.hDir, req.vDir);
+		req.rotation = directComp->getAngle();
+
 		req.damage = statusComp->physicalDamage;
 		req.hasDamage = true;
 		req.sc = 1.0f;
-		// req.projectileSpeed = 1.0f;
+		req.projectileSpeed = statusComp->projectileSpeedMultiple;
+		if(req.hDir != 0 && req.vDir != 0) req.projectileSpeed /= 1.414f;
 		req.teamCode = teamComp->teamCode;
-		req.ownerId = entity->getID();
+		req.ownerId = entity->getId();
 		req.hasOwner = true;
 		req.hasVelocity = true;
 

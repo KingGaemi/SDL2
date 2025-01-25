@@ -1,6 +1,7 @@
 #pragma once
 #include "ECS/Component.h"
 #include "Vector2D.h"
+#include <math.h>
 
 class VelocityComponent : public Component {
 public:
@@ -21,5 +22,9 @@ public:
 
     void zero() { velocity.x = 0.0f;  velocity.y = 0.0f;}
 
+    float length(){
+        return std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+    }
     Vector2D velo() { return velocity; }
+
 };

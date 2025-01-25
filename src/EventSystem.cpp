@@ -31,6 +31,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 	// Check KeyDowns and direction
 	if(evt.type == EventType::KEYDOWN && !pressed[toInt(evt.key)]){
 		pressed[toInt(evt.key)] = true;
+		// std::cout << toInt(evt.key) << std::endl;
 		if(evt.key == lastArrowKey && leftDoubleTapTime > 0 ){
 			isArrowKeyDoubleTapped = true;
 		}else if(evt.key == lastAbilityKey && leftDoubleTapTime > 0 ){
@@ -41,7 +42,6 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 			isAbilityKeyDoubleTapped = false;
 		}
 	}
-	
 	if(evt.type == EventType::KEYUP) pressed[toInt(evt.key)] = false;
   	direction = getDirection(evt);
 	
@@ -89,32 +89,46 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 		command.doubleTap = isAbilityKeyDoubleTapped;
 		// attack is pressed
 		if(pressed[toInt(KeyCode::Space)]){
+			// std::cout << "space" << std::endl;
 			command.commandType = CommandType::BasicAttack;
 			commandComp->push(command);
 		}
-		
-	}
-		
-///=============================================================================
-
-	if(evt.type == EventType::KEYDOWN && evt.key == KeyCode::q){
-		if(commandComp){
-			Command command;
+		if(pressed[toInt(KeyCode::q)]){
+			// std::cout << "q" << std::endl;
 			command.abilityNumber = 1;
 			command.commandType = CommandType::Cast;
 			command.direction = {0,0};
 			commandComp->push(command);
 		}
-	}
-	if(evt.type == EventType::KEYDOWN && evt.key == KeyCode::w){
-		if(commandComp){
-			Command command;
+		if(pressed[toInt(KeyCode::w)]){	
+			// std::cout << "w" << std::endl;		
 			command.abilityNumber = 2;
 			command.commandType = CommandType::Shoot;
 			command.direction = {0,0};
 			commandComp->push(command);
-		}
+		}		
 	}
+		
+///=============================================================================
+
+	// if(pressed[toInt(KeyCode::q)]){
+	// 	if(commandComp){
+	// 		Command command;
+	// 		command.abilityNumber = 1;
+	// 		command.commandType = CommandType::Cast;
+	// 		command.direction = {0,0};
+	// 		commandComp->push(command);
+	// 	}
+	// }
+	// if(pressed[toInt(KeyCode::w)]){
+	// 	if(commandComp){
+	// 		Command command;
+	// 		command.abilityNumber = 2;
+	// 		command.commandType = CommandType::Shoot;
+	// 		command.direction = {0,0};
+	// 		commandComp->push(command);
+	// 	}
+	// }
 }
 
 // helper function

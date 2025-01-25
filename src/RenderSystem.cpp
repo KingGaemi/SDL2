@@ -97,9 +97,10 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             if(entity->hasComponent<FloatingEffectComponent>()) {
                 offsetY = entity->getComponent<FloatingEffectComponent>()->renderOffsetY;
             }
+            int wantIntY = static_cast<int>(offsetY);
 
             float worldX = posComp->x - (dstRect.w/2);
-            float worldY = posComp->y + offsetY - (dstRect.h/2);
+            float worldY = posComp->y + wantIntY - (dstRect.h/2);
 
             float screenX, screenY;
             screenX = worldX;

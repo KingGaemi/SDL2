@@ -126,7 +126,7 @@
         "name": "ProjectileComponent",
         "speed": 400.0,
         "scale": 1.0,
-        "duration": 5.0
+        "duration": 10.0
       },
       {
         "name": "VelocityComponent"
@@ -146,6 +146,9 @@
         "height": 12,
         "scale": 1.0,
         "bodyType": "Kinematic"
+      },
+      {
+        "name": "AIComponent"
       }
     ]
   },"arrow2": {

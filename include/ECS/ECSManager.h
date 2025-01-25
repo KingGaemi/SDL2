@@ -6,6 +6,7 @@
 #include <string>
 #include <algorithm>
 #include "EntityFactory.h"
+#include "Events/EventManager.h"
 #include "Systems/PhysicsSystem.h"
 #include "Groups.h"
 #include "Entity.h"
@@ -40,6 +41,8 @@ struct CollisionEvent {
 
 class ECSManager {
 public:
+    ECSManager();
+
     std::shared_ptr<Entity> createEntity();
     void destroyEntity(std::shared_ptr<Entity> entity);
 
@@ -106,6 +109,7 @@ public:
     void processSpawnRequests();
     void processCollisionEvents();
     void processMiddleEvents();
+    void processTerminatedEntities();
     void cleanUpEntities();
     void cleanUpAllEntities();
     void cleanUpEntitiesByScene(SceneCode sceneCode);
@@ -117,19 +121,20 @@ public:
     std::vector<SpawnRequest> pendingSpawns;
     std::vector<ProjectileRequest> pendingProjectiles;
     std::vector<CollisionEvent> collisionEvents;
+
+    std::shared_ptr<EntityFactory> entityFactory;
+    std::shared_ptr<EventManager> eventManager;
 private:
     std::size_t nextID = 0;
     std::vector<std::shared_ptr<Entity>> entities;
     std::shared_ptr<Entity> mapEntity;
     std::shared_ptr<Entity> cameraEntity;
     // 이름 관리 (원한다면 유지)
+    
     std::unordered_map<std::string, std::shared_ptr<Entity>> entityByName;
     std::unordered_map<std::shared_ptr<Entity>, std::string> entityNames;
 
-    std::shared_ptr<EntityFactory> entityFactory;
     std::shared_ptr<PhysicsSystem> physicsSystem;
-    // SystemArray systemArray{};
-    // SystemBitset systemBitset;
     std::vector<SystemRegistration> registeredSystems;
 
     bool activeMap = false;

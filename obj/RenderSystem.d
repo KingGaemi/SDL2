@@ -68,7 +68,8 @@ obj/RenderSystem.o: src/RenderSystem.cpp include/Systems/RenderSystem.h \
  include/Components/ItemComponent.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
- include/Components/AbilityComponent.h include/Systems/PhysicsSystem.h \
+ include/Components/AbilityComponent.h include/Components/AIComponent.h \
+ include/Events/EventManager.h include/Systems/PhysicsSystem.h \
  include/TextureManager.h include/Renderer.h include/IRenderer.h \
  include/SDL2/SDL.h include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
@@ -185,6 +186,8 @@ include/Components/FloatingEffectComponent.h:
 include/Components/MapComponent.h:
 include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
+include/Components/AIComponent.h:
+include/Events/EventManager.h:
 include/Systems/PhysicsSystem.h:
 include/TextureManager.h:
 include/Renderer.h:

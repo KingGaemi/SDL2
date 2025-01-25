@@ -18,3 +18,4 @@
 #include "CollisionEventHandlerSystem.h"
 #include "MapSystem.h"
 #include "CameraSystem.h"
+#include "AISystem.h"
