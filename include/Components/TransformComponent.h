@@ -2,6 +2,7 @@
 
 #include "ECS/Component.h"
 #include "Vector2D.h"
+#include <math.h>
 
 class TransformComponent : public Component {
 public:
@@ -18,6 +19,10 @@ public:
     TransformComponent() {}
     TransformComponent(int w, int h, float sc)
         : width(w), height(h), scale(sc) {}
+
+    float getRadian(){
+    	return rotation*(3.14159f / 180.0f);
+    }
 
     // 필요하다면 생성자/메서드 더 추가
 

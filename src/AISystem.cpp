@@ -4,12 +4,13 @@
 #include "Components/TransformComponent.h"
 #include "Components/VelocityComponent.h"
 #include <math.h>
+#include "Groups.h"
 
 void AISystem::update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime){
 	static float timeAccumulator = 0.0f; // 누적 시간
 
     // 일정 시간(예: 0.5초)마다 업데이트하도록 설정
-    const float updateInterval = 0.2f; // 초 단위
+    const float updateInterval = 0.1f; // 초 단위
 
     // 누적 시간 업데이트
     timeAccumulator += deltaTime;
@@ -32,8 +33,13 @@ void AISystem::update(std::vector<std::shared_ptr<Entity>>&entities, float delta
 		}
 	}
 
-	for(auto& entity:aiEntities){
-		trackTargetsForMissiles(entity);
+
+	
+
+	for(auto& missile:aiEntities){
+		if(findTarget(entities, missile)){
+			trackTargetsForMissiles(missile);
+		}
 	}
 
 
@@ -44,11 +50,12 @@ void AISystem::update(std::vector<std::shared_ptr<Entity>>&entities, float delta
 
 void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity){
 
-	Vector2D targetPos = {700, 400};
-
 	auto posComp = entity->getComponent<PositionComponent>();
 	auto transComp = entity->getComponent<TransformComponent>();
 	auto veloComp = entity->getComponent<VelocityComponent>();
+	auto aiComp = entity->getComponent<AIComponent>();
+
+	Vector2D targetPos = aiComp->targetPos;
 
 	if(!posComp||!transComp||!veloComp) return;
 
@@ -58,7 +65,7 @@ void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity){
 	float desiredAngle = atan2(dir.y, dir.x) * (180.0f / 3.14159f);
 
 	float angleDelta = desiredAngle - transComp->rotation;
-	float maxTurnDelta = 50.0f;
+	float maxTurnDelta = 30.0f;
 	while (angleDelta > 180.0f)  angleDelta -= 360.0f;
 	while (angleDelta < -180.0f) angleDelta += 360.0f;
 
@@ -84,4 +91,41 @@ void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity){
 	velo.y = speed * sinTheta; // 새로운 y 속도
 
     veloComp->set(velo);
+}
+
+
+bool AISystem::findTarget(std::vector<std::shared_ptr<Entity>>&entities, std::shared_ptr<Entity>& missile){
+
+	std::vector<std::shared_ptr<Entity>> enemies;
+
+	for(auto& entity : entities){
+		if(entity->hasComponent<TeamTag>()){
+			auto teamComp = entity->getComponent<TeamTag>();
+			if(teamComp->teamCode == TeamCode::Enemy) enemies.push_back(entity);
+		}
+	}
+
+	float shortest =  1000.0f;
+
+	auto aiComp = missile->getComponent<AIComponent>();
+	auto missilePos = missile->getComponent<PositionComponent>();
+	for(auto& target: enemies){
+		auto targetPos = target->getComponent<PositionComponent>();
+
+		Vector2D v1, v2;
+		v1 = targetPos->getVector();
+		v2 = missilePos->getVector();
+
+		Vector2D distance =  v1 - v2;
+		float length = std::sqrt(distance.x * distance.x + distance.y * distance.y);
+		if(length < shortest){
+			shortest = length;			
+			aiComp->target = target;
+			aiComp->targetPos = targetPos->getVector();
+		}
+	}
+
+	if(aiComp->target) return true;
+	
+	return false;
 }

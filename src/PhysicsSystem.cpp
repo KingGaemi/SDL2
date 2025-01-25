@@ -93,14 +93,18 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
                 b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
                 bodyShapeDef.friction = 0.2f;
                 bodyShapeDef.enableContactEvents = true;
-                
+                if(entity->hasComponent<ProjectileComponent>()) bodyShapeDef.isSensor = true;
                 b2CreatePolygonShape(physComp->body, &bodyShapeDef, &bodyBox);
-                b2Body_SetFixedRotation(physComp->body, true);
+                if(entity->hasComponent<ProjectileComponent>()){
+                    b2Body_SetFixedRotation(physComp->body, false);
+                    bodyShapeDef.isSensor = true;
+                }else{
+                    b2Body_SetFixedRotation(physComp->body, true);
+
+                }
             }
 
-            if(entity->hasComponent<ProjectileComponent>()){
-                b2Body_SetFixedRotation(physComp->body, false);
-            }
+
             // else
             // if(posComp && transComp){
             //     bodyDef.position = (b2Vec2){(posComp->x) / PIXELS_PER_METER,
@@ -148,7 +152,7 @@ void PhysicsSystem::setBeforeStep(std::vector<std::shared_ptr<Entity>>&entities)
                 // 픽셀 → 미터 변환
                 // 각도(degree) → 라디안 변환
                 // float rotation = transComp->rotation * (3.14 / 180.0f);
-                b2Rot rot = b2MakeRot(transComp->rotation * (3.14 / 180.0f)); 
+                b2Rot rot = b2MakeRot(transComp->getRadian()); 
                 // Box2D Transform 적용
                 b2Body_SetTransform(physComp->body, b2Body_GetPosition(physComp->body), rot);
             }
@@ -236,6 +240,20 @@ void PhysicsSystem::getContactEvents(){
         // shapeIdA, shapeIdB -> userData
         // push "CollisionBegin" event to ECS
     }
+
+    b2SensorEvents se = b2World_GetSensorEvents(worldId);
+    for (int i = 0; i < se.beginCount; i++) {
+        auto evt = se.beginEvents + i;
+
+        CollisionEvent collision;
+        collision.type = CollisionType::Hit;
+        collision.entityA = shapeUserDataToEntity(evt->sensorShapeId);
+        collision.entityB = shapeUserDataToEntity(evt->visitorShapeId);
+        ecsManager->collisionEvents.push_back(collision);       
+        // shapeIdA, shapeIdB -> userData
+        // push "CollisionBegin" event to ECS
+    }
+
 }
 
 
