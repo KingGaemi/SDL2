@@ -105,16 +105,15 @@ bool AISystem::findTarget(std::vector<std::shared_ptr<Entity>>&entities, std::sh
 		}
 	}
 
-	float shortest =  1000.0f;
+	float shortest = 1000.0f; // same as detecting distance
 
 	auto aiComp = missile->getComponent<AIComponent>();
 	auto missilePos = missile->getComponent<PositionComponent>();
 	for(auto& target: enemies){
 		auto targetPos = target->getComponent<PositionComponent>();
 
-		Vector2D v1, v2;
-		v1 = targetPos->getVector();
-		v2 = missilePos->getVector();
+		Vector2D v1 = targetPos->getVector();
+		Vector2D v2 = missilePos->getVector();
 
 		Vector2D distance =  v1 - v2;
 		float length = std::sqrt(distance.x * distance.x + distance.y * distance.y);
