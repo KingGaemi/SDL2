@@ -27,4 +27,5 @@
 #include "CameraComponent.h"
 #include "AbilityComponent.h"
 #include "AIComponent.h"
+#include "SpawnerComponent.h"
 // #include "GroupComponent.h"

@@ -67,6 +67,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager, eventManager);
     ecsManager->addSystem<CooldownSystem>(SystemGroup::Logic, 250);
     ecsManager->addSystem<AISystem>(SystemGroup::Logic, 300);
+    ecsManager->addSystem<SpawnSystem>(SystemGroup::Logic, 500, ecsManager);
     // Event
     ecsManager->addSystem<CollisionEventHandlerSystem>(SystemGroup::Event, 180, ecsManager);
     ecsManager->addSystem<MiddleEventSystem>(SystemGroup::Event, 200, eventManager);
@@ -92,15 +93,16 @@ void Game::textureLoading(){
     textureManager->loadTexture("streetlamp", "res/gfx/streetlamp3.png");
     textureManager->loadTexture("farmer", "res/gfx/1/player_sprite_sheet.png");
     textureManager->loadTexture("water_tile", "res/gfx/water_tile.png");
-    textureManager->loadTexture("orc3", "res/gfx/sprite_sheets/Orc/orc3_sprite_sheet.png");
+    textureManager->loadTexture("orc3", "res/gfx/sprite_sheets/unit/orc/orc3-sheet.png");
     textureManager->loadTexture("dirt_tile", "res/gfx/dirt_tile.png");
     textureManager->loadTexture("box1", "res/gfx/box1.png");
     textureManager->loadTexture("unknown", "res/gfx/player2.png");
     textureManager->loadTexture("potion_cap", "res/gfx/potion_cap2.png");
     textureManager->loadTexture("grass_tileset", "res/gfx/sprite_sheets/map/TX_Tileset_Grass.png");
     textureManager->loadTexture("props_tileset", "res/gfx/sprite_sheets/map/TX_Props.png");
-    textureManager->loadTexture("spinning_arrow", "res/gfx/sprite_sheets/projectile/spinning_arrow.png");
-
+    textureManager->loadTexture("spinning_arrow", "res/gfx/sprite_sheets/projectile/arrow/spinning_arrow-sheet.png");
+    textureManager->loadTexture("slime1", "res/gfx/sprite_sheets/unit/slime/slime1.png");
+    textureManager->loadTexture("orc1", "res/gfx/sprite_sheets/unit/orc/orc1-sheet.png");
     textureManager->loadText("Hello World!");
     // textureManager->loadTexture("farm_map",);
 

@@ -3,6 +3,7 @@
     "components": [
       {
         "name": "AnimationComponent",
+	"category": "orc",
         "spriteName": "orc3"
       },
       {
@@ -25,9 +26,9 @@
       },
       {
         "name": "PhysicsComponent",
-        "width": 24,
-        "height": 26,
-        "scale": 2.0,
+        "width": 28,
+        "height": 36,
+        "scale": 1.0,
 	"offsetY": -6.0,
         "bodyType": "Dynamic"
       },
@@ -115,7 +116,8 @@
     "components": [
       {
         "name": "AnimationComponent",
-        "spriteName": "orc3"
+	"category": "orc",
+        "spriteName": "orc1"
       },
       {
         "name": "CommandComponent"
@@ -135,11 +137,10 @@
       },
       {
         "name": "PhysicsComponent",
-	"width": 32,
-        "height": 39,
-        "scale": 2.0,
-        "offsetX": -1.0,
-        "offsetY": -6.0,
+        "width": 32,
+        "height": 32,
+        "scale": 1.0,
+        "offsetY": -9.0,
         "bodyType": "Dynamic"
       },
       {
@@ -153,7 +154,7 @@
       },
       {
         "name": "SpriteComponent",
-        "textureID": "orc3",
+        "textureID": "orc1",
         "width": 32,
         "height": 39,
         "scale": 1.0,
@@ -178,6 +179,69 @@
         "width": 32,
         "height": 39,
         "scale": 3.5
+      },
+      {
+        "name": "VelocityComponent"
+      }
+    ]
+  },
+  "slime1": {
+    "components": [
+      {
+        "name": "AnimationComponent",
+	"category": "slime",
+        "spriteName": "slime1"
+      },
+      {
+        "name": "CommandComponent"
+      },
+      {
+        "name": "DirectionComponent",
+	"vDir" : 1
+      },
+      {
+        "name": "PhysicsComponent",
+	"width": 16,
+        "height": 16,
+        "scale": 1.0,
+        "bodyType": "Dynamic"
+      },
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "slime1",
+        "width": 48,
+        "height": 48,
+        "scale": 2.0,
+	"hasDirectional": true
+      },
+      {
+        "name": "StateComponent",
+        "state": "walk"
+      },
+      {
+        "name": "StatusComponent",
+        "maxHp": 10,
+        "maxMp": 10,
+        "currentHp": 10
+      },
+      {
+        "name": "TeamTag",
+        "teamCode": "Enemy"
+      },
+      {
+        "name": "TransformComponent",
+        "width": 48,
+        "height": 48,
+        "scale": 2.0
       },
       {
         "name": "VelocityComponent"

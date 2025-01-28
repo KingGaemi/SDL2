@@ -68,7 +68,8 @@ obj/PhysicsSystem.o: src/PhysicsSystem.cpp \
  include/Components/StatusComponent.h include/Components/ItemComponent.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
- include/Components/AbilityComponent.h include/Components/AIComponent.h
+ include/Components/AbilityComponent.h include/Components/AIComponent.h \
+ include/Components/SpawnerComponent.h
 include/Systems/PhysicsSystem.h:
 include/box2d/box2d.h:
 include/box2d/base.h:
@@ -161,3 +162,4 @@ include/Components/MapComponent.h:
 include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
+include/Components/SpawnerComponent.h:

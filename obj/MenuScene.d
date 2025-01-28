@@ -69,7 +69,8 @@ obj/MenuScene.o: src/MenuScene.cpp include/MenuScene.h include/Scene.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
- include/Systems/PhysicsSystem.h include/ECS/System.h
+ include/Components/SpawnerComponent.h include/Systems/PhysicsSystem.h \
+ include/ECS/System.h
 include/MenuScene.h:
 include/Scene.h:
 include/Events/EventManager.h:
@@ -162,5 +163,6 @@ include/Components/MapComponent.h:
 include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
+include/Components/SpawnerComponent.h:
 include/Systems/PhysicsSystem.h:
 include/ECS/System.h:

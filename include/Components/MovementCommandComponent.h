@@ -16,11 +16,6 @@
     
 // };
 
-enum class MovementCommandType{
-    Hold,
-    Stop,
-    Move
-};
 
 
 

@@ -31,5 +31,29 @@
         "sceneCode": "Game"
       }
     ]
+  },
+"slimeSpawner": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "TransformComponent",
+        "width": 200,
+        "height": 200,
+        "scale": 1.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpawnerComponent",
+        "spawnName": "slime",
+	"spawnTime": 1.0
+      }
+    ]
   }
 }

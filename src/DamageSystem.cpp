@@ -59,7 +59,7 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 
 	        if(attacker->hasComponent<ProjectileComponent>()) attacker->terminate = true;
 
-	        std::cout << statusComp->currentHp << "/" << statusComp->maxHp << std::endl;
+	        // std::cout << statusComp->currentHp << "/" << statusComp->maxHp << std::endl;
 	        if(statusComp->currentHp <= 0){
 	        	statusComp->currentHp = 0;
 		        if(target->hasComponent<StateComponent>()){

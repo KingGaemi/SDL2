@@ -1,11 +1,21 @@
 #pragma once
 #include "ECS/System.h"
 #include "ECS/Entity.h"
+#include <random>
 
 class AISystem : public System{
 
 public:
 	void update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime) override;
-	void trackTargetsForMissiles(std::shared_ptr<Entity>& entity);
+	void trackTargetsForMissiles(std::shared_ptr<Entity>& entity, float deltaTime);
+	void roam(std::shared_ptr<Entity>& entity, float deltaTime);
 	bool findTarget(std::vector<std::shared_ptr<Entity>>&entities, std::shared_ptr<Entity>& missile);
+
+	int getRandomNumber(int min, int max) {
+	    static std::random_device rd;  // 하드웨어 기반 랜덤 시드
+	    static std::mt19937 gen(rd()); // Mersenne Twister 엔진 (매번 다른 난수 생성)
+	    std::uniform_int_distribution<> dist(min, max); // 균등 분포
+
+	    return dist(gen);
+	}
 };	

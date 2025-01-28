@@ -83,6 +83,14 @@ void GameplayScene::onEnter(){
 
 
 
+	req.entityType = EntityType::Object;
+	req.name = "slimeSpawner";
+	req.x = 900.0f;
+	req.y = 400.0f;
+	req.teamCode = TeamCode::Neutral;
+	ecsManager->pendingSpawns.push_back(req);
+
+
 	req.entityType = EntityType::Camera;
 	req.name = "camera";
 	ecsManager->pendingSpawns.push_back(req);

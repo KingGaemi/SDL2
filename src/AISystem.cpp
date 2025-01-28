@@ -3,43 +3,38 @@
 #include "Components/PositionComponent.h"
 #include "Components/TransformComponent.h"
 #include "Components/VelocityComponent.h"
+#include "Components/CommandComponent.h"
 #include <math.h>
 #include "Groups.h"
 
 void AISystem::update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime){
-	static float timeAccumulator = 0.0f; // 누적 시간
 
-    // 일정 시간(예: 0.5초)마다 업데이트하도록 설정
-    const float updateInterval = 0.1f; // 초 단위
-
-    // 누적 시간 업데이트
-    timeAccumulator += deltaTime;
-
-    // 업데이트 주기가 되지 않으면 바로 반환
-    if (timeAccumulator < updateInterval) {
-        return;
-    }
-
-    // 업데이트 실행 후 타이머 초기화
-    timeAccumulator -= updateInterval;
-
-
-	std::vector<std::shared_ptr<Entity>> aiEntities;
+	std::vector<std::shared_ptr<Entity>> homingAI;
+	std::vector<std::shared_ptr<Entity>> roamingAI;
+	std::vector<std::shared_ptr<Entity>> targetingAI;
 
 	for(auto& entity: entities){
 		if(entity->hasComponent<AIComponent>()){
 			if (!entity->isActive) continue;
-			aiEntities.push_back(entity);
+			auto aiComp = entity->getComponent<AIComponent>();
+			if(aiComp->aiType == AIType::HomingMissile){
+				homingAI.push_back(entity);
+				aiComp->updateInterval = 0.1f;
+			}else if(aiComp->aiType == AIType::Roaming){
+				roamingAI.push_back(entity);
+				aiComp->updateInterval = 1.0f;
+			}
 		}
 	}
 
-
-	
-
-	for(auto& missile:aiEntities){
+	for(auto& missile: homingAI){
 		if(findTarget(entities, missile)){
-			trackTargetsForMissiles(missile);
+			trackTargetsForMissiles(missile, deltaTime);
 		}
+	}
+
+	for(auto& roamer: roamingAI){
+		roam(roamer, deltaTime);
 	}
 
 
@@ -48,12 +43,15 @@ void AISystem::update(std::vector<std::shared_ptr<Entity>>&entities, float delta
 // guideByType
 
 
-void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity){
+void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, float deltaTime){
 
 	auto posComp = entity->getComponent<PositionComponent>();
 	auto transComp = entity->getComponent<TransformComponent>();
 	auto veloComp = entity->getComponent<VelocityComponent>();
 	auto aiComp = entity->getComponent<AIComponent>();
+
+	aiComp->timeAccumulator += deltaTime;
+	if(aiComp->timeAccumulator < aiComp->updateInterval) return;
 
 	Vector2D targetPos = aiComp->targetPos;
 
@@ -91,6 +89,8 @@ void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity){
 	velo.y = speed * sinTheta; // 새로운 y 속도
 
     veloComp->set(velo);
+
+    aiComp->timeAccumulator -= aiComp->updateInterval;
 }
 
 
@@ -127,4 +127,28 @@ bool AISystem::findTarget(std::vector<std::shared_ptr<Entity>>&entities, std::sh
 	if(aiComp->target) return true;
 	
 	return false;
+}
+
+
+void AISystem::roam(std::shared_ptr<Entity>& entity, float deltaTime){
+
+	auto directComp = entity->getComponent<PositionComponent>();
+	auto commandComp = entity->getComponent<CommandComponent>();
+	auto aiComp = entity->getComponent<AIComponent>();
+
+	aiComp->timeAccumulator += deltaTime;
+	if(aiComp->timeAccumulator < aiComp->updateInterval) return;
+
+
+	Command command;
+	command.moveCommandType = MovementCommandType::Move;
+
+
+	command.moveDir = { getRandomNumber(-1, 1) , getRandomNumber(-1, 1)};
+	commandComp->push(command);
+
+
+
+	aiComp->timeAccumulator -= aiComp->updateInterval;
+
 }

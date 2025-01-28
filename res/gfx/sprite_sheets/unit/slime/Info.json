@@ -1,0 +1,41 @@
+{
+  "slime1": {
+    "u_walk": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "potion_cap",
+        "width": 38,
+        "height": 50,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 38,
+        "height": 50,
+        "scale": 2.0
+      },
+      {
+        "name": "ColliderComponent",
+        "colliderType": "Object",
+        "width": 38,
+        "height": 50,
+        "scale": 2.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "ItemComponent",
+        "itemId": "1",
+	"stackable": "true",
+	"maxStackCounts": "10"
+      }
+    ]
+  }
+}

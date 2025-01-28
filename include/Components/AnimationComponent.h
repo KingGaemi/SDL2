@@ -9,7 +9,7 @@
 
 
 
-struct AnimationFrame {
+struct FrameData {
     int x, y, w, h;       
     float duration;    // s 
 };
@@ -18,20 +18,19 @@ struct AnimationFrame {
 struct AnimationData {
 	std::string type;
     std::string name;     
-    std::vector<AnimationFrame> frames;
+    std::vector<FrameData> frames;
     bool loop = true;     
 };
 
 
 
 using json = nlohmann::json;
-
+using ordered_json = nlohmann::ordered_json;
 class AnimationComponent : public Component {
 public:
 
-	AnimationComponent(const std::string& filename, const std::string& spriteName) : filename(filename) {
-		if(loadAnimationsFromFile(spriteName)){
-			//
+	AnimationComponent(const std::string& filename) : filename(filename) {
+		if(loadAnimationsFromFile()){
 			// std::cout << "Load animation sucesse. :" << filename << std::endl;
 		}else{
 			// std::cout << "Load animation failed. :" << filename << std::endl;
@@ -50,11 +49,12 @@ public:
 	bool busy = false;
 	
 	void playAnimation(const std::string& animName);
-	bool loadAnimationsFromFile(const std::string& spriteName);
+	bool loadAnimationsFromFile();
 	bool isAnimationComplete() const;
+	int extractFrameIndex(const std::string& key);
 
 	AnimationData* getCurrentAnimationData();
-	AnimationFrame* getCurrentFrame();
+	FrameData* getCurrentFrame();
 private:
 	std::string filename;
 

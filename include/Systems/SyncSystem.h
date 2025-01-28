@@ -9,6 +9,7 @@
 #include "Components/AnimationComponent.h"
 #include "Components/StatusComponent.h"
 #include "Components/ItemComponent.h"
+#include "Components/ProjectileComponent.h"
 #include <iostream>
 
 
@@ -43,17 +44,23 @@ public:
 
 			} 
 
-			if(entity->hasComponent<AnimationComponent>() && entity->hasComponent<StatusComponent>()){
+			if(entity->hasComponent<AnimationComponent>() &&
+				(entity->hasComponent<StatusComponent>() || entity->hasComponent<ProjectileComponent>())){
 
 				auto animComp = entity->getComponent<AnimationComponent>();
 				auto statusComp = entity->getComponent<StatusComponent>();
-
+				auto projectileComp = entity->getComponent<ProjectileComponent>();
 				if(animComp&&statusComp){
 					
 					animComp->attackFast = statusComp->attackSpeed;
 					animComp->moveFast = statusComp->movementSpeed / 100.0f;
 
 				}
+				if(animComp&&projectileComp){
+
+					animComp->moveFast = projectileComp->projectileSpeed/ 100.0f;
+				}
+
 
 			}
 

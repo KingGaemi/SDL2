@@ -162,16 +162,20 @@ void EntityFactory::loadSpriteComponent(const json& componentData, std::shared_p
 void EntityFactory::loadAnimationComponent(const json& componentData, std::shared_ptr<Entity> entity) {
 
 	std::string typeStr = componentData.value("entityType", "Unit");
+	std::string category  = componentData.value("category", "none");
 	std::string spriteName = componentData.value("spriteName", "unknown");
-	std::string filename = "Json/animation/";
-	if(typeStr == "Object") filename += "objectAnimations.json";
-	else if(typeStr == "UI") filename += "uiAnimations.json";
-	else if(typeStr == "Attack") filename += "attackAnimations.json";
-	else if(typeStr == "Unit") filename += "unitAnimations.json";
-	else if(typeStr == "Item") filename += "itemAnimations.json";
-	else if(typeStr == "Projectile") filename += "projectileAnimations.json";
+	std::string filename = "res/gfx/sprite_sheets/";
+	if(typeStr == "Object") filename += "object/";
+	else if(typeStr == "UI") filename += "ui/";
+	else if(typeStr == "Attack") filename += "attack/";
+	else if(typeStr == "Unit") filename += "unit/";
+	else if(typeStr == "Item") filename += "item/";
+	else if(typeStr == "Projectile") filename += "projectile/";
 
-	entity->addComponent<AnimationComponent>(filename, spriteName);
+	filename += category + "/" + spriteName + ".json";
+
+
+	entity->addComponent<AnimationComponent>(filename);
 }
 
 void EntityFactory::loadSceneTag(const json& componentData, std::shared_ptr<Entity> entity) {
@@ -331,6 +335,18 @@ void EntityFactory::loadAIComponent(const json& componentData, std::shared_ptr<E
     entity->addComponent<AIComponent>();
 }
 
+void EntityFactory::loadSpawnerComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+    
+    std::string spawnName = componentData.value("spawnName", "none");
+    float spawnTime = componentData.value("spawnTime", 1.0f);
+    SpawnRequest req;
+    req.entityType = EntityType::Unit;
+    req.name = "slime";
+    req.teamCode = TeamCode::Enemy;
+
+    entity->addComponent<SpawnerComponent>(req, spawnTime);
+}
+
 
 
 
@@ -446,5 +462,8 @@ void EntityFactory::registerComponentLoaders() {
     };
     componentLoaders["AIComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadAIComponent(data, entity);
+    };
+    componentLoaders["SpawnerComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadSpawnerComponent(data, entity);
     };    
 }

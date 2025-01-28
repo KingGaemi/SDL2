@@ -71,7 +71,8 @@ obj/MovementSystem.o: src/MovementSystem.cpp \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
- include/Events/EventManager.h include/Systems/PhysicsSystem.h
+ include/Components/SpawnerComponent.h include/Events/EventManager.h \
+ include/Systems/PhysicsSystem.h
 include/Systems/MovementSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -164,5 +165,6 @@ include/Components/MapComponent.h:
 include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
+include/Components/SpawnerComponent.h:
 include/Events/EventManager.h:
 include/Systems/PhysicsSystem.h:

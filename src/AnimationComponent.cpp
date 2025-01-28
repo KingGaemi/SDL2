@@ -1,6 +1,8 @@
 #include "Components/AnimationComponent.h"
 #include <fstream>
 #include <iostream>
+#include <algorithm> 
+#include <regex>
 
 void AnimationComponent::playAnimation(const std::string& animName){
 		if (animations.find(animName) != animations.end()) {
@@ -21,7 +23,7 @@ AnimationData* AnimationComponent::getCurrentAnimationData() {
 		return nullptr;
 }
 
-AnimationFrame* AnimationComponent::getCurrentFrame(){
+FrameData* AnimationComponent::getCurrentFrame(){
 		AnimationData* data = getCurrentAnimationData();
         if (data && currentFrameIndex >= 0 && currentFrameIndex < (int)data->frames.size()) {
             return &data->frames[currentFrameIndex];
@@ -29,57 +31,122 @@ AnimationFrame* AnimationComponent::getCurrentFrame(){
         return nullptr;
 }
 
-bool AnimationComponent::loadAnimationsFromFile(const std::string& spriteName) {
-    //filename = "assets/~~~Animations.json";
+bool AnimationComponent::loadAnimationsFromFile()
+{
+
     std::ifstream file(filename);
-    
-    if (!file.is_open()) {
-        // std::cerr << "Failed to open " << filename << std::endl;
-        return false;
-    }else{
-        // std::cout << "open " << filename << std::endl;
-    }
-
-    json j;
-    file >> j;
-
-    if (!j.contains(spriteName)) {
-        std::cerr << "Sprite name " << spriteName << " not found in " << filename << std::endl;
+    if(!file.is_open()) {
+        std::cerr << "[AnimationComp] Failed to open JSON: " << filename << "\n";
         return false;
     }
 
-    auto animationsJson = j[spriteName];
+    nlohmann::ordered_json j = ordered_json::parse(file);
+     
+    file.close();
 
-    for (auto it = animationsJson.begin(); it != animationsJson.end(); ++it) {
-        std::string animName = it.key();
-        json animDataJson = it.value();
+    if(!j.contains("frames") || !j["frames"].is_object()) {
+        std::cerr << "[AnimationComp] JSON has no valid 'frames' object\n";
+        return false;
+    }
+    auto& framesJson = j["frames"];
+    // std::cout << j["frames"].begin().value()["duration"] << std::endl;   
+    // std::cout << j["frames"].begin().value()["frame"].value("y", 10) << std::endl;
+    // 2) "frames"를 삽입 순서대로 framesVec에 저장
+    //    nlohmann::json 3.9.0+에서, 객체 순회는 삽입 순서를 보장
+    std::vector<FrameData> framesVec;
+    framesVec.reserve(framesJson.size());
 
+    // for (const auto& [key, value] : framesJson.items()) {
+    //     std::cout << "Index " << index 
+    //               << " => key=\"" << key << "\", value=" << value << "\n";
+    //     index++;
+    // }
+
+    // 디버그 출력
+    // std::cout << "==== loadFrames insertion order ====\n";
+
+    int index = 0;
+    for (auto it = framesJson.begin(); it != framesJson.end(); ++it) {
+        // it.key() 예) "orc1 #u_attack 0.aseprite"
+        auto frameObj = it.value();
+        if (!frameObj.contains("frame")) {
+            std::cerr << "[Warn] No 'frame' in " << it.key() << "\n";
+            continue;
+        }
+        auto rect = frameObj["frame"];
+        int x = rect.value("x", 0);
+        int y = rect.value("y", 0);
+        int w = rect.value("w", 0);
+        int h = rect.value("h", 0);
+
+        float durationSec = 0.1f;
+        if(frameObj.contains("duration")) {
+            float ms = frameObj["duration"].get<float>(); // ms 단위
+            durationSec = ms / 1000.f;                    // 초 단위
+        }
+
+        framesVec.push_back({x, y, w, h, durationSec});
+
+        // 디버그
+        // std::cout << " Index " << index 
+        //           << " => key=\"" << it.key() << "\", x=" << x
+        //           << ",y="<< y << ",w="<< w << ",h="<<h
+        //           << ",dur=" << durationSec << "s\n";
+        index++;
+    }
+    // std::cout << "Total frames read: " << framesVec.size() << "\n\n";
+
+    // 3) frameTags 파싱
+    if(!j.contains("meta") || !j["meta"].contains("frameTags")) {
+        std::cerr << "[AnimationComp] No 'meta.frameTags'\n";
+        return false;
+    }
+    auto& frameTags = j["meta"]["frameTags"];
+    if(!frameTags.is_array()) {
+        std::cerr << "[AnimationComp] 'frameTags' is not array\n";
+        return false;
+    }
+
+    // std::cout << "==== load frameTags ====\n";
+    for (auto& tag : frameTags) {
+        // ex) { "name":"u_attack", "from":0, "to":8, "direction":"forward", "repeat":"1", ... }
+        std::string animName = tag.value("name","none");
+        int fromIndex = tag.value("from",0);
+        int toIndex   = tag.value("to",0);
+        std::string repeatVal = tag.value("repeat","0"); // "0"=loop, "1"=once ?
+        std::string type = tag.value("type", "default");
+        // AnimationData 생성
         AnimationData animData;
         animData.name = animName;
-        animData.loop = animDataJson.value("loop", true);
-        animData.type = animDataJson.value("type", "none");
-
-        if (!animDataJson.contains("frames")) {
-            std::cerr << "No frames for animation " << animName << std::endl;
+        // 예) repeat="1"이면 한번만 재생, repeat="0"이면 무한재생
+        // => 프로젝트 규칙에 맞게 결정
+        animData.loop = (repeatVal == "1") ? false : true;
+        animData.type = type;
+        // fromIndex~toIndex 범위 체크
+        if(fromIndex<0) fromIndex=0;
+        if(toIndex >= (int)framesVec.size()){
+            toIndex = (int)framesVec.size()-1;
+        }
+        if(fromIndex>toIndex) {
+            std::cerr<<"[Warn] Tag '"<<animName<<"' invalid range: "<<fromIndex<<"->"<<toIndex<<"\n";
             continue;
         }
 
-        for (auto& frameJson : animDataJson["frames"]) {
-            int x = frameJson.value("x", 0);
-            int y = frameJson.value("y", 0);
-            int w = frameJson.value("w", 0);
-            int h = frameJson.value("h", 0);
-            float duration = frameJson.value("duration", 0.1f);
-            animData.frames.push_back({x, y, w, h, duration});
+        // framesVec에서 해당 구간 프레임 복사
+        for (int i=fromIndex; i<=toIndex; i++){
+            animData.frames.push_back(framesVec[i]);
         }
 
         animations[animName] = animData;
-    }
 
+        // 디버그
+        // std::cout << " Anim \"" << animName << "\": from=" << fromIndex 
+        //           << ",to=" << toIndex << ", totalFrames=" << animData.frames.size()
+        //           << (animData.loop ? ", loop\n" : ", once\n");
+    }
 
     return true;
 }
-
 
 bool AnimationComponent::isAnimationComplete() const {
     if (animations.find(currentAnimation) != animations.end()) {
@@ -89,7 +156,15 @@ bool AnimationComponent::isAnimationComplete() const {
     return true;
 }
 
-
+int AnimationComponent::extractFrameIndex(const std::string& key) {
+    // 정규식: 끝에 " (숫자).aseprite" 형태 추출
+    static std::regex re(R"(.*\s(\d+)\.aseprite$)");
+    std::smatch match;
+    if (std::regex_match(key, match, re)) {
+        return std::stoi(match[1].str());
+    }
+    return 0; // 못 찾으면 0
+}
 
 
 

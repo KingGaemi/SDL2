@@ -137,6 +137,7 @@
       {
         "name": "AnimationComponent",
         "spriteName": "spinning_arrow",
+	"category": "arrow",
 	"allDirection": false,
 	"entityType": "Projectile"
       },
