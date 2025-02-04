@@ -53,9 +53,9 @@ inline float toAngleForGame(float radian){
 
 
 inline float box2dToPixelX(float x) { return x * PIXELS_PER_METER; }
-inline float box2dToPixelY(float y) { return SCREEN_HEIGHT - (y * PIXELS_PER_METER);}
+inline float box2dToPixelY(float y) { return y * PIXELS_PER_METER;}
 inline float pixelToBox2dX(float x) { return x / PIXELS_PER_METER; }
-inline float pixelToBox2dY(float y) { return (SCREEN_HEIGHT - y) / PIXELS_PER_METER;}
+inline float pixelToBox2dY(float y) { return y / PIXELS_PER_METER;}
 
 inline float box2dToPixelAngle(float box2dAngle) {
     return (M_PI / 2.0f - box2dAngle) * (180.0f / M_PI);

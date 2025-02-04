@@ -23,7 +23,7 @@ void AISystem::update(std::vector<std::shared_ptr<Entity>>&entities, float delta
 			auto aiComp = entity->getComponent<AIComponent>();
 			if(aiComp->aiType == AIType::HomingMissile){
 				homingAI.push_back(entity);
-				aiComp->updateInterval = 0.1f;
+				aiComp->updateInterval = 0.05f;
 			}else if(aiComp->aiType == AIType::Roaming){
 				auto statusComp = entity->getComponent<StatusComponent>();
 				if(!statusComp || !statusComp->isAlive) continue;
@@ -55,7 +55,7 @@ void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, float de
     auto posComp = entity->getComponent<PositionComponent>();
     auto transComp = entity->getComponent<TransformComponent>();
     auto aiComp = entity->getComponent<AIComponent>();
-    // transComp->rotation = std::fmod(transComp->rotation + 360.0f, 360.0f);
+    transComp->radian = std::fmod(transComp->radian + M_PI, 2 * M_PI) - M_PI;
     // 컴포넌트가 유효한지 확인
     if (!posComp || !transComp || !aiComp) return;
 
@@ -81,7 +81,7 @@ void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, float de
     angleDelta = std::fmod(angleDelta + M_PI, 2 * M_PI) - M_PI;
 
     // 최대 회전 각도 제한 (예: 30도)
-    float maxTurnDelta = 30.0f * (M_PI / 180.0f);
+    float maxTurnDelta = 15.0f * (M_PI / 180.0f);
     angleDelta = std::clamp(angleDelta, -maxTurnDelta, maxTurnDelta);
 
     // 새 각도 계산
