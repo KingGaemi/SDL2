@@ -53,7 +53,7 @@ void MapSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float del
             int tilesPerRow = resolution.first / mapComp->tileWidth ;
             int index = 0;
             for (int row = 0; row < mapComp->height; row++) {
-                for (int col = 0; col <  mapComp->width; col++) {
+                for (int col = 0; col <  mapComp->  width; col++) {
 
                     int tileID = layerInfo.tileData[index++];
                     if (tileID == 0) {
@@ -70,9 +70,9 @@ void MapSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float del
                     float dstX = col * mapComp->tileWidth;
                     float dstY = row * mapComp->tileHeight;
                     if(cameraEntity){
-                        auto cameraComp = cameraEntity->getComponent<CameraComponent>();
-                        dstX -= cameraComp->x/2;
-                        dstY -= cameraComp->y/2;
+                        auto cameraPoscomp = cameraEntity->getComponent<PositionComponent>();
+                        dstX -= cameraPoscomp->x/2;
+                        dstY -= cameraPoscomp->y/2;
                     }
                     // 실제 SDL draw 호출 (pseudo)
 

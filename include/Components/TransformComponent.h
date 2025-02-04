@@ -20,10 +20,6 @@ public:
     TransformComponent(int w, int h, float sc)
         : width(w), height(h), scale(sc) {}
 
-    float getRadian(){
-    	return rotation*(3.14159f / 180.0f);
-    }
-
     // 필요하다면 생성자/메서드 더 추가
 
 	// Vector2D position;

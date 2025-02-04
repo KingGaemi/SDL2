@@ -31,6 +31,7 @@ public:
     void castSpell(const AttackEvent& event);
     void basicAttack(const AttackEvent& event);
     void shootArrow(const AttackEvent& event);
+    void whirlBlade(const AttackEvent& event);
     float getAngleFromDirection(int hDir, int vDir);
 	
 private:

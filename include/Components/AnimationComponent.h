@@ -47,6 +47,7 @@ public:
 	int currentFrameIndex = 0;
 
 	bool busy = false;
+	bool lock = false;
 	
 	void playAnimation(const std::string& animName);
 	bool loadAnimationsFromFile();

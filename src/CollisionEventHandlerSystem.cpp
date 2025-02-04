@@ -37,7 +37,7 @@ void CollisionEventHandlerSystem::applyRoot(std::shared_ptr<Entity> charactor, s
     	auto itemComp = item->getComponent<ItemComponent>();
         auto teamComp = charactor->getComponent<TeamTag>();
 
-        if(!statusComp->alive) return;
+        if(!statusComp->isAlive) return;
 
         if(teamComp->teamCode != TeamCode::Ally) return;
 

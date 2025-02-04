@@ -51,7 +51,7 @@ obj/MovementSystem.o: src/MovementSystem.cpp \
  include/Components/AnimationComponent.h \
  include/Components/ColliderComponent.h include/Rect.h include/Vector2D.h \
  include/Components/CommandComponent.h \
- include/Components/DirectionComponent.h \
+ include/Components/DirectionComponent.h include/myMath.h \
  include/Components/MovementCommandComponent.h \
  include/Components/CooldownComponent.h \
  include/Components/DamageComponent.h include/Components/DashComponent.h \
@@ -71,7 +71,8 @@ obj/MovementSystem.o: src/MovementSystem.cpp \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
- include/Components/SpawnerComponent.h include/Events/EventManager.h \
+ include/Components/SpawnerComponent.h \
+ include/Components/HitboxComponent.h include/Events/EventManager.h \
  include/Systems/PhysicsSystem.h
 include/Systems/MovementSystem.h:
 include/ECS/System.h:
@@ -135,6 +136,7 @@ include/Rect.h:
 include/Vector2D.h:
 include/Components/CommandComponent.h:
 include/Components/DirectionComponent.h:
+include/myMath.h:
 include/Components/MovementCommandComponent.h:
 include/Components/CooldownComponent.h:
 include/Components/DamageComponent.h:
@@ -166,5 +168,6 @@ include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
+include/Components/HitboxComponent.h:
 include/Events/EventManager.h:
 include/Systems/PhysicsSystem.h:

@@ -190,6 +190,9 @@ void ECSManager::activeMapEntity(){
 void ECSManager::makeCamera(){
     cameraEntity = createEntity();
     setEntityName(cameraEntity, "camera");
+    cameraEntity->addComponent<SceneTag>(SceneCode::Game);
+    cameraEntity->addComponent<TransformComponent>();
+    cameraEntity->addComponent<PositionComponent>(1.0f, 1.0f);
     cameraEntity->addComponent<CameraComponent>(1280, 800);
 }
 

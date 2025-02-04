@@ -8,6 +8,7 @@
 
 #include <vector>
 #include <memory>
+#include <cmath>
 
 
 class Rect;
@@ -27,6 +28,7 @@ public:
     void setTextureManager(TextureManager& p_textureManager); 
     SDL_FRect toSDLFRect(const FRect& r);
     SDL_Rect toSDLRect(const Rect& r);
+
 
 protected:
     Renderer* renderer; // SDL_Renderer 래핑 클래스

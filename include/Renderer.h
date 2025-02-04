@@ -23,7 +23,7 @@ public:
     SDL_Renderer* getSDLRenderer() const { return SDL_renderer; }
 
     void SetRenderDrawColor(int r, int g, int b, int a);
-    void RenderDrawRect(SDL_Rect &debugRect);
+    void RenderDrawRect(SDL_FRect &debugRect, float rot);
 
 private:
     SDL_Renderer* SDL_renderer = nullptr;

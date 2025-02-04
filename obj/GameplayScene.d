@@ -49,7 +49,7 @@ obj/GameplayScene.o: src/GameplayScene.cpp include/GameplayScene.h \
  include/Components/Components.h include/Components/AnimationComponent.h \
  include/Components/ColliderComponent.h include/Rect.h include/Vector2D.h \
  include/Components/CommandComponent.h \
- include/Components/DirectionComponent.h \
+ include/Components/DirectionComponent.h include/myMath.h \
  include/Components/MovementCommandComponent.h \
  include/Components/CooldownComponent.h \
  include/Components/DamageComponent.h include/Components/DashComponent.h \
@@ -69,7 +69,8 @@ obj/GameplayScene.o: src/GameplayScene.cpp include/GameplayScene.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
- include/Components/SpawnerComponent.h include/Systems/PhysicsSystem.h \
+ include/Components/SpawnerComponent.h \
+ include/Components/HitboxComponent.h include/Systems/PhysicsSystem.h \
  include/ECS/System.h include/Systems/MapSystem.h \
  include/Systems/RenderSystem.h include/TextureManager.h \
  include/Renderer.h include/IRenderer.h include/SDL2/SDL.h \
@@ -160,6 +161,7 @@ include/Rect.h:
 include/Vector2D.h:
 include/Components/CommandComponent.h:
 include/Components/DirectionComponent.h:
+include/myMath.h:
 include/Components/MovementCommandComponent.h:
 include/Components/CooldownComponent.h:
 include/Components/DamageComponent.h:
@@ -191,6 +193,7 @@ include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
+include/Components/HitboxComponent.h:
 include/Systems/PhysicsSystem.h:
 include/ECS/System.h:
 include/Systems/MapSystem.h:

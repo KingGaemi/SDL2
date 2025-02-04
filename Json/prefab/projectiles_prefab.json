@@ -74,19 +74,19 @@
         "name": "TransformComponent",
         "width": 32,
         "height": 32,
-        "scale": 1.0
+        "scale": 0.5
       },
       {
         "name": "ProjectileComponent",
         "speed": 1.0,
         "scale": 1.0,
-        "duration": 1.0
+        "duration": 100.0
       },
       {
         "name": "PhysicsComponent",
 	"width": 32,
         "height": 32,
-        "scale": 1.0,
+        "scale": 0.5,
         "bodyType": "Dynamic"
      }	
     ]
@@ -108,8 +108,8 @@
       {
         "name": "SpriteComponent",
         "textureID": "spinning_arrow",
-        "width": 32,
-        "height": 32,
+        "width": 30,
+        "height": 9,
         "scale": 1.0
       },
       {
@@ -118,15 +118,16 @@
       },
       {
         "name": "TransformComponent",
-        "width": 32,
-        "height": 32,
+        "width": 30,
+        "height": 9,
         "scale": 2.0
       },
       {
         "name": "ProjectileComponent",
-        "speed": 400.0,
+        "speed": 200.0,
         "scale": 1.0,
-        "duration": 10.0
+        "duration": 10.0,
+	"penetration": 0
       },
       {
         "name": "VelocityComponent"
@@ -143,21 +144,35 @@
       },
       {
         "name": "PhysicsComponent",
-        "width": 64,
-        "height": 12,
+        "width": 0,
+        "height": 0,
         "scale": 1.0,
         "bodyType": "Kinematic"
       },
       {
-        "name": "AIComponent"
+        "name": "AIComponent",
+	"AIType": "HomingMissile"
+      },
+      {
+        "name": "HitboxComponent",
+	"w": 300,
+	"h": 9,
+	"scale": 2.0
+      },
+      {
+        "name": "MovementCommandComponent",
+	"commandType": "GoForward"
       }
     ]
-  },"arrow2": {
+  },"streetlamp": {
     "components": [
       {
         "name": "PositionComponent",
         "x": 100,
         "y": 100
+      },
+      {
+        "name": "DirectionComponent"
       },
       {
         "name": "SceneTag",
@@ -168,17 +183,10 @@
       },
       {
         "name": "SpriteComponent",
-        "textureID": "water_tile",
-        "width": 32,
-        "height": 32,
+        "textureID": "streetlamp",
+        "width": 88,
+        "height": 248,
         "scale": 1.0
-      },
-      {
-        "name": "ColliderComponent",
-        "width": 100,
-        "height": 100,
-        "scale": 1.0,
-	"colliderType": "Projectile"
       },
       {
         "name": "DamageComponent",
@@ -186,16 +194,37 @@
       },
       {
         "name": "TransformComponent",
-        "width": 100,
-        "height": 100,
-        "scale": 1.0
+        "width": 88,
+        "height": 248,
+        "scale": 0.5
       },
       {
         "name": "ProjectileComponent",
-        "speed": 5.0,
+        "speed": 100.0,
         "scale": 1.0,
-        "duration": 0.3
+        "duration": 3.0
+      },
+      {
+        "name": "HitboxComponent",
+	"w": 88,
+        "h": 248,
+        "scale": 1.0
+     },
+      {
+        "name": "PhysicsComponent",
+        "width": 0,
+        "height": 0,
+        "scale": 1.0,
+        "bodyType": "Kinematic"
+      },
+      {
+        "name": "VelocityComponent"
+      },
+      {
+        "name": "MovementCommandComponent",
+	"commandType": "Spin"
       }
+
     ]
   }
 }

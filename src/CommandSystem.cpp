@@ -29,30 +29,29 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 				auto directComp = entity->getComponent<DirectionComponent>();
 				auto statusComp = entity->getComponent<StatusComponent>();
 				auto stateComp = entity->getComponent<StateComponent>();
-				auto cooldownComp = entity->getComponent<CooldownComponent>();
+				
 
-				if(veloComp && directComp && statusComp && stateComp && cooldownComp){
-					if(commandComp){
-						auto command = commandComp->pop();
-						if(command.moveCommandType == MovementCommandType::Move){
+				if(veloComp && directComp && statusComp && stateComp){
+					if(moveCommandComp){
+						if(moveCommandComp->moveCommandType == MovementCommandType::Move){
 
 							if(stateComp->movementState == MovementStates::Stop){
 								stateComp->changeMovementState(MovementStates::Walk);
 							}
 
-							if(command.moveDoubleTap){
+							if(moveCommandComp->doubleTap){
 								stateComp->changeMovementState(MovementStates::Run);
 							}
 							if(stateComp->movementState == MovementStates::Run){
-								if((command.moveDir.hDir == -1 && directComp->direction.hDir == 1) ||
-									(command.moveDir.hDir == 1 && directComp->direction.hDir == -1) ||
-									(command.moveDir.vDir == -1 && directComp->direction.vDir == 1) ||
-									(command.moveDir.vDir == 1 && directComp->direction.vDir == -1)){
+								if((moveCommandComp->direction.hDir == -1 && directComp->direction.hDir == 1) ||
+									(moveCommandComp->direction.hDir == 1 && directComp->direction.hDir == -1) ||
+									(moveCommandComp->direction.vDir == -1 && directComp->direction.vDir == 1) ||
+									(moveCommandComp->direction.vDir == 1 && directComp->direction.vDir == -1)){
 									stateComp->changeMovementState(MovementStates::Walk);
 								} 
 							}
 
-							directComp->direction = command.moveDir;
+							directComp->direction = moveCommandComp->direction;
 							Vector2D velo = directComp->dirToVector();							
 							velo = velo * statusComp->movementSpeed;
 							if(stateComp->movementState == MovementStates::Run){
@@ -70,7 +69,7 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 							
 							veloComp->set(velo);
 
-						}else if(command.moveCommandType == MovementCommandType::Stop){
+						}else if(moveCommandComp->moveCommandType == MovementCommandType::Stop){
 							stateComp->changeMovementState(MovementStates::Stop);
 							veloComp->zero();							
 						}
@@ -78,9 +77,9 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 
 					if(commandComp){
 						Command command = commandComp->pop();
-						if(command.actionCommandType == ActionCommandType::BasicAttack){		
+						if(command.commandType == CommandType::BasicAttack){		
 							if(!stateComp->inMotion){
-								if(!command.actionDoubleTap){
+								if(!command.doubleTap){
 									stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
 									AttackEvent attackEvent;
 									attackEvent.attackerId = entity->getId();
@@ -95,13 +94,14 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 							}else{
 
 							}
-						}else if(command.actionCommandType == ActionCommandType::Cast){
+						}else if(command.commandType == CommandType::Cast){
 							if(!stateComp->inMotion) stateComp->changeActionState(ActionStates::Cast, (1.0f / statusComp->attackSpeed));
 							AttackEvent attackEvent;
 							attackEvent.attackerId = entity->getId();
 							attackEvent.attackType = AttackType::Cast;
+							attackEvent.abilityId = command.abilityNumber;
 							eventManager->pushAttackEvent(attackEvent);
-						}else if(command.actionCommandType == ActionCommandType::Shoot){
+						}else if(command.commandType == CommandType::Shoot){
 							if(!stateComp->inMotion) stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
 							AttackEvent attackEvent;
 							attackEvent.attackerId = entity->getId();

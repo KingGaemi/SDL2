@@ -3,7 +3,7 @@ obj/CommandSystem.o: src/CommandSystem.cpp \
  include/ECS/Entity.h include/ECS/Component.h \
  include/Events/EventManager.h include/KeyCode.h \
  include/Components/VelocityComponent.h include/Vector2D.h \
- include/Components/DirectionComponent.h \
+ include/Components/DirectionComponent.h include/myMath.h \
  include/Components/CommandComponent.h \
  include/Components/MovementCommandComponent.h \
  include/Components/StatusComponent.h include/Components/StateComponent.h \
@@ -19,6 +19,7 @@ include/KeyCode.h:
 include/Components/VelocityComponent.h:
 include/Vector2D.h:
 include/Components/DirectionComponent.h:
+include/myMath.h:
 include/Components/CommandComponent.h:
 include/Components/MovementCommandComponent.h:
 include/Components/StatusComponent.h:

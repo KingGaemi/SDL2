@@ -36,10 +36,10 @@ public:
 				if(entity->hasComponent<StateComponent>()){
 					auto stateComp = entity->getComponent<StateComponent>();
 
-					if(statusComp && !statusComp->alive && !stateComp->inMotion) entity->terminate = true;
+					if(statusComp && !statusComp->isAlive && !stateComp->inMotion) entity->terminate = true;
 				}else{
 
-					if(statusComp && !statusComp->alive) entity->terminate = true;
+					if(statusComp && !statusComp->isAlive) entity->terminate = true;
 				}
 
 				

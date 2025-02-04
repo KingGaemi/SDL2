@@ -4,6 +4,7 @@
 #include <SDL2/SDL_image.h>
 #include <Sdl2/SDL_ttf.h>
 #include <iostream>
+#include "myMath.h"
 
 
 
@@ -85,6 +86,85 @@ void Renderer::SetRenderDrawColor(int r, int g, int b, int a){
     SDL_SetRenderDrawColor(SDL_renderer, r, g, b, a);
 }
 
-void Renderer::RenderDrawRect(SDL_Rect &debugRect){
-    SDL_RenderDrawRect(SDL_renderer, &debugRect);
+void Renderer::RenderDrawRect(SDL_FRect &debugRect, float rot){
+
+    float x1, y1, x2, y2, cx, cy, theta;
+
+
+    // upside
+    x1 = debugRect.x - debugRect.w/2;
+    y1 = debugRect.y - debugRect.h/2;
+    x2 = debugRect.x + debugRect.w/2;
+    y2 = y1;
+    cx = debugRect.x;
+    cy = debugRect.y;
+    toRadian(rot, theta);
+
+    rotateLineSegment(x1, y1, x2, y2,
+                       cx, cy, theta,
+                       x1, y1, x2, y2);
+
+    SDL_RenderDrawLineF(SDL_renderer, x1, y1,
+                                      x2, y2);
+
+
+    // downside
+    x1 = debugRect.x - debugRect.w/2;
+    y1 = debugRect.y + debugRect.h/2;
+    x2 = debugRect.x + debugRect.w/2;
+    y2 = y1;
+    cx = debugRect.x;
+    cy = debugRect.y;
+    toRadian(rot, theta);
+
+    rotateLineSegment(x1, y1, x2, y2,
+                       cx, cy, theta,
+                       x1, y1, x2, y2);
+
+
+    SDL_RenderDrawLineF(SDL_renderer, x1, y1,
+                                      x2, y2);
+
+
+    // leftside
+    x1 = debugRect.x - debugRect.w/2;
+    y1 = debugRect.y - debugRect.h/2;
+    x2 = x1;
+    y2 = debugRect.y + debugRect.h/2;
+    cx = debugRect.x;
+    cy = debugRect.y;
+    toRadian(rot, theta);
+
+    rotateLineSegment(x1, y1, x2, y2,
+                       cx, cy, theta,
+                       x1, y1, x2, y2);
+
+
+    SDL_RenderDrawLineF(SDL_renderer, x1, y1,
+                                      x2, y2);
+
+    // rightside
+    x1 = debugRect.x + debugRect.w/2;
+    y1 = debugRect.y - debugRect.h/2;
+    x2 = x1;
+    y2 = debugRect.y + debugRect.h/2;
+    cx = debugRect.x;
+    cy = debugRect.y;
+    toRadian(rot, theta);
+
+    rotateLineSegment(x1, y1, x2, y2,
+                       cx, cy, theta,
+                       x1, y1, x2, y2);
+
+
+    SDL_RenderDrawLineF(SDL_renderer, x1, y1,
+                                      x2, y2);
+
+
+
+
+
+
+
+
 }

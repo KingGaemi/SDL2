@@ -3,8 +3,12 @@
 #include "Components/PositionComponent.h"
 #include "Components/TransformComponent.h"
 #include "Components/VelocityComponent.h"
-#include "Components/CommandComponent.h"
-#include <math.h>
+#include "Components/MovementCommandComponent.h"
+#include "Components/StatusComponent.h"
+#include "myMath.h"
+#include <algorithm>
+// #include <cmath>
+
 #include "Groups.h"
 
 void AISystem::update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime){
@@ -21,6 +25,8 @@ void AISystem::update(std::vector<std::shared_ptr<Entity>>&entities, float delta
 				homingAI.push_back(entity);
 				aiComp->updateInterval = 0.1f;
 			}else if(aiComp->aiType == AIType::Roaming){
+				auto statusComp = entity->getComponent<StatusComponent>();
+				if(!statusComp || !statusComp->isAlive) continue;
 				roamingAI.push_back(entity);
 				aiComp->updateInterval = 1.0f;
 			}
@@ -28,6 +34,7 @@ void AISystem::update(std::vector<std::shared_ptr<Entity>>&entities, float delta
 	}
 
 	for(auto& missile: homingAI){
+	
 		if(findTarget(entities, missile)){
 			trackTargetsForMissiles(missile, deltaTime);
 		}
@@ -43,53 +50,49 @@ void AISystem::update(std::vector<std::shared_ptr<Entity>>&entities, float delta
 // guideByType
 
 
-void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, float deltaTime){
+void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, float deltaTime) {
+    // 필요한 컴포넌트 가져오기
+    auto posComp = entity->getComponent<PositionComponent>();
+    auto transComp = entity->getComponent<TransformComponent>();
+    auto aiComp = entity->getComponent<AIComponent>();
+    // transComp->rotation = std::fmod(transComp->rotation + 360.0f, 360.0f);
+    // 컴포넌트가 유효한지 확인
+    if (!posComp || !transComp || !aiComp) return;
 
-	auto posComp = entity->getComponent<PositionComponent>();
-	auto transComp = entity->getComponent<TransformComponent>();
-	auto veloComp = entity->getComponent<VelocityComponent>();
-	auto aiComp = entity->getComponent<AIComponent>();
+    // 업데이트 간격 확인
+    aiComp->timeAccumulator += deltaTime;
+    if (aiComp->timeAccumulator < aiComp->updateInterval) return;
 
-	aiComp->timeAccumulator += deltaTime;
-	if(aiComp->timeAccumulator < aiComp->updateInterval) return;
+    // 타겟 위치와 미사일 위치 계산
+    Vector2D targetPos = aiComp->targetPos;
+    Vector2D missilePos = posComp->getVector();
+    Vector2D dir = targetPos - missilePos;
 
-	Vector2D targetPos = aiComp->targetPos;
+    // 목표 각도 계산 (라디안; 0 rad = 오른쪽, 표준 좌표계)
+    float desiredAngle = std::atan2(dir.y, dir.x);
 
-	if(!posComp||!transComp||!veloComp) return;
+    // 현재 각도는 TransformComponent의 회전(도 단위)을 라디안으로 변환한 값
+    float currentAngle = toRadian(transComp->rotation);
 
-	Vector2D missilePos = posComp->getVector();
-	Vector2D dir = targetPos - missilePos;
+    // 두 각도의 차이 계산
+    float angleDelta = desiredAngle - currentAngle;
 
-	float desiredAngle = atan2(dir.y, dir.x) * (180.0f / 3.14159f);
+    // 각도 차이를 -π ~ π 범위로 정규화
+    angleDelta = std::fmod(angleDelta + M_PI, 2 * M_PI) - M_PI;
 
-	float angleDelta = desiredAngle - transComp->rotation;
-	float maxTurnDelta = 30.0f;
-	while (angleDelta > 180.0f)  angleDelta -= 360.0f;
-	while (angleDelta < -180.0f) angleDelta += 360.0f;
+    // 최대 회전 각도 제한 (예: 30도)
+    float maxTurnDelta = 30.0f * (M_PI / 180.0f);
+    angleDelta = std::clamp(angleDelta, -maxTurnDelta, maxTurnDelta);
 
+    // 새 각도 계산
+    currentAngle += angleDelta;
 
-	if (angleDelta > maxTurnDelta) angleDelta = maxTurnDelta;
-	if (angleDelta < -maxTurnDelta) angleDelta = -maxTurnDelta;
+    // TransformComponent에 새 각도 (라디안 → 도)로 저장
+    transComp->rotation = toAngle(currentAngle);
 
-	transComp->rotation += angleDelta;
+    // (필요에 따라 새로운 속도 벡터 계산 및 속도 업데이트하는 부분이 있다면 추가)
 
-	if (transComp->rotation < 0.0f)        transComp->rotation += 360.0f;
-	else if (transComp->rotation >= 360.0f) transComp->rotation -= 360.0f;
-
-	float radians = transComp->rotation * (3.14159f / 180.0f);
-
-	double cosTheta = std::cos(radians);
-    double sinTheta = std::sin(radians);
-
-    Vector2D velo = veloComp->velo();
-    float speed = veloComp->length(); // veloComp의 속도 크기 (sqrt(vx^2 + vy^2))
-
-	// 보고 있는 방향에 따라 Velocity 설정
-	velo.x = speed * cosTheta; // 새로운 x 속도
-	velo.y = speed * sinTheta; // 새로운 y 속도
-
-    veloComp->set(velo);
-
+    // 시간 누적기 초기화
     aiComp->timeAccumulator -= aiComp->updateInterval;
 }
 
@@ -117,6 +120,7 @@ bool AISystem::findTarget(std::vector<std::shared_ptr<Entity>>&entities, std::sh
 
 		Vector2D distance =  v1 - v2;
 		float length = std::sqrt(distance.x * distance.x + distance.y * distance.y);
+		if(!aiComp->target) shortest = 1000.0f;
 		if(length < shortest){
 			shortest = length;			
 			aiComp->target = target;
@@ -133,21 +137,17 @@ bool AISystem::findTarget(std::vector<std::shared_ptr<Entity>>&entities, std::sh
 void AISystem::roam(std::shared_ptr<Entity>& entity, float deltaTime){
 
 	auto directComp = entity->getComponent<PositionComponent>();
-	auto commandComp = entity->getComponent<CommandComponent>();
 	auto aiComp = entity->getComponent<AIComponent>();
 
 	aiComp->timeAccumulator += deltaTime;
 	if(aiComp->timeAccumulator < aiComp->updateInterval) return;
 
+	auto moveCommandComp = entity->getComponent<MovementCommandComponent>();
 
-	Command command;
-	command.moveCommandType = MovementCommandType::Move;
-
-
-	command.moveDir = { getRandomNumber(-1, 1) , getRandomNumber(-1, 1)};
-	commandComp->push(command);
-
-
+	if(moveCommandComp){
+		moveCommandComp->direction = { getRandomNumber(-1, 1) , getRandomNumber(-1, 1)};
+		moveCommandComp->moveCommandType = MovementCommandType::Move;
+	}
 
 	aiComp->timeAccumulator -= aiComp->updateInterval;
 

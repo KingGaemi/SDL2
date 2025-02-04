@@ -6,10 +6,13 @@ obj/PhysicsSystem.o: src/PhysicsSystem.cpp \
  include/Events/EventManager.h include/KeyCode.h \
  include/Components/PositionComponent.h include/Vector2D.h \
  include/Components/PhysicsComponent.h include/MyContactListener.h \
+ include/Components/MovementCommandComponent.h \
+ include/Components/DirectionComponent.h include/myMath.h \
  include/Components/TransformComponent.h \
  include/Components/VelocityComponent.h \
  include/Components/PlayableComponent.h \
- include/Components/ProjectileComponent.h include/Groups.h \
+ include/Components/ProjectileComponent.h \
+ include/Components/HitboxComponent.h include/Groups.h \
  include/ECS/ECSManager.h include/ECS/EntityFactory.h \
  include/nlohmann/json.hpp include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
@@ -58,8 +61,6 @@ obj/PhysicsSystem.o: src/PhysicsSystem.cpp \
  include/Components/Components.h include/Components/AnimationComponent.h \
  include/Components/ColliderComponent.h include/Rect.h \
  include/Components/CommandComponent.h \
- include/Components/DirectionComponent.h \
- include/Components/MovementCommandComponent.h \
  include/Components/CooldownComponent.h \
  include/Components/DamageComponent.h include/Components/DashComponent.h \
  include/Components/LifeTimeComponent.h \
@@ -86,10 +87,14 @@ include/Components/PositionComponent.h:
 include/Vector2D.h:
 include/Components/PhysicsComponent.h:
 include/MyContactListener.h:
+include/Components/MovementCommandComponent.h:
+include/Components/DirectionComponent.h:
+include/myMath.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
 include/Components/PlayableComponent.h:
 include/Components/ProjectileComponent.h:
+include/Components/HitboxComponent.h:
 include/Groups.h:
 include/ECS/ECSManager.h:
 include/ECS/EntityFactory.h:
@@ -145,8 +150,6 @@ include/Components/AnimationComponent.h:
 include/Components/ColliderComponent.h:
 include/Rect.h:
 include/Components/CommandComponent.h:
-include/Components/DirectionComponent.h:
-include/Components/MovementCommandComponent.h:
 include/Components/CooldownComponent.h:
 include/Components/DamageComponent.h:
 include/Components/DashComponent.h:

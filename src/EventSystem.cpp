@@ -72,18 +72,16 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 
 	if(!targetEntity) return;
 	auto commandComp = targetEntity->getComponent<CommandComponent>();
-	// auto moveCommandComp = targetEntity->getComponent<MovementCommandComponent>();
+	auto moveCommandComp = targetEntity->getComponent<MovementCommandComponent>();
 
-	if(commandComp){
-		Command command;
-		command.moveDir = direction;
-		command.moveDoubleTap = isArrowKeyDoubleTapped;				
+	if(moveCommandComp){
+		moveCommandComp->direction = direction;
+		moveCommandComp->doubleTap = isArrowKeyDoubleTapped;				
 		if(arrowIsPressed()){
-			command.moveCommandType = MovementCommandType::Move;
+			moveCommandComp->moveCommandType = MovementCommandType::Move;
 		}else{
-			command.moveCommandType = MovementCommandType::Stop;
+			moveCommandComp->moveCommandType = MovementCommandType::Stop;
 		}
-		commandComp->push(command);
 	}
 
 	if(commandComp){
@@ -102,13 +100,19 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 			command.direction = {0,0};
 			commandComp->push(command);
 		}
-		if(pressed[toInt(KeyCode::w)]){	
+		if(evt.type == EventType::KEYDOWN && evt.key == KeyCode::w){	
 			// std::cout << "w" << std::endl;		
 			command.abilityNumber = 2;
 			command.commandType = CommandType::Shoot;
 			command.direction = {0,0};
 			commandComp->push(command);
-		}		
+		}
+		if(pressed[toInt(KeyCode::e)]){	
+			// std::cout << "w" << std::endl;		
+			command.abilityNumber = 3;
+			command.commandType = CommandType::Cast;
+			commandComp->push(command);
+		}	
 	}
 		
 ///=============================================================================

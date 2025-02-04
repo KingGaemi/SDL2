@@ -28,4 +28,5 @@
 #include "AbilityComponent.h"
 #include "AIComponent.h"
 #include "SpawnerComponent.h"
+#include "HitboxComponent.h"
 // #include "GroupComponent.h"

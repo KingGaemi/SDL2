@@ -3,6 +3,7 @@
 #include "Components/StatusComponent.h"
 #include "Components/StateComponent.h"
 #include "Components/ProjectileComponent.h"
+#include "Components/MovementCommandComponent.h"
 #include "Groups.h"
 #include <iostream>
 
@@ -43,7 +44,7 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
         auto teamCompA = attacker->getComponent<TeamTag>();
         auto teamCompT = target->getComponent<TeamTag>();
 
-        if(!statusComp->alive) return;
+        if(!statusComp->isAlive) return;
 
         if(teamCompA->teamCode == teamCompT->teamCode) return;
 
@@ -57,16 +58,25 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 	        statusComp->currentHp -= damageComp->damage;
 	        damageComp->hitTargets.insert(target->getId());
 
-	        if(attacker->hasComponent<ProjectileComponent>()) attacker->terminate = true;
+	        if(attacker->hasComponent<ProjectileComponent>()){
+	        	auto projectileComp = attacker->getComponent<ProjectileComponent>();
+	        	projectileComp->penetration -= 1;
+	        	if(projectileComp->penetration < 0)  attacker->terminate = true;
+	        }
 
 	        // std::cout << statusComp->currentHp << "/" << statusComp->maxHp << std::endl;
 	        if(statusComp->currentHp <= 0){
 	        	statusComp->currentHp = 0;
 		        if(target->hasComponent<StateComponent>()){
 		    		auto stateComp = target->getComponent<StateComponent>();
+		    		auto moveCommandComp = target->getComponent<MovementCommandComponent>();
+		    		if(moveCommandComp) {
+		    			moveCommandComp->direction = {0, 0};
+		    			moveCommandComp->moveCommandType = MovementCommandType::Stop;
+		    		}
 		    		stateComp->changeActionState(ActionStates::Death, 0.8f);
 		    	}
-	        	statusComp->alive = false;
+	        	statusComp->isAlive = false;
 	        	// std::cout << "Died" << std::endl;
 	        }
 	    } 

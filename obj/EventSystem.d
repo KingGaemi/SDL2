@@ -1,7 +1,8 @@
 obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/ECS/System.h include/Events/EventManager.h include/KeyCode.h \
  include/Components/DirectionComponent.h include/ECS/Component.h \
- include/Vector2D.h include/Components/PositionComponent.h \
+ include/Vector2D.h include/myMath.h \
+ include/Components/PositionComponent.h \
  include/Components/PlayableComponent.h \
  include/Components/CommandComponent.h \
  include/Components/MovementCommandComponent.h include/ECS/Entity.h \
@@ -69,7 +70,8 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
- include/Components/SpawnerComponent.h
+ include/Components/SpawnerComponent.h \
+ include/Components/HitboxComponent.h
 include/Events/EventSystem.h:
 include/ECS/System.h:
 include/Events/EventManager.h:
@@ -77,6 +79,7 @@ include/KeyCode.h:
 include/Components/DirectionComponent.h:
 include/ECS/Component.h:
 include/Vector2D.h:
+include/myMath.h:
 include/Components/PositionComponent.h:
 include/Components/PlayableComponent.h:
 include/Components/CommandComponent.h:
@@ -162,3 +165,4 @@ include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
+include/Components/HitboxComponent.h:

@@ -10,27 +10,18 @@
 
 
 
-enum class ActionCommandType{
+enum class CommandType{
     None,
     BasicAttack,
     SpecialAttack,
     Cast,
     Shoot
 };
-enum class MovementCommandType{
-    Hold,
-    Stop,
-    Move
-};
-
 
 struct Command{
-    ActionCommandType actionCommandType = ActionCommandType::None;
-    MovementCommandType moveCommandType = MovementCommandType::Hold;
-    Direction actionDir = {0, 0};
-    Direction moveDir = {0, 0};
-    bool actionDoubleTap = false;
-    bool moveDoubleTap = false;
+    CommandType commandType = CommandType::None;
+    Direction direction = {0, 0};
+    bool doubleTap = false;
     int abilityNumber = 0;
 };
 
@@ -49,7 +40,7 @@ public:
             commands.pop();
             return command;
         }
-        return {ActionCommandType::None, MovementCommandType::Hold, {0, 0}, {0, 0}, false, false, 0}; // 빈 이벤트 반환
+        return {CommandType::None, {0, 0}, false}; // 빈 이벤트 반환
     }
 
     std::queue<Command> commands;

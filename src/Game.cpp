@@ -101,8 +101,9 @@ void Game::textureLoading(){
     textureManager->loadTexture("grass_tileset", "res/gfx/sprite_sheets/map/TX_Tileset_Grass.png");
     textureManager->loadTexture("props_tileset", "res/gfx/sprite_sheets/map/TX_Props.png");
     textureManager->loadTexture("spinning_arrow", "res/gfx/sprite_sheets/projectile/arrow/spinning_arrow-sheet.png");
-    textureManager->loadTexture("slime1", "res/gfx/sprite_sheets/unit/slime/slime1.png");
+    textureManager->loadTexture("slime1", "res/gfx/sprite_sheets/unit/slime/slime1-sheet.png");
     textureManager->loadTexture("orc1", "res/gfx/sprite_sheets/unit/orc/orc1-sheet.png");
+    textureManager->loadTexture("debugRect", "res/gfx/debugrect.png");
     textureManager->loadText("Hello World!");
     // textureManager->loadTexture("farm_map",);
 

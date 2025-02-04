@@ -27,7 +27,11 @@ void AttackSystem::teskEvent(const AttackEvent& event){
 	if(event.attackType == AttackType::Attack){
 		basicAttack(event);
 	}else if(event.attackType == AttackType::Cast){
-		castSpell(event);
+		if(event.abilityId == 1){
+			castSpell(event);
+		}else if(event.abilityId == 3){
+			whirlBlade(event);
+		}
 	}else if(event.attackType == AttackType::Shoot){
 		shootArrow(event);
 	}else{
@@ -123,18 +127,58 @@ void AttackSystem::shootArrow(const AttackEvent& event){
 
 	auto posComp = entity->getComponent<PositionComponent>();
 	auto directComp = entity->getComponent<DirectionComponent>();
-	auto spriteComp = entity->getComponent<SpriteComponent>();
+	auto transComp = entity->getComponent<TransformComponent>();
 	auto statusComp = entity->getComponent<StatusComponent>();
 	auto teamComp = entity->getComponent<TeamTag>();
 
-	if(posComp && directComp && spriteComp && statusComp && teamComp){
+	if(posComp && directComp && transComp && statusComp && teamComp){
 		
 		SpawnRequest req;
 
 		req.entityType = EntityType::Projectile;
 		req.name = "arrow";
-		req.x = posComp->x + directComp->hDir() * spriteComp->dstRect.w;
-		req.y = posComp->y + directComp->vDir() * spriteComp->dstRect.h;
+		req.x = posComp->x + directComp->hDir() * transComp->width;
+		req.y = posComp->y + directComp->vDir() * transComp->height;
+
+		req.hasTransform = true;
+		req.hDir = directComp->direction.hDir;
+		req.vDir = directComp->direction.vDir;
+		std::cout << "direct" << req.hDir << ", "<< req.vDir <<std::endl;
+		req.rotation = directComp->getAngle();
+		std::cout << "rotation" << req.rotation  <<std::endl;
+		req.damage = statusComp->physicalDamage;
+		req.hasDamage = true;
+		req.sc = 1.0f;
+		req.projectileSpeed = statusComp->projectileSpeedMultiple;
+		if(req.hDir != 0 && req.vDir != 0) req.projectileSpeed /= 1.414f;
+		req.teamCode = teamComp->teamCode;
+		req.ownerId = entity->getId();
+		req.hasOwner = true;
+		req.hasVelocity = false;
+
+		ecsManager->pendingSpawns.push_back(req);
+	}
+}
+
+void AttackSystem::whirlBlade(const AttackEvent& event){
+
+	auto entity = ecsManager->getEntityById(event.attackerId);
+	if(!entity->isActive) return;
+
+	auto posComp = entity->getComponent<PositionComponent>();
+	auto directComp = entity->getComponent<DirectionComponent>();
+	auto transComp = entity->getComponent<TransformComponent>();
+	auto statusComp = entity->getComponent<StatusComponent>();
+	auto teamComp = entity->getComponent<TeamTag>();
+
+	if(posComp && directComp && transComp && statusComp && teamComp){
+		
+		SpawnRequest req;
+
+		req.entityType = EntityType::Projectile;
+		req.name = "streetlamp";
+		req.x = posComp->x + directComp->hDir() * transComp->width;
+		req.y = posComp->y + directComp->vDir() * transComp->height;
 
 		req.hasTransform = true;
 		req.hDir = directComp->direction.hDir;
@@ -156,23 +200,3 @@ void AttackSystem::shootArrow(const AttackEvent& event){
 }
 
 
-
-float AttackSystem::getAngleFromDirection(int hDir, int vDir) {
-	static const std::map<std::pair<int, int>, float> directionToAngle = {
-        {{ 0, -1},  270.0f},  // 위
-        {{ 1, -1},  315.0f},  // 오른쪽 위
-        {{ 1,  0},   0.0f},  // 오른쪽
-        {{ 1,  1}, 45.0f},  // 오른쪽 아래
-        {{ 0,  1}, 90.0f},  // 아래
-        {{-1,  1}, 135.0f},  // 왼쪽 아래
-        {{-1,  0}, 180.0f},  // 왼쪽
-        {{-1, -1}, 225.0f},  // 왼쪽 위
-        {{ 0,  0},   0.0f}   // 정지 (기본값)
-	};
-
-    auto it = directionToAngle.find({hDir, vDir});
-    if (it != directionToAngle.end()) {
-        return it->second;
-    }
-    return 0.0f; // 기본값
-}

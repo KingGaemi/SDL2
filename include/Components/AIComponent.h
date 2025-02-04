@@ -7,12 +7,14 @@
 enum class AIType{
 	HomingMissile,
 	Roaming,
-	FindEnemy
+	FindEnemy,
+	None
 };
 
 
 class AIComponent : public Component {
 public:
+	AIComponent(AIType aiType) : aiType(aiType) {}
 	std::shared_ptr<Entity> target;
 	Vector2D targetPos;
 	AIType aiType;

@@ -7,8 +7,10 @@
 #include "Components/Transformcomponent.h"
 #include "Components/FloatingEffectComponent.h"
 #include "Components/CameraComponent.h"
+#include "Components/HitboxComponent.h"
 #include <iostream>
 #include <algorithm>
+#include "myMath.h"
 
 
 SDL_FRect RenderSystem::toSDLFRect(const FRect& r) {
@@ -108,10 +110,10 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
 
             cameraEntity = ecsManager->getCamera();
             if(cameraEntity->isActive){
-                auto camera = cameraEntity->getComponent<CameraComponent>();
-                if(camera){
-                   screenX = worldX - camera->x;
-                   screenY = worldY - camera->y;
+                auto cameraPos = cameraEntity->getComponent<PositionComponent>();
+                if(cameraPos){
+                   screenX = worldX - cameraPos->x;
+                   screenY = worldY - cameraPos->y;
                 }
             }
 
@@ -135,35 +137,42 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
     }
 
 
-    // if(debugMode){
-    //     if (entity->hasComponent<ColliderComponent>()) {
-    //         auto collider = entity->getComponent<ColliderComponent>();
-            
-    //         // collider 위치(월드 좌표) -> 화면 좌표 변환
-    //         // (camX, camY) 만큼 빼주기, 혹은 camTransform 적용
-    //         int worldX = collider->collider.x;
-    //         int worldY = collider->collider.y;
+    if(debugMode){
+        if (entity->hasComponent<HitboxComponent>()) {
+            auto hitboxComp = entity->getComponent<HitboxComponent>();
+            auto posComp = entity->getComponent<PositionComponent>();
+            // collider 위치(월드 좌표) -> 화면 좌표 변환
+            // (camX, camY) 만큼 빼주기, 혹은 camTransform 적용
+            float worldX = posComp->x;
+            float worldY = posComp->y;
 
-    //         int screenX, screenY;
-    //         screenX = worldX;
-    //         screenY = worldY;
-    //         if(cameraEntity){
-    //             auto camera = cameraEntity->getComponent<CameraComponent>();
-    //             if(camera){
-    //                screenX = worldX - camera->x;                   
-    //                screenY = worldY - camera->y;
-    //             }
-    //         }
-    //         SDL_Rect debugRect;
-    //         debugRect.x = screenX;
-    //         debugRect.y = screenY;
-    //         debugRect.w = static_cast<int>(collider->collider.w);
-    //         debugRect.h = static_cast<int>(collider->collider.h);
+            float screenX, screenY;
+            screenX = worldX;
+            screenY = worldY;
+            if(cameraEntity){
+                auto cameraPos = cameraEntity->getComponent<PositionComponent>();
+                if(cameraPos){
+                   screenX = worldX - cameraPos->x;                   
+                   screenY = worldY - cameraPos->y;
+                }
+            }
+
+            SDL_FRect debugRect;
+            debugRect.x = screenX;
+            debugRect.y = screenY;
+            debugRect.w = hitboxComp->w;
+            debugRect.h = hitboxComp->h;
+
+            float rot = 0.0f;
+            if (entity->hasComponent<TransformComponent>()){
+                auto transComp = entity->getComponent<TransformComponent>();
+                rot = transComp->rotation;
+            }
             
-    //         // 원하는 색상 설정 (빨간색, 투명도 255)
-    //         renderer->SetRenderDrawColor(255, 0, 0, 255);
-    //         renderer->RenderDrawRect(debugRect);
-    //     }
-    // }
+            renderer->SetRenderDrawColor(255, 0, 0, 255);
+            renderer->RenderDrawRect(debugRect, rot);
+
+        }
+    }
 }
 

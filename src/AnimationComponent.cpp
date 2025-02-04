@@ -5,6 +5,7 @@
 #include <regex>
 
 void AnimationComponent::playAnimation(const std::string& animName){
+    if(!lock){
 		if (animations.find(animName) != animations.end()) {
             currentAnimation = animName;
             currentFrameIndex = 0;
@@ -12,6 +13,7 @@ void AnimationComponent::playAnimation(const std::string& animName){
         }else{
         	std::cout << "Has no Animation named:" << animName << "." << std::endl;
         }
+    }
 
 }
 

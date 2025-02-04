@@ -32,6 +32,39 @@
       }
     ]
   },
+"wall": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "PhysicsComponent",
+        "width": 50,
+        "height": 800,
+        "scale": 1.0,
+        "bodyType": "Static"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "dirt_tile",
+        "width": 32,
+        "height": 32,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 50,
+        "height": 800,
+        "scale": 1.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      }
+    ]
+  },
 "slimeSpawner": {
     "components": [
       {
@@ -51,8 +84,8 @@
       },
       {
         "name": "SpawnerComponent",
-        "spawnName": "slime",
-	"spawnTime": 1.0
+        "spawnName": "slime1",
+	"spawnTime": 100
       }
     ]
   }

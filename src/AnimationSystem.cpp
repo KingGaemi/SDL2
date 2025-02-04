@@ -46,16 +46,17 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                                 animName += "r";
                             }
                         }
+                        if(vDir == 0 && hDir == 0) animName += "d";
                     }
 
                     if(stateComp->actionState == ActionStates::Death){
                         animName += "_death";
                         if(animComp->currentAnimation == "d_death" || animComp->currentAnimation == "u_death" 
-                            ||animComp->currentAnimation == "l_death" || animComp->currentAnimation == "r_death"){
-                            
+                            ||animComp->currentAnimation == "l_death" || animComp->currentAnimation == "r_death"){                        
                         }else{
                             animComp->playAnimation(animName);
                             animComp->busy =true;
+                            animComp->lock = true;
                         }
                         
                     }
@@ -127,6 +128,7 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
         duration = baseDuration;
     }
 
+    // temp
     duration *= 1.2f;
 
     // 현재 프레임 지속시간보다 경과 시간이 길다면 다음 프레임으로

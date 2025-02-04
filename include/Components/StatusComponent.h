@@ -11,8 +11,8 @@ class StatusComponent : public Component {
 
 public:
 
-	bool alive = true;
-	bool invincible = false;
+	bool isAlive = true;
+	bool isInvincible = false;
 	int maxHp, 
 		maxMp, 
 		currentHp, 
@@ -38,18 +38,17 @@ public:
 		agility = 1;
 		intelligence = 1;
 		physicalDamage = 1;
-		invincible = true;
+		isInvincible = true;
 	}
-	StatusComponent(int maxHp, int maxMp) : maxHp(maxHp) , maxMp(maxMp) {
+	StatusComponent(int maxHp, int maxMp, float movementSpeed) : maxHp(maxHp) , maxMp(maxMp), movementSpeed(movementSpeed) {
 		currentHp = maxHp;
 		currentmp = maxMp;
-		movementSpeed = 200.0f;
 		attackSpeed = 2.0f;
 		runningSpeedMultiple = 2.0f;
 		strength = 1;
 		agility = 1;
 		intelligence = 1;
-		physicalDamage = 1;
+		physicalDamage = 10;
 	}
 
 

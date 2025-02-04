@@ -74,6 +74,31 @@ void GameplayScene::onEnter(){
 	req.sc = 1.0f;
 	ecsManager->pendingSpawns.push_back(req);
 
+	req.entityType = EntityType::Object;
+	req.name = "ground" ;
+	req.x = 640;
+	req.y = 0;
+	req.w = 1280;
+	req.h = 50;
+	req.sc = 1.0f;
+	ecsManager->pendingSpawns.push_back(req);
+
+	req.entityType = EntityType::Object;
+	req.name = "wall" ;
+	req.x = 0;
+	req.y = 400;
+	req.sc = 1.0f;
+	ecsManager->pendingSpawns.push_back(req);
+
+	req.entityType = EntityType::Object;
+	req.name = "wall" ;
+	req.x = 1280;
+	req.y = 400;
+	req.sc = 1.0f;
+	ecsManager->pendingSpawns.push_back(req);
+
+
+
 	req.entityType = EntityType::Item;
 	req.name = "potionCap";
 	req.x = 700.0f;

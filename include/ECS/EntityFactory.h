@@ -50,6 +50,7 @@ public:
     void loadAbilityComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadAIComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadSpawnerComponent(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadHitboxComponent(const json& componentData, std::shared_ptr<Entity> entity);
 
     void applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req);
     void registerComponentLoaders();

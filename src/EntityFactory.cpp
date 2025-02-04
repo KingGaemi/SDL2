@@ -60,11 +60,10 @@ void EntityFactory::makeProps(const SpawnRequest& req){
 }
 
 void EntityFactory::makeCamera(const SpawnRequest& req){
-	auto cameraEntity = ecsManager->createEntity();
-	ecsManager->setEntityName(cameraEntity, "camera");
-	cameraEntity->addComponent<CameraComponent>(1280, 800);
-	cameraEntity->addComponent<SceneTag>(SceneCode::Game);
+	// auto cameraEntity = ecsManager->createEntity();
+	// cameraEntity->addComponent<CameraComponent>(1280, 800);
 
+	// ecsManager->setEntityName(cameraEntity, "camera");
 }
 
 void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req) {
@@ -260,8 +259,10 @@ void EntityFactory::loadStatusComponent(const json& componentData, std::shared_p
 
 	int maxHp = componentData.value("maxHp", 1);
 	int maxMp = componentData.value("maxMp", 1);
+	float movementSpeed = componentData.value("movementSpeed", 100.0f);
 
-	entity->addComponent<StatusComponent>(maxHp, maxMp);
+
+	entity->addComponent<StatusComponent>(maxHp, maxMp, movementSpeed);
 }
 
 void EntityFactory::loadCommandComponent(const json& componentData, std::shared_ptr<Entity> entity){
@@ -269,7 +270,16 @@ void EntityFactory::loadCommandComponent(const json& componentData, std::shared_
 }
 
 void EntityFactory::loadMovementCommandComponent(const json& componentData, std::shared_ptr<Entity> entity){
-	entity->addComponent<MovementCommandComponent>();
+
+	std::string typeStr = componentData.value("commandType", "Stop");
+	MovementCommandType type;
+
+	if(typeStr == "Hold") type = MovementCommandType::Hold;
+	else if(typeStr == "Move") type = MovementCommandType::Move;
+	else if(typeStr == "GoForward") type = MovementCommandType::GoForward;
+	else if(typeStr == "Spin") type = MovementCommandType::Spin;
+
+	entity->addComponent<MovementCommandComponent>(type);
 }
 
 
@@ -298,8 +308,8 @@ void EntityFactory::loadProjectileComponent(const json& componentData, std::shar
 	float speed = componentData.value("speed", 1.0);
 	float scale = componentData.value("scale", 1.0);
 	float duration = componentData.value("duration", 1.0);
-
-	entity->addComponent<ProjectileComponent>(speed, scale, duration);
+	int penetration = componentData.value("penetration", 0);
+	entity->addComponent<ProjectileComponent>(speed, scale, duration, penetration);
 }
 
 void EntityFactory::loadDamageComponent(const json& componentData, std::shared_ptr<Entity> entity) {
@@ -331,8 +341,21 @@ void EntityFactory::loadAbilityComponent(const json& componentData, std::shared_
 }
 
 void EntityFactory::loadAIComponent(const json& componentData, std::shared_ptr<Entity> entity) {
-    
-    entity->addComponent<AIComponent>();
+    std::string aiType = componentData.value("AIType", "Roaming");
+
+    AIType mAIType;
+
+    if(aiType == "HomingMissile"){
+    	mAIType = AIType::HomingMissile;
+    }else if(aiType == "Roaming"){
+    	mAIType = AIType::Roaming;
+    }else if(aiType == "FindEnemy"){
+    	mAIType = AIType::FindEnemy;
+    }else {
+    	mAIType = AIType::None;
+    }
+
+    entity->addComponent<AIComponent>(mAIType);
 }
 
 void EntityFactory::loadSpawnerComponent(const json& componentData, std::shared_ptr<Entity> entity) {
@@ -341,10 +364,22 @@ void EntityFactory::loadSpawnerComponent(const json& componentData, std::shared_
     float spawnTime = componentData.value("spawnTime", 1.0f);
     SpawnRequest req;
     req.entityType = EntityType::Unit;
-    req.name = "slime";
+    req.name = spawnName;
     req.teamCode = TeamCode::Enemy;
 
     entity->addComponent<SpawnerComponent>(req, spawnTime);
+}
+
+
+void EntityFactory::loadHitboxComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+    
+    int w = componentData.value("w", 1);
+    int h = componentData.value("h", 1);
+    float offsetX = componentData.value("offsetX", 0);
+    float offsetY = componentData.value("offsetY", 0);
+    float scale = componentData.value("scale", 1.0f);
+
+    entity->addComponent<HitboxComponent>(w, h, offsetX, offsetY, scale);
 }
 
 
@@ -465,5 +500,9 @@ void EntityFactory::registerComponentLoaders() {
     };
     componentLoaders["SpawnerComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadSpawnerComponent(data, entity);
-    };    
+    };   
+    componentLoaders["HitboxComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadHitboxComponent(data, entity);
+    };  
+   
 }
