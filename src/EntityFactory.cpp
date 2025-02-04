@@ -104,7 +104,7 @@ void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnReq
             // transComp->width = req.w;
             // transComp->height = req.h;
             // transComp->scale = req.sc;
-            transComp->rotation = req.rotation;
+            transComp->radian = toRadian(req.rotation);
 	    }
     }
     if(req.hasOwner){

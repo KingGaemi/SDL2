@@ -13,6 +13,7 @@ public:
     float scale = 1;
 
     float rotation = 0.0f;
+    float radian = 0.0f;
 
     // bool isMoving = false; // 이동 중인지 여부(선택적으로 유지)
 

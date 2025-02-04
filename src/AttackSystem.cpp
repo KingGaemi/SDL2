@@ -183,6 +183,7 @@ void AttackSystem::whirlBlade(const AttackEvent& event){
 		req.hasTransform = true;
 		req.hDir = directComp->direction.hDir;
 		req.vDir = directComp->direction.vDir;
+		req.hasDirection = true;
 		req.rotation = directComp->getAngle();
 
 		req.damage = statusComp->physicalDamage;

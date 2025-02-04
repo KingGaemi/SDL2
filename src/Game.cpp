@@ -56,7 +56,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
     ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40, eventManager);
     ecsManager->addSystem<PhysicsSystem>(SystemGroup::Logic, 50, ecsManager, eventManager);
-    ecsManager->addSystem<CollisionSystem>(SystemGroup::Logic, 60, ecsManager);
+    // ecsManager->addSystem<CollisionSystem>(SystemGroup::Logic, 60, ecsManager);
     ecsManager->addSystem<CameraSystem>(SystemGroup::Logic, 70, ecsManager);
     ecsManager->addSystem<ExpireSystem>(SystemGroup::Logic, 90);
     // ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);

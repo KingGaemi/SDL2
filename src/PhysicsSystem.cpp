@@ -85,9 +85,8 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
             // (1) TransformComponent->rotation : 0°=오른쪽
             // (2) toRadian() : 도→라디안, 0도 -> 0라디안
             if (transComp) {
-                float rad = toRadian(transComp->rotation); // 0=오른쪽
-                bodyDef.rotation.c = cos(rad);
-                bodyDef.rotation.s = sin(rad);
+                bodyDef.rotation.c = cos(transComp->radian);
+                bodyDef.rotation.s = sin(-transComp->radian);
             }
 
             bodyDef.linearDamping = 10.0f;
@@ -116,8 +115,8 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
                 }else{
                     b2Body_SetFixedRotation(physComp->body, true);
                 }
-                // hitboxShapeDef.enableSensorEvents = true;
-                // hitboxShapeDef.isSensor = true;
+                hitboxShapeDef.enableSensorEvents = true;
+                hitboxShapeDef.isSensor = true;
                 b2CreatePolygonShape(physComp->body, &hitboxShapeDef, &hitbox);
             }
         }
@@ -126,7 +125,14 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
 
 
 void PhysicsSystem::setBeforeStep(std::vector<std::shared_ptr<Entity>>&entities){
-    std::vector<std::shared_ptr<Entity>> physicsEntity = setInfoFromGame(entities);
+
+    std::vector<std::shared_ptr<Entity>> physicsEntity;
+
+    for(auto& entity: entities){
+        if(entity->hasComponent<PhysicsComponent>()) physicsEntity.push_back(entity);
+    }
+
+    setInfoFromGame(physicsEntity);
     applyMovementCommands(physicsEntity);
 
     // etc..
@@ -134,9 +140,7 @@ void PhysicsSystem::setBeforeStep(std::vector<std::shared_ptr<Entity>>&entities)
 
 
 
-std::vector<std::shared_ptr<Entity>> PhysicsSystem::setInfoFromGame(std::vector<std::shared_ptr<Entity>>&entities){
-
-    std::vector<std::shared_ptr<Entity>> physicsEntity;
+void PhysicsSystem::setInfoFromGame(std::vector<std::shared_ptr<Entity>>&entities){
 
     for(auto& entity: entities){
 
@@ -163,27 +167,19 @@ std::vector<std::shared_ptr<Entity>> PhysicsSystem::setInfoFromGame(std::vector<
             if (entity->hasComponent<TransformComponent>() && entity->hasComponent<PositionComponent>()) {
                 // TransformComponent에서 위치와 회전값 가져오기
                 auto transComp = entity->getComponent<TransformComponent>();
-                auto posComp = entity->getComponent<PositionComponent>();
-                // 픽셀 → 미터 변환
-                // 각도(degree) → 라디안 변환
-                // float rotation = transComp->rotation * (3.14 / 180.0f);
+                auto posComp = entity->getComponent<PositionComponent>();             
 
+                b2Vec2 pos = (b2Vec2){(posComp->x) / PIXELS_PER_METER,
+                      (SCREEN_HEIGHT - posComp->y) / PIXELS_PER_METER};
+                b2Rot rot = b2MakeRot(transComp->radian);
+                rot.s = -rot.s;
 
-                // Box2D Transform 적용 
-                // position 포함
-                // b2Vec2 pos = {posComp->x, posComp->y};
-                // if(entity->hasComponent<PlayerTag>()) std::cout << posComp->x << ","<< posComp->y << std::endl;
-                b2Body_SetTransform(physComp->body, b2Body_GetPosition(physComp->body), b2MakeRot(toRadian(transComp->rotation)));
-                
+                b2Body_SetTransform(physComp->body, pos, rot);                
             }
 
-
-
-            physicsEntity.push_back(entity);
         }
     }
 
-    return physicsEntity;
 }
 
 
@@ -214,7 +210,7 @@ void PhysicsSystem::applyMovementCommands(std::vector<std::shared_ptr<Entity>>&p
 
                 auto transComp = entity->getComponent<TransformComponent>();
                 float speed = 100.0f;
-                float radian = toRadian(transComp->rotation);
+                
                 if(entity->hasComponent<ProjectileComponent>()){
                     auto projectileComp = entity->getComponent<ProjectileComponent>();
                     speed = projectileComp->projectileSpeed;
@@ -226,20 +222,35 @@ void PhysicsSystem::applyMovementCommands(std::vector<std::shared_ptr<Entity>>&p
 
                 float forceMagnitude = speed / PIXELS_PER_METER; 
 
-                b2Vec2 force = {forceMagnitude * cos(radian), forceMagnitude * sin(radian)};
+                b2Vec2 force = {forceMagnitude * cos(transComp->radian), forceMagnitude * sin(-transComp->radian)};
                 // 픽셀→미터 변환
                 // std::cout << "go forward.   force :" << forceMagnitude * cos(radian) <<  ", " << forceMagnitude * sin(radian) << std::endl;
 
+                // b2Body_ApplyForceToCenter(physComp->body, {1000, 1000}, true);
                 b2Body_SetLinearVelocity(physComp->body, force);       
                 // b2Body_ApplyForce(physComp->body, force, b2Body_GetWorldPoint(physComp->body, b2Body_GetPosition(physComp->body)), true);
             }
             else if(moveCommandComp->moveCommandType == MovementCommandType::Spin){
-                if(!entity->hasComponent<TransformComponent>()) continue;
+                // if(!entity->hasComponent<TransformComponent>()) continue;
 
-                auto transComp = entity->getComponent<TransformComponent>();
-                transComp->rotation += 5.0f;
+                // auto transComp = entity->getComponent<TransformComponent>();
+                // transComp->rotation += 1.0f;
+                // std::cout << transComp->rotation << std::endl;
+                // b2Rot rot = b2Body_GetRotation(physComp->body);
+                // float rad = b2Rot_GetAngle(rot);
+                // rad += toRadian(1.0f);
+                // rot = b2MakeRot(rad);
+                // std::cout << "radian : " << rad << std::endl;
+                // b2Body_SetTransform(physComp->body, b2Body_GetPosition(physComp->body), rot);
 
-                b2Body_SetTransform(physComp->body, b2Body_GetPosition(physComp->body), b2MakeRot(toRadian(transComp->rotation)));
+                if(entity->hasComponent<DirectionComponent>()&& entity->hasComponent<ProjectileComponent>()){
+                    auto directComp = entity->getComponent<DirectionComponent>();
+                    auto projectileComp = entity->getComponent<ProjectileComponent>();
+                    float speed = projectileComp->projectileSpeed / 20;
+                    b2Vec2 force = {directComp->hDir()*speed, - (directComp->vDir()*speed)};
+                    b2Body_SetLinearVelocity(physComp->body, force);
+                }
+                b2Body_SetAngularVelocity(physComp->body, 2.0f);
             }
 
         }
@@ -257,9 +268,10 @@ void PhysicsSystem::setPositionsFromWorld(std::vector<std::shared_ptr<Entity>>&e
         if(physComp->hasBody()){
                         
             b2Vec2 pos = b2Body_GetPosition(physComp->body);
-            b2Rot rot =  b2Body_GetRotation(physComp->body);
-            float renderX = box2dToPixelX(pos.x) + (physComp->offsetX ? physComp->offsetX : 0.0f);
-            float renderY = box2dToPixelY(pos.y) + (physComp->offsetY ? physComp->offsetY : 0.0f);
+            b2Rot rot =  b2Body_GetRotation(physComp->body);        
+            rot.s = -rot.s;
+            float renderX = box2dToPixelX(pos.x);
+            float renderY = box2dToPixelY(pos.y);
             
             auto posComp = entity->getComponent<PositionComponent>();
             if(posComp){
@@ -268,12 +280,11 @@ void PhysicsSystem::setPositionsFromWorld(std::vector<std::shared_ptr<Entity>>&e
 
             if(entity->hasComponent<TransformComponent>()){
                 auto transComp = entity->getComponent<TransformComponent>();
-                if(transComp){
-                    float box2dAngle = b2Rot_GetAngle(rot); 
+                if(transComp){                    
                     // box2dAngle : 0 rad = 오른쪽
-                    transComp->rotation = toAngle(box2dAngle); 
+                    transComp->radian = b2Rot_GetAngle(rot); 
                     // => 0° = 오른쪽
-                    // if(entity->hasComponent<ProjectileComponent>())std::cout << "Rotation : " << degAngle  << std::endl;
+                    // if(entity->hasComponent<ProjectileComponent>())std::cout << "Rotation : " << transComp->radian  << std::endl;
                 }
             }
 
@@ -283,7 +294,7 @@ void PhysicsSystem::setPositionsFromWorld(std::vector<std::shared_ptr<Entity>>&e
                 
                 // 만약 여러분의 좌표 변환이 픽셀 단위로 변환할 필요가 있다면, 아래와 같이 처리합니다.
                 float pixelVx = b2Velocity.x * PIXELS_PER_METER;
-                float pixelVy = b2Velocity.y * PIXELS_PER_METER;
+                float pixelVy = -b2Velocity.y * PIXELS_PER_METER;
                 // 주의: y축이 반전되어 있다면, 필요에 따라 -를 붙여줍니다.
                 // 예: float pixelVy = -b2Velocity.y * PIXELS_PER_METER;
                     

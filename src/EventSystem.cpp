@@ -100,7 +100,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 			command.direction = {0,0};
 			commandComp->push(command);
 		}
-		if(evt.type == EventType::KEYDOWN && evt.key == KeyCode::w){	
+		if(pressed[toInt(KeyCode::w)]){	
 			// std::cout << "w" << std::endl;		
 			command.abilityNumber = 2;
 			command.commandType = CommandType::Shoot;

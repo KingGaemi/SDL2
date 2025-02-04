@@ -155,7 +155,7 @@
       },
       {
         "name": "HitboxComponent",
-	"w": 300,
+	"w": 30,
 	"h": 9,
 	"scale": 2.0
       },
@@ -208,7 +208,7 @@
         "name": "HitboxComponent",
 	"w": 88,
         "h": 248,
-        "scale": 1.0
+        "scale": 0.5
      },
       {
         "name": "PhysicsComponent",

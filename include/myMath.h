@@ -33,14 +33,12 @@ inline void toRadian(float angle, float& radian){
 }
 
 
-inline float toRadianForBox2d(float angle){
-    float radian = M_PI/2 - angle*(M_PI / 180.0f);
-    return radian;
+inline float toRadianForBox2d(float angle){   
+    return M_PI/2 - angle*(M_PI / 180.0f);
 }
 
 inline float toAngle(float radian){
-	float angle = radian/(M_PI / 180.0f);
-    return angle;
+    return radian * 180.0f / M_PI;
 }
 
 inline void toAngle(float radian, float& angle){
@@ -55,7 +53,9 @@ inline float toAngleForGame(float radian){
 
 
 inline float box2dToPixelX(float x) { return x * PIXELS_PER_METER; }
-inline float box2dToPixelY(float y) { return -y * PIXELS_PER_METER + SCREEN_HEIGHT; }
+inline float box2dToPixelY(float y) { return SCREEN_HEIGHT - (y * PIXELS_PER_METER);}
+inline float pixelToBox2dX(float x) { return x / PIXELS_PER_METER; }
+inline float pixelToBox2dY(float y) { return (SCREEN_HEIGHT - y) / PIXELS_PER_METER;}
 
 inline float box2dToPixelAngle(float box2dAngle) {
     return (M_PI / 2.0f - box2dAngle) * (180.0f / M_PI);

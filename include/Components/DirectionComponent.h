@@ -20,8 +20,8 @@ public:
 
     void set(int dx, int dy) { direction.hDir = dx; direction.vDir = dy; }
     void set(Direction p_direction) {direction = p_direction;}
-    int hDir() const { return direction.hDir; }
-    int vDir() const { return direction.vDir; }
+    int hDir()  { return direction.hDir; }
+    int vDir()  { return direction.vDir; }
 
     Vector2D dirToVector() {
 

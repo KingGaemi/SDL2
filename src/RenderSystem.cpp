@@ -128,7 +128,7 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             
             if (entity->hasComponent<TransformComponent>()){
                 auto transComp = entity->getComponent<TransformComponent>();
-                rot = transComp->rotation;
+                rot = toAngle(transComp->radian);
             }
 
             auto texture = textureManager->getTexture(sprite->getTextureID());
@@ -137,7 +137,7 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
     }
 
 
-    if(debugMode){
+    if(!debugMode){
         if (entity->hasComponent<HitboxComponent>()) {
             auto hitboxComp = entity->getComponent<HitboxComponent>();
             auto posComp = entity->getComponent<PositionComponent>();
@@ -163,14 +163,14 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             debugRect.w = hitboxComp->w;
             debugRect.h = hitboxComp->h;
 
-            float rot = 0.0f;
+            float rad = 0.0f;
             if (entity->hasComponent<TransformComponent>()){
                 auto transComp = entity->getComponent<TransformComponent>();
-                rot = transComp->rotation;
+                rad = transComp->radian;
             }
             
             renderer->SetRenderDrawColor(255, 0, 0, 255);
-            renderer->RenderDrawRect(debugRect, rot);
+            renderer->RenderDrawRect(debugRect, rad);
 
         }
     }

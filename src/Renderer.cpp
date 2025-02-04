@@ -86,10 +86,9 @@ void Renderer::SetRenderDrawColor(int r, int g, int b, int a){
     SDL_SetRenderDrawColor(SDL_renderer, r, g, b, a);
 }
 
-void Renderer::RenderDrawRect(SDL_FRect &debugRect, float rot){
+void Renderer::RenderDrawRect(SDL_FRect &debugRect, float theta){
 
-    float x1, y1, x2, y2, cx, cy, theta;
-
+    float x1, y1, x2, y2, cx, cy;
 
     // upside
     x1 = debugRect.x - debugRect.w/2;
@@ -98,7 +97,6 @@ void Renderer::RenderDrawRect(SDL_FRect &debugRect, float rot){
     y2 = y1;
     cx = debugRect.x;
     cy = debugRect.y;
-    toRadian(rot, theta);
 
     rotateLineSegment(x1, y1, x2, y2,
                        cx, cy, theta,
@@ -115,7 +113,6 @@ void Renderer::RenderDrawRect(SDL_FRect &debugRect, float rot){
     y2 = y1;
     cx = debugRect.x;
     cy = debugRect.y;
-    toRadian(rot, theta);
 
     rotateLineSegment(x1, y1, x2, y2,
                        cx, cy, theta,
@@ -133,7 +130,7 @@ void Renderer::RenderDrawRect(SDL_FRect &debugRect, float rot){
     y2 = debugRect.y + debugRect.h/2;
     cx = debugRect.x;
     cy = debugRect.y;
-    toRadian(rot, theta);
+
 
     rotateLineSegment(x1, y1, x2, y2,
                        cx, cy, theta,
@@ -150,7 +147,6 @@ void Renderer::RenderDrawRect(SDL_FRect &debugRect, float rot){
     y2 = debugRect.y + debugRect.h/2;
     cx = debugRect.x;
     cy = debugRect.y;
-    toRadian(rot, theta);
 
     rotateLineSegment(x1, y1, x2, y2,
                        cx, cy, theta,
@@ -159,12 +155,6 @@ void Renderer::RenderDrawRect(SDL_FRect &debugRect, float rot){
 
     SDL_RenderDrawLineF(SDL_renderer, x1, y1,
                                       x2, y2);
-
-
-
-
-
-
 
 
 }

@@ -64,15 +64,15 @@ void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, float de
     if (aiComp->timeAccumulator < aiComp->updateInterval) return;
 
     // 타겟 위치와 미사일 위치 계산
-    Vector2D targetPos = aiComp->targetPos;
     Vector2D missilePos = posComp->getVector();
+    Vector2D targetPos = aiComp->targetPos;
     Vector2D dir = targetPos - missilePos;
 
     // 목표 각도 계산 (라디안; 0 rad = 오른쪽, 표준 좌표계)
     float desiredAngle = std::atan2(dir.y, dir.x);
 
     // 현재 각도는 TransformComponent의 회전(도 단위)을 라디안으로 변환한 값
-    float currentAngle = toRadian(transComp->rotation);
+    float currentAngle = transComp->radian;
 
     // 두 각도의 차이 계산
     float angleDelta = desiredAngle - currentAngle;
@@ -88,7 +88,8 @@ void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, float de
     currentAngle += angleDelta;
 
     // TransformComponent에 새 각도 (라디안 → 도)로 저장
-    transComp->rotation = toAngle(currentAngle);
+    // transComp->rotation = toAngle(currentAngle);
+    transComp->radian += angleDelta;
 
     // (필요에 따라 새로운 속도 벡터 계산 및 속도 업데이트하는 부분이 있다면 추가)
 

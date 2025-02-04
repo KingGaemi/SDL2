@@ -39,7 +39,7 @@ public:
     void taskDestroyEvents();
     std::shared_ptr<Entity> shapeUserDataToEntity(b2ShapeId shapeId);
     void processDestroyQueue();
-    std::vector<std::shared_ptr<Entity>> setInfoFromGame(std::vector<std::shared_ptr<Entity>>&entities);
+    void setInfoFromGame(std::vector<std::shared_ptr<Entity>>&entities);
     void applyMovementCommands(std::vector<std::shared_ptr<Entity>>&entities);
     void setBeforeStep(std::vector<std::shared_ptr<Entity>>&entities);
 
