@@ -13,7 +13,6 @@ class UIRenderSystem : public RenderSystem {
             if (!entity->isActive) continue;
             // UI 태그가 있어야만 그린다거나...
             if (!entity->hasComponent<UITag>()) continue;
-
             drawEntity(entity);
         }
 

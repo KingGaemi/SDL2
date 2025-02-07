@@ -104,6 +104,8 @@ void Game::textureLoading(){
     textureManager->loadTexture("slime1", "res/gfx/sprite_sheets/unit/slime/slime1-sheet.png");
     textureManager->loadTexture("orc1", "res/gfx/sprite_sheets/unit/orc/orc1-sheet.png");
     textureManager->loadTexture("debugRect", "res/gfx/debugrect.png");
+    textureManager->loadTexture("house1", "res/gfx/sprite_sheets/map/house1.png");
+    textureManager->loadTexture("shadow6", "res/gfx/sprite_sheets/map/shadow6.png");
     textureManager->loadText("Hello World!");
     // textureManager->loadTexture("farm_map",);
 

@@ -75,13 +75,15 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 	auto moveCommandComp = targetEntity->getComponent<MovementCommandComponent>();
 
 	if(moveCommandComp){
-		moveCommandComp->direction = direction;
-		moveCommandComp->doubleTap = isArrowKeyDoubleTapped;				
+		MovementCommand moveCommand;
+		moveCommand.direction = direction;
+		moveCommand.doubleTap = isArrowKeyDoubleTapped;				
 		if(arrowIsPressed()){
-			moveCommandComp->moveCommandType = MovementCommandType::Move;
+			moveCommand.moveCommandType = MovementCommandType::MoveToDirection;
 		}else{
-			moveCommandComp->moveCommandType = MovementCommandType::Stop;
+			moveCommand.moveCommandType = MovementCommandType::Stop;
 		}
+		moveCommandComp->push(moveCommand);
 	}
 
 	if(commandComp){

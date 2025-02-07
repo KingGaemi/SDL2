@@ -33,6 +33,7 @@ public:
     void init();
     void update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime) override;
     void destroyBody(std::shared_ptr<Entity> entity);
+    void cleanUpDeadBodies(std::vector<std::shared_ptr<Entity>>& entities);
     void createBodies(std::vector<std::shared_ptr<Entity>>&entities);
     void setPositionsFromWorld(std::vector<std::shared_ptr<Entity>>&entities);
     void getContactEvents();

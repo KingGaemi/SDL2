@@ -3,8 +3,9 @@
 #include "ECS/Component.h"
 #include "Components/DirectionComponent.h"
 
-// #include <vector>
+#include <queue>
 #include <optional>
+
 
 
 
@@ -19,9 +20,20 @@
 enum class MovementCommandType{
     Hold,
     Stop,
-    Move,
+    MoveToDirection,
     GoForward,
-    Spin
+    Spin,
+    Impulse
+};
+
+struct MovementCommand{
+    MovementCommandType moveCommandType = MovementCommandType::Stop;
+    Direction direction = {0, 0};
+    float radian = 0.0f;
+    bool doubleTap = false;
+    int abilityNumber = 0;
+    bool isClockwise = true;
+    bool stopSpin = false;
 };
 
 
@@ -32,17 +44,26 @@ class MovementCommandComponent : public Component {
 
 public:
     // std::vector<CommandData> commandDatas;
-    MovementCommandComponent(MovementCommandType type) : moveCommandType(type) {}
-    MovementCommandType moveCommandType;
-    Direction direction = {0, 0};
-    bool doubleTap = false;
+    MovementCommandComponent(MovementCommandType type){
+        MovementCommand moveCommand;
+        moveCommand.moveCommandType = type;
+        moveCommands.push(moveCommand);
+    }
 
-    // CommandComponent(CommandType type, Vector2D moveDirection) {
-    //      commandData.type = type;
-    //      commandData.moveDirection = moveDirection;
+    void push(MovementCommand moveCommand){
+        moveCommands.push(moveCommand);
+    }
 
-    // }
+    bool pop(MovementCommand& moveCommand) {
+        if (!moveCommands.empty()) {
+            moveCommand = moveCommands.front();
+            moveCommands.pop();
+            return true;
+        }
+        return false; // 빈 이벤트 반환
+    }
 
+    std::queue<MovementCommand> moveCommands;
 };
 
 

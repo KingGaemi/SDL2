@@ -53,7 +53,7 @@ void EntityFactory::makeProps(const SpawnRequest& req){
 	auto prop = ecsManager->createEntity();
 	prop->addComponent<PositionComponent>((req.x + req.w/2) * 2, (req.y + req.h/2) * 2);
     // prop->addComponent<ColliderComponent>(req.w, req.h, req.sc, ColliderType::Wall);
-    prop->addComponent<SpriteComponent>("dirt_tile", req.w, req.h, req.sc);
+    // prop->addComponent<SpriteComponent>("dirt_tile", req.w, req.h, req.sc);
     prop->addComponent<TransformComponent>(req.w, req.h, req.sc);
     prop->addComponent<PhysicsComponent>(req.w, req.h, req.sc, BodyType::Static);
     prop->addComponent<SceneTag>(SceneCode::Game);
@@ -275,7 +275,7 @@ void EntityFactory::loadMovementCommandComponent(const json& componentData, std:
 	MovementCommandType type;
 
 	if(typeStr == "Hold") type = MovementCommandType::Hold;
-	else if(typeStr == "Move") type = MovementCommandType::Move;
+	else if(typeStr == "MoveToDirection") type = MovementCommandType::MoveToDirection;
 	else if(typeStr == "GoForward") type = MovementCommandType::GoForward;
 	else if(typeStr == "Spin") type = MovementCommandType::Spin;
 
@@ -341,21 +341,21 @@ void EntityFactory::loadAbilityComponent(const json& componentData, std::shared_
 }
 
 void EntityFactory::loadAIComponent(const json& componentData, std::shared_ptr<Entity> entity) {
-    std::string aiType = componentData.value("AIType", "Roaming");
+    std::string aiBehaviorType = componentData.value("AIType", "Roaming");
 
-    AIType mAIType;
+    AIBehavior aiBehavior;
 
-    if(aiType == "HomingMissile"){
-    	mAIType = AIType::HomingMissile;
-    }else if(aiType == "Roaming"){
-    	mAIType = AIType::Roaming;
-    }else if(aiType == "FindEnemy"){
-    	mAIType = AIType::FindEnemy;
+    if(aiBehaviorType == "HomingMissile"){
+    	aiBehavior = AIBehavior::HomingMissile;
+    }else if(aiBehaviorType == "Roaming"){
+    	aiBehavior = AIBehavior::Roaming;
+    }else if(aiBehaviorType == "FindEnemy"){
+    	aiBehavior = AIBehavior::FindEnemy;
     }else {
-    	mAIType = AIType::None;
+    	aiBehavior = AIBehavior::None;
     }
 
-    entity->addComponent<AIComponent>(mAIType);
+    entity->addComponent<AIComponent>(aiBehavior);
 }
 
 void EntityFactory::loadSpawnerComponent(const json& componentData, std::shared_ptr<Entity> entity) {

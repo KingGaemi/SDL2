@@ -3,13 +3,15 @@
 #include "ECS/Entity.h"
 #include <random>
 
+struct AIModule;
+
 class AISystem : public System{
 
 public:
 	void update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime) override;
-	void trackTargetsForMissiles(std::shared_ptr<Entity>& entity, float deltaTime);
-	void roam(std::shared_ptr<Entity>& entity, float deltaTime);
-	bool findTarget(std::vector<std::shared_ptr<Entity>>&entities, std::shared_ptr<Entity>& missile);
+	void trackTargetsForMissiles(std::shared_ptr<Entity>& entity, AIModule& module);
+	void roam(std::shared_ptr<Entity>& entity, AIModule& module);
+	bool findTarget(std::vector<std::shared_ptr<Entity>>&entities, std::shared_ptr<Entity>& missile, AIModule& module);
 
 	int getRandomNumber(int min, int max) {
 	    static std::random_device rd;  // 하드웨어 기반 랜덤 시드

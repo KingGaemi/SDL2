@@ -107,7 +107,7 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
 
 	AnimationData* animData = animComp->getCurrentAnimationData();
     if (!animData || animData->frames.empty()) return;
-
+    if(!animComp || !spriteComp) return;
     // 현재 프레임
     FrameData* frame = animComp->getCurrentFrame();
     if (!frame) return;

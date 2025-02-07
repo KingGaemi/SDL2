@@ -9,7 +9,7 @@
 
 void MapSystem::init(){
 
-    json j = json::parse(std::ifstream("map/test2.tmj"));
+    json j = json::parse(std::ifstream("map/test3.tmj"));
     mapEntity = ecsManager->createEntity();
     mapEntity->addComponent<MapComponent>("base");
     mapComp = mapEntity->getComponent<MapComponent>();
@@ -46,7 +46,7 @@ void MapSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float del
 	if(!mapComp) return;
     if(!mapComp->layerMap.empty()){
         for(const auto& pair: mapComp->layerMap){
-            const std::string& layerName = pair.first;
+            // const std::string& layerName = pair.first;
             const LayerInfo& layerInfo = pair.second;
             auto texture = textureManager->getTexture(layerInfo.textureID);
             auto resolution = textureManager->getTextureResolution(layerInfo.textureID);
@@ -121,7 +121,7 @@ void MapSystem::parseObjectLayer(const json& layerJson) {
         SpawnRequest req;
 
         req.entityType = EntityType::Props;
-        req.name = "stone" ;
+        // req.name = "stone";
         req.x = x;
         req.y = y;
         req.w = w;

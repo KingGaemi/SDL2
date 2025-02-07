@@ -63,7 +63,21 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 	        	projectileComp->penetration -= 1;
 	        	if(projectileComp->penetration < 0)  attacker->terminate = true;
 	        }
+	        auto moveCommandComp = target->getComponent<MovementCommandComponent>();
+			
+			if(moveCommandComp) {
+    			MovementCommand moveCommand;
+				moveCommand.moveCommandType = MovementCommandType::Impulse;
+				// moveCommand.amount = damageComp->damage;
+				if(attacker->hasComponent<TransformComponent>()) {
+					auto transComp = attacker->getComponent<TransformComponent>();
+					if(transComp){
+						moveCommand.radian = transComp->radian;						
+					}
 
+				}				
+				moveCommandComp->push(moveCommand);
+    		}
 	        // std::cout << statusComp->currentHp << "/" << statusComp->maxHp << std::endl;
 	        if(statusComp->currentHp <= 0){
 	        	statusComp->currentHp = 0;
@@ -71,12 +85,14 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
 		    		auto stateComp = target->getComponent<StateComponent>();
 		    		auto moveCommandComp = target->getComponent<MovementCommandComponent>();
 		    		if(moveCommandComp) {
-		    			moveCommandComp->direction = {0, 0};
-		    			moveCommandComp->moveCommandType = MovementCommandType::Stop;
+		    			MovementCommand moveCommand;
+		    			moveCommand.direction = {0, 0};
+		    			moveCommand.moveCommandType = MovementCommandType::Hold;
+		    			moveCommandComp->push(moveCommand);
 		    		}
-		    		stateComp->changeActionState(ActionStates::Death, 0.8f);
+		    		if(stateComp) stateComp->changeActionState(ActionStates::Death, 0.8f);
+	        		statusComp->isAlive = false;
 		    	}
-	        	statusComp->isAlive = false;
 	        	// std::cout << "Died" << std::endl;
 	        }
 	    } 

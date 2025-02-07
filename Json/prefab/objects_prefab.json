@@ -85,7 +85,7 @@
       {
         "name": "SpawnerComponent",
         "spawnName": "slime1",
-	"spawnTime": 0.05
+	"spawnTime": 5
       }
     ]
   }

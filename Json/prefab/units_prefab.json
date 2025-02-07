@@ -30,7 +30,7 @@
         "height": 36,
         "scale": 1.0,
 	"offsetY": -6.0,
-        "bodyType": "Kinematic"
+        "bodyType": "Dynamic"
       },
       {
         "name": "PlayableComponent"
@@ -130,6 +130,9 @@
         "name": "CommandComponent"
       },
       {
+        "name": "MovementCommandComponent"
+      },
+      {
         "name": "CooldownComponent",
         "abilityName": "basicAttack",
         "cooldownTime": 1.0
@@ -173,9 +176,9 @@
       },
       {
         "name": "StatusComponent",
-        "maxHp": 100,
-        "maxMp": 100,
-        "currentHp": 100
+        "maxHp": 10011,
+        "maxMp": 10011,
+        "currentHp": 10011
       },
       {
         "name": "TeamTag",
@@ -246,9 +249,9 @@
       },
       {
         "name": "StatusComponent",
-        "maxHp": 10,
-        "maxMp": 10,
-        "currentHp": 10,
+        "maxHp": 1000,
+        "maxMp": 1000,
+        "currentHp": 1000,
 	"movementSpeed": 200
       },
       {
@@ -269,6 +272,10 @@
 	"w": 16,
 	"h": 16,
 	"scale": 2.0
+      },
+      {
+        "name": "AIComponent",
+	"AIType": "Roaming"
       }
     ]
   }

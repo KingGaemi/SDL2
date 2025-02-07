@@ -143,9 +143,9 @@ void AttackSystem::shootArrow(const AttackEvent& event){
 		req.hasTransform = true;
 		req.hDir = directComp->direction.hDir;
 		req.vDir = directComp->direction.vDir;
-		std::cout << "direct" << req.hDir << ", "<< req.vDir <<std::endl;
+		// std::cout << "direct" << req.hDir << ", "<< req.vDir <<std::endl;
 		req.rotation = directComp->getAngle();
-		std::cout << "rotation" << req.rotation  <<std::endl;
+		// std::cout << "rotation" << req.rotation  <<std::endl;
 		req.damage = statusComp->physicalDamage;
 		req.hasDamage = true;
 		req.sc = 1.0f;

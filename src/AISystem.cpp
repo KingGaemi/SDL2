@@ -11,61 +11,88 @@
 
 #include "Groups.h"
 
-void AISystem::update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime){
+void AISystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) 
+{
+    // 1) 모든 엔티티 순회
+    for (auto& entity : entities) {
+        if (!entity->isActive) continue;
+        if (!entity->hasComponent<AIComponent>()) continue;
 
-	std::vector<std::shared_ptr<Entity>> homingAI;
-	std::vector<std::shared_ptr<Entity>> roamingAI;
-	std::vector<std::shared_ptr<Entity>> targetingAI;
+        auto aiComp = entity->getComponent<AIComponent>();
+        // 2) AIComponent 안의 aiModulesMap을 순회
+        for (auto& [behavior, module] : aiComp->aiModulesMap) {
+            // 타이머 갱신
+            module.timeAccumulator += deltaTime;
+            if (module.timeAccumulator < module.updateInterval) {
+                // 아직 업데이트할 시간이 아님
+                continue;
+            }
 
-	for(auto& entity: entities){
-		if(entity->hasComponent<AIComponent>()){
-			if (!entity->isActive) continue;
-			auto aiComp = entity->getComponent<AIComponent>();
-			if(aiComp->aiType == AIType::HomingMissile){
-				homingAI.push_back(entity);
-				aiComp->updateInterval = 0.05f;
-			}else if(aiComp->aiType == AIType::Roaming){
-				auto statusComp = entity->getComponent<StatusComponent>();
-				if(!statusComp || !statusComp->isAlive) continue;
-				roamingAI.push_back(entity);
-				aiComp->updateInterval = 1.0f;
-			}
-		}
-	}
+            // 이번 프레임에 이 모듈을 업데이트해야 한다면
+            // updateInterval마다 timeAccumulator를 0으로 or 빼준다.
+            module.timeAccumulator -= module.updateInterval;
 
-	for(auto& missile: homingAI){
-	
-		if(findTarget(entities, missile)){
-			trackTargetsForMissiles(missile, deltaTime);
-		}
-	}
+            // if(module.aiBehavior == AIBehavior::HomingMissile) std::cout << "findTarget" << std::endl;
+            //   std::cout << "Behavior: " << static_cast<int>(behavior) 
+            // << ", timeAccumulator=" << module.timeAccumulator
+            // << ", updateInterval=" << module.updateInterval
+            // << std::endl;
+            // behavior별로 다른 로직 실행
+            
+            switch (behavior) {
+            case AIBehavior::HomingMissile:
+                {
+                    // 예: FindTarget + Track
+                    if (findTarget(entities, entity, module)) {
+                        trackTargetsForMissiles(entity, module);
+                    }
+                }
+                break;
 
-	for(auto& roamer: roamingAI){
-		roam(roamer, deltaTime);
-	}
+            case AIBehavior::Roaming:
+                {
+                    // 예: roam 로직
+                    auto statusComp = entity->getComponent<StatusComponent>();
+                    // 죽은 상태 등은 스킵
+                    if (!statusComp || !statusComp->isAlive) {
+                        break;
+                    }
+                    roam(entity, module);
+                }
+                break;
 
+            case AIBehavior::FindEnemy:
+                {
+                    // 다른 로직...
+                }
+                break;
 
+            default:
+
+                // None, etc...
+                break;
+            }
+        }
+    }
 }
 
 // guideByType
 
 
-void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, float deltaTime) {
+void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, AIModule& module) {
     // 필요한 컴포넌트 가져오기
     auto posComp = entity->getComponent<PositionComponent>();
     auto transComp = entity->getComponent<TransformComponent>();
-    auto aiComp = entity->getComponent<AIComponent>();
-    transComp->radian = std::fmod(transComp->radian + M_PI, 2 * M_PI) - M_PI;
+    auto moveCommandComp = entity->getComponent<MovementCommandComponent>();
     // 컴포넌트가 유효한지 확인
-    if (!posComp || !transComp || !aiComp) return;
+    if (!posComp || !transComp || !moveCommandComp ) return;
+    transComp->radian = std::fmod(transComp->radian + M_PI, 2 * M_PI) - M_PI;
 
     // 업데이트 간격 확인
-    aiComp->timeAccumulator += deltaTime;
-    if (aiComp->timeAccumulator < aiComp->updateInterval) return;
 
     // 타겟 위치와 미사일 위치 계산
     Vector2D missilePos = posComp->getVector();
-    Vector2D targetPos = aiComp->targetPos;
+    Vector2D targetPos = module.targetPos;
     Vector2D dir = targetPos - missilePos;
 
     // 목표 각도 계산 (라디안; 0 rad = 오른쪽, 표준 좌표계)
@@ -78,78 +105,70 @@ void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, float de
     float angleDelta = desiredAngle - currentAngle;
 
     // 각도 차이를 -π ~ π 범위로 정규화
-    angleDelta = std::fmod(angleDelta + M_PI, 2 * M_PI) - M_PI;
+    angleDelta = std::remainder(angleDelta, 2.0f * M_PI);
 
-    // 최대 회전 각도 제한 (예: 30도)
-    float maxTurnDelta = 15.0f * (M_PI / 180.0f);
-    angleDelta = std::clamp(angleDelta, -maxTurnDelta, maxTurnDelta);
-
-    // 새 각도 계산
-    currentAngle += angleDelta;
-
-    // TransformComponent에 새 각도 (라디안 → 도)로 저장
-    // transComp->rotation = toAngle(currentAngle);
-    transComp->radian += angleDelta;
-
-    // (필요에 따라 새로운 속도 벡터 계산 및 속도 업데이트하는 부분이 있다면 추가)
-
-    // 시간 누적기 초기화
-    aiComp->timeAccumulator -= aiComp->updateInterval;
+    
+    // Temp..
+    MovementCommand moveCommand;
+    moveCommand.moveCommandType = MovementCommandType::Spin;
+    if(angleDelta > M_PI || angleDelta <= 0 || angleDelta <= -M_PI){
+        moveCommand.isClockwise = true;
+    }else{
+        moveCommand.isClockwise = false;
+    }
+    if(std::abs(angleDelta) <= 0.3f) moveCommand.stopSpin = true; 
+    moveCommandComp->push(moveCommand);
+    // 전진 명령
+    moveCommand.moveCommandType = MovementCommandType::GoForward;
+    // if(angleDelta <= 0) moveCommand.stopSpin = true; // 회전 정지
+    moveCommandComp->push(moveCommand);    
 }
 
 
-bool AISystem::findTarget(std::vector<std::shared_ptr<Entity>>&entities, std::shared_ptr<Entity>& missile){
+bool AISystem::findTarget(std::vector<std::shared_ptr<Entity>>&entities, std::shared_ptr<Entity>& missile, AIModule& module){
 
 	std::vector<std::shared_ptr<Entity>> enemies;
-
+	float shortestSquared = 1000000.0f;
 	for(auto& entity : entities){
 		if(entity->hasComponent<TeamTag>()){
 			auto teamComp = entity->getComponent<TeamTag>();
 			if(teamComp->teamCode == TeamCode::Enemy) enemies.push_back(entity);
 		}
 	}
+// same as detecting distance
 
-	float shortest = 1000.0f; // same as detecting distance
-
-	auto aiComp = missile->getComponent<AIComponent>();
 	auto missilePos = missile->getComponent<PositionComponent>();
+
 	for(auto& target: enemies){
 		auto targetPos = target->getComponent<PositionComponent>();
+        if(!targetPos || !missilePos) continue;
 
 		Vector2D v1 = targetPos->getVector();
-		Vector2D v2 = missilePos->getVector();
+        Vector2D v2 = missilePos->getVector();
+		Vector2D diff =  v1 - v2;
 
-		Vector2D distance =  v1 - v2;
-		float length = std::sqrt(distance.x * distance.x + distance.y * distance.y);
-		if(!aiComp->target) shortest = 1000.0f;
-		if(length < shortest){
-			shortest = length;			
-			aiComp->target = target;
-			aiComp->targetPos = targetPos->getVector();
+		float lengthSquared = diff.x * diff.x + diff.y * diff.y;
+		
+		if(lengthSquared < shortestSquared){
+			shortestSquared = lengthSquared;			
+			module.target = target;
+			module.targetPos = targetPos->getVector();
 		}
 	}
 
-	if(aiComp->target) return true;
+	if(module.target) return true;
 	
 	return false;
 }
 
 
-void AISystem::roam(std::shared_ptr<Entity>& entity, float deltaTime){
-
-	auto directComp = entity->getComponent<PositionComponent>();
-	auto aiComp = entity->getComponent<AIComponent>();
-
-	aiComp->timeAccumulator += deltaTime;
-	if(aiComp->timeAccumulator < aiComp->updateInterval) return;
-
+void AISystem::roam(std::shared_ptr<Entity>& entity, AIModule& module){
 	auto moveCommandComp = entity->getComponent<MovementCommandComponent>();
 
 	if(moveCommandComp){
-		moveCommandComp->direction = { getRandomNumber(-1, 1) , getRandomNumber(-1, 1)};
-		moveCommandComp->moveCommandType = MovementCommandType::Move;
+        MovementCommand moveCommand;
+        moveCommand.moveCommandType = MovementCommandType::MoveToDirection;  
+		moveCommand.direction = { getRandomNumber(-1, 1) , getRandomNumber(-1, 1)};
+		moveCommandComp->push(moveCommand);
 	}
-
-	aiComp->timeAccumulator -= aiComp->updateInterval;
-
 }

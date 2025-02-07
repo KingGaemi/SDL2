@@ -7,6 +7,9 @@
 #include "Components/VelocityComponent.h"
 #include "Components/PlayableComponent.h"
 #include "Components/ProjectileComponent.h"
+#include "Components/DirectionComponent.h"
+#include "Components/StateComponent.h"
+#include "Components/StatusComponent.h"
 #include "Components/HitboxComponent.h"
 #include "Groups.h"
 #include "ECS/ECSManager.h"
@@ -28,6 +31,7 @@ void PhysicsSystem::init() {
 
 
 void PhysicsSystem::update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime){
+    cleanUpDeadBodies(entities);
     createBodies(entities);
     setBeforeStep(entities);
     b2World_Step(worldId, deltaTime, subStepCount);
@@ -36,6 +40,33 @@ void PhysicsSystem::update(std::vector<std::shared_ptr<Entity>>&entities, float 
     processDestroyQueue();
     setPositionsFromWorld(entities);
 }
+
+
+void PhysicsSystem::cleanUpDeadBodies(std::vector<std::shared_ptr<Entity>>& entities) {
+
+    for(auto& entity :entities){
+        if (entity->hasComponent<PhysicsComponent>() && entity->hasComponent<StatusComponent>()){
+            auto physComp = entity->getComponent<PhysicsComponent>();
+            auto statusComp = entity->getComponent<StatusComponent>();
+            if(!statusComp->isAlive){                
+                if (physComp->hasBody()) {
+                    // 맵에서 제거
+                    auto it = bodyMap.find(entity->getId());
+                    if (it != bodyMap.end()) {
+                        bodyMap.erase(it);
+                    }
+                    if (b2Body_IsValid(physComp->body)) {
+                        b2DestroyBody(physComp->body);
+                        // std::cout<< "destroyBody " << std::endl;
+                    }        
+                    physComp->body = b2_nullBodyId;
+                }
+            }            
+        }
+    }
+}
+
+
 
 void PhysicsSystem::destroyBody(std::shared_ptr<Entity> entity) {
     if (!entity->hasComponent<PhysicsComponent>()) return;
@@ -60,9 +91,10 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
             !entity->hasComponent<PositionComponent>()) continue;
 
         auto physComp = entity->getComponent<PhysicsComponent>();
-
+        auto statusComp = entity->getComponent<StatusComponent>();
+        if(statusComp && !statusComp->isAlive) continue;
+        
         if(!physComp->hasBody()){
-
             b2BodyDef bodyDef = b2DefaultBodyDef();
             bodyDef.userData = reinterpret_cast<void*>(static_cast<intptr_t>(entity->getId()));
 
@@ -90,7 +122,7 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
             }
 
             bodyDef.linearDamping = 10.0f;
-
+            if(entity->hasComponent<ProjectileComponent>()) bodyDef.linearDamping = 0.0f;
             physComp->body = b2CreateBody(worldId, &bodyDef);               
             bodyMap.emplace(entity->getId(), physComp->body);
             b2Body_SetGravityScale(physComp->body, 0.0f);
@@ -166,15 +198,15 @@ void PhysicsSystem::setInfoFromGame(std::vector<std::shared_ptr<Entity>>&entitie
             }
             if (entity->hasComponent<TransformComponent>() && entity->hasComponent<PositionComponent>()) {
                 // TransformComponent에서 위치와 회전값 가져오기
-                auto transComp = entity->getComponent<TransformComponent>();
-                auto posComp = entity->getComponent<PositionComponent>();             
+                // auto transComp = entity->getComponent<TransformComponent>();
+                // auto posComp = entity->getComponent<PositionComponent>();             
 
-                b2Vec2 pos = (b2Vec2){(posComp->x) / PIXELS_PER_METER,
-                      (posComp->y) / PIXELS_PER_METER};
-                b2Rot rot = b2MakeRot(transComp->radian);
+                // b2Vec2 pos = (b2Vec2){(posComp->x) / PIXELS_PER_METER,
+                //       (posComp->y) / PIXELS_PER_METER};
+                // b2Rot rot = b2MakeRot(transComp->radian);
 
 
-                b2Body_SetTransform(physComp->body, pos, rot);                
+                // b2Body_SetTransform(physComp->body, pos, rot);                
             }
 
         }
@@ -184,64 +216,110 @@ void PhysicsSystem::setInfoFromGame(std::vector<std::shared_ptr<Entity>>&entitie
 
 
 void PhysicsSystem::applyMovementCommands(std::vector<std::shared_ptr<Entity>>&physicsEntity){
+    if (physicsEntity.empty()) return;
     for(auto& entity: physicsEntity){
         if(!entity->hasComponent<MovementCommandComponent>()) continue;
-
+        if(!entity->hasComponent<PhysicsComponent>()) continue; 
         auto physComp = entity->getComponent<PhysicsComponent>();        
         auto moveCommandComp = entity->getComponent<MovementCommandComponent>();
-
-        if(moveCommandComp){
-            if(moveCommandComp->moveCommandType == MovementCommandType::Hold){
-                b2Body_SetLinearVelocity(physComp->body, {0, 0});
-                // 무게를 늘린다던지.. 고정시켜서 움직이지 못하게
-            }
-            else if(moveCommandComp->moveCommandType == MovementCommandType::Stop){
-                b2Body_SetLinearVelocity(physComp->body, {0, 0});
-                // 행동은 멈추지만.. 다른 엔티티에 의해 밀릴 수 있음
-            }
-            else if(moveCommandComp->moveCommandType == MovementCommandType::Move){
-
-            }
-            else if(moveCommandComp->moveCommandType == MovementCommandType::GoForward){
-
-                if(!entity->hasComponent<TransformComponent>() ||
-                    (!entity->hasComponent<StatusComponent>() &&
-                    !entity->hasComponent<ProjectileComponent>())) continue;
-
-                auto transComp = entity->getComponent<TransformComponent>();
-                float speed = 100.0f;
-                
-                if(entity->hasComponent<ProjectileComponent>()){
-                    auto projectileComp = entity->getComponent<ProjectileComponent>();
-                    speed = projectileComp->projectileSpeed;
-                }else if (entity->hasComponent<StatusComponent>()){
-                    auto statusComp = entity->getComponent<StatusComponent>();
-                    speed = statusComp->movementSpeed;
+        auto stateComp = entity->getComponent<StateComponent>();
+        auto statusComp = entity->getComponent<StatusComponent>();
+        auto directComp = entity->getComponent<DirectionComponent>();
+        auto veloComp = entity->getComponent<VelocityComponent>();
+        if(moveCommandComp && physComp){
+            MovementCommand moveCommand;
+            while(moveCommandComp->pop(moveCommand)){
+                if (!b2Body_IsValid(physComp->body)) {
+                    // std::cerr << "Error: Attempted to access to an invalid body!\n";
+                    continue;
                 }
+                if(moveCommand.moveCommandType == MovementCommandType::Hold){
+                    b2Body_SetLinearVelocity(physComp->body, {0, 0});
+                    // 무게를 늘린다던지.. 고정시켜서 움직이지 못하게
+                }
+                else if(moveCommand.moveCommandType == MovementCommandType::Stop){
+                    // 행동은 멈추지만.. 다른 엔티티에 의해 밀릴 수 있음
+                    if(stateComp)stateComp->changeMovementState(MovementStates::Stop);
+                    b2Body_SetLinearVelocity(physComp->body, {0, 0});                    
+                }
+                else if(moveCommand.moveCommandType == MovementCommandType::MoveToDirection){
+
+                    if(!stateComp || !statusComp || !directComp || !veloComp) continue;
+                    if(stateComp->movementState == MovementStates::Stop){
+                        stateComp->changeMovementState(MovementStates::Walk);
+                    }
+                    if(moveCommand.doubleTap){
+                        stateComp->changeMovementState(MovementStates::Run);
+                    }
+
+                    // break when go opposite
+                    if(stateComp->movementState == MovementStates::Run){
+                        if((moveCommand.direction.hDir == -1 && directComp->direction.hDir == 1) ||
+                            (moveCommand.direction.hDir == 1 && directComp->direction.hDir == -1) ||
+                            (moveCommand.direction.vDir == -1 && directComp->direction.vDir == 1) ||
+                            (moveCommand.direction.vDir == 1 && directComp->direction.vDir == -1)){
+                            stateComp->changeMovementState(MovementStates::Walk);
+                        } 
+                    }
+
+                    directComp->direction = moveCommand.direction;
+                    Vector2D velo = directComp->dirToVector();                          
+                    velo = velo * (statusComp->movementSpeed / PIXELS_PER_METER);
+                    if(stateComp->movementState == MovementStates::Run){                    
+                        velo = velo * statusComp->runningSpeedMultiple;
+                    }else{
+                    
+                    }
+
+                    // Adjust diagonal movement speed
+                    int dir = directComp->direction.hDir + directComp->direction.vDir;
+                    if(dir == 0 || dir == 2 || dir == -2){
+                        velo = velo * 0.8f;
+                    }
+                    b2Vec2 vec = {velo.x , velo.y};
+
+                    b2Body_SetLinearVelocity(physComp->body, vec);
+
+                }else if(moveCommand.moveCommandType == MovementCommandType::GoForward){
+
+                    if(!entity->hasComponent<TransformComponent>() ||
+                        (!entity->hasComponent<StatusComponent>() &&
+                        !entity->hasComponent<ProjectileComponent>())) continue;
+
+                    auto transComp = entity->getComponent<TransformComponent>();
+                    float speed = 100.0f;
+                    
+                    if(entity->hasComponent<ProjectileComponent>()){
+                        auto projectileComp = entity->getComponent<ProjectileComponent>();
+                        speed = projectileComp->projectileSpeed;
+                    }else if (entity->hasComponent<StatusComponent>()){
+                        auto statusComp = entity->getComponent<StatusComponent>();
+                        speed = statusComp->movementSpeed;
+                    }
 
 
-                float forceMagnitude = speed / PIXELS_PER_METER; 
+                    float forceMagnitude = speed / PIXELS_PER_METER; 
 
-                b2Vec2 force = {forceMagnitude * cos(transComp->radian), forceMagnitude * sin(transComp->radian)};
-                // 픽셀→미터 변환
-                // std::cout << "go forward.   force :" << forceMagnitude * cos(radian) <<  ", " << forceMagnitude * sin(radian) << std::endl;
+                    b2Vec2 force = {forceMagnitude * cos(transComp->radian), forceMagnitude * sin(transComp->radian)};
+                    // 픽셀→미터 변환
+                    // std::cout << "go forward.   force :" << forceMagnitude * cos(radian) <<  ", " << forceMagnitude * sin(radian) << std::endl;
 
-                // b2Body_ApplyForceToCenter(physComp->body, {1000, 1000}, true);
-                b2Body_SetLinearVelocity(physComp->body, force);       
-                // b2Body_ApplyForce(physComp->body, force, b2Body_GetWorldPoint(physComp->body, b2Body_GetPosition(physComp->body)), true);
-            }
-            else if(moveCommandComp->moveCommandType == MovementCommandType::Spin){
-
-                if(entity->hasComponent<DirectionComponent>()&& entity->hasComponent<ProjectileComponent>()){
-                    auto directComp = entity->getComponent<DirectionComponent>();
-                    auto projectileComp = entity->getComponent<ProjectileComponent>();
-                    float speed = projectileComp->projectileSpeed / 20;
-                    b2Vec2 force = {directComp->hDir()*speed, (directComp->vDir()*speed)};
+                    // b2Body_ApplyForceToCenter(physComp->body, force, true);
+                     if(moveCommand.stopSpin)  b2Body_SetAngularVelocity(physComp->body, 0);
                     b2Body_SetLinearVelocity(physComp->body, force);
+                    // b2Body_ApplyForce(physComp->body, force, b2Body_GetWorldPoint(physComp->body, b2Body_GetPosition(physComp->body)), true);
+                }else if(moveCommand.moveCommandType == MovementCommandType::Spin){
+                    if(moveCommand.isClockwise){
+                        b2Body_SetAngularVelocity(physComp->body, -5.0f);
+                    }else{
+                        b2Body_SetAngularVelocity(physComp->body, 5.0f);
+                    }
+                    if(moveCommand.stopSpin)  b2Body_SetAngularVelocity(physComp->body, 0);
+                }else if(moveCommand.moveCommandType == MovementCommandType::Impulse){
+                    b2Vec2 vec = {cos(moveCommand.radian), sin(moveCommand.radian)};
+                    b2Body_ApplyLinearImpulseToCenter(physComp->body, vec, true);
                 }
-                b2Body_SetAngularVelocity(physComp->body, 2.0f);
             }
-
         }
     }
 }
