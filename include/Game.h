@@ -3,8 +3,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <memory>
+#include "nlohmann/json.hpp"
 #include "Renderer.h"
 #include "TextureManager.h"
+#include "MapManager.h"
 #include "Scene.h"
 #include "MenuScene.h"
 #include "GameplayScene.h"
@@ -16,7 +18,6 @@
 #include "Events/EventSystem.h"
 #include "Events/EventManager.h"
 #include "Events/MiddleEventSystem.h"
-
 
 
 
@@ -35,7 +36,6 @@ public:
 	void handleEvents();
 	void clean();
 	
-
 private:
 	SDL_Window* window;
 	bool isRunning;
@@ -49,12 +49,12 @@ private:
     std::shared_ptr<ECSManager> ecsManager;
     std::shared_ptr<EntityFactory> entityFactory;
     std::shared_ptr<EventManager> eventManager;
+    std::shared_ptr<MapManager> mapManager;
     std::unique_ptr<TextureManager> mapTextureManager;
     std::unique_ptr<TextureManager> textureManager;
     std::unique_ptr<TextureManager> uiTextureManager;
     std::unique_ptr<InputManager> inputManager;
  
-    
 
 };
 

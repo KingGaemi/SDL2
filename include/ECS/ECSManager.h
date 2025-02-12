@@ -105,7 +105,7 @@ public:
     void setFactory(std::shared_ptr<EntityFactory>& factory);
     void setPhysicsSystem(std::shared_ptr<PhysicsSystem>& physSystem);
     void setVelocity(std::shared_ptr<Entity>& entity, float x, float y);
-    void setMapEntity(std::shared_ptr<Entity>& entity) { mapEntity = entity;}
+    // void setMapEntity(std::shared_ptr<Entity>& entity) { mapEntity = entity;}
     void processSpawnRequests();
     void processCollisionEvents();
     void processMiddleEvents();
@@ -127,7 +127,7 @@ public:
 private:
     std::size_t nextID = 0;
     std::vector<std::shared_ptr<Entity>> entities;
-    std::shared_ptr<Entity> mapEntity;
+    // std::shared_ptr<Entity> mapEntity;
     std::shared_ptr<Entity> cameraEntity;
     // 이름 관리 (원한다면 유지)
     

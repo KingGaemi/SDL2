@@ -32,7 +32,7 @@
       }
     ]
   },
-"wall": {
+  "wall": {
     "components": [
       {
         "name": "PositionComponent",
@@ -65,7 +65,7 @@
       }
     ]
   },
-"slimeSpawner": {
+  "slimeSpawner": {
     "components": [
       {
         "name": "PositionComponent",
@@ -85,7 +85,40 @@
       {
         "name": "SpawnerComponent",
         "spawnName": "slime1",
-	"spawnTime": 5
+        "spawnTime": 5
+      }
+    ]
+  },
+  "tree1": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "tree1",
+        "width": 113,
+        "height": 139,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 113,
+        "height": 139,
+        "scale": 2.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "PhysicsComponent",
+        "width": 28,
+        "height": 40,
+	"offsetY": 150,
+        "bodyType": "Static"
       }
     ]
   }

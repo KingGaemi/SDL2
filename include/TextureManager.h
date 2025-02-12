@@ -10,27 +10,33 @@
 class TextureManager{
 public:
 
-	TextureManager(Renderer& renderer) : renderer(&renderer) {}
+	TextureManager(Renderer& renderer) : renderer(&renderer) {
+		unknown = renderer.loadTexture("res/gfx/unknown.png");
+	}
 	~TextureManager() { cleanup(); }
 
 	bool loadTexture(const std::string& textureID, std::string_view p_filePath){
 		SDL_Texture* texture = renderer->loadTexture(std::string(p_filePath).c_str());
 		if (!texture) {
-            std::cerr << "Failed to load texture: " << p_filePath << " Error: " << IMG_GetError() << std::endl;
+            std::cerr << "Failed to load texture: " << p_filePath << " Error: " << IMG_GetError() << std::endl;         
+        	
             return false;
         }
 		textures[textureID] = texture;
 		return true;
 	};
 
-	SDL_Texture* getTexture(const std::string& textureID) {
-		// std::cout << "TextureManager :: getTexture(" << textureID << ")" << std::endl;
-		auto it = textures.find(textureID);
+	SDL_Texture* getTexture(const std::string& textureId) {
+		// std::cout << "TextureManager :: getTexture(" << textureId << ")" << std::endl;
+		auto it = textures.find(textureId);
 		if (it != textures.end()) {
 			// std::cout << "getTexture Success" << std::endl;
             return it->second;
         }
-        std::cout << "Failed to find Texture.  ID: " << textureID << std::endl;
+        std::cerr << "Failed to get texture: (" << textureId << ")" << std::endl;
+        // it = textures.find("unknown");
+           	    
+        // return it->second;
         return nullptr;
 	}
 
@@ -72,7 +78,7 @@ public:
         textures.clear();
 	}
 
-
+	SDL_Texture* unknown; 
 private:
 	Renderer* renderer;
 	std::unordered_map<std::string, SDL_Texture*> textures;

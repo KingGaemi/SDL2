@@ -41,7 +41,7 @@ std::shared_ptr<Entity> ECSManager::getEntityById(std::size_t id) {
 
 void ECSManager::updateSystems(float deltaTime) {
 
-        if(mapEntity) mapEntity->isActive = activeMap; // temp
+        // if(mapEntity) mapEntity->isActive = activeMap; // temp
 
         std::sort(registeredSystems.begin(), registeredSystems.end(),
             [](const SystemRegistration& a, const SystemRegistration& b) {
@@ -184,7 +184,7 @@ void ECSManager::takeSingleRequest(const SpawnRequest& req){
 
 }
 void ECSManager::activeMapEntity(){
-    activeMap = true;
+    // activeMap = true;
 }
 
 void ECSManager::makeCamera(){

@@ -34,8 +34,10 @@ SDL_Texture* Renderer::loadTexture(const std::string& p_filePath){
     SDL_Texture* texture = IMG_LoadTexture(SDL_renderer, p_filePath.c_str());
     if (!texture) {
         std::cerr << "Failed to load texture: " << SDL_GetError() << std::endl;
+        // std::cout << "Failed to load texture: " <<  std::endl;
+        // texture = IMG_LoadTexture(SDL_renderer,"res/gfx/unknown.png");
     }else{
-        std::cout << "Renderer loadTexture Complete!" << std::endl;
+        std::cout << "Renderer loadTexture Complete! : " <<  p_filePath.c_str()  << std::endl;
     }
 	return texture;
 }
@@ -67,6 +69,11 @@ SDL_Texture* Renderer::loadText(const char * textString){
 
 void Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_FRect* dstRect, double angle, SDL_FPoint* center, SDL_RendererFlip flip) {
 
+    if(!texture) {
+        std::cout << "texture is nullptr" << std::endl;
+        return;
+    }
+    
     SDL_RenderCopyExF(SDL_renderer, texture, srcRect, dstRect, angle, center, flip);
 
 }

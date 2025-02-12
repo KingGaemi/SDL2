@@ -24,11 +24,6 @@ obj/main.o: src/main.cpp include/Game.h include/SDL2/SDL.h \
  include/SDL2/SDL_system.h include/SDL2/SDL_timer.h \
  include/SDL2/SDL_version.h include/SDL2/SDL_locale.h \
  include/SDL2/SDL_misc.h include/SDL2/SDL_ttf.h include/SDL2/SDL.h \
- include/Renderer.h include/IRenderer.h include/SDL2/SDL_image.h \
- include/TextureManager.h include/Scene.h include/Events/EventManager.h \
- include/KeyCode.h include/MenuScene.h include/GameplayScene.h \
- include/Requests.h include/Groups.h include/ECS/Component.h \
- include/ECS/ECSManager.h include/ECS/EntityFactory.h \
  include/nlohmann/json.hpp include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
  include/nlohmann/detail/conversions/from_json.hpp \
@@ -72,15 +67,21 @@ obj/main.o: src/main.cpp include/Game.h include/SDL2/SDL.h \
  include/nlohmann/detail/conversions/to_chars.hpp \
  include/nlohmann/ordered_map.hpp \
  include/nlohmann/detail/macro_unscope.hpp \
- include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
- include/Components/Components.h include/Components/AnimationComponent.h \
+ include/nlohmann/thirdparty/hedley/hedley_undef.hpp include/Renderer.h \
+ include/IRenderer.h include/SDL2/SDL_image.h include/TextureManager.h \
+ include/MapManager.h include/Components/MapComponent.h \
+ include/ECS/Component.h include/Systems/MapSystem.h \
+ include/nlohmann/json.hpp include/ECS/System.h include/ECS/Entity.h \
+ include/ECS/ECSManager.h include/ECS/EntityFactory.h include/Requests.h \
+ include/Groups.h include/Components/Components.h \
+ include/Components/AnimationComponent.h \
  include/Components/ColliderComponent.h include/Rect.h include/Vector2D.h \
  include/Components/CommandComponent.h \
  include/Components/DirectionComponent.h include/myMath.h \
  include/Components/MovementCommandComponent.h \
  include/Components/CooldownComponent.h \
  include/Components/DamageComponent.h include/Components/DashComponent.h \
- include/Components/LifeTimeComponent.h \
+ include/KeyCode.h include/Components/LifeTimeComponent.h \
  include/Components/OwnerComponent.h \
  include/Components/PhysicsComponent.h include/box2d/box2d.h \
  include/box2d/base.h include/box2d/collision.h \
@@ -92,15 +93,16 @@ obj/main.o: src/main.cpp include/Game.h include/SDL2/SDL.h \
  include/Components/StateComponent.h include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
  include/Components/VelocityComponent.h \
- include/Components/ItemComponent.h include/ECS/Entity.h \
+ include/Components/ItemComponent.h \
  include/Components/FloatingEffectComponent.h \
- include/Components/MapComponent.h include/Components/CameraComponent.h \
+ include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
- include/Components/HitboxComponent.h include/Systems/PhysicsSystem.h \
- include/ECS/System.h include/Systems/Systems.h \
- include/Systems/AnimationSystem.h include/Systems/InputSystem.h \
- include/Systems/MovementSystem.h include/Systems/RenderSystem.h \
+ include/Components/HitboxComponent.h include/Events/EventManager.h \
+ include/Systems/PhysicsSystem.h include/Systems/RenderSystem.h \
+ include/Scene.h include/MenuScene.h include/GameplayScene.h \
+ include/Systems/Systems.h include/Systems/AnimationSystem.h \
+ include/Systems/InputSystem.h include/Systems/MovementSystem.h \
  include/Systems/TimerSystem.h include/Systems/ExpireSystem.h \
  include/Systems/AttackSystem.h include/Systems/CooldownSystem.h \
  include/Systems/CommandSystem.h include/Systems/WorldRenderSystem.h \
@@ -108,10 +110,9 @@ obj/main.o: src/main.cpp include/Game.h include/SDL2/SDL.h \
  include/Systems/CollisionSystem.h include/Systems/DamageSystem.h \
  include/Systems/EffectSystem.h \
  include/Systems/CollisionEventHandlerSystem.h \
- include/Systems/MapSystem.h include/Systems/CameraSystem.h \
- include/Systems/AISystem.h include/Systems/SpawnSystem.h \
- include/Input/InputManager.h include/Events/EventSystem.h \
- include/Events/MiddleEventSystem.h
+ include/Systems/CameraSystem.h include/Systems/AISystem.h \
+ include/Systems/SpawnSystem.h include/Input/InputManager.h \
+ include/Events/EventSystem.h include/Events/MiddleEventSystem.h
 include/Game.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
@@ -165,20 +166,6 @@ include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
 include/SDL2/SDL_ttf.h:
 include/SDL2/SDL.h:
-include/Renderer.h:
-include/IRenderer.h:
-include/SDL2/SDL_image.h:
-include/TextureManager.h:
-include/Scene.h:
-include/Events/EventManager.h:
-include/KeyCode.h:
-include/MenuScene.h:
-include/GameplayScene.h:
-include/Requests.h:
-include/Groups.h:
-include/ECS/Component.h:
-include/ECS/ECSManager.h:
-include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
 include/nlohmann/adl_serializer.hpp:
 include/nlohmann/detail/abi_macros.hpp:
@@ -225,6 +212,21 @@ include/nlohmann/detail/conversions/to_chars.hpp:
 include/nlohmann/ordered_map.hpp:
 include/nlohmann/detail/macro_unscope.hpp:
 include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
+include/Renderer.h:
+include/IRenderer.h:
+include/SDL2/SDL_image.h:
+include/TextureManager.h:
+include/MapManager.h:
+include/Components/MapComponent.h:
+include/ECS/Component.h:
+include/Systems/MapSystem.h:
+include/nlohmann/json.hpp:
+include/ECS/System.h:
+include/ECS/Entity.h:
+include/ECS/ECSManager.h:
+include/ECS/EntityFactory.h:
+include/Requests.h:
+include/Groups.h:
 include/Components/Components.h:
 include/Components/AnimationComponent.h:
 include/Components/ColliderComponent.h:
@@ -237,6 +239,7 @@ include/Components/MovementCommandComponent.h:
 include/Components/CooldownComponent.h:
 include/Components/DamageComponent.h:
 include/Components/DashComponent.h:
+include/KeyCode.h:
 include/Components/LifeTimeComponent.h:
 include/Components/OwnerComponent.h:
 include/Components/PhysicsComponent.h:
@@ -257,21 +260,22 @@ include/Components/StatusComponent.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
 include/Components/ItemComponent.h:
-include/ECS/Entity.h:
 include/Components/FloatingEffectComponent.h:
-include/Components/MapComponent.h:
 include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
+include/Events/EventManager.h:
 include/Systems/PhysicsSystem.h:
-include/ECS/System.h:
+include/Systems/RenderSystem.h:
+include/Scene.h:
+include/MenuScene.h:
+include/GameplayScene.h:
 include/Systems/Systems.h:
 include/Systems/AnimationSystem.h:
 include/Systems/InputSystem.h:
 include/Systems/MovementSystem.h:
-include/Systems/RenderSystem.h:
 include/Systems/TimerSystem.h:
 include/Systems/ExpireSystem.h:
 include/Systems/AttackSystem.h:
@@ -284,7 +288,6 @@ include/Systems/CollisionSystem.h:
 include/Systems/DamageSystem.h:
 include/Systems/EffectSystem.h:
 include/Systems/CollisionEventHandlerSystem.h:
-include/Systems/MapSystem.h:
 include/Systems/CameraSystem.h:
 include/Systems/AISystem.h:
 include/Systems/SpawnSystem.h:

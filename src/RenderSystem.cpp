@@ -131,7 +131,11 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
                 rot = toAngle(transComp->radian);
             }
 
-            auto texture = textureManager->getTexture(sprite->getTextureID());
+            auto texture = textureManager->getTexture(sprite->getTextureId());
+            if(!texture){
+                texture = textureManager->unknown;
+                sprite->textureId = "unknown";
+            }
             renderer->render(texture, &srcRect, &dstRect, rot, nullptr, flip);
         }
     }
@@ -141,6 +145,9 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
         if (entity->hasComponent<HitboxComponent>()) {
             auto hitboxComp = entity->getComponent<HitboxComponent>();
             auto posComp = entity->getComponent<PositionComponent>();
+            auto spriteComp = entity->getComponent<SpriteComponent>();
+
+
             // collider 위치(월드 좌표) -> 화면 좌표 변환
             // (camX, camY) 만큼 빼주기, 혹은 camTransform 적용
             float worldX = posComp->x;
@@ -160,8 +167,14 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             SDL_FRect debugRect;
             debugRect.x = screenX;
             debugRect.y = screenY;
-            debugRect.w = hitboxComp->w;
-            debugRect.h = hitboxComp->h;
+            if(false){
+                if(!spriteComp) return;
+                debugRect.w = spriteComp->dstRect.w;
+                debugRect.h = spriteComp->dstRect.h;
+            }else{
+                debugRect.w = hitboxComp->w;
+                debugRect.h = hitboxComp->h;
+            }
 
             float rad = 0.0f;
             if (entity->hasComponent<TransformComponent>()){

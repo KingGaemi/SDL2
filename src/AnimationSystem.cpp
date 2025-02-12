@@ -152,10 +152,18 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
 
     // spriteComp에 현재 프레임 정보 반영
     if (frame) {
-        spriteComp->srcRect.x = frame->x;
-        spriteComp->srcRect.y = frame->y;
-        spriteComp->srcRect.w = frame->w;
-        spriteComp->srcRect.h = frame->h;
+        if(spriteComp->textureId == "unknown"){
+            // std::cout <<"texture is unknown" << std::endl;
+            spriteComp->srcRect.x = 0;
+            spriteComp->srcRect.y = 0;
+            spriteComp->srcRect.w = 32;
+            spriteComp->srcRect.h = 32;            
+        }else{            
+            spriteComp->srcRect.x = frame->x;
+            spriteComp->srcRect.y = frame->y;
+            spriteComp->srcRect.w = frame->w;
+            spriteComp->srcRect.h = frame->h;
+        }
     }
 }
 

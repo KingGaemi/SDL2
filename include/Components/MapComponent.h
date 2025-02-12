@@ -2,15 +2,34 @@
 #include "ECS/Component.h"
 #include <iostream>
 #include <utility>
+#include <vector>
+#include <unordered_map>
+
+enum class LayerType{
+	tilelayer,
+	objectgroup
+};
 
 
 struct LayerInfo{
 	std::string layerName;
-	std::string textureID;
-	std::pair<int, int> textureResolution;
+	LayerType layerType;
+	// std::pair<int, int> textureResolution;
 	std::vector<int> tileData;
-	int firstGid = 1;
+	int layerId = 0;
 };
+
+struct TilesetInfo{
+	std::string tilesetName;
+	std::string imagePath;
+	std::string textureId;
+	int firstgid = 0;
+	int tilecount;
+	int imageheight;
+	int imagewidth;
+	int margin;
+};
+
 
 
 class MapComponent : public Component{
@@ -23,21 +42,22 @@ public:
 
 	MapComponent(const std::string& mapName) : mapName(mapName) {}
 
-	void addLayer(const std::string& layerName, const std::string& texID, int firstGid){
-		LayerInfo layer;
-		layer.layerName = layerName;
-		layer.textureID = texID;
-		layer.firstGid = firstGid;
-		layerMap.insert({layerName, layer});
+	void addLayer(const LayerInfo& layer){
+		layers.push_back(layer);
 	}
 
-	void addData(const std::string& layerName, int data) {
-	    layerMap[layerName].tileData.push_back(data);
+	void addTileset(const TilesetInfo& tileset){
+		tilesetMap.insert({tileset.tilesetName, tileset});
 	}
 
-	
-	
-	std::unordered_map<std::string, LayerInfo> layerMap;  // layerName, layerInfo
+	void addData(int layerId, int data) {
+		for(auto& layer : layers){
+			if(layer.layerId == layerId) layer.tileData.push_back(data);
+		}
+	}
 
+
+	std::vector<LayerInfo> layers;  // layerName, layerInfo
+	std::unordered_map<std::string, TilesetInfo> tilesetMap;
 
 };

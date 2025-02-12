@@ -1,0 +1,89 @@
+{
+  "textures": [
+    {
+      "textureId": "eri",
+      "path": "res/gfx/eri_copy2.png",
+      "type": "unit"
+    },
+    {
+      "textureId": "background_main",
+      "path": "res/gfx/SunnyLand/Environment/back.png",
+      "type": "image"
+    },
+    {
+      "textureId": "streetlamp",
+      "path": "res/gfx/streetlamp3.png",
+      "type": "object"
+    },
+    {
+      "textureId": "farmer",
+      "path": "res/gfx/1/player_sprite_sheet.png",
+      "type": "unit"
+    },
+    {
+      "textureId": "water_tile",
+      "path": "res/gfx/water_tile.png",
+      "type": "tile"
+    },
+    {
+      "textureId": "orc3",
+      "path": "res/gfx/sprite_sheets/unit/orc/orc3-sheet.png",
+      "type": "unit"
+    },
+    {
+      "textureId": "dirt_tile",
+      "path": "res/gfx/dirt_tile.png",
+      "type": "tile"
+    },
+    {
+      "textureId": "box1",
+      "path": "res/gfx/box1.png",
+      "type": "object"
+    },
+    {
+      "path": "res/gfx/potion_cap2.png",
+      "textureId": "potion_cap",
+      "type": "item"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/map/TX_Tileset_Grass.png",
+      "textureId": "grass_tileset",
+      "type": "tile"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/map/TX_Props.png",
+      "textureId": "props_tileset",
+      "type": "tile"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/projectile/arrow/spinning_arrow-sheet.png",
+      "textureId": "spinning_arrow",
+      "type": "projectile"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/unit/slime/slime1-sheet.png",
+      "textureId": "slime1",
+      "type": "unit"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/unit/orc/orc1-sheet.png",
+      "textureId": "orc1",
+      "type": "unit"
+    },
+    {
+      "path": "res/gfx/debugrect.png",
+      "textureId": "debugRect",
+      "type": "image"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/map/house1.png",
+      "textureId": "house1",
+      "type": "object"
+    },
+    {
+      "path": "res/gfx/tree1.png",
+      "textureId": "tree1",
+      "type": "object"
+    }
+  ]
+}

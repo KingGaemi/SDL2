@@ -2,6 +2,7 @@
 #include <memory>
 #include "Scene.h"
 #include "Requests.h"
+#include "MapManager.h"
 
 class Entity;
 
@@ -10,7 +11,9 @@ class Entity;
 
 class GameplayScene: public Scene{
 public:
-	GameplayScene(std::shared_ptr<ECSManager> ecsManager) : Scene("GameplayScene", ecsManager){}
+	GameplayScene(std::shared_ptr<ECSManager> ecsManager, std::shared_ptr<MapManager> p_mapManager) : Scene("GameplayScene", ecsManager){
+		mapManager = p_mapManager;
+	}
 	// ~GameplayScene() override;
 	void onEnter() override;
 	void handleEvents(const std::vector<Event>& events) override;
@@ -20,9 +23,6 @@ public:
 
 	void pushEvent(const Event& event);
 private:
-	std::shared_ptr<Entity> player;
-	std::shared_ptr<Entity> farmer;
-	// std::vector<SpawnRequest> gamePlaySceneSpawnRequests;
-	// std::unique_ptr<KeyboardController> keyboardController;
+	std::shared_ptr<MapManager> mapManager;
 
 };

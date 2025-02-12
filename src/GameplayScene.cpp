@@ -13,36 +13,27 @@
 
 void GameplayScene::onEnter(){
 
-
+	if(mapManager) mapManager->loadMap("maps/home_map.tmj");
 	SpawnRequest req;
 
-	req.entityType = EntityType::Unit;
-	req.name = "player";
-	req.x = 145.0f;
-	req.y = 150.0f;
-	req.hasTransform = false;
-	req.teamCode = TeamCode::Ally;
-	ecsManager->pendingSpawns.push_back(req);
+	// req.entityType = EntityType::Unit;
+	// req.name = "player";
+	// req.x = 145.0f;
+	// req.y = 150.0f;
+	// req.hasTransform = false;
+	// req.teamCode = TeamCode::Ally;
+	// ecsManager->pendingSpawns.push_back(req);
 
-	req.entityType = EntityType::Unit;
-	req.name = "enemy";
-	req.x = 500.0f;
-	req.y = 300.0f;
-	req.w = 32;
-	req.h = 39;
-	req.sc = 2.0f;
-	req.teamCode = TeamCode::Enemy;
-	ecsManager->pendingSpawns.push_back(req);
+	// req.entityType = EntityType::Unit;
+	// req.name = "enemy";
+	// req.x = 500.0f;
+	// req.y = 300.0f;
+	// req.w = 32;
+	// req.h = 39;
+	// req.sc = 2.0f;
+	// req.teamCode = TeamCode::Enemy;
+	// ecsManager->pendingSpawns.push_back(req);
 
-	req.entityType = EntityType::Unit;
-	req.name = "farmer";
-	req.x = 500.0f;
-	req.y = 600.0f;
-	req.w = 21;
-	req.h = 28;
-	req.sc = 2.0f;
-	req.teamCode = TeamCode::Ally;
-	ecsManager->pendingSpawns.push_back(req);
 
 	req.entityType = EntityType::Unit;
 	req.name = "eri" ;
@@ -55,14 +46,14 @@ void GameplayScene::onEnter(){
 	ecsManager->pendingSpawns.push_back(req);
 
 
-	req.entityType = EntityType::UI;
-	req.name = "text" ;
-	req.x = 500.0f;
-	req.y = 200.0f;
-	req.w = 100;
-	req.h = 50;
-	req.sc = 1.0f;
-	ecsManager->pendingSpawns.push_back(req);
+	// req.entityType = EntityType::UI;
+	// req.name = "text" ;
+	// req.x = 500.0f;
+	// req.y = 200.0f;
+	// req.w = 100;
+	// req.h = 50;
+	// req.sc = 1.0f;
+	// ecsManager->pendingSpawns.push_back(req);
 
 
 	req.entityType = EntityType::Object;
@@ -108,22 +99,22 @@ void GameplayScene::onEnter(){
 
 
 
-	req.entityType = EntityType::Object;
-	req.name = "slimeSpawner";
-	req.x = 900.0f;
-	req.y = 400.0f;
-	req.teamCode = TeamCode::Neutral;
-	ecsManager->pendingSpawns.push_back(req);
+	// req.entityType = EntityType::Object;
+	// req.name = "slimeSpawner";
+	// req.x = 900.0f;
+	// req.y = 400.0f;
+	// req.teamCode = TeamCode::Neutral;
+	// ecsManager->pendingSpawns.push_back(req);
 
 
 	req.entityType = EntityType::Camera;
 	req.name = "camera";
 	ecsManager->pendingSpawns.push_back(req);
-
 	
-	auto mapSystem = ecsManager->getSystem<MapSystem>();
-	mapSystem->init();  
-	ecsManager->activeMapEntity();
+	
+	// auto mapSystem = ecsManager->getSystem<MapSystem>();
+	// mapSystem->init();  
+	// ecsManager->activeMapEntity();
 
 	std::cout << "GameplayScene initialized!" << std::endl;
 

@@ -8,29 +8,29 @@
 #include "RenderSystem.h"
 
 
-using json = nlohmann::json;
+// using json = nlohmann::json;
 
 
-class MapSystem : public RenderSystem{
+// class MapSystem : public RenderSystem{
 
-public:
-	using RenderSystem::RenderSystem;
-	MapSystem(Renderer& renderer, std::shared_ptr<ECSManager>& ecsManager)
-			: RenderSystem(renderer, ecsManager), ecsManager(ecsManager) {}
+// public:
+// 	using RenderSystem::RenderSystem;
+// 	MapSystem(Renderer& renderer, std::shared_ptr<ECSManager>& ecsManager)
+// 			: RenderSystem(renderer, ecsManager), ecsManager(ecsManager) {}
 
 	
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
-	void init();
-	void parseTileLayer(const json& layerJson);
-	void parseObjectLayer(const json& layerJson);
-	std::shared_ptr<Entity> getMapEntity(){return mapEntity;}
+// 	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
+// 	void init();
+// 	void parseTileLayer(const json& layerJson);
+// 	void parseObjectLayer(const json& layerJson);
+// 	std::shared_ptr<Entity> getMapEntity(){return mapEntity;}
 
-private:
-	int mapWidth, mapHeight, tileWidth, tileHeight;
-	std::shared_ptr<ECSManager> ecsManager;
-	std::shared_ptr<Entity> mapEntity;
-	std::shared_ptr<Entity> cameraEntity;
-	std::shared_ptr<MapComponent> mapComp;
-	json mapJson;
-	json tileJson;
-};
+// private:
+// 	int mapWidth, mapHeight, tileWidth, tileHeight;
+// 	std::shared_ptr<ECSManager> ecsManager;
+// 	std::shared_ptr<Entity> mapEntity;
+// 	std::shared_ptr<Entity> cameraEntity;
+// 	std::shared_ptr<MapComponent> mapComp;
+// 	json mapJson;
+// 	json tileJson;
+// };

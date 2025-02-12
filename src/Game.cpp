@@ -1,6 +1,7 @@
 
 #include "Game.h"
 
+
 Game::Game() : window(nullptr),  isRunning(false), lastFrameTime(0) {}
 
 
@@ -44,11 +45,12 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     eventManager = std::make_shared<EventManager>();
     ecsManager->eventManager = eventManager;
     inputManager = std::make_unique<InputManager>(eventManager);
+    mapManager = std::make_shared<MapManager>(ecsManager);
 
     // Add Systems
 
     // Render
-    ecsManager->addSystem<MapSystem>(SystemGroup::Render, 50, *renderer, ecsManager);
+    // ecsManager->addSystem<MapSystem>(SystemGroup::Render, 50, *renderer, ecsManager);
     ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer, ecsManager);
     ecsManager->addSystem<UIRenderSystem>(SystemGroup::Render, 200, *renderer, ecsManager);
     // Logic
@@ -80,6 +82,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     currentScene = std::make_shared<MenuScene>(ecsManager);
     currentScene->onEnter();
 
+
 	isRunning = true;
 }
 
@@ -88,25 +91,21 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
 void Game::textureLoading(){
 
     textureManager = std::make_unique<TextureManager>(*renderer);
-    textureManager->loadTexture("background_main", "res/gfx/SunnyLand/Environment/back.png");
-    textureManager->loadTexture("eri", "res/gfx/eri_copy2.png");
-    textureManager->loadTexture("streetlamp", "res/gfx/streetlamp3.png");
-    textureManager->loadTexture("farmer", "res/gfx/1/player_sprite_sheet.png");
-    textureManager->loadTexture("water_tile", "res/gfx/water_tile.png");
-    textureManager->loadTexture("orc3", "res/gfx/sprite_sheets/unit/orc/orc3-sheet.png");
-    textureManager->loadTexture("dirt_tile", "res/gfx/dirt_tile.png");
-    textureManager->loadTexture("box1", "res/gfx/box1.png");
-    textureManager->loadTexture("unknown", "res/gfx/player2.png");
-    textureManager->loadTexture("potion_cap", "res/gfx/potion_cap2.png");
-    textureManager->loadTexture("grass_tileset", "res/gfx/sprite_sheets/map/TX_Tileset_Grass.png");
-    textureManager->loadTexture("props_tileset", "res/gfx/sprite_sheets/map/TX_Props.png");
-    textureManager->loadTexture("spinning_arrow", "res/gfx/sprite_sheets/projectile/arrow/spinning_arrow-sheet.png");
-    textureManager->loadTexture("slime1", "res/gfx/sprite_sheets/unit/slime/slime1-sheet.png");
-    textureManager->loadTexture("orc1", "res/gfx/sprite_sheets/unit/orc/orc1-sheet.png");
-    textureManager->loadTexture("debugRect", "res/gfx/debugrect.png");
-    textureManager->loadTexture("house1", "res/gfx/sprite_sheets/map/house1.png");
-    textureManager->loadTexture("shadow6", "res/gfx/sprite_sheets/map/shadow6.png");
-    textureManager->loadText("Hello World!");
+
+
+
+    json j = json::parse(std::ifstream("json/texturePath/texturePathes.json"));
+
+    for (const auto& texture : j["textures"]) {
+        std::string textureId = texture["textureId"];
+        std::string path = texture["path"];
+        
+        textureManager->loadTexture(textureId, path);
+    }
+
+
+    // textureManager->loadTexture("shadow6", "res/gfx/sprite_sheets/map/shadow6.png");
+    // textureManager->loadText("Hello World!");
     // textureManager->loadTexture("farm_map",);
 
     auto worldRenderSys = ecsManager->getSystem<WorldRenderSystem>();
@@ -115,8 +114,10 @@ void Game::textureLoading(){
     auto uiRenderSys = ecsManager->getSystem<UIRenderSystem>();
     uiRenderSys->setTextureManager(*textureManager.get());
 
-    auto mapSys = ecsManager->getSystem<MapSystem>();
-    mapSys->setTextureManager(*textureManager.get());
+    mapManager->setTextureManager(*textureManager.get());
+    mapManager->init();
+    // auto mapSys = ecsManager->getSystem<MapSystem>();
+    // mapSys->setTextureManager(*textureManager.get());
     
 }
 
@@ -183,7 +184,7 @@ void Game::changeScene(std::string sceneName) {
     if (sceneName == "GameplayScene") {
         std::cout << "Switching to Gameplay Scene..." << std::endl;
         currentScene->onExit();
-        currentScene = std::make_shared<GameplayScene>(ecsManager);
+        currentScene = std::make_shared<GameplayScene>(ecsManager, mapManager);
         currentScene->onEnter();
     }
 } 

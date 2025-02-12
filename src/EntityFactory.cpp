@@ -26,7 +26,7 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
 	}
     // 1) JSON 안에 req.name이 존재하는지 확인
     if (!j.contains(req.name)) {
-        std::cerr << "No data for " << req.name << " in units.json" << std::endl;
+        std::cerr << "No data for \'" << req.name << "\' in units.json" << std::endl;
         return;
     }
 
@@ -135,7 +135,7 @@ void EntityFactory::loadPhysicsComponent(const json& componentData, std::shared_
 
     float offsetX = componentData.value("offsetX", 0.0f);
 	float offsetY = componentData.value("offsetY", 0.0f);
-	float rotation = componentData.value("offsetY", 0.0f);;
+	float rotation = componentData.value("rotation", 0.0f);;
 	int w = componentData.value("width", 64);
 	int h = componentData.value("height", 64);
 	float sc = componentData.value("scale", 1.0f);
@@ -149,13 +149,13 @@ void EntityFactory::loadPhysicsComponent(const json& componentData, std::shared_
 
 void EntityFactory::loadSpriteComponent(const json& componentData, std::shared_ptr<Entity> entity) {
    
-    std::string texID = componentData.value("textureID", "unknown");
+    std::string texId = componentData.value("textureID", "unknown");
     int w = componentData.value("width", 64);
     int h = componentData.value("height", 64);
     float scale = componentData.value("scale", 1.0f);
     bool hasDirectional = componentData.value("hasDirectional", false);
 
-    entity->addComponent<SpriteComponent>(texID, w, h, scale, hasDirectional);
+    entity->addComponent<SpriteComponent>(texId, w, h, scale, hasDirectional);
 }
 
 void EntityFactory::loadAnimationComponent(const json& componentData, std::shared_ptr<Entity> entity) {

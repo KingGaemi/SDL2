@@ -8,7 +8,7 @@ class SpriteComponent : public Component{
 
 public:
 
-	std::string textureID;
+	std::string textureId;
 	Rect srcRect;
 	FRect dstRect;
 	bool flipHorizontal = false;
@@ -17,7 +17,7 @@ public:
 	bool hasDirectional = false;
 
 
-	SpriteComponent(const std::string& texID, int w, int h, float sc, bool hasDirectional = false) : textureID(texID) , scale(sc), hasDirectional(hasDirectional) {
+	SpriteComponent(const std::string& texId, int w, int h, float sc, bool hasDirectional = false) : textureId(texId) , scale(sc), hasDirectional(hasDirectional) {
 		srcRect = {0, 0, w, h};
 		dstRect = {0, 0, w*sc, h*sc};
 	}
@@ -30,7 +30,13 @@ public:
     	flipVertical = !flipVertical;
     }
 
-	std::string getTextureID() const {return textureID;}
+	std::string getTextureId() const {
+		if(textureId != ""){
+			return textureId;	
+		}else{
+			return "unknown";
+		}
+	}
 	
 
 	
