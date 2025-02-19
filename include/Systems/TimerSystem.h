@@ -32,6 +32,7 @@ public:
 					else{
 						stateComp->stateTimer = 0;
 						stateComp->inMotion = false;
+						
 					}					
 				}
 

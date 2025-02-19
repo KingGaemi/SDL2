@@ -8,7 +8,8 @@
 enum class AIBehavior{
 	HomingMissile,
 	Roaming,
-	FindEnemy,
+	FindOpponent,
+	Aggressive,
 	None
 };
 
@@ -20,6 +21,7 @@ struct AIModule {
 	float updateInterval = 0.1f;
 	float timeAccumulator = 0.0f;
 	float priority;
+	float range;
 };
 
 class AIComponent : public Component {
@@ -46,6 +48,7 @@ public:
 		module.aiBehavior = aiBehavior;
 		if(aiBehavior == AIBehavior::HomingMissile) module.updateInterval = 0.03f;
 		if(aiBehavior == AIBehavior::Roaming) module.updateInterval = 3.0f;
+		if(aiBehavior == AIBehavior::Aggressive) module.updateInterval = 0.1f;
 		aiModulesMap.insert({aiBehavior, module});
 	}
 

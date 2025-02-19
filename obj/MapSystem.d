@@ -70,7 +70,7 @@ obj/MapSystem.o: src/MapSystem.cpp include/Systems/MapSystem.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Events/EventManager.h \
- include/Systems/PhysicsSystem.h include/Systems/RenderSystem.h \
+ include/Systems/PhysicsSystem.h include/MapManager.h \
  include/TextureManager.h include/Renderer.h include/IRenderer.h \
  include/SDL2/SDL.h include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
@@ -96,7 +96,8 @@ obj/MapSystem.o: src/MapSystem.cpp include/Systems/MapSystem.h \
  include/SDL2/SDL_render.h include/SDL2/SDL_shape.h \
  include/SDL2/SDL_system.h include/SDL2/SDL_timer.h \
  include/SDL2/SDL_version.h include/SDL2/SDL_locale.h \
- include/SDL2/SDL_misc.h include/SDL2/SDL_image.h include/SDL2/SDL.h
+ include/SDL2/SDL_misc.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
+ include/nlohmann/json.hpp include/Systems/RenderSystem.h
 include/Systems/MapSystem.h:
 include/nlohmann/json.hpp:
 include/nlohmann/adl_serializer.hpp:
@@ -193,7 +194,7 @@ include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
 include/Events/EventManager.h:
 include/Systems/PhysicsSystem.h:
-include/Systems/RenderSystem.h:
+include/MapManager.h:
 include/TextureManager.h:
 include/Renderer.h:
 include/IRenderer.h:
@@ -249,3 +250,5 @@ include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
 include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
+include/nlohmann/json.hpp:
+include/Systems/RenderSystem.h:

@@ -6,6 +6,7 @@ obj/AISystem.o: src/AISystem.cpp include/Systems/AISystem.h \
  include/Components/VelocityComponent.h \
  include/Components/MovementCommandComponent.h \
  include/Components/DirectionComponent.h include/myMath.h \
+ include/Components/CommandComponent.h \
  include/Components/StatusComponent.h include/Groups.h
 include/Systems/AISystem.h:
 include/ECS/System.h:
@@ -19,5 +20,6 @@ include/Components/VelocityComponent.h:
 include/Components/MovementCommandComponent.h:
 include/Components/DirectionComponent.h:
 include/myMath.h:
+include/Components/CommandComponent.h:
 include/Components/StatusComponent.h:
 include/Groups.h:

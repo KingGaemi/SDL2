@@ -4,6 +4,7 @@
 #include "Components/TransformComponent.h"
 #include "Components/VelocityComponent.h"
 #include "Components/MovementCommandComponent.h"
+#include "Components/CommandComponent.h"
 #include "Components/StatusComponent.h"
 #include "myMath.h"
 #include <algorithm>
@@ -32,7 +33,7 @@ void AISystem::update(std::vector<std::shared_ptr<Entity>>& entities, float delt
             // updateInterval마다 timeAccumulator를 0으로 or 빼준다.
             module.timeAccumulator -= module.updateInterval;
 
-            // if(module.aiBehavior == AIBehavior::HomingMissile) std::cout << "findTarget" << std::endl;
+            // if(module.aiBehavior == AIBehavior::HomingMissile) std::cout << "findOpponent" << std::endl;
             //   std::cout << "Behavior: " << static_cast<int>(behavior) 
             // << ", timeAccumulator=" << module.timeAccumulator
             // << ", updateInterval=" << module.updateInterval
@@ -42,9 +43,10 @@ void AISystem::update(std::vector<std::shared_ptr<Entity>>& entities, float delt
             switch (behavior) {
             case AIBehavior::HomingMissile:
                 {
-                    // 예: FindTarget + Track
-                    if (findTarget(entities, entity, module)) {
+                    // 예: findOpponent + Track
+                    if (findOpponent(entities, entity, module)) {
                         trackTargetsForMissiles(entity, module);
+                        // std::cout<<"HomingMissile"<< std::endl;
                     }
                 }
                 break;
@@ -61,14 +63,21 @@ void AISystem::update(std::vector<std::shared_ptr<Entity>>& entities, float delt
                 }
                 break;
 
-            case AIBehavior::FindEnemy:
+            case AIBehavior::Aggressive:
                 {
-                    // 다른 로직...
+                    auto statusComp = entity->getComponent<StatusComponent>();
+                    // 죽은 상태 등은 스킵
+                    if (!statusComp || !statusComp->isAlive) {
+                        break;
+                    }
+                    if (findOpponent(entities, entity, module)) {
+                        autoAttackTarget(entity, module);
+                    }
                 }
                 break;
 
             default:
-
+                // std::cout<<"None"<< std::endl;
                 // None, etc...
                 break;
             }
@@ -125,26 +134,91 @@ void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, AIModule
 }
 
 
-bool AISystem::findTarget(std::vector<std::shared_ptr<Entity>>&entities, std::shared_ptr<Entity>& missile, AIModule& module){
+void AISystem::autoAttackTarget(std::shared_ptr<Entity>& attacker, AIModule& module) {
+    // 필요한 컴포넌트 가져오기
+    auto moveCommandComp = attacker->getComponent<MovementCommandComponent>();
+    auto posComp = attacker->getComponent<PositionComponent>();   
+    // 컴포넌트가 유효한지 확인
+    if (!posComp || !moveCommandComp ) return;
+
+    // 업데이트 간격 확인
+
+    // 타겟 위치와 미사일 위치 계산
+    Vector2D attackerPos = posComp->getVector();
+    Vector2D targetPos = module.targetPos;
+    Vector2D distanceVec = targetPos - attackerPos;
+    
+    float distance = distanceVec.x * distanceVec.x + distanceVec.y * distanceVec.y;
+    int hDir, vDir;
+
+    if(distanceVec.x > 0) hDir = 1;
+    else hDir = -1;
+    if(distanceVec.y > 0) vDir = 1;
+    else vDir = -1;
+    if(std::abs(distanceVec.x)-std::abs(distanceVec.y) > 0){       
+        vDir = 0;
+    }else{
+        hDir = 0;
+    }
+
+    Direction dir = {hDir, vDir};
+    // std::cout << module.range << std::endl;
+    if(distance <= module.range) { 
+        // std::cout<<"attack" << std::endl;
+        if(attacker->hasComponent<CommandComponent>() && module.target) {
+            auto commandComp = attacker->getComponent<CommandComponent>();
+            Command actionCommand;
+            actionCommand.commandType = CommandType::BasicAttack;
+            actionCommand.direction = dir;
+            if(commandComp) commandComp->push(actionCommand);
+        }
+    }
+
+
+    // if(dir.x >= 1) dir.x = 1;
+    // if(dir.x <= -1) dir.x = -1;         
+    // if(dir.y >= 1) dir.y = 1;
+    // if(dir.y <= -1) dir.y = -1;
+
+
+    MovementCommand moveCommand;
+
+    moveCommand.direction = dir;
+
+    moveCommand.moveCommandType = MovementCommandType::MoveToDirection;
+    
+    moveCommandComp->push(moveCommand);  
+
+
+
+
+}
+
+
+bool AISystem::findOpponent(std::vector<std::shared_ptr<Entity>>&anothers, std::shared_ptr<Entity>& me, AIModule& module){
 
 	std::vector<std::shared_ptr<Entity>> enemies;
 	float shortestSquared = 1000000.0f;
-	for(auto& entity : entities){
-		if(entity->hasComponent<TeamTag>()){
-			auto teamComp = entity->getComponent<TeamTag>();
-			if(teamComp->teamCode == TeamCode::Enemy) enemies.push_back(entity);
+	for(auto& another : anothers){
+		if(me->hasComponent<TeamTag>() && another->hasComponent<TeamTag>()){
+            auto teamA = me->getComponent<TeamTag>();
+			auto teamB = another->getComponent<TeamTag>();
+            auto statusB = another->getComponent<StatusComponent>();
+            if(!statusB || !statusB->isAlive) continue;
+			if(teamA->teamCode == TeamCode::Ally && teamB->teamCode == TeamCode::Enemy) enemies.push_back(another);
+            else if(teamA->teamCode == TeamCode::Enemy && teamB->teamCode == TeamCode::Ally) enemies.push_back(another);
 		}
 	}
-// same as detecting distance
+    // same as detecting distance
 
-	auto missilePos = missile->getComponent<PositionComponent>();
+	auto myPos = me->getComponent<PositionComponent>();
 
 	for(auto& target: enemies){
 		auto targetPos = target->getComponent<PositionComponent>();
-        if(!targetPos || !missilePos) continue;
+        if(!targetPos || !myPos) continue;
 
 		Vector2D v1 = targetPos->getVector();
-        Vector2D v2 = missilePos->getVector();
+        Vector2D v2 = myPos->getVector();
 		Vector2D diff =  v1 - v2;
 
 		float lengthSquared = diff.x * diff.x + diff.y * diff.y;

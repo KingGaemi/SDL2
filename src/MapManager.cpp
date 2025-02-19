@@ -45,9 +45,7 @@ void MapManager::loadMap(const std::string& mapPath){
                     textureId.clear(); // 문자열 길이보다 큰 경우 빈 문자열로 만듦
                 }
                 tilePath = "maps/" + tilePath;
-                std::cout << "before to load texture" << std::endl << tilePath << " " << textureId << std::endl;
-
-
+    
                 if(textureManager->loadTexture(textureId, tilePath)){
                     // std::cout << "before to load texture" << std::endl;
                     tileset.imagePath = tilePath;
@@ -73,6 +71,24 @@ void MapManager::loadMap(const std::string& mapPath){
                 // std::cout << j["tilesets"][i]["imageheight"] << std::endl;
                 tileset.imageheight = j["tilesets"][i]["imageheight"];
             }
+
+
+
+            // if (j["tilesets"][i].contains("tiles")) {                
+            //     auto tiles = j["tilesets"][i]["tiles"];
+
+            //     for(auto& tile : tiles){
+            //         int tileId = tile["id"];  //66
+            //         collisionObject object;
+                    
+
+
+            //     }
+
+
+                
+            // }
+
 
             mapComp->addTileset(tileset);
         }
@@ -113,12 +129,11 @@ void MapManager::loadMap(const std::string& mapPath){
                     float w = obj.value("width", 0.0f);
                     float h = obj.value("height", 0.0f);
 
-                    float scaleMapToGame = 1.5f;
+                    // float scaleMapToGame = 1.5f;
 
-                    x *= scaleMapToGame;
-                    y *= scaleMapToGame;
+                    // x *= scaleMapToGame;
+                    // y *= scaleMapToGame;
       
-
                     SpawnRequest req;
                     for(auto& property : obj["properties"]){
                         std::string probName = property["name"];

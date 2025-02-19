@@ -70,8 +70,7 @@ obj/DamageSystem.o: src/DamageSystem.cpp include/Systems/DamageSystem.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
- include/Components/HitboxComponent.h include/Events/EventManager.h \
- include/Systems/PhysicsSystem.h
+ include/Components/HitboxComponent.h include/Events/EventManager.h
 include/Systems/DamageSystem.h:
 include/ECS/System.h:
 include/ECS/ECSManager.h:
@@ -167,4 +166,3 @@ include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
 include/Events/EventManager.h:
-include/Systems/PhysicsSystem.h:

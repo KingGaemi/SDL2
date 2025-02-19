@@ -38,11 +38,17 @@
       },
       {
         "name": "PhysicsComponent",
-	"width": 100,
-        "height": 100,
+	"width": 0,
+        "height": 0,
         "scale": 1.0,
-        "bodyType": "Kinematic"
-     }
+        "bodyType": "Dynamic"
+     },
+      {
+        "name": "HitboxComponent",
+	"w": 100,
+	"h": 50,
+	"scale": 2.0
+      }
     ]
   },
 "box": {

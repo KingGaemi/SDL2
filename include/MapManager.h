@@ -2,8 +2,24 @@
 
 #include "TextureManager.h"
 #include "Components/MapComponent.h"
-#include "Systems/MapSystem.h"
+#include "ECS/ECSManager.h"
 #include "nlohmann/json.hpp"
+#include "Vector2D.h"
+
+
+
+
+
+enum class ObjectType{
+    polygon,
+  	  
+};
+
+struct collisionObject{
+    int objectId;
+    ObjectType objectType;
+    std::vector<Vector2D> vertices;
+};
 
 class MapManager{
 
@@ -22,5 +38,6 @@ public:
 private:
 	TextureManager* textureManager;
 	std::vector<std::shared_ptr<Entity>> mapEntities;
+	// std::queue<polygonInfo> polygons;
 	std::shared_ptr<ECSManager> ecsManager;
 };

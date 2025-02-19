@@ -342,20 +342,31 @@ void EntityFactory::loadAbilityComponent(const json& componentData, std::shared_
 
 void EntityFactory::loadAIComponent(const json& componentData, std::shared_ptr<Entity> entity) {
     std::string aiBehaviorType = componentData.value("AIType", "Roaming");
-
+    float range = componentData.value("range", 0.0f);
     AIBehavior aiBehavior;
 
     if(aiBehaviorType == "HomingMissile"){
     	aiBehavior = AIBehavior::HomingMissile;
     }else if(aiBehaviorType == "Roaming"){
     	aiBehavior = AIBehavior::Roaming;
-    }else if(aiBehaviorType == "FindEnemy"){
-    	aiBehavior = AIBehavior::FindEnemy;
+    }else if(aiBehaviorType == "FindOpponent"){
+    	aiBehavior = AIBehavior::FindOpponent;
+    }else if(aiBehaviorType == "Aggressive"){
+    	aiBehavior = AIBehavior::Aggressive;
     }else {
     	aiBehavior = AIBehavior::None;
     }
 
     entity->addComponent<AIComponent>(aiBehavior);
+
+    if(range != 0.0f){
+    	std::cout<<"set range :" ;
+    	auto aiComp = entity->getComponent<AIComponent>();
+    	auto& module = aiComp->findModule(aiBehavior);
+    	module.range = range;
+    	std::cout<< module.range << std::endl;
+    }
+
 }
 
 void EntityFactory::loadSpawnerComponent(const json& componentData, std::shared_ptr<Entity> entity) {

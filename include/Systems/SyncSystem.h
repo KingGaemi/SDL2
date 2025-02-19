@@ -54,7 +54,7 @@ public:
 					
 					animComp->attackFast = statusComp->attackSpeed;
 					animComp->moveFast = statusComp->movementSpeed / 100.0f;
-
+					
 				}
 				if(animComp&&projectileComp){
 

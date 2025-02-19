@@ -28,6 +28,8 @@ struct TilesetInfo{
 	int imageheight;
 	int imagewidth;
 	int margin;
+	float hasTiles;
+	// std::vector<std::unordered_map<int, std::vector<Vector2D>>> tilesPolygon;
 };
 
 

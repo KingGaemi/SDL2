@@ -36,4 +36,13 @@ class TeamTag : public Component{
 public:
 	TeamCode teamCode;
 	TeamTag(TeamCode teamCode) : teamCode(teamCode) {}
+
+    std::string getTeamString(){
+        std::string teamString = "defaultTeam";
+        if(teamCode == TeamCode::Enemy) teamString = "Enemy";
+        else if(teamCode == TeamCode::Ally) teamString = "Ally";
+        else if(teamCode == TeamCode::Neutral) teamString = "Neutral";
+
+        return teamString;
+    }
 };

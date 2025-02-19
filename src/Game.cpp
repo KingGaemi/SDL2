@@ -74,8 +74,8 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<CollisionEventHandlerSystem>(SystemGroup::Event, 180, ecsManager);
     ecsManager->addSystem<MiddleEventSystem>(SystemGroup::Event, 200, eventManager);
 
-    auto physSys = ecsManager->getSystem<PhysicsSystem>();
-    ecsManager->setPhysicsSystem(physSys);
+    // auto physSys = ecsManager->getSystem<PhysicsSystem>();
+    // ecsManager->setPhysicsSystem(physSys);
 
     textureLoading();
     

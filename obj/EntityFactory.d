@@ -69,8 +69,7 @@ obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/ECS/ECSManager.h \
- include/Events/EventManager.h include/Systems/PhysicsSystem.h \
- include/ECS/System.h
+ include/Events/EventManager.h include/ECS/System.h
 include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
 include/nlohmann/adl_serializer.hpp:
@@ -164,5 +163,4 @@ include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
 include/ECS/ECSManager.h:
 include/Events/EventManager.h:
-include/Systems/PhysicsSystem.h:
 include/ECS/System.h:

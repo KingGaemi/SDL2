@@ -7,7 +7,6 @@
 #include <algorithm>
 #include "EntityFactory.h"
 #include "Events/EventManager.h"
-#include "Systems/PhysicsSystem.h"
 #include "Groups.h"
 #include "Entity.h"
 #include "System.h"
@@ -103,7 +102,7 @@ public:
     std::shared_ptr<EntityFactory> shareFactory();
 
     void setFactory(std::shared_ptr<EntityFactory>& factory);
-    void setPhysicsSystem(std::shared_ptr<PhysicsSystem>& physSystem);
+    
     void setVelocity(std::shared_ptr<Entity>& entity, float x, float y);
     // void setMapEntity(std::shared_ptr<Entity>& entity) { mapEntity = entity;}
     void processSpawnRequests();
@@ -134,7 +133,6 @@ private:
     std::unordered_map<std::string, std::shared_ptr<Entity>> entityByName;
     std::unordered_map<std::shared_ptr<Entity>, std::string> entityNames;
 
-    std::shared_ptr<PhysicsSystem> physicsSystem;
     std::vector<SystemRegistration> registeredSystems;
 
     bool activeMap = false;

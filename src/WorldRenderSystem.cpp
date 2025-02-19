@@ -30,7 +30,7 @@ void WorldRenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, f
                         for (int row = 0; row < mapComp->height; row++) {
                             for (int col = 0; col < mapComp->width; col++) {
 
-                                int tileID;
+                                int tileID = 0;
                                 if(index < static_cast<int>(layer.tileData.size())) tileID = layer.tileData[index++];
                                 if (tileID == 0) {
                                     continue; // 빈 타일이므로 그리지 않음
@@ -48,14 +48,19 @@ void WorldRenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, f
 
                                 float dstX = col * mapComp->tileWidth;
                                 float dstY = row * mapComp->tileHeight;
-                                if(cameraEntity){
-                                    auto cameraPoscomp = cameraEntity->getComponent<PositionComponent>();
-                                    dstX -= cameraPoscomp->x/2;
-                                    dstY -= cameraPoscomp->y/2;
+
+                                if(cameraEntity&&cameraEntity->isActive){
+                                    auto cameraPos = cameraEntity->getComponent<PositionComponent>();
+                                    if(cameraPos){
+                                       dstX = dstX - cameraPos->x;
+                                       dstY = dstY - cameraPos->y;
+                                    }
+                                    // dstX -= cameraPoscomp->x/4;
+                                    // dstY -= cameraPoscomp->y/4;
                                 }
                                 // 실제 SDL draw 호출 (pseudo)
                                 SDL_Rect srcRect = { srcX, srcY, mapComp->tileWidth,mapComp->tileHeight };
-                                SDL_FRect dstRect = { dstX*2, dstY*2, static_cast<float>(mapComp->tileWidth*2), static_cast<float>(mapComp->tileHeight*2) };                    
+                                SDL_FRect dstRect = { dstX, dstY, static_cast<float>(mapComp->tileWidth), static_cast<float>(mapComp->tileHeight) };                    
                                 renderer->render(texture, &srcRect, &dstRect, 0, nullptr, SDL_FLIP_NONE);
                             }
                         }

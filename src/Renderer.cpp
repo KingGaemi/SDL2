@@ -70,7 +70,7 @@ SDL_Texture* Renderer::loadText(const char * textString){
 void Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_FRect* dstRect, double angle, SDL_FPoint* center, SDL_RendererFlip flip) {
 
     if(!texture) {
-        std::cout << "texture is nullptr" << std::endl;
+        std::cout << "Renderer: texture is nullptr" << std::endl;
         return;
     }
     

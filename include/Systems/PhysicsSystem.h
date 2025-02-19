@@ -5,9 +5,8 @@
 #include "ECS/Entity.h"
 #include "ECS/System.h"
 #include "Events/EventManager.h"
-
-
-class ECSManager;
+#include "ECS/ECSManager.h"
+#include "MapManager.h"
 
 
 
@@ -18,17 +17,13 @@ class PhysicsSystem : public System {
 
 public:
 
-	PhysicsSystem(std::shared_ptr<ECSManager>& ecsManager, std::shared_ptr<EventManager>& eventManager) : eventManager(eventManager),ecsManager(ecsManager) {
+	PhysicsSystem(std::shared_ptr<ECSManager>& ecsManager, std::shared_ptr<EventManager>& eventManager) : eventManager(eventManager) ,ecsManager(ecsManager){
 		init();
 	}
 
     // 전역 또는 상수로
 
     // 변환 함수
-
-
-
-
 
     void init();
     void update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime) override;
@@ -43,8 +38,10 @@ public:
     void setInfoFromGame(std::vector<std::shared_ptr<Entity>>&entities);
     void applyMovementCommands(std::vector<std::shared_ptr<Entity>>&entities);
     void setBeforeStep(std::vector<std::shared_ptr<Entity>>&entities);
+    void createWalls();
 
     std::shared_ptr<EventManager> eventManager;
+    // std::shared_ptr<MapManager> mapManager;
 private:
     int subStepCount = 8;
 	b2WorldDef worldDef;

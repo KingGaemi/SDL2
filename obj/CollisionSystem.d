@@ -72,7 +72,7 @@ obj/CollisionSystem.o: src/CollisionSystem.cpp \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Events/EventManager.h \
- include/Systems/PhysicsSystem.h include/ECS/System.h include/Collision.h
+ include/ECS/System.h include/Collision.h
 include/Systems/CollisionSystem.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
@@ -167,6 +167,5 @@ include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
 include/Events/EventManager.h:
-include/Systems/PhysicsSystem.h:
 include/ECS/System.h:
 include/Collision.h:

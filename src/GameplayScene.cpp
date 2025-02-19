@@ -2,7 +2,6 @@
 #include "ECS/ECSManager.h"
 #include "ECS/Entity.h"
 #include "ECS/EntityFactory.h"
-#include "Systems/MapSystem.h"
 #include "KeyCode.h"
 #include "Groups.h"
 #include <iostream>
@@ -13,7 +12,7 @@
 
 void GameplayScene::onEnter(){
 
-	if(mapManager) mapManager->loadMap("maps/home_map.tmj");
+	if(mapManager) mapManager->loadMap("maps/newResol.tmj");
 	SpawnRequest req;
 
 	// req.entityType = EntityType::Unit;
@@ -37,8 +36,8 @@ void GameplayScene::onEnter(){
 
 	req.entityType = EntityType::Unit;
 	req.name = "eri" ;
-	req.x = 200.0f;
-	req.y = 200.0f;
+	req.x = 160.0f;
+	req.y = 96.0f;
 	req.w = 31;
 	req.h = 38;
 	req.sc = 2.0f;
@@ -46,56 +45,56 @@ void GameplayScene::onEnter(){
 	ecsManager->pendingSpawns.push_back(req);
 
 
-	// req.entityType = EntityType::UI;
-	// req.name = "text" ;
-	// req.x = 500.0f;
-	// req.y = 200.0f;
-	// req.w = 100;
+	// // req.entityType = EntityType::UI;
+	// // req.name = "text" ;
+	// // req.x = 500.0f;
+	// // req.y = 200.0f;
+	// // req.w = 100;
+	// // req.h = 50;
+	// // req.sc = 1.0f;
+	// // ecsManager->pendingSpawns.push_back(req);
+
+
+	// req.entityType = EntityType::Object;
+	// req.name = "ground" ;
+	// req.x = 640;
+	// req.y = 775;
+	// req.w = 1280;
 	// req.h = 50;
 	// req.sc = 1.0f;
 	// ecsManager->pendingSpawns.push_back(req);
 
+	// req.entityType = EntityType::Object;
+	// req.name = "ground" ;
+	// req.x = 640;
+	// req.y = 0;
+	// req.w = 1280;
+	// req.h = 50;
+	// req.sc = 1.0f;
+	// ecsManager->pendingSpawns.push_back(req);
 
-	req.entityType = EntityType::Object;
-	req.name = "ground" ;
-	req.x = 640;
-	req.y = 775;
-	req.w = 1280;
-	req.h = 50;
-	req.sc = 1.0f;
-	ecsManager->pendingSpawns.push_back(req);
+	// req.entityType = EntityType::Object;
+	// req.name = "wall" ;
+	// req.x = 0;
+	// req.y = 400;
+	// req.sc = 1.0f;
+	// ecsManager->pendingSpawns.push_back(req);
 
-	req.entityType = EntityType::Object;
-	req.name = "ground" ;
-	req.x = 640;
-	req.y = 0;
-	req.w = 1280;
-	req.h = 50;
-	req.sc = 1.0f;
-	ecsManager->pendingSpawns.push_back(req);
-
-	req.entityType = EntityType::Object;
-	req.name = "wall" ;
-	req.x = 0;
-	req.y = 400;
-	req.sc = 1.0f;
-	ecsManager->pendingSpawns.push_back(req);
-
-	req.entityType = EntityType::Object;
-	req.name = "wall" ;
-	req.x = 1280;
-	req.y = 400;
-	req.sc = 1.0f;
-	ecsManager->pendingSpawns.push_back(req);
+	// req.entityType = EntityType::Object;
+	// req.name = "wall" ;
+	// req.x = 1280;
+	// req.y = 400;
+	// req.sc = 1.0f;
+	// ecsManager->pendingSpawns.push_back(req);
 
 
 
-	req.entityType = EntityType::Item;
-	req.name = "potionCap";
-	req.x = 700.0f;
-	req.y = 400.0f;
-	req.teamCode = TeamCode::Ally;
-	ecsManager->pendingSpawns.push_back(req);
+	// req.entityType = EntityType::Item;
+	// req.name = "potionCap";
+	// req.x = 700.0f;
+	// req.y = 400.0f;
+	// req.teamCode = TeamCode::Ally;
+	// ecsManager->pendingSpawns.push_back(req);
 
 
 

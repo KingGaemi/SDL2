@@ -130,6 +130,11 @@
         "name": "CommandComponent"
       },
       {
+        "name": "AIComponent",
+	"AIType": "Aggressive",
+	"range": 10000.0
+      },
+      {
         "name": "MovementCommandComponent"
       },
       {

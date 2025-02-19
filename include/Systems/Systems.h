@@ -16,7 +16,6 @@
 #include "DamageSystem.h"
 #include "EffectSystem.h"
 #include "CollisionEventHandlerSystem.h"
-#include "MapSystem.h"
 #include "CameraSystem.h"
 #include "AISystem.h"
 #include "SpawnSystem.h"

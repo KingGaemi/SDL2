@@ -12,7 +12,7 @@
 #include "Components/StatusComponent.h"
 #include "Components/HitboxComponent.h"
 #include "Groups.h"
-#include "ECS/ECSManager.h"
+
 #include "myMath.h"
 #include <iostream>
 
@@ -43,7 +43,6 @@ void PhysicsSystem::update(std::vector<std::shared_ptr<Entity>>&entities, float 
 
 
 void PhysicsSystem::cleanUpDeadBodies(std::vector<std::shared_ptr<Entity>>& entities) {
-
     for(auto& entity :entities){
         if (entity->hasComponent<PhysicsComponent>() && entity->hasComponent<StatusComponent>()){
             auto physComp = entity->getComponent<PhysicsComponent>();
@@ -64,6 +63,12 @@ void PhysicsSystem::cleanUpDeadBodies(std::vector<std::shared_ptr<Entity>>& enti
             }            
         }
     }
+}
+
+void PhysicsSystem::createWalls(){
+
+    
+
 }
 
 

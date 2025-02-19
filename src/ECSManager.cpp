@@ -122,10 +122,6 @@ void ECSManager::setFactory(std::shared_ptr<EntityFactory>& factory){
     entityFactory = factory;
 }
 
-void ECSManager::setPhysicsSystem(std::shared_ptr<PhysicsSystem>& physSystem){
-    physicsSystem = physSystem;
-}
-
 void ECSManager::setEntityName(std::shared_ptr<Entity> entity, const std::string& name) {
     if (entityByName.find(name) != entityByName.end()) {
         // 이름 중복 경고

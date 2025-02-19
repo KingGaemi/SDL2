@@ -70,9 +70,8 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/nlohmann/thirdparty/hedley/hedley_undef.hpp include/Renderer.h \
  include/IRenderer.h include/SDL2/SDL_image.h include/TextureManager.h \
  include/MapManager.h include/Components/MapComponent.h \
- include/ECS/Component.h include/Systems/MapSystem.h \
- include/nlohmann/json.hpp include/ECS/System.h include/ECS/Entity.h \
- include/ECS/ECSManager.h include/ECS/EntityFactory.h include/Requests.h \
+ include/ECS/Component.h include/ECS/ECSManager.h \
+ include/ECS/EntityFactory.h include/nlohmann/json.hpp include/Requests.h \
  include/Groups.h include/Components/Components.h \
  include/Components/AnimationComponent.h \
  include/Components/ColliderComponent.h include/Rect.h include/Vector2D.h \
@@ -93,22 +92,22 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/Components/StateComponent.h include/Components/StatusComponent.h \
  include/Components/TransformComponent.h \
  include/Components/VelocityComponent.h \
- include/Components/ItemComponent.h \
+ include/Components/ItemComponent.h include/ECS/Entity.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Events/EventManager.h \
- include/Systems/PhysicsSystem.h include/Systems/RenderSystem.h \
- include/Scene.h include/MenuScene.h include/GameplayScene.h \
- include/Systems/Systems.h include/Systems/AnimationSystem.h \
- include/Systems/InputSystem.h include/Systems/MovementSystem.h \
+ include/ECS/System.h include/Scene.h include/MenuScene.h \
+ include/GameplayScene.h include/Systems/Systems.h \
+ include/Systems/AnimationSystem.h include/Systems/InputSystem.h \
+ include/Systems/MovementSystem.h include/Systems/RenderSystem.h \
  include/Systems/TimerSystem.h include/Systems/ExpireSystem.h \
  include/Systems/AttackSystem.h include/Systems/CooldownSystem.h \
- include/Systems/CommandSystem.h include/Systems/WorldRenderSystem.h \
- include/Systems/SyncSystem.h include/Systems/UIRenderSystem.h \
- include/Systems/CollisionSystem.h include/Systems/DamageSystem.h \
- include/Systems/EffectSystem.h \
+ include/Systems/PhysicsSystem.h include/Systems/CommandSystem.h \
+ include/Systems/WorldRenderSystem.h include/Systems/SyncSystem.h \
+ include/Systems/UIRenderSystem.h include/Systems/CollisionSystem.h \
+ include/Systems/DamageSystem.h include/Systems/EffectSystem.h \
  include/Systems/CollisionEventHandlerSystem.h \
  include/Systems/CameraSystem.h include/Systems/AISystem.h \
  include/Systems/SpawnSystem.h include/Input/InputManager.h \
@@ -219,12 +218,9 @@ include/TextureManager.h:
 include/MapManager.h:
 include/Components/MapComponent.h:
 include/ECS/Component.h:
-include/Systems/MapSystem.h:
-include/nlohmann/json.hpp:
-include/ECS/System.h:
-include/ECS/Entity.h:
 include/ECS/ECSManager.h:
 include/ECS/EntityFactory.h:
+include/nlohmann/json.hpp:
 include/Requests.h:
 include/Groups.h:
 include/Components/Components.h:
@@ -260,6 +256,7 @@ include/Components/StatusComponent.h:
 include/Components/TransformComponent.h:
 include/Components/VelocityComponent.h:
 include/Components/ItemComponent.h:
+include/ECS/Entity.h:
 include/Components/FloatingEffectComponent.h:
 include/Components/CameraComponent.h:
 include/Components/AbilityComponent.h:
@@ -267,8 +264,7 @@ include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
 include/Events/EventManager.h:
-include/Systems/PhysicsSystem.h:
-include/Systems/RenderSystem.h:
+include/ECS/System.h:
 include/Scene.h:
 include/MenuScene.h:
 include/GameplayScene.h:
@@ -276,10 +272,12 @@ include/Systems/Systems.h:
 include/Systems/AnimationSystem.h:
 include/Systems/InputSystem.h:
 include/Systems/MovementSystem.h:
+include/Systems/RenderSystem.h:
 include/Systems/TimerSystem.h:
 include/Systems/ExpireSystem.h:
 include/Systems/AttackSystem.h:
 include/Systems/CooldownSystem.h:
+include/Systems/PhysicsSystem.h:
 include/Systems/CommandSystem.h:
 include/Systems/WorldRenderSystem.h:
 include/Systems/SyncSystem.h:

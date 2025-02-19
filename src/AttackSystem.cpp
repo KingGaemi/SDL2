@@ -152,6 +152,8 @@ void AttackSystem::shootArrow(const AttackEvent& event){
 		req.projectileSpeed = statusComp->projectileSpeedMultiple;
 		if(req.hDir != 0 && req.vDir != 0) req.projectileSpeed /= 1.414f;
 		req.teamCode = teamComp->teamCode;
+
+		// std::cout << teamComp->getTeamString() <<std::endl;
 		req.ownerId = entity->getId();
 		req.hasOwner = true;
 		req.hasVelocity = false;
