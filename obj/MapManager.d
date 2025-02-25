@@ -96,8 +96,9 @@ obj/MapManager.o: src/MapManager.cpp include/MapManager.h \
  include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
- include/Components/HitboxComponent.h include/Events/EventManager.h \
- include/ECS/System.h include/nlohmann/json.hpp
+ include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
+ include/Events/EventManager.h include/ECS/System.h \
+ include/nlohmann/json.hpp
 include/MapManager.h:
 include/TextureManager.h:
 include/Renderer.h:
@@ -246,6 +247,7 @@ include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
+include/Components/HpBarComponent.h:
 include/Events/EventManager.h:
 include/ECS/System.h:
 include/nlohmann/json.hpp:

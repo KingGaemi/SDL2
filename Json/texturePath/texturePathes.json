@@ -84,6 +84,16 @@
       "path": "res/gfx/tree1.png",
       "textureId": "tree1",
       "type": "object"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/ui/hp_bar_frame.png",
+      "textureId": "hp_bar_frame",
+      "type": "ui"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/ui/hp_bar_gage.png",
+      "textureId": "hp_bar_gage",
+      "type": "ui"
     }
   ]
 }

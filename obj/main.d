@@ -97,9 +97,9 @@ obj/main.o: src/main.cpp include/Game.h include/SDL2/SDL.h \
  include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
- include/Components/HitboxComponent.h include/Events/EventManager.h \
- include/ECS/System.h include/Scene.h include/MenuScene.h \
- include/GameplayScene.h include/Systems/Systems.h \
+ include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
+ include/Events/EventManager.h include/ECS/System.h include/Scene.h \
+ include/MenuScene.h include/GameplayScene.h include/Systems/Systems.h \
  include/Systems/AnimationSystem.h include/Systems/InputSystem.h \
  include/Systems/MovementSystem.h include/Systems/RenderSystem.h \
  include/Systems/TimerSystem.h include/Systems/ExpireSystem.h \
@@ -263,6 +263,7 @@ include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
+include/Components/HpBarComponent.h:
 include/Events/EventManager.h:
 include/ECS/System.h:
 include/Scene.h:

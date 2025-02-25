@@ -23,94 +23,25 @@ void GameplayScene::onEnter(){
 	// req.teamCode = TeamCode::Ally;
 	// ecsManager->pendingSpawns.push_back(req);
 
-	// req.entityType = EntityType::Unit;
-	// req.name = "enemy";
-	// req.x = 500.0f;
-	// req.y = 300.0f;
-	// req.w = 32;
-	// req.h = 39;
-	// req.sc = 2.0f;
-	// req.teamCode = TeamCode::Enemy;
-	// ecsManager->pendingSpawns.push_back(req);
-
-
-	req.entityType = EntityType::Unit;
-	req.name = "eri" ;
-	req.x = 160.0f;
-	req.y = 96.0f;
-	req.w = 31;
-	req.h = 38;
-	req.sc = 2.0f;
-	req.teamCode = TeamCode::Enemy;
-	ecsManager->pendingSpawns.push_back(req);
-
-
-	// // req.entityType = EntityType::UI;
-	// // req.name = "text" ;
-	// // req.x = 500.0f;
-	// // req.y = 200.0f;
-	// // req.w = 100;
-	// // req.h = 50;
-	// // req.sc = 1.0f;
-	// // ecsManager->pendingSpawns.push_back(req);
-
-
-	// req.entityType = EntityType::Object;
-	// req.name = "ground" ;
-	// req.x = 640;
-	// req.y = 775;
-	// req.w = 1280;
-	// req.h = 50;
-	// req.sc = 1.0f;
-	// ecsManager->pendingSpawns.push_back(req);
-
-	// req.entityType = EntityType::Object;
-	// req.name = "ground" ;
-	// req.x = 640;
-	// req.y = 0;
-	// req.w = 1280;
-	// req.h = 50;
-	// req.sc = 1.0f;
-	// ecsManager->pendingSpawns.push_back(req);
-
-	// req.entityType = EntityType::Object;
-	// req.name = "wall" ;
-	// req.x = 0;
-	// req.y = 400;
-	// req.sc = 1.0f;
-	// ecsManager->pendingSpawns.push_back(req);
-
-	// req.entityType = EntityType::Object;
-	// req.name = "wall" ;
-	// req.x = 1280;
-	// req.y = 400;
-	// req.sc = 1.0f;
-	// ecsManager->pendingSpawns.push_back(req);
-
-
-
-	// req.entityType = EntityType::Item;
-	// req.name = "potionCap";
-	// req.x = 700.0f;
-	// req.y = 400.0f;
-	// req.teamCode = TeamCode::Ally;
-	// ecsManager->pendingSpawns.push_back(req);
-
-
-
-	// req.entityType = EntityType::Object;
-	// req.name = "slimeSpawner";
-	// req.x = 900.0f;
-	// req.y = 400.0f;
-	// req.teamCode = TeamCode::Neutral;
-	// ecsManager->pendingSpawns.push_back(req);
-
 
 	req.entityType = EntityType::Camera;
 	req.name = "camera";
 	ecsManager->pendingSpawns.push_back(req);
 	
 	
+	req.entityType = EntityType::UI;
+	req.name = "hp_bar_frame";
+	req.x = 640; // SCREEN_WIDTH/2;
+	req.y = 740; 
+	ecsManager->pendingSpawns.push_back(req);
+
+	req.entityType = EntityType::UI;
+	req.name = "hp_bar_gage";
+	req.x = 640; // SCREEN_WIDTH/2;
+	req.y = 740; 
+	ecsManager->pendingSpawns.push_back(req);
+
+
 	// auto mapSystem = ecsManager->getSystem<MapSystem>();
 	// mapSystem->init();  
 	// ecsManager->activeMapEntity();

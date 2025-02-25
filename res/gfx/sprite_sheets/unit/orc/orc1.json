@@ -1744,46 +1744,334 @@
   "size": { "w": 576, "h": 2048 },
   "scale": "1",
   "frameTags": [
-   { "name": "u_idle_attack", "from": 0, "to": 8, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "d_idle_attack", "from": 9, "to": 16, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "l_idle_attack", "from": 17, "to": 24, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "r_idle_attack", "from": 25, "to": 32, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "u_death", "from": 33, "to": 40, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "d_death", "from": 41, "to": 48, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "l_death", "from": 49, "to": 56, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "r_death", "from": 57, "to": 64, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "d_hurt", "from": 65, "to": 70, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "d_walk_hurt", "from": 65, "to": 70, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "d_run_hurt", "from": 65, "to": 70, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "u_hurt", "from": 71, "to": 76, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "u_walk_hurt", "from": 71, "to": 76, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "u_run_hurt", "from": 71, "to": 76, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "l_hurt", "from": 77, "to": 82, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "l_walk_hurt", "from": 77, "to": 82, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "l_run_hurt", "from": 77, "to": 82, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "r_hurt", "from": 83, "to": 88, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "r_walk_hurt", "from": 83, "to": 88, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "r_run_hurt", "from": 83, "to": 88, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "d_idle", "from": 89, "to": 92, "direction": "forward", "color": "#000000ff" },
-   { "name": "u_idle", "from": 93, "to": 96, "direction": "forward", "color": "#000000ff" },
-   { "name": "l_idle", "from": 97, "to": 100, "direction": "forward", "color": "#000000ff" },
-   { "name": "r_idle", "from": 101, "to": 104, "direction": "forward", "color": "#000000ff" },
-   { "name": "d_walk", "from": 105, "to": 110, "direction": "forward", "color": "#000000ff" },
-   { "name": "u_walk", "from": 111, "to": 116, "direction": "forward", "color": "#000000ff" },
-   { "name": "l_walk", "from": 117, "to": 122, "direction": "forward", "color": "#000000ff" },
-   { "name": "r_walk", "from": 123, "to": 128, "direction": "forward", "color": "#000000ff" },
-   { "name": "d_run", "from": 129, "to": 136, "direction": "forward", "color": "#000000ff" },
-   { "name": "u_run", "from": 137, "to": 144, "direction": "forward", "color": "#000000ff" },
-   { "name": "l_run", "from": 145, "to": 152, "direction": "forward", "color": "#000000ff" },
-   { "name": "r_run", "from": 153, "to": 160, "direction": "forward", "color": "#000000ff" },
-   { "name": "d_run_attack", "from": 161, "to": 168, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "u_run_attack", "from": 169, "to": 176, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "l_run_attack", "from": 177, "to": 184, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "r_run_attack", "from": 185, "to": 192, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "d_walk_attack", "from": 193, "to": 198, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "u_walk_attack", "from": 199, "to": 204, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "l_walk_attack", "from": 205, "to": 210, "direction": "forward", "repeat": "1", "color": "#000000ff" },
-   { "name": "r_walk_attack", "from": 211, "to": 216, "direction": "forward", "repeat": "1", "color": "#000000ff" }
+    {
+      "name": "u_idle_attack",
+      "from": 0,
+      "to": 8,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    },
+    {
+      "name": "d_idle_attack",
+      "from": 9,
+      "to": 16,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    },
+    {
+      "name": "l_idle_attack",
+      "from": 17,
+      "to": 24,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    },
+    {
+      "name": "r_idle_attack",
+      "from": 25,
+      "to": 32,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    },
+    {
+      "name": "u_death",
+      "from": 33,
+      "to": 40,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "d_death",
+      "from": 41,
+      "to": 48,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "l_death",
+      "from": 49,
+      "to": 56,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "r_death",
+      "from": 57,
+      "to": 64,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "d_hurt",
+      "from": 65,
+      "to": 70,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "d_walk_hurt",
+      "from": 65,
+      "to": 70,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "d_run_hurt",
+      "from": 65,
+      "to": 70,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "u_hurt",
+      "from": 71,
+      "to": 76,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "u_walk_hurt",
+      "from": 71,
+      "to": 76,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "u_run_hurt",
+      "from": 71,
+      "to": 76,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "l_hurt",
+      "from": 77,
+      "to": 82,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "l_walk_hurt",
+      "from": 77,
+      "to": 82,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "l_run_hurt",
+      "from": 77,
+      "to": 82,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "r_hurt",
+      "from": 83,
+      "to": 88,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "r_walk_hurt",
+      "from": 83,
+      "to": 88,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "r_run_hurt",
+      "from": 83,
+      "to": 88,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff"
+    },
+    {
+      "name": "d_idle",
+      "from": 89,
+      "to": 92,
+      "direction": "forward",
+      "color": "#000000ff"
+    },
+    {
+      "name": "u_idle",
+      "from": 93,
+      "to": 96,
+      "direction": "forward",
+      "color": "#000000ff"
+    },
+    {
+      "name": "l_idle",
+      "from": 97,
+      "to": 100,
+      "direction": "forward",
+      "color": "#000000ff"
+    },
+    {
+      "name": "r_idle",
+      "from": 101,
+      "to": 104,
+      "direction": "forward",
+      "color": "#000000ff"
+    },
+    {
+      "name": "d_walk",
+      "from": 105,
+      "to": 110,
+      "direction": "forward",
+      "color": "#000000ff",
+      "type": "move"
+    },
+    {
+      "name": "u_walk",
+      "from": 111,
+      "to": 116,
+      "direction": "forward",
+      "color": "#000000ff",
+      "type": "move"
+    },
+    {
+      "name": "l_walk",
+      "from": 117,
+      "to": 122,
+      "direction": "forward",
+      "color": "#000000ff",
+      "type": "move"
+    },
+    {
+      "name": "r_walk",
+      "from": 123,
+      "to": 128,
+      "direction": "forward",
+      "color": "#000000ff",
+      "type": "move"
+    },
+    {
+      "name": "d_run",
+      "from": 129,
+      "to": 136,
+      "direction": "forward",
+      "color": "#000000ff",
+      "type": "move"
+    },
+    {
+      "name": "u_run",
+      "from": 137,
+      "to": 144,
+      "direction": "forward",
+      "color": "#000000ff",
+      "type": "move"
+    },
+    {
+      "name": "l_run",
+      "from": 145,
+      "to": 152,
+      "direction": "forward",
+      "color": "#000000ff",
+      "type": "move"
+    },
+    {
+      "name": "r_run",
+      "from": 153,
+      "to": 160,
+      "direction": "forward",
+      "color": "#000000ff",
+      "type": "move"
+    },
+    {
+      "name": "d_run_attack",
+      "from": 161,
+      "to": 168,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    },
+    {
+      "name": "u_run_attack",
+      "from": 169,
+      "to": 176,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    },
+    {
+      "name": "l_run_attack",
+      "from": 177,
+      "to": 184,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    },
+    {
+      "name": "r_run_attack",
+      "from": 185,
+      "to": 192,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    },
+    {
+      "name": "d_walk_attack",
+      "from": 193,
+      "to": 198,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    },
+    {
+      "name": "u_walk_attack",
+      "from": 199,
+      "to": 204,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    },
+    {
+      "name": "l_walk_attack",
+      "from": 205,
+      "to": 210,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    },
+    {
+      "name": "r_walk_attack",
+      "from": 211,
+      "to": 216,
+      "direction": "forward",
+      "repeat": "1",
+      "color": "#000000ff",
+      "type": "attack"
+    }
   ],
   "layers": [
    { "name": "Layer 1", "opacity": 255, "blendMode": "normal" },

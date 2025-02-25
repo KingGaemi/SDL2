@@ -24,5 +24,54 @@
         "sceneCode": "Menu"
       }
     ]
+  },
+  "hp_bar_frame": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 640,
+        "y": 750
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "hp_bar_frame",
+        "width": 368,
+        "height": 32,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 368,
+        "height": 32,
+        "scale": 1.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      }
+    ]
+  },
+  "hp_bar_gage": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 640,
+        "y": 750
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "hp_bar_gage",
+        "width": 368,
+        "height": 32,
+        "scale": 1.0
+      },
+      {
+        "name": "HpGageTag"
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      }
+    ]
   }
 }

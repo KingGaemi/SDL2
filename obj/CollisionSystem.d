@@ -71,8 +71,8 @@ obj/CollisionSystem.o: src/CollisionSystem.cpp \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
- include/Components/HitboxComponent.h include/Events/EventManager.h \
- include/ECS/System.h include/Collision.h
+ include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
+ include/Events/EventManager.h include/ECS/System.h include/Collision.h
 include/Systems/CollisionSystem.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
@@ -166,6 +166,7 @@ include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
+include/Components/HpBarComponent.h:
 include/Events/EventManager.h:
 include/ECS/System.h:
 include/Collision.h:

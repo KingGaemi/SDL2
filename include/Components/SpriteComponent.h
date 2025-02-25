@@ -11,6 +11,10 @@ public:
 	std::string textureId;
 	Rect srcRect;
 	FRect dstRect;
+	int originWidth;
+	int originHeight;
+	float offsetX = 0.0f;
+	float offsetY = 0.0f;
 	bool flipHorizontal = false;
 	bool flipVertical = false;
 	float scale = 1.0f;
@@ -20,6 +24,8 @@ public:
 	SpriteComponent(const std::string& texId, int w, int h, float sc, bool hasDirectional = false) : textureId(texId) , scale(sc), hasDirectional(hasDirectional) {
 		srcRect = {0, 0, w, h};
 		dstRect = {0, 0, w*sc, h*sc};
+		originWidth = w;
+		originHeight = h;
 	}
 
 	void toggleFlipHorizontal() {

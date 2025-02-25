@@ -43,6 +43,10 @@ public:
     void loadCooldownComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadDashComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadPlayerTag(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadUITag(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadTextTag(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadIMGTag(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadHpBarTag(const json& componentData, std::shared_ptr<Entity> entity);
     void loadProjectileComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadDamageComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadItemComponent(const json& componentData, std::shared_ptr<Entity> entity);
@@ -51,7 +55,7 @@ public:
     void loadAIComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadSpawnerComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadHitboxComponent(const json& componentData, std::shared_ptr<Entity> entity);
-
+    void loadHpBarComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req);
     void registerComponentLoaders();
 private:

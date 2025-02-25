@@ -85,7 +85,7 @@ void RenderSystem::setTextureManager(TextureManager& p_textureManager){
 void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
     
     
-    if (!entity->isActive) return;
+    if (!entity->isActive || !entity->isVisible) return;
     if(entity->hasComponent<PositionComponent>() && entity->hasComponent<SpriteComponent>()){
         auto posComp = entity->getComponent<PositionComponent>();
         auto sprite = entity->getComponent<SpriteComponent>();
@@ -101,8 +101,8 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             }
             int wantIntY = static_cast<int>(offsetY);
 
-            float worldX = posComp->x - (dstRect.w/2);
-            float worldY = posComp->y + wantIntY - (dstRect.h/2);
+            float worldX = posComp->x - (dstRect.w/2) + sprite->offsetX;
+            float worldY = posComp->y + wantIntY - (dstRect.h/2) + sprite->offsetY;
 
             float screenX, screenY;
             screenX = worldX;
@@ -111,7 +111,7 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             cameraEntity = ecsManager->getCamera();
             if(cameraEntity->isActive){
                 auto cameraPos = cameraEntity->getComponent<PositionComponent>();
-                if(cameraPos){
+                if(cameraPos && (!entity->hasComponent<UITag>()|| (entity->hasComponent<UITag>() && entity->hasComponent<HpBarTag>()))){
                    screenX = worldX - cameraPos->x;
                    screenY = worldY - cameraPos->y;
                 }
@@ -185,6 +185,45 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             renderer->SetRenderDrawColor(255, 0, 0, 255);
             renderer->RenderDrawRect(debugRect, rad);
 
+        }
+    }
+}
+
+
+
+void RenderSystem::drawUI(const std::shared_ptr<Entity>& entity){
+    
+    if (!entity->isActive) return;
+    if(entity->hasComponent<PositionComponent>() && entity->hasComponent<SpriteComponent>()){
+        auto posComp = entity->getComponent<PositionComponent>();
+        auto sprite = entity->getComponent<SpriteComponent>();
+
+        if (posComp && sprite) {
+
+            SDL_Rect srcRect = toSDLRect(sprite->srcRect);
+            SDL_FRect dstRect = toSDLFRect(sprite->dstRect);
+
+
+            dstRect.x = posComp->x - (dstRect.w/2) + sprite->offsetX;
+            dstRect.y = posComp->y - (dstRect.h/2) + sprite->offsetY;
+
+            SDL_RendererFlip flip = SDL_FLIP_NONE;
+            float rot = 0.0f;
+            
+            if (sprite->flipHorizontal) flip = SDL_FLIP_HORIZONTAL;
+            if (sprite->flipVertical) flip = (SDL_RendererFlip)(flip | SDL_FLIP_VERTICAL);
+            
+            if (entity->hasComponent<TransformComponent>()){
+                auto transComp = entity->getComponent<TransformComponent>();
+                rot = toAngle(transComp->radian);
+            }
+
+            auto texture = textureManager->getTexture(sprite->getTextureId());
+            if(!texture){
+                texture = textureManager->unknown;
+                sprite->textureId = "unknown";
+            }
+            renderer->render(texture, &srcRect, &dstRect, rot, nullptr, flip);
         }
     }
 }

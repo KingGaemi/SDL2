@@ -64,6 +64,7 @@ public:
 
     bool isActive = true;
     bool terminate = false;
+    bool isVisible = true;
 
 private:
     EntityID id;

@@ -7,6 +7,7 @@
 #include "Components/AnimationComponent.h"
 #include "Components/StateComponent.h"
 #include "Components/ProjectileComponent.h"
+#include "Components/HpBarComponent.h"
 #include <iostream>
 
 
@@ -32,16 +33,19 @@ public:
 			if(entity->hasComponent<StatusComponent>()){
 
 				auto statusComp = entity->getComponent<StatusComponent>();
+				auto stateComp = entity->getComponent<StateComponent>();
 
-				if(entity->hasComponent<StateComponent>()){
-					auto stateComp = entity->getComponent<StateComponent>();
-
-					if(statusComp && !statusComp->isAlive && !stateComp->inMotion) entity->terminate = true;
-				}else{
-
-					if(statusComp && !statusComp->isAlive) entity->terminate = true;
+				if(statusComp && !statusComp->isAlive){
+					if(stateComp){
+						if(stateComp->inMotion) continue;
+					}
+					entity->terminate = true;
+					if(entity->hasComponent<HpBarComponent>()){
+						auto hpBarComp = entity->getComponent<HpBarComponent>();
+						hpBarComp->hpGage->terminate = true;
+						hpBarComp->hpFrame->terminate = true;
+					}
 				}
-
 				
 			}
 

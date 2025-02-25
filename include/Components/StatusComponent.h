@@ -22,6 +22,8 @@ public:
 		intelligence, 
 		physicalDamage;
 	float attackSpeed, movementSpeed, runningSpeedMultiple;
+	float percentage; // 1 => 100% , 0.1 => 10%
+	float baseAttackSpeed = 1.0f;
 	float projectileSpeedMultiple = 1.0f;
 
 	//float timeSpeed
@@ -50,6 +52,17 @@ public:
 		intelligence = 1;
 		physicalDamage = 10;
 	}
+	StatusComponent(int maxHp, int maxMp, float attackSpeed, float movementSpeed) : maxHp(maxHp), maxMp(maxMp), attackSpeed(attackSpeed), movementSpeed(movementSpeed) {
+		currentHp = maxHp;
+		currentmp = maxMp;
+		runningSpeedMultiple = 2.0f;
+		strength = 1;
+		agility = 1;
+		intelligence = 1;
+		physicalDamage = 10;
+		percentage = currentHp/maxHp;
+	}
+
 
 
 private:

@@ -64,6 +64,16 @@ public:
 
 			}
 
+			if(entity->hasComponent<StatusComponent>()){
+				auto statusComp = entity->getComponent<StatusComponent>();
+				if(statusComp&&statusComp->isAlive){
+					int currentHp = statusComp->currentHp;
+					int maxHp = statusComp->maxHp;
+
+					statusComp->percentage = static_cast<float>(currentHp) / static_cast<float>(maxHp);
+				}
+			}
+
 
 		}
 

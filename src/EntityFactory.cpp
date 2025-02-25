@@ -32,7 +32,7 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
 
     // 2) 엔티티 생성
     auto entity = ecsManager->createEntity();
-
+    if(req.entityType == EntityType::UI) entity->addComponent<UITag>();
     // 3) components 배열 반복
     auto componentsArray = j[req.name]["components"];
     for (auto& compData : componentsArray) {
@@ -200,6 +200,47 @@ void EntityFactory::loadTeamTag(const json& componentData, std::shared_ptr<Entit
 	entity->addComponent<TeamTag>(teamCode);
 }
 
+void EntityFactory::loadHpBarComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+
+	int type = componentData.value("type", 1);
+	float offsetX = componentData.value("offsetX", 0);
+	float offsetY = componentData.value("offsetY", 0);
+	std::string gageTextureId, frameTextureId;
+	if(type == 1 ) {
+		gageTextureId = "hp_bar_gage";
+		frameTextureId = "hp_bar_frame";
+	}
+
+	auto hpGage = ecsManager->createEntity();
+	auto hpFrame = ecsManager->createEntity();
+
+	hpGage->addComponent<UITag>();
+	hpGage->addComponent<SceneTag>(SceneCode::Game);
+	hpGage->addComponent<HpBarTag>();
+	hpGage->addComponent<PositionComponent>(0,0);
+	hpGage->addComponent<SpriteComponent>(gageTextureId, 368, 32, 0.2,false);
+	hpGage->addComponent<TransformComponent>(368, 32, 0.2);
+	// hpGage->addComponent<HpBarTag>(entity);
+	auto spComp1 = hpGage->getComponent<SpriteComponent>();
+	spComp1->offsetX = offsetX;
+	spComp1->offsetY = offsetY;
+
+	hpFrame->addComponent<UITag>();
+	hpFrame->addComponent<SceneTag>(SceneCode::Game);
+	hpFrame->addComponent<HpBarTag>();
+	hpFrame->addComponent<PositionComponent>(0,0);
+	hpFrame->addComponent<SpriteComponent>(frameTextureId, 368, 32, 0.2,false);
+	hpFrame->addComponent<TransformComponent>(368, 32, 0.2);
+	auto spComp2 = hpGage->getComponent<SpriteComponent>();
+	spComp2->offsetX = offsetX;
+	spComp2->offsetY = offsetY;
+
+	// hpGage->isVisible = false;
+	// hpFrame->isVisible = false;
+
+	entity->addComponent<HpBarComponent>(hpGage, hpFrame);
+}
+
 void EntityFactory::loadDirectionComponent(const json& componentData, std::shared_ptr<Entity> entity) {
 
 	Direction direction;
@@ -260,9 +301,9 @@ void EntityFactory::loadStatusComponent(const json& componentData, std::shared_p
 	int maxHp = componentData.value("maxHp", 1);
 	int maxMp = componentData.value("maxMp", 1);
 	float movementSpeed = componentData.value("movementSpeed", 100.0f);
+	float attackSpeed = componentData.value("attackSpeed", 1.0f);
 
-
-	entity->addComponent<StatusComponent>(maxHp, maxMp, movementSpeed);
+	entity->addComponent<StatusComponent>(maxHp, maxMp, attackSpeed, movementSpeed);
 }
 
 void EntityFactory::loadCommandComponent(const json& componentData, std::shared_ptr<Entity> entity){
@@ -302,6 +343,15 @@ void EntityFactory::loadDashComponent(const json& componentData, std::shared_ptr
 
 void EntityFactory::loadPlayerTag(const json& componentData, std::shared_ptr<Entity> entity) {
 	entity->addComponent<PlayerTag>();
+}
+void EntityFactory::loadUITag(const json& componentData, std::shared_ptr<Entity> entity) {
+	entity->addComponent<UITag>();
+}
+void EntityFactory::loadTextTag(const json& componentData, std::shared_ptr<Entity> entity) {
+	entity->addComponent<TextTag>();
+}
+void EntityFactory::loadIMGTag(const json& componentData, std::shared_ptr<Entity> entity) {
+	entity->addComponent<IMGTag>();
 }
 
 void EntityFactory::loadProjectileComponent(const json& componentData, std::shared_ptr<Entity> entity) {
@@ -360,11 +410,9 @@ void EntityFactory::loadAIComponent(const json& componentData, std::shared_ptr<E
     entity->addComponent<AIComponent>(aiBehavior);
 
     if(range != 0.0f){
-    	std::cout<<"set range :" ;
     	auto aiComp = entity->getComponent<AIComponent>();
     	auto& module = aiComp->findModule(aiBehavior);
     	module.range = range;
-    	std::cout<< module.range << std::endl;
     }
 
 }
@@ -393,6 +441,9 @@ void EntityFactory::loadHitboxComponent(const json& componentData, std::shared_p
     entity->addComponent<HitboxComponent>(w, h, offsetX, offsetY, scale);
 }
 
+void EntityFactory::loadHpBarTag(const json& componentData, std::shared_ptr<Entity> entity){
+	entity->addComponent<HpBarTag>();
+}
 
 
 
@@ -487,6 +538,21 @@ void EntityFactory::registerComponentLoaders() {
     };
     componentLoaders["PlayerTag"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadPlayerTag(data, entity);
+    };
+    componentLoaders["UITag"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadUITag(data, entity);
+    };
+    componentLoaders["TextTag"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadTextTag(data, entity);
+    };
+    componentLoaders["IMGTag"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadIMGTag(data, entity);
+    };
+    componentLoaders["HpBarTag"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadHpBarTag(data, entity);
+    };
+    componentLoaders["HpBarComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadHpBarComponent(data, entity);
     };
     componentLoaders["CooldownComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadCooldownComponent(data, entity);

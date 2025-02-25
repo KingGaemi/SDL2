@@ -70,9 +70,10 @@ obj/RenderSystem.o: src/RenderSystem.cpp include/Systems/RenderSystem.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
- include/Components/HitboxComponent.h include/Events/EventManager.h \
- include/TextureManager.h include/Renderer.h include/IRenderer.h \
- include/SDL2/SDL.h include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
+ include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
+ include/Events/EventManager.h include/TextureManager.h \
+ include/Renderer.h include/IRenderer.h include/SDL2/SDL.h \
+ include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
  include/SDL2/begin_code.h include/SDL2/close_code.h \
  include/SDL2/SDL_assert.h include/SDL2/SDL_atomic.h \
@@ -191,6 +192,7 @@ include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
+include/Components/HpBarComponent.h:
 include/Events/EventManager.h:
 include/TextureManager.h:
 include/Renderer.h:

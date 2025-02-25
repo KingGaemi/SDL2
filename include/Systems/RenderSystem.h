@@ -34,6 +34,7 @@ protected:
     Renderer* renderer; // SDL_Renderer 래핑 클래스
     TextureManager* textureManager;
     void drawEntity(const std::shared_ptr<Entity>& entity);
+    void drawUI(const std::shared_ptr<Entity>& entity);
     std::shared_ptr<Entity> cameraEntity;
     std::shared_ptr<ECSManager> ecsManager;
     

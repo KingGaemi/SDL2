@@ -61,9 +61,10 @@
       },
       {
         "name": "StatusComponent",
-        "maxHp": 100,
-        "maxMp": 100,
+        "maxHp": 1111,
+        "maxMp": 1000,
 	"movementSpeed": 200,
+	"attackSpeed": 4,
         "currentHp": 100
       },
       {
@@ -84,6 +85,9 @@
 	"w": 32,
 	"h": 39,
 	"scale": 1.0
+      },
+      {
+        "name": "HpBarComponent"
       }
     ]
   },
@@ -116,7 +120,13 @@
       {
         "name": "SceneTag",
         "sceneCode": "Game"
+      },
+      {
+        "name": "HpBarComponent",
+	"type": 1
       }
+
+
     ]
   },
   "orc1": {
@@ -132,7 +142,7 @@
       {
         "name": "AIComponent",
 	"AIType": "Aggressive",
-	"range": 10000.0
+	"range": 20000.0
       },
       {
         "name": "MovementCommandComponent"
@@ -181,9 +191,9 @@
       },
       {
         "name": "StatusComponent",
-        "maxHp": 10011,
-        "maxMp": 10011,
-        "currentHp": 10011
+        "maxHp": 511,
+        "maxMp": 511,
+	"attackSpeed": 0.8
       },
       {
         "name": "TeamTag",
@@ -203,6 +213,10 @@
 	"w": 32,
 	"h": 39,
 	"scale": 1.0
+      },
+      {
+        "name": "HpBarComponent",
+	"type": 1
       }
 
     ]

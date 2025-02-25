@@ -152,6 +152,7 @@ void ECSManager::cleanUpEntities(){
     auto events = eventManager->getDestroyEvents();
     for(auto evt : events){
         auto entity = getEntityById(evt.entityId);
+        
         destroyEntity(entity);
     }
     eventManager->clearDestroyEvents();

@@ -70,7 +70,8 @@ obj/SpawnSystem.o: src/SpawnSystem.cpp include/Systems/SpawnSystem.h \
  include/Components/MapComponent.h include/Components/CameraComponent.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
- include/Components/HitboxComponent.h include/Events/EventManager.h
+ include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
+ include/Events/EventManager.h
 include/Systems/SpawnSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -165,4 +166,5 @@ include/Components/AbilityComponent.h:
 include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
+include/Components/HpBarComponent.h:
 include/Events/EventManager.h:

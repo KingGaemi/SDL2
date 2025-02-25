@@ -34,7 +34,7 @@ public:
 
 		auto it = aiModulesMap.find(targetBehavior);
 		if (it != aiModulesMap.end()) {
-		    std::cout << "Found AIModule with behavior: " << static_cast<int>(it->first) << std::endl;
+		    // std::cout << "Found AIModule with behavior: " << static_cast<int>(it->first) << std::endl;
 		    return it->second;
 		} 
 	    std::cout << "Not found! Returning default AIModule." << std::endl;

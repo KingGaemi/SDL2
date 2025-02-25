@@ -29,4 +29,5 @@
 #include "AIComponent.h"
 #include "SpawnerComponent.h"
 #include "HitboxComponent.h"
+#include "HpBarComponent.h"
 // #include "GroupComponent.h"

@@ -6,6 +6,7 @@
 
 
 void MapManager::init(){
+    mapEntities.clear();
     auto mapEntity = ecsManager->createEntity();
     mapEntity->addComponent<MapComponent>("home_map");
     mapEntities.push_back(mapEntity);
@@ -31,7 +32,7 @@ void MapManager::loadMap(const std::string& mapPath){
             TilesetInfo tileset;
             // set firstgid
             if (j["tilesets"][i].contains("firstgid")) {
-                std::cout << j["tilesets"][i]["firstgid"] << std::endl;
+                // std::cout << j["tilesets"][i]["firstgid"] << std::endl;
                 tileset.firstgid = j["tilesets"][i]["firstgid"];
             }
 
@@ -71,23 +72,6 @@ void MapManager::loadMap(const std::string& mapPath){
                 // std::cout << j["tilesets"][i]["imageheight"] << std::endl;
                 tileset.imageheight = j["tilesets"][i]["imageheight"];
             }
-
-
-
-            // if (j["tilesets"][i].contains("tiles")) {                
-            //     auto tiles = j["tilesets"][i]["tiles"];
-
-            //     for(auto& tile : tiles){
-            //         int tileId = tile["id"];  //66
-            //         collisionObject object;
-                    
-
-
-            //     }
-
-
-                
-            // }
 
 
             mapComp->addTileset(tileset);
@@ -140,6 +124,7 @@ void MapManager::loadMap(const std::string& mapPath){
                         std::string probType = property["type"];
                         auto value = property["value"];
                         // std::cout << "probName: " << probName << std::endl; 
+                        // std::cout << "probValue: " << value << std::endl; 
 
                         if(probName == "name"){
                             req.name = value;
@@ -147,18 +132,19 @@ void MapManager::loadMap(const std::string& mapPath){
                             if(value == "Unit") req.entityType = EntityType::Unit;
                             else if(value == "Object") req.entityType = EntityType::Object;
                             else if(value == "Wall") req.entityType = EntityType::Wall;
+                            else if(value == "UI") req.entityType = EntityType::UI;
+                            else if(value == "Item") req.entityType = EntityType::Item;
                         }else if(probName == "teamCode"){
                             if(value == "Ally") req.teamCode = TeamCode::Ally;
                             else if(value == "Enemy") req.teamCode = TeamCode::Enemy;
                         }
                     }
-                    // req.name = "stone";
+                    
                     req.x = x;
                     req.y = y;
                     req.w = w;
                     req.h = h;
-                    // req.sc = 2.0f;
-                    // std::cout << "objectgroup" << std::endl;
+
                     ecsManager->pendingSpawns.push_back(req);
 
                 }

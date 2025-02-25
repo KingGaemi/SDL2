@@ -42,6 +42,7 @@ void CollisionEventHandlerSystem::applyRoot(std::shared_ptr<Entity> charactor, s
         if(teamComp->teamCode != TeamCode::Ally) return;
 
 	    if (!itemComp->consumed) {
+	    	//temp
 	    	statusComp->currentHp = statusComp->maxHp;
 	    	statusComp->attackSpeed += 1.0f;
 	    	statusComp->movementSpeed += 30.0f;
