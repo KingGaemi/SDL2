@@ -7,6 +7,7 @@
 #include "Renderer.h"
 #include "TextureManager.h"
 #include "MapManager.h"
+#include "EffectManager.h"
 #include "Scene.h"
 #include "MenuScene.h"
 #include "GameplayScene.h"
@@ -50,6 +51,7 @@ private:
     std::shared_ptr<EntityFactory> entityFactory;
     std::shared_ptr<EventManager> eventManager;
     std::shared_ptr<MapManager> mapManager;
+    std::shared_ptr<EffectManager> effectManager;
     std::unique_ptr<TextureManager> mapTextureManager;
     std::unique_ptr<TextureManager> textureManager;
     std::unique_ptr<TextureManager> uiTextureManager;

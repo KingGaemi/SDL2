@@ -72,9 +72,9 @@ obj/main.o: src/main.cpp include/Game.h include/SDL2/SDL.h \
  include/MapManager.h include/Components/MapComponent.h \
  include/ECS/Component.h include/ECS/ECSManager.h \
  include/ECS/EntityFactory.h include/nlohmann/json.hpp include/Requests.h \
- include/Groups.h include/Components/Components.h \
+ include/Groups.h include/Rect.h include/Components/Components.h \
  include/Components/AnimationComponent.h \
- include/Components/ColliderComponent.h include/Rect.h include/Vector2D.h \
+ include/Components/ColliderComponent.h include/Vector2D.h \
  include/Components/CommandComponent.h \
  include/Components/DirectionComponent.h include/myMath.h \
  include/Components/MovementCommandComponent.h \
@@ -98,8 +98,9 @@ obj/main.o: src/main.cpp include/Game.h include/SDL2/SDL.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
- include/Events/EventManager.h include/ECS/System.h include/Scene.h \
- include/MenuScene.h include/GameplayScene.h include/Systems/Systems.h \
+ include/Events/EventManager.h include/ECS/System.h \
+ include/EffectManager.h include/Scene.h include/MenuScene.h \
+ include/GameplayScene.h include/Systems/Systems.h \
  include/Systems/AnimationSystem.h include/Systems/InputSystem.h \
  include/Systems/MovementSystem.h include/Systems/RenderSystem.h \
  include/Systems/TimerSystem.h include/Systems/ExpireSystem.h \
@@ -223,10 +224,10 @@ include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
 include/Requests.h:
 include/Groups.h:
+include/Rect.h:
 include/Components/Components.h:
 include/Components/AnimationComponent.h:
 include/Components/ColliderComponent.h:
-include/Rect.h:
 include/Vector2D.h:
 include/Components/CommandComponent.h:
 include/Components/DirectionComponent.h:
@@ -266,6 +267,7 @@ include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
 include/Events/EventManager.h:
 include/ECS/System.h:
+include/EffectManager.h:
 include/Scene.h:
 include/MenuScene.h:
 include/GameplayScene.h:

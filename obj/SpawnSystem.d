@@ -45,9 +45,9 @@ obj/SpawnSystem.o: src/SpawnSystem.cpp include/Systems/SpawnSystem.h \
  include/nlohmann/ordered_map.hpp \
  include/nlohmann/detail/macro_unscope.hpp \
  include/nlohmann/thirdparty/hedley/hedley_undef.hpp include/Requests.h \
- include/Groups.h include/Components/Components.h \
+ include/Groups.h include/Rect.h include/Components/Components.h \
  include/Components/AnimationComponent.h \
- include/Components/ColliderComponent.h include/Rect.h include/Vector2D.h \
+ include/Components/ColliderComponent.h include/Vector2D.h \
  include/Components/CommandComponent.h \
  include/Components/DirectionComponent.h include/myMath.h \
  include/Components/MovementCommandComponent.h \
@@ -126,10 +126,10 @@ include/nlohmann/detail/macro_unscope.hpp:
 include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
 include/Requests.h:
 include/Groups.h:
+include/Rect.h:
 include/Components/Components.h:
 include/Components/AnimationComponent.h:
 include/Components/ColliderComponent.h:
-include/Rect.h:
 include/Vector2D.h:
 include/Components/CommandComponent.h:
 include/Components/DirectionComponent.h:

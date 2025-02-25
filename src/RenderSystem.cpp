@@ -190,6 +190,47 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
 }
 
 
+void RenderSystem::drawEffects(){
+
+    for(auto& effectRequest : effectManager->pendingEffects){
+
+        std::string textureId = effectRequest.textureId;
+        SDL_Rect srcRect = toSDLRect(effectRequest.srcRect);
+        SDL_FRect dstRect = toSDLFRect(effectRequest.dstRect);
+        float rot = effectRequest.rot;
+        // dstRect.x = effectRequest.x;
+        // dstRect.y = effectRequest.y;
+        // dstRect.w = effectRequest.w;
+        // dstRect.h = effectRequest.h;
+
+
+
+        if(cameraEntity){
+            auto cameraPos = cameraEntity->getComponent<PositionComponent>();
+            if(cameraPos){
+               dstRect.x = dstRect.x - cameraPos->x;                   
+               dstRect.y = dstRect.y - cameraPos->y;
+            }
+        }
+
+
+        //temp
+        if(textureId == "black"){
+            renderer->SetRenderDrawColor(0, 0, 0, 0);
+            renderer->RenderFillRectF(&dstRect);
+            
+        }else{
+            auto texture = textureManager->getTexture(textureId);
+            if(!texture){
+                texture = textureManager->unknown;            
+            }
+            renderer->render(texture, &srcRect, &dstRect, rot, nullptr, SDL_FLIP_NONE);
+        }
+    }
+
+    effectManager->pendingEffects.clear();
+
+}
 
 void RenderSystem::drawUI(const std::shared_ptr<Entity>& entity){
     

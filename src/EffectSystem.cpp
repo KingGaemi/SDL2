@@ -6,6 +6,7 @@
 #include "Components/HpBarComponent.h"
 #include "Components/PositionComponent.h"
 #include "Components/TransformComponent.h"
+#include "Renderer.h"
 #include "Groups.h"
 #include <math.h>
 #include <iostream>
@@ -19,6 +20,7 @@ void EffectSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 		if(entity->hasComponent<FloatingEffectComponent>()){
 			floatingEffect(entity, deltaTime);
 		}
+
 
 		// if(entity->hasComponent<PlayerTag>()){
 		// 	player = entity;
@@ -48,6 +50,7 @@ void EffectSystem::floatingEffect(std::shared_ptr<Entity>& entity, float deltaTi
 
        
 }
+
 
 // void EffectSystem::hpBarControl(std::shared_ptr<Entity>& hpGage, std::shared_ptr<Entity>& entity){
 
@@ -85,32 +88,61 @@ void EffectSystem::hpBarControl(std::shared_ptr<Entity>& entity){
 	
 
 	float percentage = statusComp->percentage;
-
+	float offsetY = hpBarComp->offsetY;
 	if(percentage<= 0.03) percentage = 0.03;
 	auto hpGage = hpBarComp->hpGage;
-	auto gagePos = hpGage->getComponent<PositionComponent>();
 	auto hpFrame = hpBarComp->hpFrame;
-	auto framePos = hpFrame->getComponent<PositionComponent>();
+
+	auto gagePos = hpGage->getComponent<PositionComponent>();
+	auto hpGageTrans = hpGage->getComponent<TransformComponent>();
 	auto gageSprite = hpGage->getComponent<SpriteComponent>();
+
+	auto framePos = hpFrame->getComponent<PositionComponent>();
+	auto frameTrans = hpFrame->getComponent<TransformComponent>();
 
 	gagePos->set(posComp->getVector());
 	framePos->set(posComp->getVector());
 
-	gagePos->add(0, -(transComp->height + 5.0f));
-	framePos->add(0, -(transComp->height + 5.0f));
+	gagePos->add(0, -(transComp->height + offsetY));
+	framePos->add(0, -(transComp->height + offsetY));
+
+	int amount = 100;
+	int maxHp = statusComp->maxHp;
+	int partitions = maxHp / amount;
+	if(partitions >= 30){
+		amount *= 10;
+		partitions = maxHp / amount;
+	}
+	auto gap = (frameTrans->width / partitions + 1)* frameTrans->scale;
+	int drawPartitions = statusComp->currentHp / amount;
+	if(statusComp->currentHp == statusComp->maxHp) drawPartitions--;
+	EffectRequest req;
+	req.x = framePos->x - frameTrans->width/2 * frameTrans->scale;
+	req.y = framePos->y - frameTrans->height/2 * frameTrans->scale;
+	req.h = frameTrans->height * frameTrans->scale;
+	req.w = 1;
+	req.textureId = "hp_bar_gage";
+
+	req.srcRect = {0, 0, hpGageTrans->width * hpGageTrans->scale , hpGageTrans->height * hpGageTrans->scale};
+	float offsetX = -(static_cast<float>(frameTrans->width/2) * (1-percentage)) * gageSprite->scale;
+	req.dstRect = {req.x + offsetX, req.y, static_cast<float>(frameTrans->width) * percentage * hpGageTrans->scale, req.h};
+	effectManager->pendingEffects.push_back(req);
 
 
+	req.textureId = "black";
+	req.dstRect.w = 1;
+	for(int i = 0 ; i < drawPartitions ; i++){
+		req.dstRect.x += gap;	
+		effectManager->pendingEffects.push_back(req);
+	}
 	
 
-	// std::cout << percentage  << std::endl;
-	gageSprite->dstRect.w = static_cast<float>(gageSprite->originWidth) * percentage;
-	gageSprite->srcRect.w = static_cast<float>(gageSprite->originWidth) * percentage;
-	gageSprite->offsetX = -(static_cast<float>(gageSprite->originWidth/2) * (1-percentage)) * gageSprite->scale;
+	// // gageSprite->dstRect.w = static_cast<float>(frameTrans->width) * percentage* gageSprite->scale;
+	// hpGageTrans->width = static_cast<float>(frameTrans->width) * percentage ;
+	// // gageSprite->srcRect.h = frameTrans->width * gageSprite->scale;
+	// gageSprite->srcRect.w = frameTrans->width * percentage;
+	// gageSprite->offsetX = -(static_cast<float>(frameTrans->width/2) * (1-percentage)) * gageSprite->scale;
 
-	auto hpGageTrans = hpGage->getComponent<TransformComponent>();
-	
-
-	hpGageTrans->width = static_cast<float>(gageSprite->originWidth) * percentage;
 
 	if(!statusComp->isAlive){
 		gageSprite->dstRect.w = 0;

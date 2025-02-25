@@ -61,7 +61,7 @@
       },
       {
         "name": "StatusComponent",
-        "maxHp": 1111,
+        "maxHp": 5555,
         "maxMp": 1000,
 	"movementSpeed": 200,
 	"attackSpeed": 4,
@@ -87,7 +87,8 @@
 	"scale": 1.0
       },
       {
-        "name": "HpBarComponent"
+        "name": "HpBarComponent",
+	"offsetY": 15
       }
     ]
   },
@@ -216,7 +217,8 @@
       },
       {
         "name": "HpBarComponent",
-	"type": 1
+	"type": 1,
+	"offsetY": 7
       }
 
     ]

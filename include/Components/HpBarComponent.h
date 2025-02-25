@@ -5,13 +5,14 @@
 class HpBarComponent : public Component {
 
 public:
-	HpBarComponent(std::shared_ptr<Entity> hpGage, std::shared_ptr<Entity> hpFrame) : hpGage(hpGage), hpFrame(hpFrame) {}
+	HpBarComponent(std::shared_ptr<Entity> hpGage, std::shared_ptr<Entity> hpFrame, float offsetY) : hpGage(hpGage), hpFrame(hpFrame), offsetY(offsetY) {}
 
 	float percentage;
 	std::string gageTextureId = "hp_bar_gage";
 	std::string frameTextureId = "hp_bar_frame";
 	std::size_t type = 1;
 	std::shared_ptr<Entity> hpGage, hpFrame;
+	float offsetY;
 
 
 

@@ -8,8 +8,7 @@ class TransformComponent : public Component {
 public:
 
 
-    int width = 32;    // 그래픽/충돌 용도
-    int height = 32;
+    int width = 32;        int height = 32;
     float scale = 1;
 
     float rotation = 0.0f;

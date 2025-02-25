@@ -93,6 +93,16 @@ void Renderer::SetRenderDrawColor(int r, int g, int b, int a){
     SDL_SetRenderDrawColor(SDL_renderer, r, g, b, a);
 }
 
+void Renderer::RenderFillRectF(SDL_FRect* rect){
+    SDL_RenderFillRectF(SDL_renderer, rect);
+}
+
+
+void Renderer::RenderDrawLineF(float x1, float y1, float x2, float y2){
+    SDL_RenderDrawLineF(SDL_renderer, x1, y1,
+                                      x2, y2);
+}
+
 void Renderer::RenderDrawRect(SDL_FRect &debugRect, float theta){
 
     float x1, y1, x2, y2, cx, cy;

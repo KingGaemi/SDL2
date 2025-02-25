@@ -46,13 +46,13 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->eventManager = eventManager;
     inputManager = std::make_unique<InputManager>(eventManager);
     mapManager = std::make_shared<MapManager>(ecsManager);
-
+    effectManager = std::make_shared<EffectManager>();
     // Add Systems
 
     // Render
     // ecsManager->addSystem<MapSystem>(SystemGroup::Render, 50, *renderer, ecsManager);
-    ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer, ecsManager);
-    ecsManager->addSystem<UIRenderSystem>(SystemGroup::Render, 200, *renderer, ecsManager);
+    ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer, ecsManager, effectManager);
+    ecsManager->addSystem<UIRenderSystem>(SystemGroup::Render, 200, *renderer, ecsManager, effectManager);
     // Logic
     ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager);
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
@@ -63,7 +63,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<ExpireSystem>(SystemGroup::Logic, 90);
     // ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
     ecsManager->addSystem<DamageSystem>(SystemGroup::Logic, 100, ecsManager);
-    ecsManager->addSystem<EffectSystem>(SystemGroup::Logic, 110);
+    ecsManager->addSystem<EffectSystem>(SystemGroup::Logic, 110, effectManager);
     ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
     ecsManager->addSystem<SyncSystem>(SystemGroup::Logic, 160);
     ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager, eventManager);

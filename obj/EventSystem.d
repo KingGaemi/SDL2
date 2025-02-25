@@ -51,9 +51,9 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/nlohmann/ordered_map.hpp \
  include/nlohmann/detail/macro_unscope.hpp \
  include/nlohmann/thirdparty/hedley/hedley_undef.hpp include/Requests.h \
- include/Groups.h include/Components/Components.h \
+ include/Groups.h include/Rect.h include/Components/Components.h \
  include/Components/AnimationComponent.h \
- include/Components/ColliderComponent.h include/Rect.h \
+ include/Components/ColliderComponent.h \
  include/Components/CooldownComponent.h \
  include/Components/DamageComponent.h include/Components/DashComponent.h \
  include/Components/LifeTimeComponent.h \
@@ -134,10 +134,10 @@ include/nlohmann/detail/macro_unscope.hpp:
 include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
 include/Requests.h:
 include/Groups.h:
+include/Rect.h:
 include/Components/Components.h:
 include/Components/AnimationComponent.h:
 include/Components/ColliderComponent.h:
-include/Rect.h:
 include/Components/CooldownComponent.h:
 include/Components/DamageComponent.h:
 include/Components/DashComponent.h:

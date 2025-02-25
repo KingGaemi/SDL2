@@ -1,5 +1,7 @@
 #pragma once
 #include "Groups.h"
+#include "Rect.h"
+
 
 
 enum class EntityType {
@@ -42,6 +44,18 @@ struct SpawnRequest {
 
     std::size_t ownerId;
 
+
+};
+
+struct EffectRequest {
+    std::string textureId;
+    float x, y, sc, rot;
+    float offsetX = 0.0f;
+    float offsetY = 0.0f;
+    int w, h;
+
+    Rect srcRect;
+    FRect dstRect;
 
 };
 

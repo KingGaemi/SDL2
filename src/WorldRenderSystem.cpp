@@ -76,7 +76,7 @@ void WorldRenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, f
 
         std::vector<std::shared_ptr <Entity>> renderables;
         for (auto& e : entities) {
-            if (e->hasComponent<PositionComponent>() && e->hasComponent<SpriteComponent>()) {
+            if (e->hasComponent<PositionComponent>() && e->hasComponent<SpriteComponent>() && !e->hasComponent<UITag>()) {
                 renderables.push_back(e);
             }
         }

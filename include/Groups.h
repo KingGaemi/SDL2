@@ -1,6 +1,6 @@
 #pragma once
-
 #include "ECS/Component.h"
+#include <string>
 
 enum class TeamCode{
     Neutral,
