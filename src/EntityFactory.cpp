@@ -205,42 +205,11 @@ void EntityFactory::loadHpBarComponent(const json& componentData, std::shared_pt
 	int type = componentData.value("type", 1);
 	float offsetX = componentData.value("offsetX", 0);
 	float offsetY = componentData.value("offsetY", 0);
-	int w = componentData.value("w", 300);
+	int w = componentData.value("w", 368);
 	int h = componentData.value("h", 60);
-	// std::string gageTextureId, frameTextureId;
-	// if(type == 1 ) {
-	// 	gageTextureId = "hp_bar_gage";
-	// 	frameTextureId = "hp_bar_frame";
-	// }
-
-	// auto hpGage = ecsManager->createEntity();
-	// auto hpFrame = ecsManager->createEntity();
-
-	// hpGage->addComponent<UITag>();
-	// hpGage->addComponent<SceneTag>(SceneCode::Game);
-	// hpGage->addComponent<HpBarTag>();
-	// hpGage->addComponent<PositionComponent>(0,0);
-	// hpGage->addComponent<SpriteComponent>(gageTextureId, 368, 32, 0.2,false);
-	// hpGage->addComponent<TransformComponent>(326, 54, 0.2);
-	// hpGage->addComponent<HpBarTag>(entity);
-	// auto spComp1 = hpGage->getComponent<SpriteComponent>();
-	// spComp1->offsetX = offsetX;
-	// spComp1->offsetY = offsetY;
-
-	// hpFrame->addComponent<UITag>();
-	// hpFrame->addComponent<SceneTag>(SceneCode::Game);
-	// hpFrame->addComponent<HpBarTag>();
-	// hpFrame->addComponent<PositionComponent>(0,0);
-	// hpFrame->addComponent<SpriteComponent>(frameTextureId, 368, 32, 0.2,false);
-	// hpFrame->addComponent<TransformComponent>(326, 54, 0.2);
-	// auto spComp2 = hpGage->getComponent<SpriteComponent>();
-	// spComp2->offsetX = offsetX;
-	// spComp2->offsetY = offsetY;
-
-	// hpGage->isVisible = false;
-	// hpFrame->isVisible = false;
-
-	entity->addComponent<HpBarComponent>(w, h, type, offsetY);
+	float scale = componentData.value("scale", 0.2f);
+	
+	entity->addComponent<HpBarComponent>(w, h, type, offsetY, scale);
 }
 
 void EntityFactory::loadDirectionComponent(const json& componentData, std::shared_ptr<Entity> entity) {

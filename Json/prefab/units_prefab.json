@@ -27,9 +27,9 @@
       {
         "name": "PhysicsComponent",
         "width": 28,
-        "height": 36,
+        "height": 28,
         "scale": 1.0,
-	"offsetY": -6.0,
+	"offsetY": -15.0,
         "bodyType": "Dynamic"
       },
       {
@@ -61,7 +61,7 @@
       },
       {
         "name": "StatusComponent",
-        "maxHp": 5555,
+        "maxHp": 888,
         "maxMp": 1000,
 	"movementSpeed": 200,
 	"attackSpeed": 4,
@@ -88,7 +88,7 @@
       },
       {
         "name": "HpBarComponent",
-	"offsetY": 15
+	"offsetY": -18
       }
     ]
   },
@@ -192,7 +192,7 @@
       },
       {
         "name": "StatusComponent",
-        "maxHp": 511,
+        "maxHp": 888,
         "maxMp": 511,
 	"attackSpeed": 0.8
       },
@@ -218,7 +218,7 @@
       {
         "name": "HpBarComponent",
 	"type": 1,
-	"offsetY": 7
+	"offsetY": -10
       }
 
     ]

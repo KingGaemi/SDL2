@@ -49,10 +49,10 @@ struct SpawnRequest {
 
 struct EffectRequest {
     std::string textureId;
-    float x, y, sc, rot;
+    float rot = 0.0f;
     float offsetX = 0.0f;
     float offsetY = 0.0f;
-    int w, h;
+  
 
     Rect srcRect;
     FRect dstRect;

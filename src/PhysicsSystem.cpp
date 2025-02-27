@@ -24,15 +24,20 @@
 void PhysicsSystem::init() {
 
  	worldDef = b2DefaultWorldDef();
-    worldDef.gravity = (b2Vec2){0.0f, -10.0f};
+    worldDef.gravity = (b2Vec2){0.1f, -10.0f};
     worldId = b2CreateWorld(&worldDef);
 
 }
 
 
 void PhysicsSystem::update(std::vector<std::shared_ptr<Entity>>&entities, float deltaTime){
+
     cleanUpDeadBodies(entities);
     createBodies(entities);
+    if(mapManager->enterMap){
+        createWalls();
+        mapManager->enterMap = false;
+    }
     setBeforeStep(entities);
     b2World_Step(worldId, deltaTime, subStepCount);
     getContactEvents();
@@ -66,9 +71,38 @@ void PhysicsSystem::cleanUpDeadBodies(std::vector<std::shared_ptr<Entity>>& enti
 }
 
 void PhysicsSystem::createWalls(){
+    if(!mapManager) return;
+    if(mapManager->pendingTiles.empty()) return;
+    for(auto& pendingTileInfo : mapManager->pendingTiles){
+        for(auto& poly: pendingTileInfo.physicalTileInfo.objects){
+                  
+            b2BodyDef bodyDef = b2DefaultBodyDef();
+            bodyDef.type = b2_staticBody;    
+            bodyDef.position = (b2Vec2){(pendingTileInfo.x) / PIXELS_PER_METER,
+                          (pendingTileInfo.y) / PIXELS_PER_METER};
+            auto bodyId = b2CreateBody(worldId, &bodyDef);    
+            
+            b2Polygon bodyPoly;
+            b2Hull hull;
+            hull.count = poly.count;
+            int count = 0;
+            for(auto& vertex : poly.vertices){
+                // std::cout << vertex.x/ PIXELS_PER_METER << "," << vertex.y/PIXELS_PER_METER << std::endl;
+                hull.points[count] = {vertex.x/PIXELS_PER_METER, vertex.y/PIXELS_PER_METER} ;
+                count++;
+            }
+            bodyPoly = b2MakePolygon(&hull,  0.0 );
+            b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
+            bodyShapeDef.filter.categoryBits = 0x00000001; //static
+            bodyShapeDef.filter.maskBits = 0x00000002; //dynamic
+            // b2Body_SetGravityScale(bodyId, 0.0f);     
+            b2Body_SetFixedRotation(bodyId, true);
+            b2CreatePolygonShape(bodyId, &bodyShapeDef, &bodyPoly);
 
-    
-
+            walls.push_back(bodyId);
+        }
+    }
+    mapManager->pendingTiles.clear();
 }
 
 
@@ -115,8 +149,8 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
 
 
             auto posComp = entity->getComponent<PositionComponent>();        
-            bodyDef.position = (b2Vec2){(posComp->x) / PIXELS_PER_METER,
-                      (posComp->y) / PIXELS_PER_METER};
+            bodyDef.position = (b2Vec2){(posComp->x + physComp->offsetX) / PIXELS_PER_METER,
+                      (posComp->y + physComp->offsetY) / PIXELS_PER_METER};
 
             auto transComp = entity->getComponent<TransformComponent>();
             // (1) TransformComponent->rotation : 0°=오른쪽
@@ -134,10 +168,15 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
             
             if(physComp->w != 0 && physComp->h != 0){
                 b2Polygon bodyBox;
-                bodyBox = b2MakeBox((physComp->w) / PIXELS_PER_METER / 2.0,
-                                    (physComp->h) / PIXELS_PER_METER / 2.0);
+                bodyBox = b2MakeRoundedBox((physComp->w) / PIXELS_PER_METER / 2.0,
+                                    (physComp->h) / PIXELS_PER_METER / 2.0, 0.01f);
+                for(int i = 0; i < bodyBox.count ; i++){
+                    bodyBox.vertices[i].x += physComp->offsetX/PIXELS_PER_METER;
+                    bodyBox.vertices[i].y += -physComp->offsetY/PIXELS_PER_METER;
+                }
                 b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
                 bodyShapeDef.friction = 0.2f;
+                bodyShapeDef.filter.categoryBits = 0x00000002;
                 b2CreatePolygonShape(physComp->body, &bodyShapeDef, &bodyBox);
             }
 
@@ -402,7 +441,7 @@ void PhysicsSystem::getContactEvents(){
         collision.type = CollisionType::Hit;
         collision.entityA = shapeUserDataToEntity(evt->sensorShapeId);
         collision.entityB = shapeUserDataToEntity(evt->visitorShapeId);
-        ecsManager->collisionEvents.push_back(collision);       
+        if(collision.entityA && collision.entityB) ecsManager->collisionEvents.push_back(collision);       
         // shapeIdA, shapeIdB -> userData
         // push "CollisionBegin" event to ECS
     }

@@ -8,6 +8,12 @@
 
 
 
+struct PolygonInfo{
+	int polyId;
+	Vector2D pos;
+	std::vector<Vector2D> vertices;
+	int32_t count = 0;
+};
 
 
 enum class ObjectType{
@@ -15,7 +21,18 @@ enum class ObjectType{
   	  
 };
 
-struct collisionObject{
+struct PhysicalTileInfo{
+	int tileId;
+	int tileIdOrigin;
+	std::vector<PolygonInfo> objects;
+};
+
+struct PendingTileInfo{
+	float x, y;
+	PhysicalTileInfo physicalTileInfo;
+};
+
+struct CollisionObject{
     int objectId;
     ObjectType objectType;
     std::vector<Vector2D> vertices;
@@ -34,10 +51,12 @@ public:
     	 textureManager = &p_textureManager;
     } 
 
-
+    bool enterMap;
+	std::vector<PendingTileInfo> pendingTiles;
 private:
 	TextureManager* textureManager;
+	std::vector<PhysicalTileInfo> physicalTiles;
 	std::vector<std::shared_ptr<Entity>> mapEntities;
-	// std::queue<polygonInfo> polygons;
 	std::shared_ptr<ECSManager> ecsManager;
+	std::bitset<999999> physicalTileBitset;
 };

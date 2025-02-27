@@ -13,6 +13,7 @@ public:
 
 	bool isAlive = true;
 	bool isInvincible = false;
+	bool recentlyDamaged = false;
 	int maxHp, 
 		maxMp, 
 		currentHp, 
@@ -25,6 +26,7 @@ public:
 	float percentage; // 1 => 100% , 0.1 => 10%
 	float baseAttackSpeed = 1.0f;
 	float projectileSpeedMultiple = 1.0f;
+	// float recentTime = 5.0;
 
 	//float timeSpeed
 

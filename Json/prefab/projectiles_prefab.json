@@ -78,8 +78,8 @@
       },
       {
         "name": "TransformComponent",
-        "width": 32,
-        "height": 32,
+        "width": 24,
+        "height": 24,
         "scale": 0.5
       },
       {
@@ -90,8 +90,8 @@
       },
       {
         "name": "PhysicsComponent",
-	"width": 32,
-        "height": 32,
+	"width": 24,
+        "height": 24,
         "scale": 0.5,
         "bodyType": "Dynamic"
      }	

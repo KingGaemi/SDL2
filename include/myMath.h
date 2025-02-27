@@ -3,6 +3,7 @@
 #define M_PI 3.14159265358979323846
 #endif
 #include <math.h>
+#include "Vector2D.h"
 const float PIXELS_PER_METER = 50.0f; // 예: 30px = 1m
 const float SCREEN_HEIGHT = 800.0f;
 
@@ -49,6 +50,12 @@ inline float toAngleForGame(float radian){
     radian = M_PI/2 + radian;
     float angle = toAngle(radian);
     return angle;
+}
+
+inline Vector2D rotate90(const Vector2D& p, float cx, float cy) {
+    float newX = cx - (p.y - cy);
+    float newY = cy + (p.x - cx);
+    return {newX, newY};
 }
 
 

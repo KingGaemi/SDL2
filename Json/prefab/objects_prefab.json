@@ -115,9 +115,9 @@
       },
       {
         "name": "PhysicsComponent",
-        "width": 28,
-        "height": 40,
-	"offsetY": 150,
+        "width": 24,
+        "height": 22,
+	"offsetY": -120,
         "bodyType": "Static"
       }
     ]

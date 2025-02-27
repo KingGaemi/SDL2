@@ -22,15 +22,18 @@ void EffectSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 		}
 
 
-		// if(entity->hasComponent<PlayerTag>()){
-		// 	player = entity;
-		// }
+		if(entity->hasComponent<PlayerTag>()){
+			player = entity;
+		}
 		// if(entity->hasComponent<HpGageTag>()){
 		// 	hpGage = entity;
 		// }
 		if(entity->hasComponent<StatusComponent>() && entity->hasComponent<HpBarComponent>()){
 			hpBarControl(entity);
 		}
+	}
+	if(player){
+		hpBarControl(player);
 	}
 
 }
@@ -85,49 +88,45 @@ void EffectSystem::hpBarControl(std::shared_ptr<Entity>& entity){
 	auto posComp = entity->getComponent<PositionComponent>();
 	auto transComp = entity->getComponent<TransformComponent>();
 	if(!statusComp || !hpBarComp || !posComp || !transComp) return;
-	
 
+	if(!entity->hasComponent<PlayerTag>()&&(statusComp->currentHp == statusComp->maxHp)) return;
+
+	float offsetY = hpBarComp->offsetY;	
 	float percentage = statusComp->percentage;
-	float offsetY = hpBarComp->offsetY;
 	if(percentage<= 0.03) percentage = 0.03;
-	auto hpGage = hpBarComp->hpGage;
-	auto hpFrame = hpBarComp->hpFrame;
-
-	auto gagePos = hpGage->getComponent<PositionComponent>();
-	auto hpGageTrans = hpGage->getComponent<TransformComponent>();
-	auto gageSprite = hpGage->getComponent<SpriteComponent>();
-
-	auto framePos = hpFrame->getComponent<PositionComponent>();
-	auto frameTrans = hpFrame->getComponent<TransformComponent>();
-
-	gagePos->set(posComp->getVector());
-	framePos->set(posComp->getVector());
-
-	gagePos->add(0, -(transComp->height + offsetY));
-	framePos->add(0, -(transComp->height + offsetY));
 
 	int amount = 100;
 	int maxHp = statusComp->maxHp;
 	int partitions = maxHp / amount;
-	if(partitions >= 30){
-		amount *= 10;
-		partitions = maxHp / amount;
-	}
-	auto gap = (frameTrans->width / partitions + 1)* frameTrans->scale;
-	int drawPartitions = statusComp->currentHp / amount;
-	if(statusComp->currentHp == statusComp->maxHp) drawPartitions--;
-	EffectRequest req;
-	req.x = framePos->x - frameTrans->width/2 * frameTrans->scale;
-	req.y = framePos->y - frameTrans->height/2 * frameTrans->scale;
-	req.h = frameTrans->height * frameTrans->scale;
-	req.w = 1;
-	req.textureId = "hp_bar_gage";
+	if(maxHp%amount == 0) partitions--;
+	// if(partitions >= 30){
+	// 	amount *= 10;
+	// 	partitions = maxHp / amount;
+	// }
 
-	req.srcRect = {0, 0, hpGageTrans->width * hpGageTrans->scale , hpGageTrans->height * hpGageTrans->scale};
-	float offsetX = -(static_cast<float>(frameTrans->width/2) * (1-percentage)) * gageSprite->scale;
-	req.dstRect = {req.x + offsetX, req.y, static_cast<float>(frameTrans->width) * percentage * hpGageTrans->scale, req.h};
+	float gap = (hpBarComp->w / (partitions + 1)) * hpBarComp->sc;
+	int drawPartitions = statusComp->currentHp / amount;
+
+	// if(statusComp->currentHp == statusComp->maxHp) drawPartitions--;
+	EffectRequest req;
+	float x = posComp->x - hpBarComp->w/2 * hpBarComp->sc;
+	float y = posComp->y - (transComp->height) + offsetY - hpBarComp->h/2 * hpBarComp->sc;
+	float w = hpBarComp->w * hpBarComp->sc;
+	float h = hpBarComp->h * hpBarComp->sc;
+	req.textureId = "hp_bar_frame";
+
+	req.srcRect = {0, 0, hpBarComp->w, hpBarComp->h};
+	req.dstRect = {x, y, w, h};
 	effectManager->pendingEffects.push_back(req);
 
+	req.textureId = "hp_bar_gage";
+	req.dstRect = {x, y, w*percentage, h};
+	if(!statusComp->isAlive) {
+		req.dstRect = {x, y, 0, h};
+		effectManager->pendingEffects.push_back(req);
+		return;
+	}
+	effectManager->pendingEffects.push_back(req);
 
 	req.textureId = "black";
 	req.dstRect.w = 1;
@@ -143,11 +142,6 @@ void EffectSystem::hpBarControl(std::shared_ptr<Entity>& entity){
 	// gageSprite->srcRect.w = frameTrans->width * percentage;
 	// gageSprite->offsetX = -(static_cast<float>(frameTrans->width/2) * (1-percentage)) * gageSprite->scale;
 
-
-	if(!statusComp->isAlive){
-		gageSprite->dstRect.w = 0;
-		hpGageTrans->width = 0;
-	}
 
 	// gageSprite->dstRect.w = static_cast<float>(gageSprite->originWidth) * percentage * gageSprite->scale;
 	// gageSprite->srcRect.w = static_cast<float>(gageSprite->originWidth) * percentage * gageSprite->scale;

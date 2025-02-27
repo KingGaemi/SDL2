@@ -12,7 +12,11 @@
 
 void GameplayScene::onEnter(){
 
-	if(mapManager) mapManager->loadMap("maps/newResol.tmj");
+	if(mapManager){
+		mapManager->loadMap("maps/newResol.tmj");
+		mapManager->enterMap = true;
+	}
+
 	SpawnRequest req;
 
 	// req.entityType = EntityType::Unit;

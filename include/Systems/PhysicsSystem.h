@@ -17,7 +17,7 @@ class PhysicsSystem : public System {
 
 public:
 
-	PhysicsSystem(std::shared_ptr<ECSManager>& ecsManager, std::shared_ptr<EventManager>& eventManager) : eventManager(eventManager) ,ecsManager(ecsManager){
+	PhysicsSystem(std::shared_ptr<ECSManager>& ecsManager, std::shared_ptr<EventManager>& eventManager, std::shared_ptr<MapManager> mapManager) : eventManager(eventManager) , mapManager(mapManager), ecsManager(ecsManager){
 		init();
 	}
 
@@ -41,13 +41,14 @@ public:
     void createWalls();
 
     std::shared_ptr<EventManager> eventManager;
-    // std::shared_ptr<MapManager> mapManager;
+    std::shared_ptr<MapManager> mapManager;
 private:
     int subStepCount = 8;
 	b2WorldDef worldDef;
     b2WorldId worldId;
     std::shared_ptr<ECSManager> ecsManager;
     std::unordered_map<std::size_t, b2BodyId> bodyMap;
+    std::vector<b2BodyId> walls;
     std::queue<b2BodyId> destroyQueue;
 };
 

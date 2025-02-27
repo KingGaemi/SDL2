@@ -25,7 +25,7 @@ obj/Renderer.o: src/Renderer.cpp include/Renderer.h include/IRenderer.h \
  include/SDL2/SDL_version.h include/SDL2/SDL_locale.h \
  include/SDL2/SDL_misc.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
  include/Sdl2/SDL_ttf.h include/Sdl2/SDL.h include/Sdl2/begin_code.h \
- include/Sdl2/close_code.h include/myMath.h
+ include/Sdl2/close_code.h include/myMath.h include/Vector2D.h
 include/Renderer.h:
 include/IRenderer.h:
 include/SDL2/SDL.h:
@@ -85,3 +85,4 @@ include/Sdl2/SDL.h:
 include/Sdl2/begin_code.h:
 include/Sdl2/close_code.h:
 include/myMath.h:
+include/Vector2D.h:

@@ -117,6 +117,14 @@ void AttackSystem::castSpell(const AttackEvent& event){
 		// req.y = posComp->y() + directComp->vDir() * spriteComp->dstRect.h;
 
 		ecsManager->pendingSpawns.push_back(req);
+		req.x -= 3.0f;
+		req.y -= 3.0f;
+		ecsManager->pendingSpawns.push_back(req);
+		req.x += 6.0f;
+		req.y += 6.0f;
+		ecsManager->pendingSpawns.push_back(req);
+		ecsManager->pendingSpawns.push_back(req);
+
 	}
 }
 

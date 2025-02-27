@@ -40,11 +40,11 @@ public:
 						if(stateComp->inMotion) continue;
 					}
 					entity->terminate = true;
-					if(entity->hasComponent<HpBarComponent>()){
-						auto hpBarComp = entity->getComponent<HpBarComponent>();
-						hpBarComp->hpGage->terminate = true;
-						hpBarComp->hpFrame->terminate = true;
-					}
+					// if(entity->hasComponent<HpBarComponent>()){
+					// 	auto hpBarComp = entity->getComponent<HpBarComponent>();
+					// 	hpBarComp->hpGage->terminate = true;
+					// 	hpBarComp->hpFrame->terminate = true;
+					// }
 				}
 				
 			}
