@@ -150,8 +150,8 @@ void EntityFactory::loadPhysicsComponent(const json& componentData, std::shared_
 void EntityFactory::loadSpriteComponent(const json& componentData, std::shared_ptr<Entity> entity) {
    
     std::string texId = componentData.value("textureID", "unknown");
-    int w = componentData.value("width", 64);
-    int h = componentData.value("height", 64);
+    float w = componentData.value("width", 64);
+    float h = componentData.value("height", 64);
     float scale = componentData.value("scale", 1.0f);
     bool hasDirectional = componentData.value("hasDirectional", false);
 
@@ -416,6 +416,21 @@ void EntityFactory::loadHpBarTag(const json& componentData, std::shared_ptr<Enti
 	entity->addComponent<HpBarTag>();
 }
 
+void EntityFactory::loadShadowComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+    
+    float w = componentData.value("width", 32);
+    float h = componentData.value("height", 32);
+    float sc = componentData.value("scale", 0.0f);
+    float offsetX = componentData.value("offsetX", 0.0f);
+	float offsetY = componentData.value("offsetY", 0.0f);
+
+    entity->addComponent<ShadowComponent>(w, h, sc, offsetX, offsetY);
+}
+void EntityFactory::loadShakeEffectComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+
+    entity->addComponent<ShakeEffectComponent>();
+}
+
 
 
 
@@ -552,5 +567,11 @@ void EntityFactory::registerComponentLoaders() {
     componentLoaders["HitboxComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadHitboxComponent(data, entity);
     };  
+    componentLoaders["ShadowComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadShadowComponent(data, entity);
+    };
+    componentLoaders["ShakeEffectComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadShakeEffectComponent(data, entity);
+    };    
    
 }

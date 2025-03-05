@@ -58,18 +58,15 @@ public:
 	    return {width, height};
 	}
 
-
 	bool loadText(const char * textString){
 		SDL_Texture* texture = renderer->loadText(textString);
 		if (!texture) {
             std::cerr << "Failed to load textTexture: " << textString << " Error: " << SDL_GetError() << std::endl;
             return false;
         }
-		textures["font"] = texture;
+		textures["damageText"] = texture;
 		return true;
 	}
-
-
 
 	void cleanup(){
 		for (auto& pair : textures) {

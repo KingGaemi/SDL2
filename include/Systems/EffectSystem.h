@@ -21,6 +21,9 @@ public:
 	void floatingEffect(std::shared_ptr<Entity>& entity, float deltaTime);
 	// void hpBarControl(std::shared_ptr<Entity>& hpGage, std::shared_ptr<Entity>& player);
 	void hpBarControl(std::shared_ptr<Entity>& player);
+	void ShakeEffect(std::shared_ptr<Entity>& entity, float deltaTime);
+	void itemShadowEffect(std::shared_ptr<Entity>& entity);
+	void damageTextEffect(std::shared_ptr<Entity>& entity);
 private:
 
 	std::shared_ptr<EffectManager> effectManager;

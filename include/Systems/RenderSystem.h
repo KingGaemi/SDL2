@@ -8,6 +8,7 @@
 #include "TextureManager.h"
 #include "EffectManager.h"
 
+#include <string>
 #include <vector>
 #include <memory>
 #include <cmath>
@@ -36,6 +37,7 @@ protected:
     Renderer* renderer; // SDL_Renderer 래핑 클래스
     TextureManager* textureManager;
     void drawEntity(const std::shared_ptr<Entity>& entity);
+    void drawShadow(const std::shared_ptr<Entity>& entity);
     void drawUI(const std::shared_ptr<Entity>& entity);
     void drawEffects();
     std::shared_ptr<Entity> cameraEntity;

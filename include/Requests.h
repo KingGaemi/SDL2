@@ -52,7 +52,9 @@ struct EffectRequest {
     float rot = 0.0f;
     float offsetX = 0.0f;
     float offsetY = 0.0f;
-  
+    float opacity = 1.0f;
+    int zIndex = 1;
+    int textNumber = 0;
 
     Rect srcRect;
     FRect dstRect;

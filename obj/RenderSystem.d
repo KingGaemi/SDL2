@@ -71,9 +71,10 @@ obj/RenderSystem.o: src/RenderSystem.cpp include/Systems/RenderSystem.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
- include/Events/EventManager.h include/TextureManager.h \
- include/Renderer.h include/IRenderer.h include/SDL2/SDL.h \
- include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
+ include/Components/ShadowComponent.h \
+ include/Components/ShakeEffectComponent.h include/Events/EventManager.h \
+ include/TextureManager.h include/Renderer.h include/IRenderer.h \
+ include/SDL2/SDL.h include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
  include/SDL2/begin_code.h include/SDL2/close_code.h \
  include/SDL2/SDL_assert.h include/SDL2/SDL_atomic.h \
@@ -98,7 +99,8 @@ obj/RenderSystem.o: src/RenderSystem.cpp include/Systems/RenderSystem.h \
  include/SDL2/SDL_system.h include/SDL2/SDL_timer.h \
  include/SDL2/SDL_version.h include/SDL2/SDL_locale.h \
  include/SDL2/SDL_misc.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
- include/EffectManager.h
+ include/Sdl2/SDL_ttf.h include/Sdl2/SDL.h include/Sdl2/begin_code.h \
+ include/Sdl2/close_code.h include/EffectManager.h
 include/Systems/RenderSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -194,6 +196,8 @@ include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
+include/Components/ShadowComponent.h:
+include/Components/ShakeEffectComponent.h:
 include/Events/EventManager.h:
 include/TextureManager.h:
 include/Renderer.h:
@@ -250,4 +254,8 @@ include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
 include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
+include/Sdl2/SDL_ttf.h:
+include/Sdl2/SDL.h:
+include/Sdl2/begin_code.h:
+include/Sdl2/close_code.h:
 include/EffectManager.h:

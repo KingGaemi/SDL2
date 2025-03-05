@@ -6,6 +6,8 @@
 #include "Components/HpBarComponent.h"
 #include "Components/PositionComponent.h"
 #include "Components/TransformComponent.h"
+#include "Components/ShakeEffectComponent.h"
+#include "Components/ItemComponent.h"
 #include "Renderer.h"
 #include "Groups.h"
 #include <math.h>
@@ -31,10 +33,21 @@ void EffectSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 		if(entity->hasComponent<StatusComponent>() && entity->hasComponent<HpBarComponent>()){
 			hpBarControl(entity);
 		}
+		if(entity->hasComponent<ShakeEffectComponent>()){
+			ShakeEffect(entity, deltaTime);
+		}
+		if(entity->hasComponent<ItemComponent>()){
+			auto itemComp = entity->getComponent<ItemComponent>();
+			if(itemComp&&itemComp->onField) itemShadowEffect(entity);			
+		}
+		if(entity->hasComponent<StatusComponent>()){
+			damageTextEffect(entity);
+		}
+		
 	}
-	if(player){
-		hpBarControl(player);
-	}
+	// if(player){
+	// 	hpBarControl(player);
+	// }
 
 }
 
@@ -55,32 +68,6 @@ void EffectSystem::floatingEffect(std::shared_ptr<Entity>& entity, float deltaTi
 }
 
 
-// void EffectSystem::hpBarControl(std::shared_ptr<Entity>& hpGage, std::shared_ptr<Entity>& entity){
-
-// 	auto statusComp = entity->getComponent<StatusComponent>();
-// 	auto hpSprite = hpGage->getComponent<SpriteComponent>();
-
-// 	if(!statusComp || !hpSprite) return;
-// 	if(!statusComp->isAlive){
-// 		hpSprite->dstRect.w = 0;
-// 		return;
-// 	}
-
-// 	int maxHp = statusComp->maxHp;
-// 	int currentHp = statusComp->currentHp;
-// 	float percent = static_cast<float>(currentHp) / static_cast<float>(maxHp);
-
-	
-// 	hpSprite->dstRect.w = static_cast<float>(hpSprite->originWidth) * percent;
-// 	hpSprite->srcRect.w = static_cast<float>(hpSprite->originWidth) * percent;
-// 	hpSprite->offsetX = -(static_cast<float>(hpSprite->originWidth/2) * (1-percent)) ;
-	
-// 	// std::cout <<"reduced" << std::endl;
-
- 
-// }
-
-
 void EffectSystem::hpBarControl(std::shared_ptr<Entity>& entity){
 
 	auto statusComp = entity->getComponent<StatusComponent>();
@@ -99,15 +86,11 @@ void EffectSystem::hpBarControl(std::shared_ptr<Entity>& entity){
 	int maxHp = statusComp->maxHp;
 	int partitions = maxHp / amount;
 	if(maxHp%amount == 0) partitions--;
-	// if(partitions >= 30){
-	// 	amount *= 10;
-	// 	partitions = maxHp / amount;
-	// }
 
 	float gap = (hpBarComp->w / (partitions + 1)) * hpBarComp->sc;
 	int drawPartitions = statusComp->currentHp / amount;
 
-	// if(statusComp->currentHp == statusComp->maxHp) drawPartitions--;
+	
 	EffectRequest req;
 	float x = posComp->x - hpBarComp->w/2 * hpBarComp->sc;
 	float y = posComp->y - (transComp->height) + offsetY - hpBarComp->h/2 * hpBarComp->sc;
@@ -128,26 +111,84 @@ void EffectSystem::hpBarControl(std::shared_ptr<Entity>& entity){
 	}
 	effectManager->pendingEffects.push_back(req);
 
-	req.textureId = "black";
-	req.dstRect.w = 1;
-	for(int i = 0 ; i < drawPartitions ; i++){
-		req.dstRect.x += gap;	
-		effectManager->pendingEffects.push_back(req);
+	if(drawPartitions <20){
+		req.textureId = "black";
+		req.dstRect.w = 1;
+		for(int i = 0 ; i < drawPartitions ; i++){
+			req.dstRect.x += gap;	
+			effectManager->pendingEffects.push_back(req);
+		}
 	}
-	
+}
 
-	// // gageSprite->dstRect.w = static_cast<float>(frameTrans->width) * percentage* gageSprite->scale;
-	// hpGageTrans->width = static_cast<float>(frameTrans->width) * percentage ;
-	// // gageSprite->srcRect.h = frameTrans->width * gageSprite->scale;
-	// gageSprite->srcRect.w = frameTrans->width * percentage;
-	// gageSprite->offsetX = -(static_cast<float>(frameTrans->width/2) * (1-percentage)) * gageSprite->scale;
+void EffectSystem::ShakeEffect(std::shared_ptr<Entity>& entity, float deltaTime){
 
-
-	// gageSprite->dstRect.w = static_cast<float>(gageSprite->originWidth) * percentage * gageSprite->scale;
-	// gageSprite->srcRect.w = static_cast<float>(gageSprite->originWidth) * percentage * gageSprite->scale;
-	// gageSprite->offsetX = -(static_cast<float>(gageSprite->originWidth/2) * (1-percentage));
+	auto sprite = entity->getComponent<SpriteComponent>();
+	Vector2D dstVec = {sprite->dstRect.x, sprite->dstRect.y};
+	auto shakeComp = entity->getComponent<ShakeEffectComponent>();
 	
 	
+	if (shakeComp && shakeComp->shakeTime > 0) {
+	    shakeComp->shakeTime -= deltaTime;
+	    
+	    // 흔들림 강도가 시간이 지나면서 감소
+	    float decay = (1.0f - (shakeComp->shakeTime / 1.0f)); // 0 ~ 1의 비율
+	    float strength = shakeComp->shakeAmount * (1.0f - decay); // 초기에 크고 빠르게 감소
 
- 
+	    // -2 ~ 2 범위 내에서 랜덤 오프셋 (크기는 strength에 비례)
+	    sprite->offsetX = (rand() % 5 - 3) * strength;
+	    sprite->offsetY = (rand() % 5 - 3) * strength;
+	} else {
+	    sprite->offsetX = 0.0f;
+	    sprite->offsetY = 0.0f;	    
+	}
+
+}
+
+
+void EffectSystem::itemShadowEffect(std::shared_ptr<Entity>& entity){
+
+	auto posComp = entity->getComponent<PositionComponent>();
+	auto transComp = entity->getComponent<TransformComponent>();
+	if(!posComp || !transComp) return;
+	if(!entity->isActive) return;
+
+	EffectRequest req;
+	float x = posComp->x - transComp->width/2 * transComp->scale;
+	float y = posComp->y + transComp->height*2* transComp->scale;
+	float w = transComp->width * transComp->scale;
+	float h = transComp->height * transComp->scale;
+	req.opacity = 0.5f;
+	req.textureId = "item_shadow";
+	req.zIndex = 0;
+
+	req.srcRect = {0, 0, transComp->width, transComp->height};
+	req.dstRect = {x, y, w, h};
+	effectManager->pendingEffects.push_back(req);
+
+}
+
+void EffectSystem::damageTextEffect(std::shared_ptr<Entity>& entity){
+
+	auto posComp = entity->getComponent<PositionComponent>();
+	auto transComp = entity->getComponent<TransformComponent>();
+	auto statusComp = entity->getComponent<StatusComponent>();
+	if(!posComp || !transComp || !statusComp) return;
+	if(!entity->isActive) return;
+	if(!statusComp->damagedRecently) return;
+
+
+	EffectRequest req;
+	req.textureId = "damageText";
+	req.zIndex = 10;
+	req.textNumber = statusComp->recentDamage;
+	float w = 25.0f;
+	int n = (req.textNumber > 0) ? static_cast<int>(std::log10(req.textNumber)) : 0;
+	w += n * 7.0f;
+	float h = 40.0f;	
+	float x = posComp->x - w/2;
+	float y = posComp->y - h*1.2f - transComp->height - (statusComp->recentTime - statusComp->timer)*10;;
+	req.dstRect = {x, y, w, h};
+	effectManager->pendingEffects.push_back(req);
+
 }

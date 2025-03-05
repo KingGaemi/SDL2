@@ -41,15 +41,15 @@ void CameraSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 
 		    
 		}
-		// int mapHeight = 900;
-		// int mapWidth = 1600;
+		int mapHeight = 900;
+		int mapWidth = 1600;
 	    
-	    // if (cameraComp->x < 0) cameraComp->x = 0;
-	    // if (cameraComp->y < 0) cameraComp->y = 0;
-	    // if (cameraComp->x > mapWidth - cameraComp->w) 
-	    //     cameraComp->x = mapWidth - cameraComp->w;
-	    // if (cameraComp->y > mapHeight - cameraComp->h)
-	    //     cameraComp->y = mapHeight - cameraComp->h;
+	    if (cameraComp->x < 0) cameraComp->x = 0;
+	    if (cameraComp->y < 0) cameraComp->y = 0;
+	    if (cameraComp->x > mapWidth - cameraComp->w) 
+	        cameraComp->x = mapWidth - cameraComp->w;
+	    if (cameraComp->y > mapHeight - cameraComp->h)
+	        cameraComp->y = mapHeight - cameraComp->h;
 	}
 
 }

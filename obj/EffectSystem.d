@@ -27,11 +27,15 @@ obj/EffectSystem.o: src/EffectSystem.cpp include/Systems/EffectSystem.h \
  include/SDL2/SDL_system.h include/SDL2/SDL_timer.h \
  include/SDL2/SDL_version.h include/SDL2/SDL_locale.h \
  include/SDL2/SDL_misc.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
- include/EffectManager.h include/Components/SpriteComponent.h \
+ include/Sdl2/SDL_ttf.h include/Sdl2/SDL.h include/Sdl2/begin_code.h \
+ include/Sdl2/close_code.h include/EffectManager.h \
+ include/Components/SpriteComponent.h \
  include/Components/FloatingEffectComponent.h \
  include/Components/StatusComponent.h include/Components/HpBarComponent.h \
  include/Components/PositionComponent.h include/Vector2D.h \
- include/Components/TransformComponent.h
+ include/Components/TransformComponent.h \
+ include/Components/ShakeEffectComponent.h \
+ include/Components/ItemComponent.h
 include/Systems/EffectSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -94,6 +98,10 @@ include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
 include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
+include/Sdl2/SDL_ttf.h:
+include/Sdl2/SDL.h:
+include/Sdl2/begin_code.h:
+include/Sdl2/close_code.h:
 include/EffectManager.h:
 include/Components/SpriteComponent.h:
 include/Components/FloatingEffectComponent.h:
@@ -102,3 +110,5 @@ include/Components/HpBarComponent.h:
 include/Components/PositionComponent.h:
 include/Vector2D.h:
 include/Components/TransformComponent.h:
+include/Components/ShakeEffectComponent.h:
+include/Components/ItemComponent.h:

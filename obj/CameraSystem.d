@@ -71,7 +71,8 @@ obj/CameraSystem.o: src/CameraSystem.cpp include/Systems/CameraSystem.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
- include/Events/EventManager.h
+ include/Components/ShadowComponent.h \
+ include/Components/ShakeEffectComponent.h include/Events/EventManager.h
 include/Systems/CameraSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -167,4 +168,6 @@ include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
+include/Components/ShadowComponent.h:
+include/Components/ShakeEffectComponent.h:
 include/Events/EventManager.h:

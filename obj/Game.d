@@ -68,11 +68,12 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/nlohmann/ordered_map.hpp \
  include/nlohmann/detail/macro_unscope.hpp \
  include/nlohmann/thirdparty/hedley/hedley_undef.hpp include/Renderer.h \
- include/IRenderer.h include/SDL2/SDL_image.h include/TextureManager.h \
- include/MapManager.h include/Components/MapComponent.h \
- include/ECS/Component.h include/ECS/ECSManager.h \
- include/ECS/EntityFactory.h include/nlohmann/json.hpp include/Requests.h \
- include/Groups.h include/Rect.h include/Components/Components.h \
+ include/IRenderer.h include/SDL2/SDL_image.h include/Sdl2/SDL_ttf.h \
+ include/TextureManager.h include/MapManager.h \
+ include/Components/MapComponent.h include/ECS/Component.h \
+ include/ECS/ECSManager.h include/ECS/EntityFactory.h \
+ include/nlohmann/json.hpp include/Requests.h include/Groups.h \
+ include/Rect.h include/Components/Components.h \
  include/Components/AnimationComponent.h \
  include/Components/ColliderComponent.h include/Vector2D.h \
  include/Components/CommandComponent.h \
@@ -98,9 +99,10 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
- include/Events/EventManager.h include/ECS/System.h \
- include/EffectManager.h include/Scene.h include/MenuScene.h \
- include/GameplayScene.h include/Systems/Systems.h \
+ include/Components/ShadowComponent.h \
+ include/Components/ShakeEffectComponent.h include/Events/EventManager.h \
+ include/ECS/System.h include/EffectManager.h include/Scene.h \
+ include/MenuScene.h include/GameplayScene.h include/Systems/Systems.h \
  include/Systems/AnimationSystem.h include/Systems/InputSystem.h \
  include/Systems/MovementSystem.h include/Systems/RenderSystem.h \
  include/Systems/TimerSystem.h include/Systems/ExpireSystem.h \
@@ -215,6 +217,7 @@ include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
 include/Renderer.h:
 include/IRenderer.h:
 include/SDL2/SDL_image.h:
+include/Sdl2/SDL_ttf.h:
 include/TextureManager.h:
 include/MapManager.h:
 include/Components/MapComponent.h:
@@ -265,6 +268,8 @@ include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
+include/Components/ShadowComponent.h:
+include/Components/ShakeEffectComponent.h:
 include/Events/EventManager.h:
 include/ECS/System.h:
 include/EffectManager.h:

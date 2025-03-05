@@ -15,6 +15,7 @@ public:
 	std::string discription;
 
 	bool consumed = false;
+	bool onField = true;
 	bool stackable;
 	int maxStackCounts;
 	int currentStack = 1;

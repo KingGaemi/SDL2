@@ -81,7 +81,7 @@
       "type": "object"
     },
     {
-      "path": "res/gfx/tree1.png",
+      "path": "res/gfx/sprite_sheets/object/props/tree1.png",
       "textureId": "tree1",
       "type": "object"
     },
@@ -94,6 +94,21 @@
       "path": "res/gfx/sprite_sheets/ui/hp_bar_gage.png",
       "textureId": "hp_bar_gage",
       "type": "ui"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/object/cat_stone.png",
+      "textureId": "cat_stone",
+      "type": "unit"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/object/cat_stone-shadow.png",
+      "textureId": "cat_stone-shadow",
+      "type": "image"
+    },
+    {
+      "path": "res/gfx/item_shadow.png",
+      "textureId": "item_shadow",
+      "type": "image"
     }
   ]
 }

@@ -20,8 +20,11 @@ struct AIModule {
 
 	float updateInterval = 0.1f;
 	float timeAccumulator = 0.0f;
+	float stuckTimer = 0.0f;
+	Vector2D lastPos;
 	float priority;
 	float range;
+	bool isStuck;
 };
 
 class AIComponent : public Component {

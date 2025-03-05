@@ -103,7 +103,7 @@ void Game::textureLoading(){
         textureManager->loadTexture(textureId, path);
     }
 
-
+    textureManager->loadText("12345");
     // textureManager->loadTexture("shadow6", "res/gfx/sprite_sheets/map/shadow6.png");
     // textureManager->loadText("Hello World!");
     // textureManager->loadTexture("farm_map",);

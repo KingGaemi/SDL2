@@ -89,6 +89,9 @@
       {
         "name": "HpBarComponent",
 	"offsetY": -18
+      },
+      {
+        "name": "ShakeEffectComponent"
       }
     ]
   },
@@ -192,7 +195,7 @@
       },
       {
         "name": "StatusComponent",
-        "maxHp": 888,
+        "maxHp": 599,
         "maxMp": 511,
 	"attackSpeed": 0.8
       },
@@ -219,7 +222,11 @@
         "name": "HpBarComponent",
 	"type": 1,
 	"offsetY": -10
+      },
+      {
+        "name": "ShakeEffectComponent"
       }
+
 
     ]
   },
@@ -299,5 +306,80 @@
 	"AIType": "Roaming"
       }
     ]
+  },
+  "cat_stone": {
+    "components": [
+      {
+        "name": "DirectionComponent",
+	"vDir" : 1
+      },
+      {
+        "name": "PhysicsComponent",
+	"width": 29,
+        "height": 44,
+        "scale": 1.0,
+        "bodyType": "Static",
+	"offsetY": -15
+      },
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "cat_stone",
+        "width": 21,
+        "height": 44,
+        "scale": 1.0,
+	"offsetX": 150,
+	"hasDirectional": true
+      },
+      {
+        "name": "ShadowComponent",
+        "width": 27,
+        "height": 28,
+        "scale": 2.0,
+	"offsetX": 13.5,
+	"offsetY": 14
+      },
+      {
+        "name": "StatusComponent",
+        "maxHp": 1000,
+        "maxMp": 1000,
+        "currentHp": 1000,
+	"movementSpeed": 200
+      },
+      {
+        "name": "TeamTag",
+        "teamCode": "Ally"
+      },
+      {
+        "name": "TransformComponent",
+        "width": 21,
+        "height": 44,
+        "scale": 2.0
+      },
+      {
+        "name": "HitboxComponent",
+	"w": 29,
+	"h": 44,
+	"scale": 2.0
+      },
+      {
+        "name": "HpBarComponent",
+	"type": 1,
+	"offsetY": -15
+      },
+      {
+        "name": "ShakeEffectComponent"
+      }
+
+    ]
   }
+
 }

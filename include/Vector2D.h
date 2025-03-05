@@ -42,6 +42,10 @@ public:
 	Vector2D& operator*(const int& i);
 	Vector2D& operator*(const float& f);
 	// Vector2D& operator*=(const int& i);
+
+	bool operator==(const Vector2D& other) const;
+	bool operator!=(const Vector2D& other) const;
+
 	Vector2D& Zero();
 
 	friend std::ostream& operator<<(std::ostream& stream, const Vector2D& vec);

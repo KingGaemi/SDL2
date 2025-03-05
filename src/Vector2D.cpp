@@ -158,6 +158,13 @@ Vector2D& Vector2D::operator*(const float& f)
 // 	return *this;
 // }
 
+bool Vector2D::operator==(const Vector2D& other) const {
+    return (x == other.x) && (y == other.y);
+}
+
+bool Vector2D::operator!=(const Vector2D& other) const {
+    return !(*this == other);  // == 연산자를 활용
+}
 
 
 

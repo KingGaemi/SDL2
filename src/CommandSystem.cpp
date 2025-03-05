@@ -23,20 +23,18 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 			  (entity->hasComponent<CommandComponent>() ||
 			   entity->hasComponent<MovementCommandComponent>())){
 
-				auto commandComp = entity->getComponent<CommandComponent>();
-				
-				auto veloComp = entity->getComponent<VelocityComponent>();
-				auto directComp = entity->getComponent<DirectionComponent>();
+				auto commandComp = entity->getComponent<CommandComponent>();				
+				// auto directComp = entity->getComponent<DirectionComponent>();
 				auto statusComp = entity->getComponent<StatusComponent>();
 				auto stateComp = entity->getComponent<StateComponent>();
 				
 
-				if(veloComp && directComp && statusComp && stateComp){
+				if(statusComp && stateComp){
 
 					if(commandComp){
 						Command command = commandComp->pop();
 						if(command.commandType == CommandType::BasicAttack){		
-							if(!stateComp->inMotion){
+							if(!stateComp->inMotion || (stateComp->actionState == ActionStates::Hurt)){
 								if(!command.doubleTap){
 									stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
 									AttackEvent attackEvent;

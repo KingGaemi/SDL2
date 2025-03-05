@@ -2,11 +2,13 @@
 #include <string>
 #include <string_view>
 #include "IRenderer.h"
+#include <Sdl2/SDL_ttf.h>
 
 class SDL_Window;
 class SDL_Renderer;
 class SDL_Texture;
 class SDL_Rect;
+
 
 
 class Renderer {
@@ -27,6 +29,7 @@ public:
     void RenderDrawRect(SDL_FRect &debugRect, float rot);
 
 private:
+    TTF_Font* myFont;
     SDL_Renderer* SDL_renderer = nullptr;
 };
 

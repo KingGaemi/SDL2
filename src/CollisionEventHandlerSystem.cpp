@@ -19,8 +19,7 @@ void CollisionEventHandlerSystem::update(std::vector<std::shared_ptr<Entity>>& e
 
 			if(!entityA->isActive || !entityB->isActive) continue;
 
-			if(entityA->hasComponent<ItemComponent>() || entityB->hasComponent<ItemComponent>()){
-				
+			if(entityA->hasComponent<ItemComponent>() || entityB->hasComponent<ItemComponent>()){				
 				applyRoot(entityA, entityB);
 				applyRoot(entityB, entityA);
 			}
@@ -46,6 +45,7 @@ void CollisionEventHandlerSystem::applyRoot(std::shared_ptr<Entity> charactor, s
 	    	statusComp->currentHp = statusComp->maxHp;
 	    	statusComp->attackSpeed += 1.0f;
 	    	statusComp->movementSpeed += 30.0f;
+	    	statusComp->physicalDamage += 300000.0f;
 	    	itemComp->consumed = true;
 	    	itemComp->currentStack -= 1;
 	    	if(itemComp->currentStack <= 0) item->terminate = true;

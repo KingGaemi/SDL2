@@ -28,9 +28,10 @@ obj/GameplayScene.o: src/GameplayScene.cpp include/GameplayScene.h \
  include/SDL2/SDL_system.h include/SDL2/SDL_timer.h \
  include/SDL2/SDL_version.h include/SDL2/SDL_locale.h \
  include/SDL2/SDL_misc.h include/SDL2/SDL_image.h include/SDL2/SDL.h \
- include/Components/MapComponent.h include/ECS/ECSManager.h \
- include/ECS/EntityFactory.h include/nlohmann/json.hpp \
- include/nlohmann/adl_serializer.hpp \
+ include/Sdl2/SDL_ttf.h include/Sdl2/SDL.h include/Sdl2/begin_code.h \
+ include/Sdl2/close_code.h include/Components/MapComponent.h \
+ include/ECS/ECSManager.h include/ECS/EntityFactory.h \
+ include/nlohmann/json.hpp include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
  include/nlohmann/detail/conversions/from_json.hpp \
  include/nlohmann/detail/exceptions.hpp \
@@ -99,7 +100,9 @@ obj/GameplayScene.o: src/GameplayScene.cpp include/GameplayScene.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
- include/ECS/System.h include/nlohmann/json.hpp
+ include/Components/ShadowComponent.h \
+ include/Components/ShakeEffectComponent.h include/ECS/System.h \
+ include/nlohmann/json.hpp
 include/GameplayScene.h:
 include/Scene.h:
 include/Events/EventManager.h:
@@ -164,6 +167,10 @@ include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
 include/SDL2/SDL_image.h:
 include/SDL2/SDL.h:
+include/Sdl2/SDL_ttf.h:
+include/Sdl2/SDL.h:
+include/Sdl2/begin_code.h:
+include/Sdl2/close_code.h:
 include/Components/MapComponent.h:
 include/ECS/ECSManager.h:
 include/ECS/EntityFactory.h:
@@ -252,5 +259,7 @@ include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
+include/Components/ShadowComponent.h:
+include/Components/ShakeEffectComponent.h:
 include/ECS/System.h:
 include/nlohmann/json.hpp:

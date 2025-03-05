@@ -4,8 +4,10 @@
 #include "Components/StateComponent.h"
 #include "Components/ProjectileComponent.h"
 #include "Components/MovementCommandComponent.h"
+#include "Components/ShakeEffectComponent.h"
 #include "Groups.h"
 #include <iostream>
+#include <cmath>
 
 
 
@@ -45,56 +47,68 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
         auto teamCompT = target->getComponent<TeamTag>();
 
         if(!statusComp->isAlive) return;
-
         if(teamCompA->teamCode == teamCompT->teamCode) return;
+	    if (damageComp->hitTargets.count(target->getId()) != 0) return;
 
-	    if (damageComp->hitTargets.count(target->getId()) == 0) {
 
-	    	if(target->hasComponent<StateComponent>()){
+
+	    if(target->hasComponent<ShakeEffectComponent>()){
+    		auto shakeComp = target->getComponent<ShakeEffectComponent>();
+    		int maxHp = statusComp->maxHp;
+    		// float amount = static_cast<float>(damageComp->damage)/maxHp;
+    		float amount = log(static_cast<float>(damageComp->damage) + 1) / log(static_cast<float>(maxHp) + 1);
+    		shakeComp->shakeTime = 0.5f;
+    		shakeComp->shakeAmount = amount * 3.5f;
+    		// if(shakeComp->shakeAmount >= )
+    	}
+
+
+    	if(target->hasComponent<StateComponent>()){
+    		auto stateComp = target->getComponent<StateComponent>();
+    		stateComp->changeActionState(ActionStates::Hurt, 0.7f);
+    	}
+
+        statusComp->currentHp -= damageComp->damage;
+        statusComp->recentDamage += damageComp->damage;
+        statusComp->damagedRecently = true;
+        statusComp->timer = statusComp->recentTime;
+        damageComp->hitTargets.insert(target->getId());
+
+        if(attacker->hasComponent<ProjectileComponent>()){
+        	auto projectileComp = attacker->getComponent<ProjectileComponent>();
+        	projectileComp->penetration -= 1;
+        	if(projectileComp->penetration < 0)  attacker->terminate = true;
+        }
+        auto moveCommandComp = target->getComponent<MovementCommandComponent>();
+		if(moveCommandComp) {
+			MovementCommand moveCommand;
+			moveCommand.moveCommandType = MovementCommandType::Impulse;
+			// moveCommand.amount = damageComp->damage;
+			if(attacker->hasComponent<TransformComponent>()) {
+				auto transComp = attacker->getComponent<TransformComponent>();
+				if(transComp){
+					moveCommand.radian = transComp->radian;						
+				}
+
+			}				
+			moveCommandComp->push(moveCommand);
+		}
+        // std::cout << statusComp->currentHp << "/" << statusComp->maxHp << std::endl;
+        if(statusComp->currentHp <= 0){
+        	statusComp->currentHp = 0;
+	        if(target->hasComponent<StateComponent>()){
 	    		auto stateComp = target->getComponent<StateComponent>();
-	    		stateComp->changeActionState(ActionStates::Hurt, 0.7f);
+	    		auto moveCommandComp = target->getComponent<MovementCommandComponent>();
+	    		if(moveCommandComp) {
+	    			MovementCommand moveCommand;
+	    			moveCommand.direction = {0, 0};
+	    			moveCommand.moveCommandType = MovementCommandType::Hold;
+	    			moveCommandComp->push(moveCommand);
+	    		}
+	    		if(stateComp) stateComp->changeActionState(ActionStates::Death, 0.8f);
+        		statusComp->isAlive = false;
 	    	}
-
-	        statusComp->currentHp -= damageComp->damage;
-	        damageComp->hitTargets.insert(target->getId());
-
-	        if(attacker->hasComponent<ProjectileComponent>()){
-	        	auto projectileComp = attacker->getComponent<ProjectileComponent>();
-	        	projectileComp->penetration -= 1;
-	        	if(projectileComp->penetration < 0)  attacker->terminate = true;
-	        }
-	        auto moveCommandComp = target->getComponent<MovementCommandComponent>();
-			
-			if(moveCommandComp) {
-    			MovementCommand moveCommand;
-				moveCommand.moveCommandType = MovementCommandType::Impulse;
-				// moveCommand.amount = damageComp->damage;
-				if(attacker->hasComponent<TransformComponent>()) {
-					auto transComp = attacker->getComponent<TransformComponent>();
-					if(transComp){
-						moveCommand.radian = transComp->radian;						
-					}
-
-				}				
-				moveCommandComp->push(moveCommand);
-    		}
-	        // std::cout << statusComp->currentHp << "/" << statusComp->maxHp << std::endl;
-	        if(statusComp->currentHp <= 0){
-	        	statusComp->currentHp = 0;
-		        if(target->hasComponent<StateComponent>()){
-		    		auto stateComp = target->getComponent<StateComponent>();
-		    		auto moveCommandComp = target->getComponent<MovementCommandComponent>();
-		    		if(moveCommandComp) {
-		    			MovementCommand moveCommand;
-		    			moveCommand.direction = {0, 0};
-		    			moveCommand.moveCommandType = MovementCommandType::Hold;
-		    			moveCommandComp->push(moveCommand);
-		    		}
-		    		if(stateComp) stateComp->changeActionState(ActionStates::Death, 0.8f);
-	        		statusComp->isAlive = false;
-		    	}
-	        	// std::cout << "Died" << std::endl;
-	        }
-	    } 
+        	// std::cout << "Died" << std::endl;
+        }
     }
 }

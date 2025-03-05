@@ -30,4 +30,6 @@
 #include "SpawnerComponent.h"
 #include "HitboxComponent.h"
 #include "HpBarComponent.h"
+#include "ShadowComponent.h"
+#include "ShakeEffectComponent.h"
 // #include "GroupComponent.h"

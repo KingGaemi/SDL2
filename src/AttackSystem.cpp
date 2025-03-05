@@ -57,11 +57,13 @@ void AttackSystem::basicAttack(const AttackEvent& event){
 
 		req.entityType = EntityType::Projectile;
 		req.name = "slash";
-		req.x = posComp->x + directComp->hDir() * spriteComp->dstRect.w;
-		req.y = posComp->y + directComp->vDir() * spriteComp->dstRect.h;
-		req.hasTransform = false;
+		req.x = posComp->x + directComp->hDir() * spriteComp->dstRect.w/3;
+		req.y = posComp->y + directComp->vDir() * spriteComp->dstRect.h/3;
+		req.hasTransform = true;
+		req.rotation = directComp->getAngle();
 		req.hDir = directComp->direction.hDir;
 		req.vDir = directComp->direction.vDir;
+		req.hasDirection = true;
 		req.damage = statusComp->physicalDamage;
 		req.hasDamage = true;
 		req.sc = 1.0f;

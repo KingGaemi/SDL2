@@ -6,6 +6,7 @@
 #include "Components/LifeTimeComponent.h"
 #include "Components/DashComponent.h"
 #include "Components/ProjectileComponent.h"
+#include "Components/StatusComponent.h"
 #include <iostream>
 
 
@@ -22,11 +23,13 @@ public:
 				entity->hasComponent<StateComponent>() ||
 				entity->hasComponent<DashComponent>()  ||
 				entity->hasComponent<DashComponent>() ||
-				entity->hasComponent<ProjectileComponent>())){
+				entity->hasComponent<ProjectileComponent>() ||
+				entity->hasComponent<StatusComponent>())){
 				auto stateComp = entity->getComponent<StateComponent>();
 				auto lifeTimeComp = entity->getComponent<LifeTimeComponent>();
 				auto dashComp = entity->getComponent<DashComponent>();
 				auto projectileComp = entity->getComponent<ProjectileComponent>();
+				auto statusComp = entity->getComponent<StatusComponent>();
 				if(stateComp){
 					if(stateComp->stateTimer > 0) stateComp->stateTimer -= deltaTime;
 					else{
@@ -40,6 +43,14 @@ public:
 					if(lifeTimeComp->lifeTime > 0) lifeTimeComp->lifeTime -= deltaTime;
 					if(lifeTimeComp->lifeTime <= 0) {
 						lifeTimeComp->lifeTime = 0;
+					}
+				}
+
+				if(statusComp){
+					if(statusComp->timer > 0 ) statusComp->timer -= deltaTime;
+					else {
+						statusComp->damagedRecently = false;
+						statusComp->recentDamage = 0;
 					}
 				}
 

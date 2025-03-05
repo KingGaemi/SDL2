@@ -2,7 +2,7 @@
 #include "Renderer.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <Sdl2/SDL_ttf.h>
+// #include <Sdl2/SDL_ttf.h>
 #include <iostream>
 #include "myMath.h"
 
@@ -11,7 +11,7 @@
 Renderer::Renderer(SDL_Window* window)
 {
 	SDL_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
+    myFont = TTF_OpenFont("res/fonts/ARCADECLASSIC.TTF", 18);
     if (SDL_renderer == nullptr)
     {
         std::cerr << "Renderer failed to init. Error: " << SDL_GetError() << std::endl;
@@ -44,14 +44,15 @@ SDL_Texture* Renderer::loadTexture(const std::string& p_filePath){
 
 SDL_Texture* Renderer::loadText(const char * textString){
 
-    auto myFont =TTF_OpenFont("res/fonts/ARCADECLASSIC.TTF", 18);
-   
     SDL_Color myColor;
     myColor.r = 255;
     myColor.g = 255;
     myColor.b = 255;
 
-
+    if(!myFont) {
+        std::cout << "Failed to load font" << std::endl;
+        return nullptr;
+    }
     SDL_Surface* textSurface = TTF_RenderText_Blended(myFont, textString, myColor);
     SDL_Texture* textTexture = SDL_CreateTextureFromSurface(SDL_renderer, textSurface);
     SDL_FreeSurface(textSurface);
@@ -59,11 +60,9 @@ SDL_Texture* Renderer::loadText(const char * textString){
     if(!textTexture){
         std::cerr << "Failed to load textTexture: " << SDL_GetError() << std::endl;
     }else{
-        std::cout << "Renderer loadText Complete!" << std::endl;
+        // std::cout << "Renderer loadText Complete!" << std::endl;
     }
-
     return textTexture;
-
 }
 
 

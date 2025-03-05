@@ -71,7 +71,8 @@ obj/DamageSystem.o: src/DamageSystem.cpp include/Systems/DamageSystem.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
- include/Events/EventManager.h
+ include/Components/ShadowComponent.h \
+ include/Components/ShakeEffectComponent.h include/Events/EventManager.h
 include/Systems/DamageSystem.h:
 include/ECS/System.h:
 include/ECS/ECSManager.h:
@@ -167,4 +168,6 @@ include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
+include/Components/ShadowComponent.h:
+include/Components/ShakeEffectComponent.h:
 include/Events/EventManager.h:

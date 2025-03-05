@@ -71,7 +71,8 @@ obj/MenuScene.o: src/MenuScene.cpp include/MenuScene.h include/Scene.h \
  include/Components/AbilityComponent.h include/Components/AIComponent.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
- include/ECS/System.h
+ include/Components/ShadowComponent.h \
+ include/Components/ShakeEffectComponent.h include/ECS/System.h
 include/MenuScene.h:
 include/Scene.h:
 include/Events/EventManager.h:
@@ -168,4 +169,6 @@ include/Components/AIComponent.h:
 include/Components/SpawnerComponent.h:
 include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
+include/Components/ShadowComponent.h:
+include/Components/ShakeEffectComponent.h:
 include/ECS/System.h:

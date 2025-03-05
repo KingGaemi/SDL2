@@ -71,7 +71,7 @@ void AISystem::update(std::vector<std::shared_ptr<Entity>>& entities, float delt
                         break;
                     }
                     if (findOpponent(entities, entity, module)) {
-                        autoAttackTarget(entity, module);
+                        autoAttackTarget(entity, module, deltaTime);
                     }
                 }
                 break;
@@ -93,6 +93,7 @@ void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, AIModule
     auto posComp = entity->getComponent<PositionComponent>();
     auto transComp = entity->getComponent<TransformComponent>();
     auto moveCommandComp = entity->getComponent<MovementCommandComponent>();
+
     // 컴포넌트가 유효한지 확인
     if (!posComp || !transComp || !moveCommandComp ) return;
     transComp->radian = std::fmod(transComp->radian + M_PI, 2 * M_PI) - M_PI;
@@ -134,11 +135,24 @@ void AISystem::trackTargetsForMissiles(std::shared_ptr<Entity>& entity, AIModule
 }
 
 
-void AISystem::autoAttackTarget(std::shared_ptr<Entity>& attacker, AIModule& module) {
+void AISystem::autoAttackTarget(std::shared_ptr<Entity>& attacker, AIModule& module, float deltaTime) {
     // 필요한 컴포넌트 가져오기
     auto moveCommandComp = attacker->getComponent<MovementCommandComponent>();
     auto posComp = attacker->getComponent<PositionComponent>();   
     // 컴포넌트가 유효한지 확인
+    module.stuckTimer += deltaTime;
+    if(module.stuckTimer >= 1.0f){
+        Vector2D disVec = module.lastPos - posComp->getVector();
+        float vectorLength = disVec.x * disVec.x + disVec.y * disVec.y;
+        if(vectorLength <= 1000.0f){
+            module.lastPos = posComp->getVector();
+            module.isStuck = false;
+        }else{
+            module.isStuck = true;
+            // std::cout <<"stuck" <<std::endl;
+        }
+        module.stuckTimer = 0.0f;
+    }
     if (!posComp || !moveCommandComp ) return;
 
     // 업데이트 간격 확인
@@ -155,12 +169,14 @@ void AISystem::autoAttackTarget(std::shared_ptr<Entity>& attacker, AIModule& mod
     else hDir = -1;
     if(distanceVec.y > 0) vDir = 1;
     else vDir = -1;
+    
     if(std::abs(distanceVec.x)-std::abs(distanceVec.y) > 0){       
         vDir = 0;
     }else{
         hDir = 0;
     }
 
+    
     Direction dir = {hDir, vDir};
     // std::cout << module.range << std::endl;
     if(distance <= module.range) { 

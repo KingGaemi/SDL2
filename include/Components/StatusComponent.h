@@ -13,7 +13,7 @@ public:
 
 	bool isAlive = true;
 	bool isInvincible = false;
-	bool recentlyDamaged = false;
+	bool damagedRecently = false;
 	int maxHp, 
 		maxMp, 
 		currentHp, 
@@ -21,12 +21,14 @@ public:
 		strength, 
 		agility, 
 		intelligence, 
-		physicalDamage;
+		physicalDamage,
+		recentDamage;
 	float attackSpeed, movementSpeed, runningSpeedMultiple;
 	float percentage; // 1 => 100% , 0.1 => 10%
 	float baseAttackSpeed = 1.0f;
 	float projectileSpeedMultiple = 1.0f;
-	// float recentTime = 5.0;
+	float timer = 0.0f;
+	float recentTime = 3.0;
 
 	//float timeSpeed
 
@@ -62,6 +64,7 @@ public:
 		agility = 1;
 		intelligence = 1;
 		physicalDamage = 10;
+		recentDamage = 0;
 		percentage = currentHp/maxHp;
 	}
 
