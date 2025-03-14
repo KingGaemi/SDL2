@@ -32,4 +32,5 @@
 #include "HpBarComponent.h"
 #include "ShadowComponent.h"
 #include "ShakeEffectComponent.h"
+#include "SoundEffectComponent.h"
 // #include "GroupComponent.h"

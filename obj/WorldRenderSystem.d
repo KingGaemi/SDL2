@@ -73,7 +73,8 @@ obj/WorldRenderSystem.o: src/WorldRenderSystem.cpp \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
  include/Components/ShadowComponent.h \
- include/Components/ShakeEffectComponent.h include/Events/EventManager.h \
+ include/Components/ShakeEffectComponent.h \
+ include/Components/SoundEffectComponent.h include/Events/EventManager.h \
  include/TextureManager.h include/Renderer.h include/IRenderer.h \
  include/SDL2/SDL.h include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
@@ -200,6 +201,7 @@ include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
 include/Components/ShadowComponent.h:
 include/Components/ShakeEffectComponent.h:
+include/Components/SoundEffectComponent.h:
 include/Events/EventManager.h:
 include/TextureManager.h:
 include/Renderer.h:

@@ -4,6 +4,7 @@
 #include "ECS/System.h"
 #include "ECS/ECSManager.h"
 #include "Events/EventManager.h"
+#include "Manager/SoundManager.h"
 #include "Requests.h"
 
 // struct AttackEvent {
@@ -25,7 +26,7 @@
 class AttackSystem : public System {
 
 public:
-	AttackSystem(std::shared_ptr<ECSManager>& ecsManager, std::shared_ptr<EventManager>& eventManager) : ecsManager(ecsManager), eventManager(eventManager) {}
+	AttackSystem(std::shared_ptr<ECSManager>& ecsManager, std::shared_ptr<EventManager>& eventManager, std::shared_ptr<SoundManager>& soundManager) : ecsManager(ecsManager), eventManager(eventManager), soundManager(soundManager) {}
 	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
     void teskEvent(const AttackEvent& event);
     void castSpell(const AttackEvent& event);
@@ -38,6 +39,7 @@ private:
 
 	std::shared_ptr<ECSManager> ecsManager;
     std::shared_ptr<EventManager> eventManager;
+    std::shared_ptr<SoundManager> soundManager;
 };
 
 

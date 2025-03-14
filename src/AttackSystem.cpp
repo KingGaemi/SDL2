@@ -5,6 +5,7 @@
 #include "Components/SpriteComponent.h"
 #include "Components/StateComponent.h"
 #include "Components/StatusComponent.h"
+#include "Components/SoundEffectComponent.h"
 #include "Groups.h"
 #include <iostream>
 #include <unordered_map>
@@ -51,6 +52,15 @@ void AttackSystem::basicAttack(const AttackEvent& event){
 	auto spriteComp = entity->getComponent<SpriteComponent>();
 	auto statusComp = entity->getComponent<StatusComponent>();
 	auto teamComp = entity->getComponent<TeamTag>();
+
+
+	if(entity->hasComponent<SoundEffectComponent>()){
+		auto soundComp = entity->getComponent<SoundEffectComponent>();
+		auto type = soundComp->typeMaterial;
+
+		soundManager->playEffect(type + "_swing");
+	}
+
 	if(posComp && directComp && spriteComp && statusComp && teamComp){
 		
 		SpawnRequest req;
@@ -80,6 +90,7 @@ void AttackSystem::basicAttack(const AttackEvent& event){
 
 		ecsManager->pendingSpawns.push_back(req);
 	}
+
 }
 
 void AttackSystem::castSpell(const AttackEvent& event){
@@ -150,6 +161,8 @@ void AttackSystem::shootArrow(const AttackEvent& event){
 		req.x = posComp->x + directComp->hDir() * transComp->width;
 		req.y = posComp->y + directComp->vDir() * transComp->height;
 
+		req.w = 0.0f; // origin
+		req.h = 0.0f;
 		req.hasTransform = true;
 		req.hDir = directComp->direction.hDir;
 		req.vDir = directComp->direction.vDir;
@@ -158,7 +171,7 @@ void AttackSystem::shootArrow(const AttackEvent& event){
 		// std::cout << "rotation" << req.rotation  <<std::endl;
 		req.damage = statusComp->physicalDamage;
 		req.hasDamage = true;
-		req.sc = 1.0f;
+		req.sc = 2.0f;
 		req.projectileSpeed = statusComp->projectileSpeedMultiple;
 		if(req.hDir != 0 && req.vDir != 0) req.projectileSpeed /= 1.414f;
 		req.teamCode = teamComp->teamCode;

@@ -2,12 +2,14 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include <memory>
 #include "nlohmann/json.hpp"
 #include "Renderer.h"
 #include "TextureManager.h"
 #include "MapManager.h"
 #include "EffectManager.h"
+#include "Manager/SoundManager.h"
 #include "Scene.h"
 #include "MenuScene.h"
 #include "GameplayScene.h"
@@ -29,6 +31,7 @@ public:
 	~Game();
 	void init(const char* title, int width, int height, bool fullscreen);
 	void textureLoading();
+	void soundLoading();
 	void run();
 	bool running() const;
 	void render();
@@ -52,11 +55,11 @@ private:
     std::shared_ptr<EventManager> eventManager;
     std::shared_ptr<MapManager> mapManager;
     std::shared_ptr<EffectManager> effectManager;
+ 	std::shared_ptr<SoundManager> soundManager;
     std::unique_ptr<TextureManager> mapTextureManager;
     std::unique_ptr<TextureManager> textureManager;
     std::unique_ptr<TextureManager> uiTextureManager;
     std::unique_ptr<InputManager> inputManager;
- 
 
 };
 

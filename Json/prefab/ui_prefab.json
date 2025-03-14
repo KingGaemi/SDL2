@@ -73,5 +73,31 @@
         "sceneCode": "Game"
       }
     ]
+  },
+  "playButton": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "play_button",
+        "width": 71,
+        "height": 92,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 71,
+        "height": 92,
+        "scale": 1.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Menu"
+      }
+    ]
   }
 }

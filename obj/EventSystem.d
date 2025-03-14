@@ -73,7 +73,8 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
  include/Components/ShadowComponent.h \
- include/Components/ShakeEffectComponent.h
+ include/Components/ShakeEffectComponent.h \
+ include/Components/SoundEffectComponent.h
 include/Events/EventSystem.h:
 include/ECS/System.h:
 include/Events/EventManager.h:
@@ -171,3 +172,4 @@ include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
 include/Components/ShadowComponent.h:
 include/Components/ShakeEffectComponent.h:
+include/Components/SoundEffectComponent.h:

@@ -33,7 +33,7 @@ struct SpawnRequest {
     int damage;
     float projectileSpeed, projectileScale;
     float duration;
-    float rotation;
+    float rotation = 0.0f;
 
     bool hasPosition = true;
     bool hasDirection = false;

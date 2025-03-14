@@ -3,7 +3,7 @@ CXX = g++
 # 원래 있던 -o my_app를 빼주고, 중복된 -Wall도 하나만 남깁니다.
 CXXFLAGS = -g -Wall -std=c++17 -m64 -I include -MMD -MP
 
-LDFLAGS = -L lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lbox2d
+LDFLAGS = -L lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lbox2d 
 
 SRC_DIR = src
 OBJ_DIR = obj

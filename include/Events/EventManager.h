@@ -50,6 +50,10 @@ struct DestroyEvent{
 	// etc...
 };
 
+struct KillEvent{
+	std::size_t killerId;
+	std::size_t victimId;
+};
 
 class EventManager {
 
@@ -69,6 +73,9 @@ public:
 	}
 	void pushDestroyEvent(const DestroyEvent& event){
 		destroyEvents.push_back(event);
+	}
+	void pushKillEvent(const KillEvent& event){
+		killEvents.push(event);
 	}
 	bool pollEvent(Event& outEvent) {
 		// std::lock_guard<std::mutex> lock(mtx);
@@ -95,6 +102,12 @@ public:
 		attackEvents.pop();
 		return true;
 	}
+	bool pollKillEvent(KillEvent& outEvent){
+		if(killEvents.empty()) return false;
+		outEvent = killEvents.front();
+		killEvents.pop();
+		return true;
+	}
     const std::vector<DestroyEvent>& getDestroyEvents() const {
         return destroyEvents;
     }
@@ -113,6 +126,7 @@ private:
 	std::queue<Event> bigEventQueue;
 	std::queue<Event> middleEventQueue;
 	std::queue<AttackEvent> attackEvents;
+	std::queue<KillEvent> killEvents;
 	std::vector<DestroyEvent> destroyEvents;
 	// std::mutex mtx;
 };

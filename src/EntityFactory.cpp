@@ -101,16 +101,16 @@ void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnReq
     if(req.hasTransform){
 	    auto transComp = entity->getComponent<TransformComponent>();
 	    if (transComp) {
-            // transComp->width = req.w;
-            // transComp->height = req.h;
-            // transComp->scale = req.sc;
+            if(req.w != 0)transComp->width = req.w;
+            if(req.h != 0)transComp->height = req.h;
+            transComp->scale = req.sc;
             transComp->radian = toRadian(req.rotation);
 	    }
     }
     if(req.hasOwner){
-	    auto ownerComp = entity->getComponent<OwnerComponent>();
-	    if (ownerComp) {
-            ownerComp->ownerId = req.ownerId;
+	    auto projectileComp = entity->getComponent<ProjectileComponent>();
+	    if (projectileComp) {
+            projectileComp->ownerId = req.ownerId;
 	    }
     }
     if(req.hasDamage){
@@ -330,15 +330,17 @@ void EntityFactory::loadProjectileComponent(const json& componentData, std::shar
 	float scale = componentData.value("scale", 1.0);
 	float duration = componentData.value("duration", 1.0);
 	int penetration = componentData.value("penetration", 0);
-	entity->addComponent<ProjectileComponent>(speed, scale, duration, penetration);
+	std::string attackType = componentData.value("attackType", "none");
+	entity->addComponent<ProjectileComponent>(speed, scale, duration, penetration, attackType);
 }
 
 void EntityFactory::loadDamageComponent(const json& componentData, std::shared_ptr<Entity> entity) {
 
 
 	int damage = componentData.value("damage", 1);
+	std::string attackType = componentData.value("attackType", "none");
 
-	entity->addComponent<DamageComponent>(damage);
+	entity->addComponent<DamageComponent>(damage, attackType);
 }
 
 void EntityFactory::loadItemComponent(const json& componentData, std::shared_ptr<Entity> entity) {
@@ -430,6 +432,17 @@ void EntityFactory::loadShakeEffectComponent(const json& componentData, std::sha
 
     entity->addComponent<ShakeEffectComponent>();
 }
+
+void EntityFactory::loadSoundEffectComponent(const json& componentData, std::shared_ptr<Entity> entity) {
+    
+    std::string bodyMaterial = componentData.value("bodyMaterial", "None");
+    std::string footMaterial = componentData.value("footMaterial", "None");
+    std::string typeMaterial = componentData.value("typeMaterial", "None");
+    
+
+    entity->addComponent<SoundEffectComponent>(bodyMaterial, footMaterial, typeMaterial);
+}
+
 
 
 
@@ -573,5 +586,8 @@ void EntityFactory::registerComponentLoaders() {
     componentLoaders["ShakeEffectComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadShakeEffectComponent(data, entity);
     };    
-   
+    componentLoaders["SoundEffectComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadSoundEffectComponent(data, entity);
+    };    
+     
 }

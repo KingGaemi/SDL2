@@ -25,29 +25,10 @@ public:
 			if(entity->hasComponent<LifeTimeComponent>()){
 
 				auto lifeTimeComp = entity->getComponent<LifeTimeComponent>();
-
 				if(lifeTimeComp && lifeTimeComp->lifeTime <= 0) entity->terminate = true;
 
 			}
 
-			if(entity->hasComponent<StatusComponent>()){
-
-				auto statusComp = entity->getComponent<StatusComponent>();
-				auto stateComp = entity->getComponent<StateComponent>();
-
-				if(statusComp && !statusComp->isAlive){
-					if(stateComp){
-						if(stateComp->inMotion) continue;
-					}
-					entity->terminate = true;
-					// if(entity->hasComponent<HpBarComponent>()){
-					// 	auto hpBarComp = entity->getComponent<HpBarComponent>();
-					// 	hpBarComp->hpGage->terminate = true;
-					// 	hpBarComp->hpFrame->terminate = true;
-					// }
-				}
-				
-			}
 
 			if(entity->hasComponent<ProjectileComponent>()){
 

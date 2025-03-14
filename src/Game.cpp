@@ -14,12 +14,18 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
 
 
 	// Init Video
-	if (SDL_Init(SDL_INIT_VIDEO) != 0){
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0){
 		std::cout << "SDL_Init FAILED. SDL_ERROR:" << SDL_GetError() << std::endl;
 		return;
 	}
+
 	int flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
 
+    // SDL_mixer 초기화 (44100 Hz, 스테레오, 2048 샘플 버퍼 크기)
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        std::cerr << "SDL_mixer : " << Mix_GetError() << std::endl;
+        return;
+    }
     if (IMG_Init(IMG_INIT_PNG) == 0) {
         std::cerr << "IMG_Init Failed: " << IMG_GetError() << std::endl;
         return;
@@ -43,6 +49,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager = std::make_shared<ECSManager>();
     ecsManager->entityFactory = std::make_shared<EntityFactory>(ecsManager);
     eventManager = std::make_shared<EventManager>();
+    soundManager = std::make_shared<SoundManager>();
     ecsManager->eventManager = eventManager;
     inputManager = std::make_unique<InputManager>(eventManager);
     mapManager = std::make_shared<MapManager>(ecsManager);
@@ -62,13 +69,14 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager->addSystem<CameraSystem>(SystemGroup::Logic, 70, ecsManager);
     ecsManager->addSystem<ExpireSystem>(SystemGroup::Logic, 90);
     // ecsManager->addSystem<MovementSystem>(SystemGroup::Logic, 100);
-    ecsManager->addSystem<DamageSystem>(SystemGroup::Logic, 100, ecsManager);
+    ecsManager->addSystem<DamageSystem>(SystemGroup::Logic, 100, ecsManager, eventManager, soundManager);
     ecsManager->addSystem<EffectSystem>(SystemGroup::Logic, 110, effectManager);
     ecsManager->addSystem<AnimationSystem>(SystemGroup::Logic, 150);
     ecsManager->addSystem<SyncSystem>(SystemGroup::Logic, 160);
-    ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager, eventManager);
+    ecsManager->addSystem<AttackSystem>(SystemGroup::Logic, 200, ecsManager, eventManager, soundManager);
     ecsManager->addSystem<CooldownSystem>(SystemGroup::Logic, 250);
     ecsManager->addSystem<AISystem>(SystemGroup::Logic, 300);
+    ecsManager->addSystem<KillSystem>(SystemGroup::Logic, 400);
     ecsManager->addSystem<SpawnSystem>(SystemGroup::Logic, 500, ecsManager);
     // Event
     ecsManager->addSystem<CollisionEventHandlerSystem>(SystemGroup::Event, 180, ecsManager);
@@ -78,7 +86,8 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     // ecsManager->setPhysicsSystem(physSys);
 
     textureLoading();
-    
+    soundLoading();
+
     currentScene = std::make_shared<MenuScene>(ecsManager);
     currentScene->onEnter();
 
@@ -103,7 +112,7 @@ void Game::textureLoading(){
         textureManager->loadTexture(textureId, path);
     }
 
-    textureManager->loadText("12345");
+    // textureManager->loadText("12345");
     // textureManager->loadTexture("shadow6", "res/gfx/sprite_sheets/map/shadow6.png");
     // textureManager->loadText("Hello World!");
     // textureManager->loadTexture("farm_map",);
@@ -119,6 +128,30 @@ void Game::textureLoading(){
     // auto mapSys = ecsManager->getSystem<MapSystem>();
     // mapSys->setTextureManager(*textureManager.get());
     
+}
+
+
+void Game::soundLoading(){
+
+    // 효과음 로드 (WAV)
+    std::string path = "res/sounds/effect/impale_flesh.mp3";
+    soundManager->loadEffect("metal_hit_flesh", path);
+    path = "res/sounds/bgm/bgsound.mp3";
+    soundManager->loadMusic("bgmWind", path);
+    path = "res/sounds/effect/orc_death.mp3";
+    soundManager->loadEffect("orc_death", path);
+    path = "res/sounds/effect/orc_swing.mp3";
+    soundManager->loadEffect("orc_swing", path);
+    path = "res/sounds/effect/hit-swing-sword-small-2-95566.mp3";
+    soundManager->loadEffect("metal_slash_flesh", path);
+
+    path = "res/sounds/effect/hit-rock-02-266304.mp3";
+    soundManager->loadEffect("metal_slash_rock", path);
+
+    soundManager->registerEffects();
+    soundManager->setEffectVolume(20);
+    
+
 }
 
 void Game::run() {
@@ -191,6 +224,7 @@ void Game::changeScene(std::string sceneName) {
 
 void Game::clean() {
     SDL_DestroyWindow(window);
+    soundManager->cleanup();
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();

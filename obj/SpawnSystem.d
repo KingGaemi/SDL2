@@ -72,7 +72,8 @@ obj/SpawnSystem.o: src/SpawnSystem.cpp include/Systems/SpawnSystem.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
  include/Components/ShadowComponent.h \
- include/Components/ShakeEffectComponent.h include/Events/EventManager.h
+ include/Components/ShakeEffectComponent.h \
+ include/Components/SoundEffectComponent.h include/Events/EventManager.h
 include/Systems/SpawnSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -170,4 +171,5 @@ include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
 include/Components/ShadowComponent.h:
 include/Components/ShakeEffectComponent.h:
+include/Components/SoundEffectComponent.h:
 include/Events/EventManager.h:

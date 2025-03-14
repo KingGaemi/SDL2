@@ -58,6 +58,7 @@ public:
     void loadHpBarComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadShadowComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadShakeEffectComponent(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadSoundEffectComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req);
     void registerComponentLoaders();
 private:

@@ -19,6 +19,7 @@ struct AnimationData {
 	std::string type;
     std::string name;     
     std::vector<FrameData> frames;
+    std::string soundId;
     bool loop = true;     
 };
 

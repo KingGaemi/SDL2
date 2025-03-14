@@ -15,9 +15,7 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
 
         if(entity->isActive && entity->hasComponent<AnimationComponent>()){
             auto animComp = entity->getComponent<AnimationComponent>();
-        
             if(animComp){
-
                 auto spriteComp = entity->getComponent<SpriteComponent>();
                 auto directComp = entity->getComponent<DirectionComponent>();
                 auto stateComp = entity->getComponent<StateComponent>();
@@ -58,9 +56,7 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                             animComp->busy =true;
                             animComp->lock = true;
                         }
-                        
                     }
-
 
                     if(!animComp->busy){
                         if(stateComp->movementState == MovementStates::Stop &&
@@ -114,8 +110,6 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
 
     // 경과 시간 갱신
     animComp->currentTime += deltaTime;
-
-    
 
     float baseDuration = frame->duration;
     float duration;

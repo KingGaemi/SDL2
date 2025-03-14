@@ -32,8 +32,19 @@ void MenuScene::onEnter(){
 	req.w = 1280;
 	req.h = 800;
 	req.sc = 1.0f;
-	// req.hasTransform = true;
+	
 	ecsManager->pendingSpawns.push_back(req);
+
+
+	req.entityType = EntityType::UI;
+	req.name = "playButton";
+	req.w = 71;
+	req.h = 92;
+	req.sc = 3.0f;
+	req.hasTransform = true;
+	ecsManager->pendingSpawns.push_back(req);
+
+
 	
 }
 

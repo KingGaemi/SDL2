@@ -45,6 +45,7 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 									// cooldownComp->resetCooldown("basicAttack");
 								}else{
 									stateComp->changeActionState(ActionStates::SpecialAttack, (1.0f / statusComp->attackSpeed));
+									
 									// std::cout << cooldownComp->cooldownAbilities["attack"].cooldownTime << std::endl;			
 								}
 							}else{

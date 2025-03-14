@@ -37,7 +37,7 @@ SDL_Texture* Renderer::loadTexture(const std::string& p_filePath){
         // std::cout << "Failed to load texture: " <<  std::endl;
         // texture = IMG_LoadTexture(SDL_renderer,"res/gfx/unknown.png");
     }else{
-        std::cout << "Renderer loadTexture Complete! : " <<  p_filePath.c_str()  << std::endl;
+        // std::cout << "Renderer loadTexture Complete! : " <<  p_filePath.c_str()  << std::endl;
     }
 	return texture;
 }

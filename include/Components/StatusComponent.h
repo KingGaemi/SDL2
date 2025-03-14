@@ -29,7 +29,14 @@ public:
 	float projectileSpeedMultiple = 1.0f;
 	float timer = 0.0f;
 	float recentTime = 3.0;
-
+	int exp = 0;
+	int rewardExp = 50;
+	int level = 1;
+	int maxLevel = 99;
+	float agilPerLv = 1.0f;
+	float strPerLv = 1.0f;
+	float intPerLv = 1.0f;
+	std::vector<int> xpTable = {0, 100, 250, 500, 1000, 2000};
 	//float timeSpeed
 
 	StatusComponent() {
@@ -68,7 +75,17 @@ public:
 		percentage = currentHp/maxHp;
 	}
 
+	void gainExp(int expGain){
+		exp += expGain;
 
+		if(exp > xpTable[level]){
+			exp -= xpTable[level++];
+			std::cout << "Level up!!" << std::endl;
+		}
+
+		std::cout << "level : "<< level << std::endl;
+		std::cout << "exp : "<< exp << std::endl;
+	}
 
 private:
 

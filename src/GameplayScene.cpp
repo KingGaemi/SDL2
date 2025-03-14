@@ -33,18 +33,18 @@ void GameplayScene::onEnter(){
 	ecsManager->pendingSpawns.push_back(req);
 	
 	
-	req.entityType = EntityType::UI;
-	req.name = "hp_bar_frame";
-	req.x = 640; // SCREEN_WIDTH/2;
-	req.y = 740; 
-	ecsManager->pendingSpawns.push_back(req);
 
-	req.entityType = EntityType::UI;
-	req.name = "hp_bar_gage";
-	req.x = 640; // SCREEN_WIDTH/2;
-	req.y = 740; 
-	ecsManager->pendingSpawns.push_back(req);
+	// req.entityType = EntityType::UI;
+	// req.name = "hp_bar_frame";
+	// req.x = 640; // SCREEN_WIDTH/2;
+	// req.y = 740; 
+	// ecsManager->pendingSpawns.push_back(req);
 
+	// req.entityType = EntityType::UI;
+	// req.name = "hp_bar_gage";
+	// req.x = 640; // SCREEN_WIDTH/2;
+	// req.y = 740; 
+	// ecsManager->pendingSpawns.push_back(req);
 
 	// auto mapSystem = ecsManager->getSystem<MapSystem>();
 	// mapSystem->init();  

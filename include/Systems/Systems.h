@@ -19,3 +19,4 @@
 #include "CameraSystem.h"
 #include "AISystem.h"
 #include "SpawnSystem.h"
+#include "KillSystem.h"

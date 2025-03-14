@@ -24,7 +24,8 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/SDL2/SDL_system.h include/SDL2/SDL_timer.h \
  include/SDL2/SDL_version.h include/SDL2/SDL_locale.h \
  include/SDL2/SDL_misc.h include/SDL2/SDL_ttf.h include/SDL2/SDL.h \
- include/nlohmann/json.hpp include/nlohmann/adl_serializer.hpp \
+ include/SDL2/SDL_mixer.h include/nlohmann/json.hpp \
+ include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
  include/nlohmann/detail/conversions/from_json.hpp \
  include/nlohmann/detail/exceptions.hpp \
@@ -100,9 +101,11 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
  include/Components/ShadowComponent.h \
- include/Components/ShakeEffectComponent.h include/Events/EventManager.h \
- include/ECS/System.h include/EffectManager.h include/Scene.h \
- include/MenuScene.h include/GameplayScene.h include/Systems/Systems.h \
+ include/Components/ShakeEffectComponent.h \
+ include/Components/SoundEffectComponent.h include/Events/EventManager.h \
+ include/ECS/System.h include/EffectManager.h \
+ include/Manager/SoundManager.h include/Scene.h include/MenuScene.h \
+ include/GameplayScene.h include/Systems/Systems.h \
  include/Systems/AnimationSystem.h include/Systems/InputSystem.h \
  include/Systems/MovementSystem.h include/Systems/RenderSystem.h \
  include/Systems/TimerSystem.h include/Systems/ExpireSystem.h \
@@ -113,8 +116,9 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/Systems/DamageSystem.h include/Systems/EffectSystem.h \
  include/Systems/CollisionEventHandlerSystem.h \
  include/Systems/CameraSystem.h include/Systems/AISystem.h \
- include/Systems/SpawnSystem.h include/Input/InputManager.h \
- include/Events/EventSystem.h include/Events/MiddleEventSystem.h
+ include/Systems/SpawnSystem.h include/Systems/KillSystem.h \
+ include/Input/InputManager.h include/Events/EventSystem.h \
+ include/Events/MiddleEventSystem.h
 include/Game.h:
 include/SDL2/SDL.h:
 include/SDL2/SDL_main.h:
@@ -168,6 +172,7 @@ include/SDL2/SDL_locale.h:
 include/SDL2/SDL_misc.h:
 include/SDL2/SDL_ttf.h:
 include/SDL2/SDL.h:
+include/SDL2/SDL_mixer.h:
 include/nlohmann/json.hpp:
 include/nlohmann/adl_serializer.hpp:
 include/nlohmann/detail/abi_macros.hpp:
@@ -270,9 +275,11 @@ include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
 include/Components/ShadowComponent.h:
 include/Components/ShakeEffectComponent.h:
+include/Components/SoundEffectComponent.h:
 include/Events/EventManager.h:
 include/ECS/System.h:
 include/EffectManager.h:
+include/Manager/SoundManager.h:
 include/Scene.h:
 include/MenuScene.h:
 include/GameplayScene.h:
@@ -297,6 +304,7 @@ include/Systems/CollisionEventHandlerSystem.h:
 include/Systems/CameraSystem.h:
 include/Systems/AISystem.h:
 include/Systems/SpawnSystem.h:
+include/Systems/KillSystem.h:
 include/Input/InputManager.h:
 include/Events/EventSystem.h:
 include/Events/MiddleEventSystem.h:

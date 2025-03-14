@@ -92,6 +92,11 @@
       },
       {
         "name": "ShakeEffectComponent"
+      },
+      {
+        "name": "SoundEffectComponent",
+	"bodyMaterial": "flesh",
+	"typeMaterial": "orc"
       }
     ]
   },
@@ -225,6 +230,11 @@
       },
       {
         "name": "ShakeEffectComponent"
+      },
+      {
+        "name": "SoundEffectComponent",
+	"bodyMaterial": "flesh",
+	"typeMaterial": "orc"
       }
 
 
@@ -377,8 +387,12 @@
       },
       {
         "name": "ShakeEffectComponent"
+      },
+      {
+        "name": "SoundEffectComponent",
+	"bodyMaterial": "rock",
+	"typeMaterial": "statue"
       }
-
     ]
   }
 

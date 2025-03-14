@@ -1,0 +1,10 @@
+{
+  "sound_set": [  
+    {
+      "A" : "flesh",
+      "B" : "grass",
+      "behavior" : "hit",
+      "soundId" : "walk_grass"
+    }
+  ]
+}

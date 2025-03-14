@@ -3,6 +3,7 @@
 #include "ECS/System.h"
 #include "ECS/ECSManager.h"
 #include "ECS/Entity.h"
+#include "Manager/SoundManager.h"
 #include <unordered_set>
 
 
@@ -27,15 +28,16 @@ struct PairEqual {
 class DamageSystem : public System{
 
 public:
-
-	DamageSystem(std::shared_ptr<ECSManager> ecsManager) : ecsManager(ecsManager) {}
+	DamageSystem(std::shared_ptr<ECSManager> ecsManager, std::shared_ptr<EventManager> eventManager, std::shared_ptr<SoundManager> soundManager) : ecsManager(ecsManager), eventManager(eventManager), soundManager(soundManager) {}
 
 	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
 	void applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr<Entity> target);
+    void getReward(std::shared_ptr<Entity> attacker, std::shared_ptr<Entity> target);
 
 private:
-
 	std::shared_ptr<ECSManager> ecsManager;
+    std::shared_ptr<EventManager> eventManager;
+    std::shared_ptr<SoundManager> soundManager;
 	std::unordered_set<std::pair<EntityID, EntityID>, PairHash, PairEqual> alreadyAttacked;
 
 };

@@ -71,8 +71,17 @@ obj/ECSManager.o: src/ECSManager.cpp include/ECS/ECSManager.h \
  include/Components/SpawnerComponent.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
  include/Components/ShadowComponent.h \
- include/Components/ShakeEffectComponent.h include/Events/EventManager.h \
- include/ECS/System.h include/Systems/AttackSystem.h
+ include/Components/ShakeEffectComponent.h \
+ include/Components/SoundEffectComponent.h include/Events/EventManager.h \
+ include/ECS/System.h include/Systems/AttackSystem.h \
+ include/Manager/SoundManager.h include/SDL2/SDL_mixer.h \
+ include/SDL2/SDL_stdinc.h include/SDL2/SDL_config.h \
+ include/SDL2/SDL_platform.h include/SDL2/begin_code.h \
+ include/SDL2/close_code.h include/SDL2/SDL_rwops.h \
+ include/SDL2/SDL_error.h include/SDL2/SDL_audio.h \
+ include/SDL2/SDL_endian.h include/SDL2/SDL_mutex.h \
+ include/SDL2/SDL_thread.h include/SDL2/SDL_atomic.h \
+ include/SDL2/SDL_version.h
 include/ECS/ECSManager.h:
 include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
@@ -168,6 +177,22 @@ include/Components/HitboxComponent.h:
 include/Components/HpBarComponent.h:
 include/Components/ShadowComponent.h:
 include/Components/ShakeEffectComponent.h:
+include/Components/SoundEffectComponent.h:
 include/Events/EventManager.h:
 include/ECS/System.h:
 include/Systems/AttackSystem.h:
+include/Manager/SoundManager.h:
+include/SDL2/SDL_mixer.h:
+include/SDL2/SDL_stdinc.h:
+include/SDL2/SDL_config.h:
+include/SDL2/SDL_platform.h:
+include/SDL2/begin_code.h:
+include/SDL2/close_code.h:
+include/SDL2/SDL_rwops.h:
+include/SDL2/SDL_error.h:
+include/SDL2/SDL_audio.h:
+include/SDL2/SDL_endian.h:
+include/SDL2/SDL_mutex.h:
+include/SDL2/SDL_thread.h:
+include/SDL2/SDL_atomic.h:
+include/SDL2/SDL_version.h:

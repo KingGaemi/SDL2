@@ -13,11 +13,11 @@ class DamageComponent : public Component{
 public:
 	// isProcessed = false;
 	int damage = 1;
-
+	std::string attackType;
 	std::unordered_set<std::size_t> hitTargets;
 
 	DamageComponent() {}
-	DamageComponent(int damage) : damage(damage) {}
+	DamageComponent(int damage, std::string attackType) : damage(damage), attackType(attackType) {}
 	// AttackComponent(bool isProcessed) : isProcessed(isProcessed) {}
 
 
