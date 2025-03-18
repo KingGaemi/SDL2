@@ -73,7 +73,8 @@ obj/RewardSystem.o: src/RewardSystem.cpp include/Systems/RewardSystem.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
  include/Components/ShadowComponent.h \
  include/Components/ShakeEffectComponent.h \
- include/Components/SoundEffectComponent.h include/Events/EventManager.h
+ include/Components/SoundEffectComponent.h \
+ include/Components/ExplosionComponent.h include/Events/EventManager.h
 include/Systems/RewardSystem.h:
 include/ECS/System.h:
 include/ECS/ECSManager.h:
@@ -172,4 +173,5 @@ include/Components/HpBarComponent.h:
 include/Components/ShadowComponent.h:
 include/Components/ShakeEffectComponent.h:
 include/Components/SoundEffectComponent.h:
+include/Components/ExplosionComponent.h:
 include/Events/EventManager.h:

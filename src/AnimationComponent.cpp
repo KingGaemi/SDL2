@@ -12,6 +12,9 @@ void AnimationComponent::playAnimation(const std::string& animName){
             currentTime = 0.0f;
         }else{
         	std::cout << "Has no Animation named:" << animName << "." << std::endl;
+            currentAnimation = "default";
+            currentFrameIndex = 0;
+            currentTime = 0.0f;
         }
     }
 
@@ -117,6 +120,9 @@ bool AnimationComponent::loadAnimationsFromFile()
         int toIndex   = tag.value("to",0);
         std::string repeatVal = tag.value("repeat","0"); // "0"=loop, "1"=once ?
         std::string type = tag.value("type", "default");
+
+        bool reverse = (tag.value("direction", "default") == "reverse");
+
         // AnimationData 생성
         AnimationData animData;
         animData.name = animName;
@@ -124,6 +130,7 @@ bool AnimationComponent::loadAnimationsFromFile()
         // => 프로젝트 규칙에 맞게 결정
         animData.loop = (repeatVal == "1") ? false : true;
         animData.type = type;
+        animData.reverse = reverse;
         // fromIndex~toIndex 범위 체크
         if(fromIndex<0) fromIndex=0;
         if(toIndex >= (int)framesVec.size()){

@@ -72,7 +72,8 @@ obj/ECSManager.o: src/ECSManager.cpp include/ECS/ECSManager.h \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
  include/Components/ShadowComponent.h \
  include/Components/ShakeEffectComponent.h \
- include/Components/SoundEffectComponent.h include/Events/EventManager.h \
+ include/Components/SoundEffectComponent.h \
+ include/Components/ExplosionComponent.h include/Events/EventManager.h \
  include/ECS/System.h include/Systems/AttackSystem.h \
  include/Manager/SoundManager.h include/SDL2/SDL_mixer.h \
  include/SDL2/SDL_stdinc.h include/SDL2/SDL_config.h \
@@ -178,6 +179,7 @@ include/Components/HpBarComponent.h:
 include/Components/ShadowComponent.h:
 include/Components/ShakeEffectComponent.h:
 include/Components/SoundEffectComponent.h:
+include/Components/ExplosionComponent.h:
 include/Events/EventManager.h:
 include/ECS/System.h:
 include/Systems/AttackSystem.h:

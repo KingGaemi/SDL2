@@ -75,7 +75,8 @@ obj/MovementSystem.o: src/MovementSystem.cpp \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
  include/Components/ShadowComponent.h \
  include/Components/ShakeEffectComponent.h \
- include/Components/SoundEffectComponent.h include/Events/EventManager.h
+ include/Components/SoundEffectComponent.h \
+ include/Components/ExplosionComponent.h include/Events/EventManager.h
 include/Systems/MovementSystem.h:
 include/ECS/System.h:
 include/ECS/Entity.h:
@@ -175,4 +176,5 @@ include/Components/HpBarComponent.h:
 include/Components/ShadowComponent.h:
 include/Components/ShakeEffectComponent.h:
 include/Components/SoundEffectComponent.h:
+include/Components/ExplosionComponent.h:
 include/Events/EventManager.h:

@@ -21,6 +21,8 @@ public:
 
 	BodyType bodyType;
 	b2BodyId body = b2_nullBodyId;
+	bool fixedRotation = false;
+
 
 	PhysicsComponent(int pw, int ph, float sc, BodyType bodyType) : bodyType(bodyType) {
 		x = 0;
@@ -31,7 +33,7 @@ public:
 		offsetY = 0.0f;
 		rotation = 0.0f;
 	}
-	PhysicsComponent(int pw, int ph, float sc, float offX, float offY, float pRotation, BodyType bodyType) : bodyType(bodyType) {
+	PhysicsComponent(int pw, int ph, float sc, float offX, float offY, float pRotation, BodyType bodyType, bool fixedRotation) : bodyType(bodyType), fixedRotation(fixedRotation) {
 		x = 0;
 		y = 0;
 		w = pw * sc;

@@ -85,7 +85,7 @@
         "name": "ProjectileComponent",
         "speed": 1.0,
         "scale": 1.0,
-        "duration": 1.0,
+        "duration": 100.0,
 	"attackType": "hit"
       },
       {
@@ -197,8 +197,8 @@
       {
         "name": "SpriteComponent",
         "textureID": "streetlamp",
-        "width": 88,
-        "height": 248,
+        "width": 256,
+        "height": 256,
         "scale": 1.0
       },
       {
@@ -207,8 +207,8 @@
       },
       {
         "name": "TransformComponent",
-        "width": 88,
-        "height": 248,
+        "width": 256,
+        "height": 256,
         "scale": 0.5
       },
       {

@@ -139,12 +139,13 @@ void EntityFactory::loadPhysicsComponent(const json& componentData, std::shared_
 	int w = componentData.value("width", 64);
 	int h = componentData.value("height", 64);
 	float sc = componentData.value("scale", 1.0f);
+	bool fixedRotation = componentData.value("fixedRotation", false);
 
     BodyType bodyType = BodyType::Dynamic;
     if (typeStr == "Kinematic") bodyType = BodyType::Kinematic;
     else if (typeStr == "Static") bodyType = BodyType::Static;
 
-    entity->addComponent<PhysicsComponent>(w, h, sc, offsetX, offsetY, rotation, bodyType);
+    entity->addComponent<PhysicsComponent>(w, h, sc, offsetX, offsetY, rotation, bodyType, fixedRotation);
 }
 
 void EntityFactory::loadSpriteComponent(const json& componentData, std::shared_ptr<Entity> entity) {
@@ -205,9 +206,9 @@ void EntityFactory::loadHpBarComponent(const json& componentData, std::shared_pt
 	int type = componentData.value("type", 1);
 	float offsetX = componentData.value("offsetX", 0);
 	float offsetY = componentData.value("offsetY", 0);
-	int w = componentData.value("w", 368);
-	int h = componentData.value("h", 60);
-	float scale = componentData.value("scale", 0.2f);
+	int w = componentData.value("w", 34);
+	int h = componentData.value("h", 5);
+	float scale = componentData.value("scale", 2.0f);
 	
 	entity->addComponent<HpBarComponent>(w, h, type, offsetY, scale);
 }
@@ -444,6 +445,14 @@ void EntityFactory::loadSoundEffectComponent(const json& componentData, std::sha
 }
 
 
+void EntityFactory::loadExplosionComponent(const json& componentData, std::shared_ptr<Entity> entity){
+
+	float explosionAmount = componentData.value("explosionAmount", 0.0f);
+    float explosionTime = componentData.value("explosionTime", 0.0f);
+
+	entity->addComponent<ExplosionComponent>(explosionAmount, explosionTime);
+}
+
 
 
 
@@ -589,5 +598,8 @@ void EntityFactory::registerComponentLoaders() {
     componentLoaders["SoundEffectComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadSoundEffectComponent(data, entity);
     };    
-     
+    componentLoaders["ExplosionComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadExplosionComponent(data, entity);
+    };    
+    
 }

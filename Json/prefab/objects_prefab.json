@@ -121,5 +121,73 @@
         "bodyType": "Static"
       }
     ]
+  },"barrel": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "DirectionComponent"
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "TeamTag"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "barrel",
+        "width": 48,
+        "height": 48,
+        "scale": 1.0
+      },
+      {
+        "name": "DamageComponent",
+        "damage": 10
+      },
+      {
+        "name": "TransformComponent",
+        "width": 48,
+        "height": 48,
+        "scale": 2.0
+      },
+      {
+        "name": "HitboxComponent",
+	"w": 48,
+        "h": 48,
+        "scale": 1.0
+     },
+      {
+        "name": "PhysicsComponent",
+        "width": 28,
+        "height": 48,
+        "scale": 1.0,
+        "bodyType": "Dynamic",
+	"fixedRotation": true
+      },
+      {
+        "name": "VelocityComponent"
+      },
+      {
+        "name": "MovementCommandComponent",
+	"commandType": "Stop"
+      },
+      {
+        "name": "AnimationComponent",
+        "spriteName": "barrel",
+	"category": "barrel",
+	"allDirection": false,
+	"entityType": "Object"
+      },
+      {
+        "name": "ExplosionComponent",
+        "explosionAmount":  100,
+	"explosionTime": 2
+      }
+    ]
   }
 }

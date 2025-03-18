@@ -21,6 +21,7 @@ struct AnimationData {
     std::vector<FrameData> frames;
     std::string soundId;
     bool loop = true;     
+    bool reverse = false;
 };
 
 

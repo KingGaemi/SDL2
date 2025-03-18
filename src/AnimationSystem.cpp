@@ -12,7 +12,6 @@
 void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
 
    	for (auto& entity : entities) {
-
         if(entity->isActive && entity->hasComponent<AnimationComponent>()){
             auto animComp = entity->getComponent<AnimationComponent>();
             if(animComp){
@@ -83,6 +82,11 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                         updateAnimation(animComp, spriteComp, deltaTime);
                         if(animComp->isAnimationComplete()) stateComp->inMotion = false;
                     }
+                }else{
+
+                    // etc.. just play default
+                    if(animComp->currentAnimation != "default") animComp->playAnimation("default");
+                    updateAnimation(animComp, spriteComp, deltaTime);
                 }
 
                 // projectiles
@@ -91,6 +95,8 @@ void AnimationSystem::update(std::vector<std::shared_ptr<Entity>>& entities, flo
                     if(animComp->currentAnimation != "default") animComp->playAnimation("default");
                     updateAnimation(animComp, spriteComp, deltaTime);
                 }
+
+                // objects
             }
         }
     }
@@ -124,7 +130,6 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
 
     // temp
     duration *= 1.2f;
-
     // 현재 프레임 지속시간보다 경과 시간이 길다면 다음 프레임으로
     if (animComp->currentTime >= duration) {
         animComp->currentTime -= duration;
@@ -133,7 +138,6 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
         if (animComp->currentFrameIndex >= (int)animData->frames.size()) {
             if (animData->loop) {
                 animComp->currentFrameIndex = 0;
-
             } else {
                 // 루프 안하는 애니메이션이면 마지막 프레임 유지
                 animComp->currentFrameIndex = (int)animData->frames.size() - 1;
@@ -143,7 +147,6 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
         }
         frame = animComp->getCurrentFrame(); // 새 프레임 정보 갱신
     }
-
     // spriteComp에 현재 프레임 정보 반영
     if (frame) {
         if(spriteComp->textureId == "unknown"){
@@ -151,12 +154,13 @@ void AnimationSystem::updateAnimation(std::shared_ptr<AnimationComponent> animCo
             spriteComp->srcRect.x = 0;
             spriteComp->srcRect.y = 0;
             spriteComp->srcRect.w = 32;
-            spriteComp->srcRect.h = 32;            
+            spriteComp->srcRect.h = 32;
         }else{            
             spriteComp->srcRect.x = frame->x;
             spriteComp->srcRect.y = frame->y;
             spriteComp->srcRect.w = frame->w;
             spriteComp->srcRect.h = frame->h;
+            spriteComp->flipHorizontal = animData->reverse;
         }
     }
 }

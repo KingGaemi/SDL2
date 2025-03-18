@@ -34,7 +34,7 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 					if(commandComp){
 						Command command = commandComp->pop();
 						if(command.commandType == CommandType::BasicAttack){		
-							if(!stateComp->inMotion || (stateComp->actionState == ActionStates::Hurt)){
+							if(!stateComp->inMotion){
 								if(!command.doubleTap){
 									stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
 									AttackEvent attackEvent;
@@ -52,12 +52,14 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 
 							}
 						}else if(command.commandType == CommandType::Cast){
-							if(!stateComp->inMotion) stateComp->changeActionState(ActionStates::Cast, (1.0f / statusComp->attackSpeed));
-							AttackEvent attackEvent;
-							attackEvent.attackerId = entity->getId();
-							attackEvent.attackType = AttackType::Cast;
-							attackEvent.abilityId = command.abilityNumber;
-							eventManager->pushAttackEvent(attackEvent);
+							if(!stateComp->inMotion){
+								stateComp->changeActionState(ActionStates::Cast, (1.0f / statusComp->attackSpeed));
+								AttackEvent attackEvent;
+								attackEvent.attackerId = entity->getId();
+								attackEvent.attackType = AttackType::Cast;
+								attackEvent.abilityId = command.abilityNumber;
+								eventManager->pushAttackEvent(attackEvent);
+							}
 						}else if(command.commandType == CommandType::Shoot){
 							if(!stateComp->inMotion) stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
 							AttackEvent attackEvent;

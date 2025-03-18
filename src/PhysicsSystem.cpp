@@ -160,7 +160,7 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
                 bodyDef.rotation.s = sin(transComp->radian);
             }
 
-            bodyDef.linearDamping = 10.0f;
+            bodyDef.linearDamping = 5.0f;
             if(entity->hasComponent<ProjectileComponent>()) bodyDef.linearDamping = 0.0f;
             physComp->body = b2CreateBody(worldId, &bodyDef);               
             bodyMap.emplace(entity->getId(), physComp->body);
@@ -176,7 +176,7 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
                 }
                 b2ShapeDef bodyShapeDef = b2DefaultShapeDef();
                 bodyShapeDef.friction = 0.2f;
-                bodyShapeDef.filter.categoryBits = 0x00000002;
+                bodyShapeDef.filter.categoryBits = 0x00000002; //dynamic
                 b2CreatePolygonShape(physComp->body, &bodyShapeDef, &bodyBox);
             }
 
@@ -187,14 +187,57 @@ void PhysicsSystem::createBodies(std::vector<std::shared_ptr<Entity>>&entities){
                                 (hitboxComp->h) / PIXELS_PER_METER / 2.0);
                 b2ShapeDef hitboxShapeDef = b2DefaultShapeDef();
                 if(entity->hasComponent<ProjectileComponent>()){
-                    b2Body_SetFixedRotation(physComp->body, false);
+                    b2Body_SetFixedRotation(physComp->body, physComp->fixedRotation);
                 }else{
                     b2Body_SetFixedRotation(physComp->body, true);
                 }
+                
                 hitboxShapeDef.enableSensorEvents = true;
                 hitboxShapeDef.isSensor = true;
                 b2CreatePolygonShape(physComp->body, &hitboxShapeDef, &hitbox);
             }
+
+
+
+
+        }
+
+
+
+        if(entity->hasComponent<ExplosionComponent>()){
+            auto explosionComp = entity->getComponent<ExplosionComponent>();
+            if(!explosionComp->readyToExplode || explosionComp->exploded) continue;
+            auto posComp = entity->getComponent<PositionComponent>();
+
+            if(!explosionComp||!posComp) continue;
+         
+
+            ///// Mask bits to filter shapes
+            //    uint64_t maskBits;
+
+            ///// The center of the explosion in world space
+            //    b2Vec2 position;
+
+            ///// The radius of the explosion
+            //    float radius;
+
+            ///// The falloff distance beyond the radius. Impulse is reduced to zero at this distance.
+            //    float falloff;
+
+            ///// Impulse per unit length. This applies an impulse according to the shape perimeter that
+            ///// is facing the explosion. Explosions only apply to circles, capsules, and polygons. This
+            ///// may be negative for implosions.
+            //    float impulsePerLength;            
+            b2ExplosionDef explosionDef = b2DefaultExplosionDef();
+            explosionDef.maskBits = 0x00000002;
+            explosionDef.position = {posComp->x / PIXELS_PER_METER, posComp->y / PIXELS_PER_METER};
+            explosionDef.radius = 1.0f;
+            // explosionDef.falloff = 10.0f;
+            explosionDef.impulsePerLength = 10.0f;
+            b2World_Explode(worldId, &explosionDef);
+            explosionComp->readyToExplode = false;
+            explosionComp->exploded = true;
+            std::cout << "BOOM" << std::endl;
         }
     }
 }
@@ -228,17 +271,17 @@ void PhysicsSystem::setInfoFromGame(std::vector<std::shared_ptr<Entity>>&entitie
             
             if (entity->hasComponent<VelocityComponent>()) {
                 // velocityComponent 등에서 얻은 vx, vy
-                auto veloComp = entity->getComponent<VelocityComponent>();
+                // auto veloComp = entity->getComponent<VelocityComponent>();
 
-                // 픽셀→미터 변환
-                float vx = veloComp->x() / PIXELS_PER_METER; // pixel/sec or so
-                float vy = veloComp->y() / PIXELS_PER_METER; // sdl2와 box2의 y 방향은 반대
+                // // 픽셀→미터 변환
+                // float vx = veloComp->x() / PIXELS_PER_METER; // pixel/sec or so
+                // float vy = veloComp->y() / PIXELS_PER_METER; // sdl2와 box2의 y 방향은 반대
                 
-                b2Vec2 vel;
-                vel.x = vx;
-                vel.y = vy;
+                // b2Vec2 vel;
+                // vel.x = vx;
+                // vel.y = vy;
 
-                b2Body_SetLinearVelocity(physComp->body, vel);                
+                // b2Body_SetLinearVelocity(physComp->body, vel);                
             }
             if (entity->hasComponent<TransformComponent>() && entity->hasComponent<PositionComponent>()) {
                 // TransformComponent에서 위치와 회전값 가져오기
@@ -284,7 +327,7 @@ void PhysicsSystem::applyMovementCommands(std::vector<std::shared_ptr<Entity>>&p
                 else if(moveCommand.moveCommandType == MovementCommandType::Stop){
                     // 행동은 멈추지만.. 다른 엔티티에 의해 밀릴 수 있음
                     if(stateComp)stateComp->changeMovementState(MovementStates::Stop);
-                    b2Body_SetLinearVelocity(physComp->body, {0, 0});                    
+                    // b2Body_SetLinearVelocity(physComp->body, {0, 0});                    
                 }
                 else if(moveCommand.moveCommandType == MovementCommandType::MoveToDirection){
 
@@ -349,7 +392,7 @@ void PhysicsSystem::applyMovementCommands(std::vector<std::shared_ptr<Entity>>&p
                     // std::cout << "go forward.   force :" << forceMagnitude * cos(radian) <<  ", " << forceMagnitude * sin(radian) << std::endl;
 
                     // b2Body_ApplyForceToCenter(physComp->body, force, true);
-                     if(moveCommand.stopSpin)  b2Body_SetAngularVelocity(physComp->body, 0);
+                    if(moveCommand.stopSpin)  b2Body_SetAngularVelocity(physComp->body, 0);
                     b2Body_SetLinearVelocity(physComp->body, force);
                     // b2Body_ApplyForce(physComp->body, force, b2Body_GetWorldPoint(physComp->body, b2Body_GetPosition(physComp->body)), true);
                 }else if(moveCommand.moveCommandType == MovementCommandType::Spin){

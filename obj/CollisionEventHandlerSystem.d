@@ -74,7 +74,8 @@ obj/CollisionEventHandlerSystem.o: src/CollisionEventHandlerSystem.cpp \
  include/Components/HitboxComponent.h include/Components/HpBarComponent.h \
  include/Components/ShadowComponent.h \
  include/Components/ShakeEffectComponent.h \
- include/Components/SoundEffectComponent.h include/Events/EventManager.h
+ include/Components/SoundEffectComponent.h \
+ include/Components/ExplosionComponent.h include/Events/EventManager.h
 include/Systems/CollisionEventHandlerSystem.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
@@ -173,4 +174,5 @@ include/Components/HpBarComponent.h:
 include/Components/ShadowComponent.h:
 include/Components/ShakeEffectComponent.h:
 include/Components/SoundEffectComponent.h:
+include/Components/ExplosionComponent.h:
 include/Events/EventManager.h:

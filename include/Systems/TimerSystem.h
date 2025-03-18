@@ -7,6 +7,7 @@
 #include "Components/DashComponent.h"
 #include "Components/ProjectileComponent.h"
 #include "Components/StatusComponent.h"
+#include "Components/ExplosionComponent.h"
 #include <iostream>
 
 
@@ -24,12 +25,14 @@ public:
 				entity->hasComponent<DashComponent>()  ||
 				entity->hasComponent<DashComponent>() ||
 				entity->hasComponent<ProjectileComponent>() ||
-				entity->hasComponent<StatusComponent>())){
+				entity->hasComponent<StatusComponent>() ||
+				entity->hasComponent<ExplosionComponent>())){
 				auto stateComp = entity->getComponent<StateComponent>();
 				auto lifeTimeComp = entity->getComponent<LifeTimeComponent>();
 				auto dashComp = entity->getComponent<DashComponent>();
 				auto projectileComp = entity->getComponent<ProjectileComponent>();
 				auto statusComp = entity->getComponent<StatusComponent>();
+				auto explosionComponent = entity->getComponent<ExplosionComponent>();
 				if(stateComp){
 					if(stateComp->stateTimer > 0) stateComp->stateTimer -= deltaTime;
 					else{
@@ -73,6 +76,14 @@ public:
 					if(projectileComp->duration > 0) projectileComp->duration -= deltaTime;
 					if(projectileComp->duration <= 0) {
 						projectileComp->duration = 0;
+					}
+				}
+
+				if(explosionComponent){
+					if(explosionComponent->currentTime > 0) explosionComponent->currentTime -= deltaTime;
+					if(explosionComponent->currentTime <= 0) {
+						explosionComponent->currentTime = 0;
+						if(!explosionComponent->readyToExplode) explosionComponent->readyToExplode = true;
 					}
 				}
 

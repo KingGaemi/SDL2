@@ -587,8 +587,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1262,
-                 "y":258.667
+                 "x":1259.33333333333,
+                 "y":296.000333333333
                 }, 
                 {
                  "height":0,
@@ -673,6 +673,34 @@
                  "width":0,
                  "x":298,
                  "y":618
+                }, 
+                {
+                 "height":0,
+                 "id":116,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"entityType",
+                         "type":"string",
+                         "value":"Unit"
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"orc_king"
+                        }, 
+                        {
+                         "name":"teamCode",
+                         "type":"string",
+                         "value":"Enemy"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1281.33333333333,
+                 "y":568
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -710,8 +738,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":906.80303030303,
-                 "y":419.060939393939
+                 "x":906.803,
+                 "y":419.061
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -720,7 +748,7 @@
          "y":0
         }],
  "nextlayerid":49,
- "nextobjectid":116,
+ "nextobjectid":117,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.1",
@@ -1933,31 +1961,31 @@
                              "name":"",
                              "polygon":[
                                     {
-                                     "x":-0.0777777777777784,
-                                     "y":0.0555555555555554
+                                     "x":-0.0777778,
+                                     "y":0.0555556
                                     }, 
                                     {
-                                     "x":-2.08756763063103,
-                                     "y":0.0555555555555554
+                                     "x":-2.08757,
+                                     "y":0.0555556
                                     }, 
                                     {
-                                     "x":-4.16535853349083,
-                                     "y":-1.9653454084088
+                                     "x":-4.16536,
+                                     "y":-1.96535
                                     }, 
                                     {
-                                     "x":-4.11602572516078,
-                                     "y":-3.94802467515422
+                                     "x":-4.11603,
+                                     "y":-3.94802
                                     }, 
                                     {
-                                     "x":-0.0840005250032814,
-                                     "y":-3.94802467515422
+                                     "x":-0.0840005,
+                                     "y":-3.94802
                                     }],
                              "rotation":0,
                              "type":"",
                              "visible":true,
                              "width":0,
-                             "x":4.11602572516078,
-                             "y":3.94802467515422
+                             "x":4.11603,
+                             "y":3.94802
                             }],
                      "opacity":1,
                      "type":"objectgroup",

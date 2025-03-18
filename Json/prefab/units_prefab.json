@@ -3,7 +3,7 @@
     "components": [
       {
         "name": "AnimationComponent",
-	"category": "orc",
+        "category": "orc",
         "spriteName": "orc3"
       },
       {
@@ -29,8 +29,9 @@
         "width": 28,
         "height": 28,
         "scale": 1.0,
-	"offsetY": -15.0,
-        "bodyType": "Dynamic"
+        "offsetY": -15.0,
+        "bodyType": "Dynamic",
+        "fixedRotation": true
       },
       {
         "name": "PlayableComponent"
@@ -53,7 +54,7 @@
         "width": 32,
         "height": 39,
         "scale": 1.0,
-	"hasDirectional": true
+        "hasDirectional": true
       },
       {
         "name": "StateComponent",
@@ -63,8 +64,8 @@
         "name": "StatusComponent",
         "maxHp": 888,
         "maxMp": 1000,
-	"movementSpeed": 200,
-	"attackSpeed": 4,
+        "movementSpeed": 200,
+        "attackSpeed": 4,
         "currentHp": 100
       },
       {
@@ -82,21 +83,21 @@
       },
       {
         "name": "HitboxComponent",
-	"w": 32,
-	"h": 39,
-	"scale": 1.0
+        "w": 32,
+        "h": 39,
+        "scale": 1.0
       },
       {
         "name": "HpBarComponent",
-	"offsetY": -18
+        "offsetY": -18
       },
       {
         "name": "ShakeEffectComponent"
       },
       {
         "name": "SoundEffectComponent",
-	"bodyMaterial": "flesh",
-	"typeMaterial": "orc"
+        "bodyMaterial": "flesh",
+        "typeMaterial": "orc"
       }
     ]
   },
@@ -132,17 +133,15 @@
       },
       {
         "name": "HpBarComponent",
-	"type": 1
+        "type": 1
       }
-
-
     ]
   },
   "orc1": {
     "components": [
       {
         "name": "AnimationComponent",
-	"category": "orc",
+        "category": "orc",
         "spriteName": "orc1"
       },
       {
@@ -150,8 +149,8 @@
       },
       {
         "name": "AIComponent",
-	"AIType": "Aggressive",
-	"range": 20000.0
+        "AIType": "Aggressive",
+        "range": 20000.0
       },
       {
         "name": "MovementCommandComponent"
@@ -167,7 +166,7 @@
       },
       {
         "name": "DirectionComponent",
-	"vDir" : 1
+        "vDir": 1
       },
       {
         "name": "PhysicsComponent",
@@ -175,7 +174,8 @@
         "height": 32,
         "scale": 1.0,
         "offsetY": -9.0,
-        "bodyType": "Dynamic"
+        "bodyType": "Dynamic",
+        "fixedRotation": true
       },
       {
         "name": "PositionComponent",
@@ -192,7 +192,7 @@
         "width": 32,
         "height": 39,
         "scale": 1.0,
-	"hasDirectional": true
+        "hasDirectional": true
       },
       {
         "name": "StateComponent",
@@ -202,7 +202,7 @@
         "name": "StatusComponent",
         "maxHp": 599,
         "maxMp": 511,
-	"attackSpeed": 0.8
+        "attackSpeed": 0.8
       },
       {
         "name": "TeamTag",
@@ -219,32 +219,131 @@
       },
       {
         "name": "HitboxComponent",
-	"w": 32,
-	"h": 39,
-	"scale": 1.0
+        "w": 32,
+        "h": 39,
+        "scale": 1.0
       },
       {
         "name": "HpBarComponent",
-	"type": 1,
-	"offsetY": -10
+        "type": 1,
+        "offsetY": -10
       },
       {
         "name": "ShakeEffectComponent"
       },
       {
         "name": "SoundEffectComponent",
-	"bodyMaterial": "flesh",
-	"typeMaterial": "orc"
+        "bodyMaterial": "flesh",
+        "typeMaterial": "orc"
       }
-
-
+    ]
+  },
+  "orc_king": {
+    "components": [
+      {
+        "name": "AnimationComponent",
+        "category": "orc",
+        "spriteName": "orc_king"
+      },
+      {
+        "name": "CommandComponent"
+      },
+      {
+        "name": "AIComponent",
+        "AIType": "Aggressive",
+        "range": 20000.0
+      },
+      {
+        "name": "MovementCommandComponent"
+      },
+      {
+        "name": "CooldownComponent",
+        "abilityName": "basicAttack",
+        "cooldownTime": 1.0
+      },
+      {
+        "name": "DashComponent",
+        "dashCooldown": 0.2
+      },
+      {
+        "name": "DirectionComponent",
+        "vDir": 1
+      },
+      {
+        "name": "PhysicsComponent",
+        "width": 32,
+        "height": 32,
+        "scale": 1.0,
+        "offsetY": -9.0,
+        "bodyType": "Dynamic",
+        "fixedRotation": true
+      },
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "orc_king",
+        "width": 48,
+        "height": 48,
+        "scale": 1.0,
+        "hasDirectional": true
+      },
+      {
+        "name": "StateComponent",
+        "state": "Idle"
+      },
+      {
+        "name": "StatusComponent",
+        "maxHp": 5990,
+        "maxMp": 511,
+        "attackSpeed": 1.5
+      },
+      {
+        "name": "TeamTag",
+        "teamCode": "Enemy"
+      },
+      {
+        "name": "TransformComponent",
+        "width": 48,
+        "height": 48,
+        "scale": 3.5
+      },
+      {
+        "name": "VelocityComponent"
+      },
+      {
+        "name": "HitboxComponent",
+        "w": 32,
+        "h": 39,
+        "scale": 1.0
+      },
+      {
+        "name": "HpBarComponent",
+        "type": 1,
+        "offsetY": -10
+      },
+      {
+        "name": "ShakeEffectComponent"
+      },
+      {
+        "name": "SoundEffectComponent",
+        "bodyMaterial": "flesh",
+        "typeMaterial": "orc"
+      }
     ]
   },
   "slime1": {
     "components": [
       {
         "name": "AnimationComponent",
-	"category": "slime",
+        "category": "slime",
         "spriteName": "slime1"
       },
       {
@@ -255,14 +354,15 @@
       },
       {
         "name": "DirectionComponent",
-	"vDir" : 1
+        "vDir": 1
       },
       {
         "name": "PhysicsComponent",
-	"width": 16,
+        "width": 16,
         "height": 16,
         "scale": 2.0,
-        "bodyType": "Dynamic"
+        "bodyType": "Dynamic",
+        "fixedRotation": true
       },
       {
         "name": "PositionComponent",
@@ -279,7 +379,7 @@
         "width": 48,
         "height": 48,
         "scale": 1.0,
-	"hasDirectional": true
+        "hasDirectional": true
       },
       {
         "name": "StateComponent",
@@ -290,7 +390,7 @@
         "maxHp": 1000,
         "maxMp": 1000,
         "currentHp": 1000,
-	"movementSpeed": 200
+        "movementSpeed": 200
       },
       {
         "name": "TeamTag",
@@ -307,13 +407,13 @@
       },
       {
         "name": "HitboxComponent",
-	"w": 16,
-	"h": 16,
-	"scale": 2.0
+        "w": 16,
+        "h": 16,
+        "scale": 2.0
       },
       {
         "name": "AIComponent",
-	"AIType": "Roaming"
+        "AIType": "Roaming"
       }
     ]
   },
@@ -321,15 +421,15 @@
     "components": [
       {
         "name": "DirectionComponent",
-	"vDir" : 1
+        "vDir": 1
       },
       {
         "name": "PhysicsComponent",
-	"width": 29,
+        "width": 29,
         "height": 44,
         "scale": 1.0,
         "bodyType": "Static",
-	"offsetY": -15
+        "offsetY": -15
       },
       {
         "name": "PositionComponent",
@@ -346,23 +446,23 @@
         "width": 21,
         "height": 44,
         "scale": 1.0,
-	"offsetX": 150,
-	"hasDirectional": true
+        "offsetX": 150,
+        "hasDirectional": true
       },
       {
         "name": "ShadowComponent",
         "width": 27,
         "height": 28,
         "scale": 2.0,
-	"offsetX": 13.5,
-	"offsetY": 14
+        "offsetX": 13.5,
+        "offsetY": 14
       },
       {
         "name": "StatusComponent",
         "maxHp": 1000,
         "maxMp": 1000,
         "currentHp": 1000,
-	"movementSpeed": 200
+        "movementSpeed": 200
       },
       {
         "name": "TeamTag",
@@ -376,24 +476,23 @@
       },
       {
         "name": "HitboxComponent",
-	"w": 29,
-	"h": 44,
-	"scale": 2.0
+        "w": 29,
+        "h": 44,
+        "scale": 2.0
       },
       {
         "name": "HpBarComponent",
-	"type": 1,
-	"offsetY": -15
+        "type": 1,
+        "offsetY": -15
       },
       {
         "name": "ShakeEffectComponent"
       },
       {
         "name": "SoundEffectComponent",
-	"bodyMaterial": "rock",
-	"typeMaterial": "statue"
+        "bodyMaterial": "rock",
+        "typeMaterial": "statue"
       }
     ]
   }
-
 }

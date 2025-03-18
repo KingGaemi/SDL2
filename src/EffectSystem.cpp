@@ -80,6 +80,7 @@ void EffectSystem::hpBarControl(std::shared_ptr<Entity>& entity){
 
 	float offsetY = hpBarComp->offsetY;	
 	float percentage = statusComp->percentage;
+	
 	if(percentage<= 0.03) percentage = 0.03;
 
 	int amount = 100;
@@ -87,7 +88,7 @@ void EffectSystem::hpBarControl(std::shared_ptr<Entity>& entity){
 	int partitions = maxHp / amount;
 	if(maxHp%amount == 0) partitions--;
 
-	float gap = (hpBarComp->w / (partitions + 1)) * hpBarComp->sc;
+	float gap = (hpBarComp->w* hpBarComp->sc / (partitions + 1));
 	int drawPartitions = statusComp->currentHp / amount;
 
 	
@@ -96,29 +97,41 @@ void EffectSystem::hpBarControl(std::shared_ptr<Entity>& entity){
 	float y = posComp->y - (transComp->height) + offsetY - hpBarComp->h/2 * hpBarComp->sc;
 	float w = hpBarComp->w * hpBarComp->sc;
 	float h = hpBarComp->h * hpBarComp->sc;
-	req.textureId = "hp_bar_frame";
-
-	req.srcRect = {0, 0, hpBarComp->w, hpBarComp->h};
+	req.textureId = "all_ui";
 	req.dstRect = {x, y, w, h};
-	effectManager->pendingEffects.push_back(req);
 
-	req.textureId = "hp_bar_gage";
-	req.dstRect = {x, y, w*percentage, h};
-	if(!statusComp->isAlive) {
-		req.dstRect = {x, y, 0, h};
+	if(!statusComp->isAlive){
+		req.srcRect = {871, 70, 34, 5}; //empty frame,gage
 		effectManager->pendingEffects.push_back(req);
 		return;
 	}
+	
+
+
+	//draw frame
+	if(percentage== 1.0f){
+		req.srcRect = {631, 70, 34, 5}; //frame
+	}else{
+		req.srcRect = {679, 70, 34, 5};
+	}
 	effectManager->pendingEffects.push_back(req);
 
-	if(drawPartitions <20){
-		req.textureId = "black";
-		req.dstRect.w = 1;
-		for(int i = 0 ; i < drawPartitions ; i++){
-			req.dstRect.x += gap;	
-			effectManager->pendingEffects.push_back(req);
-		}
+
+	//draw gage
+	if(percentage< 1.0f){
+		req.srcRect = {681+static_cast<int>((1-percentage)*100/3.3), 79, 30, 3}; // gage		
+		req.dstRect = {x+2* hpBarComp->sc, y+hpBarComp->sc, w-4* hpBarComp->sc, h-2* hpBarComp->sc};
+		effectManager->pendingEffects.push_back(req);
 	}
+
+	// if(drawPartitions <20){
+	// 	req.textureId = "black";
+	// 	req.dstRect.w = 1;
+	// 	for(int i = 0 ; i < drawPartitions ; i++){
+	// 		req.dstRect.x += gap;	
+	// 		effectManager->pendingEffects.push_back(req);
+	// 	}
+	// }
 }
 
 void EffectSystem::ShakeEffect(std::shared_ptr<Entity>& entity, float deltaTime){

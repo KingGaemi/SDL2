@@ -37,6 +37,9 @@ public:
 		return "none";
 	}
 
+	
+
+
 private:
 	int next = 1;
 	std::vector<Ability> abilities;

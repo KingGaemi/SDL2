@@ -31,7 +31,7 @@ void AttackSystem::teskEvent(const AttackEvent& event){
 		if(event.abilityId == 1){
 			castSpell(event);
 		}else if(event.abilityId == 3){
-			whirlBlade(event);
+			releaseBomb(event);
 		}
 	}else if(event.attackType == AttackType::Shoot){
 		shootArrow(event);
@@ -204,7 +204,8 @@ void AttackSystem::whirlBlade(const AttackEvent& event){
 		req.name = "streetlamp";
 		req.x = posComp->x + directComp->hDir() * transComp->width;
 		req.y = posComp->y + directComp->vDir() * transComp->height;
-
+		req.w = 0;
+		req.h = 0;
 		req.hasTransform = true;
 		req.hDir = directComp->direction.hDir;
 		req.vDir = directComp->direction.vDir;
@@ -213,7 +214,7 @@ void AttackSystem::whirlBlade(const AttackEvent& event){
 
 		req.damage = statusComp->physicalDamage;
 		req.hasDamage = true;
-		req.sc = 1.0f;
+		req.sc = 0.5f;
 		req.projectileSpeed = statusComp->projectileSpeedMultiple;
 		if(req.hDir != 0 && req.vDir != 0) req.projectileSpeed /= 1.414f;
 		req.teamCode = teamComp->teamCode;
@@ -224,5 +225,46 @@ void AttackSystem::whirlBlade(const AttackEvent& event){
 		ecsManager->pendingSpawns.push_back(req);
 	}
 }
+
+
+void AttackSystem::releaseBomb(const AttackEvent& event){
+
+	auto entity = ecsManager->getEntityById(event.attackerId);
+	if(!entity->isActive) return;
+
+	auto posComp = entity->getComponent<PositionComponent>();
+	auto directComp = entity->getComponent<DirectionComponent>();
+	auto transComp = entity->getComponent<TransformComponent>();
+	auto statusComp = entity->getComponent<StatusComponent>();
+	auto teamComp = entity->getComponent<TeamTag>();
+
+	if(posComp && directComp && transComp && statusComp && teamComp){
+		
+		SpawnRequest req;
+
+		req.entityType = EntityType::Object;
+		req.name = "barrel";
+		req.x = posComp->x + directComp->hDir() * transComp->width;
+		req.y = posComp->y + directComp->vDir() * transComp->height;
+		req.w = 0;
+		req.h = 0;
+		// req.hasTransform = true;
+		req.hDir = directComp->direction.hDir;
+		req.vDir = directComp->direction.vDir;
+		// req.hasDirection = true;
+		// req.rotation = directComp->getAngle();
+
+		req.damage = statusComp->physicalDamage;
+		req.hasDamage = true;
+		req.sc = 1.0f;
+		req.teamCode = teamComp->teamCode;
+		req.ownerId = entity->getId();
+		req.hasOwner = true;
+
+		ecsManager->pendingSpawns.push_back(req);
+	}
+}
+
+
 
 

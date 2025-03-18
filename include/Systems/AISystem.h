@@ -13,6 +13,7 @@ public:
 	void roam(std::shared_ptr<Entity>& entity, AIModule& module);
 	bool findOpponent(std::vector<std::shared_ptr<Entity>>&entities, std::shared_ptr<Entity>& missile, AIModule& module);
 	void autoAttackTarget(std::shared_ptr<Entity>& entity, AIModule& module, float deltaTime);
+	void useAbility(std::shared_ptr<Entity>& entity, AIModule& module, float deltaTime);
 	int getRandomNumber(int min, int max) {
 	    static std::random_device rd;  // 하드웨어 기반 랜덤 시드
 	    static std::mt19937 gen(rd()); // Mersenne Twister 엔진 (매번 다른 난수 생성)

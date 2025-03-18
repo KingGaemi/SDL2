@@ -33,6 +33,7 @@ public:
 	int rewardExp = 50;
 	int level = 1;
 	int maxLevel = 99;
+	float range = 3000.0f;
 	float agilPerLv = 1.0f;
 	float strPerLv = 1.0f;
 	float intPerLv = 1.0f;

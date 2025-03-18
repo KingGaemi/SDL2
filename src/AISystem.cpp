@@ -1,5 +1,6 @@
 #include "Systems/AISystem.h"
 #include "Components/AIComponent.h"
+#include "Components/AbilityComponent.h"
 #include "Components/PositionComponent.h"
 #include "Components/TransformComponent.h"
 #include "Components/VelocityComponent.h"
@@ -176,10 +177,16 @@ void AISystem::autoAttackTarget(std::shared_ptr<Entity>& attacker, AIModule& mod
         hDir = 0;
     }
 
-    
+    float range;    
     Direction dir = {hDir, vDir};
     // std::cout << module.range << std::endl;
-    if(distance <= module.range) { 
+    if(attacker->hasComponent<StatusComponent>()){
+        auto statusComp = attacker->getComponent<StatusComponent>();
+        range = statusComp->range;
+    }else{
+        range = module.range;
+    }
+    if(distance <= range) { 
         // std::cout<<"attack" << std::endl;
         if(attacker->hasComponent<CommandComponent>() && module.target) {
             auto commandComp = attacker->getComponent<CommandComponent>();
@@ -187,7 +194,16 @@ void AISystem::autoAttackTarget(std::shared_ptr<Entity>& attacker, AIModule& mod
             actionCommand.commandType = CommandType::BasicAttack;
             actionCommand.direction = dir;
             if(commandComp) commandComp->push(actionCommand);
+            MovementCommand moveCommand;
+            moveCommand.direction = dir;
+            moveCommand.moveCommandType = MovementCommandType::Stop;
+            moveCommandComp->push(moveCommand);  
         }
+    }else{
+        MovementCommand moveCommand;
+        moveCommand.direction = dir;
+        moveCommand.moveCommandType = MovementCommandType::MoveToDirection;
+        moveCommandComp->push(moveCommand);  
     }
 
 
@@ -197,13 +213,7 @@ void AISystem::autoAttackTarget(std::shared_ptr<Entity>& attacker, AIModule& mod
     // if(dir.y <= -1) dir.y = -1;
 
 
-    MovementCommand moveCommand;
 
-    moveCommand.direction = dir;
-
-    moveCommand.moveCommandType = MovementCommandType::MoveToDirection;
-    
-    moveCommandComp->push(moveCommand);  
 
 
 
@@ -261,4 +271,18 @@ void AISystem::roam(std::shared_ptr<Entity>& entity, AIModule& module){
 		moveCommand.direction = { getRandomNumber(-1, 1) , getRandomNumber(-1, 1)};
 		moveCommandComp->push(moveCommand);
 	}
+}
+
+
+void AISystem::useAbility(std::shared_ptr<Entity>& entity, AIModule& module, float deltaTime){
+
+
+    auto abilComp =  entity->getComponent<AbilityComponent>();
+    auto statusComp = entity->getComponent<StatusComponent>();
+    if(!abilComp || statusComp) return;
+
+    
+
+
+
 }

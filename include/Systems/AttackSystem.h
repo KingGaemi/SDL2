@@ -33,6 +33,7 @@ public:
     void basicAttack(const AttackEvent& event);
     void shootArrow(const AttackEvent& event);
     void whirlBlade(const AttackEvent& event);
+    void releaseBomb(const AttackEvent& event);
     float getAngleFromDirection(int hDir, int vDir);
 	
 private:
