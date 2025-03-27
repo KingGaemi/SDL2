@@ -60,6 +60,7 @@ public:
     void loadShakeEffectComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadSoundEffectComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadExplosionComponent(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadClickableComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req);
     void registerComponentLoaders();
 private:

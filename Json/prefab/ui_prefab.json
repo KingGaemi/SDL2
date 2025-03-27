@@ -22,7 +22,13 @@
       {
         "name": "SceneTag",
         "sceneCode": "Menu"
-      }
+      },
+      {
+        "name": "ClickableComponent",
+        "w": 200,
+        "h": 92,      
+        "x": 300,
+        "y": 400}
     ]
   },
   "hp_bar_frame": {
@@ -97,7 +103,13 @@
       {
         "name": "SceneTag",
         "sceneCode": "Menu"
-      }
+      },
+      {
+        "name": "ClickableComponent",
+        "w": 71,
+        "h": 92,      
+        "x": 640,
+        "y": 400}
     ]
   }
 }

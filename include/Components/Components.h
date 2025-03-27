@@ -34,4 +34,5 @@
 #include "ShakeEffectComponent.h"
 #include "SoundEffectComponent.h"
 #include "ExplosionComponent.h"
+#include "ClickableComponent.h"
 // #include "GroupComponent.h"

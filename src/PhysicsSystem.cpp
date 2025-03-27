@@ -422,7 +422,7 @@ void PhysicsSystem::setPositionsFromWorld(std::vector<std::shared_ptr<Entity>>&e
         if(physComp->hasBody()){
                         
             b2Vec2 pos = b2Body_GetPosition(physComp->body);
-            b2Rot rot =  b2Body_GetRotation(physComp->body);        
+            b2Rot rot = b2Body_GetRotation(physComp->body);        
             float renderX = box2dToPixelX(pos.x);
             float renderY = box2dToPixelY(pos.y);
             

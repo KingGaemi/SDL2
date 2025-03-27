@@ -74,7 +74,8 @@ obj/DamageSystem.o: src/DamageSystem.cpp include/Systems/DamageSystem.h \
  include/Components/ShadowComponent.h \
  include/Components/ShakeEffectComponent.h \
  include/Components/SoundEffectComponent.h \
- include/Components/ExplosionComponent.h include/Events/EventManager.h \
+ include/Components/ExplosionComponent.h \
+ include/Components/ClickableComponent.h include/Events/EventManager.h \
  include/Manager/SoundManager.h include/SDL2/SDL_mixer.h \
  include/SDL2/SDL_stdinc.h include/SDL2/SDL_config.h \
  include/SDL2/SDL_platform.h include/SDL2/begin_code.h \
@@ -182,6 +183,7 @@ include/Components/ShadowComponent.h:
 include/Components/ShakeEffectComponent.h:
 include/Components/SoundEffectComponent.h:
 include/Components/ExplosionComponent.h:
+include/Components/ClickableComponent.h:
 include/Events/EventManager.h:
 include/Manager/SoundManager.h:
 include/SDL2/SDL_mixer.h:

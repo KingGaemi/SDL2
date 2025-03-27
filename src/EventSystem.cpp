@@ -5,6 +5,7 @@
 // #include "Components/StateComponent.h"
 #include "Components/CommandComponent.h"
 #include "Components/MovementCommandComponent.h"
+#include "Components/ClickableComponent.h"
 #include "ECS/Entity.h"
 #include "ECS/EntityFactory.h"
 #include "Groups.h"
@@ -29,6 +30,51 @@ void EventSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float d
 void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Entity>>& entities){
 
 	// Check KeyDowns and direction
+	if(evt.type == EventType::MOUSEMOTION){
+		bool isHovered = false;
+		for(auto& entity : entities){
+			if(entity->isActive && entity->hasComponent<ClickableComponent>()){
+				auto clickComp = entity->getComponent<ClickableComponent>();
+				if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
+					isHovered = true;
+					if(cursorManager->getCurrentCursor() != Cursors::Grab) cursorManager->changeCursor(Cursors::Hover);
+				}
+			}
+		}
+		if(!isHovered && (cursorManager->getCurrentCursor() != Cursors::Grab)) cursorManager->changeCursor(Cursors::Pointer);
+	}
+
+	if(evt.type == EventType::MOUSEBUTTONDOWN){
+		for(auto& entity : entities){
+			if(entity->isActive && entity->hasComponent<ClickableComponent>()){
+				auto clickComp = entity->getComponent<ClickableComponent>();
+				if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
+					cursorManager->changeCursor(Cursors::Grab);
+					cursorManager->clickedEntity = entity;
+				}
+			}
+		}
+	}
+
+	if(evt.type == EventType::MOUSEBUTTONUP){
+		bool isHovered = false;
+		for(auto& entity : entities){
+			if(entity->isActive && entity->hasComponent<ClickableComponent>()){
+				auto clickComp = entity->getComponent<ClickableComponent>();
+				if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
+					if(cursorManager->clickedEntity == entity){
+						std::cout<< "Clicked" << std::endl;
+						clickComp->isClicked = true;
+					}
+					isHovered = true;
+					cursorManager->changeCursor(Cursors::Hover);
+				}
+			}
+		}
+		if(!isHovered) cursorManager->changeCursor(Cursors::Pointer);
+		else cursorManager->changeCursor(Cursors::Hover);
+	}
+
 	if(evt.type == EventType::KEYDOWN && !pressed[toInt(evt.key)]){
 		pressed[toInt(evt.key)] = true;
 		// std::cout << toInt(evt.key) << std::endl;
@@ -42,9 +88,11 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 			isAbilityKeyDoubleTapped = false;
 		}
 	}
+
 	if(evt.type == EventType::KEYUP) pressed[toInt(evt.key)] = false;
   	direction = getDirection(evt);
-	
+
+
 	// Find Target
 	for(auto& entity : entities){
 		if(entity->isActive &&
@@ -58,7 +106,6 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 	//==========================
 	// KeyDown to commands
 	//
-
 
 	// temp ====
 	if (evt.type == EventType::KEYDOWN && evt.key == KeyCode::Enter) {
@@ -86,6 +133,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 		moveCommandComp->push(moveCommand);
 	}
 
+
 	if(commandComp){
 		Command command;
 		command.doubleTap = isAbilityKeyDoubleTapped;
@@ -94,6 +142,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 			// std::cout << "space" << std::endl;
 			command.commandType = CommandType::BasicAttack;
 			commandComp->push(command);
+
 		}
 		if(pressed[toInt(KeyCode::q)]){
 			// std::cout << "q" << std::endl;

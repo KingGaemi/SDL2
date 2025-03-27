@@ -8,6 +8,7 @@
 #include "Components/FloatingEffectComponent.h"
 #include "Components/CameraComponent.h"
 #include "Components/HitboxComponent.h"
+#include "Components/ClickableComponent.h"
 #include <iostream>
 #include <algorithm>
 #include "myMath.h"
@@ -171,7 +172,7 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
         }
     }
 
-    if(!debugMode){
+    if(debugMode){
         if (entity->hasComponent<HitboxComponent>()) {
             auto hitboxComp = entity->getComponent<HitboxComponent>();
             auto posComp = entity->getComponent<PositionComponent>();
@@ -216,7 +217,21 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             renderer->RenderDrawRect(debugRect, rad);
 
         }
+        if(entity->hasComponent<ClickableComponent>()){
+
+            auto clickComp = entity->getComponent<ClickableComponent>();
+
+            SDL_FRect debugRect;
+            debugRect = { debugRect.x = clickComp->rect.x + clickComp->rect.w/2,
+                    debugRect.y = clickComp->rect.y + clickComp->rect.h/2,
+                    debugRect.w = clickComp->rect.w,
+                    debugRect.h = clickComp->rect.h
+            };
+            renderer->SetRenderDrawColor(255, 0, 0, 255);
+            renderer->RenderDrawRect(debugRect, 0);
+        }
     }
+
 }
 
 

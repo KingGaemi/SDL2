@@ -10,6 +10,7 @@
 #include "MapManager.h"
 #include "EffectManager.h"
 #include "Manager/SoundManager.h"
+#include "Manager/CursorManager.h"
 #include "Scene.h"
 #include "MenuScene.h"
 #include "GameplayScene.h"
@@ -56,6 +57,7 @@ private:
     std::shared_ptr<MapManager> mapManager;
     std::shared_ptr<EffectManager> effectManager;
  	std::shared_ptr<SoundManager> soundManager;
+ 	std::shared_ptr<CursorManager> cursorManager;
     std::unique_ptr<TextureManager> mapTextureManager;
     std::unique_ptr<TextureManager> textureManager;
     std::unique_ptr<TextureManager> uiTextureManager;

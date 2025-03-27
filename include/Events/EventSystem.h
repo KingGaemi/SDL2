@@ -1,6 +1,7 @@
 #pragma once
 #include "ECS/System.h"
 #include "Events/EventManager.h"
+#include "Manager/CursorManager.h"
 #include "Components/DirectionComponent.h"
 #include "KeyCode.h"
 #include <type_traits>
@@ -12,7 +13,7 @@ class EventSystem : public System {
 
 public:
 
-	EventSystem(std::shared_ptr<EventManager>& eventManager) : eventManager(eventManager) { 		
+	EventSystem(std::shared_ptr<EventManager>& eventManager, std::shared_ptr<CursorManager>& cursorManager) : eventManager(eventManager), cursorManager(cursorManager) { 		
 		std::fill_n(pressed, toInt(KeyCode::NUM_OF_KEY_CODES), false);
 
 	}  
@@ -34,6 +35,7 @@ public:
 
 private:
 	std::shared_ptr<EventManager> eventManager;
+	std::shared_ptr<CursorManager> cursorManager;
 	bool pressed[toInt(KeyCode::NUM_OF_KEY_CODES)]; 
 	bool isArrowKeyDoubleTapped = false;
 	bool isAbilityKeyDoubleTapped = false;

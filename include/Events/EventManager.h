@@ -13,6 +13,9 @@ enum class EventType {
     SCENE_CHANGE,
     CHARACTER_CHANGE,
     GAME_OVER,
+    MOUSEMOTION,
+    MOUSEBUTTONDOWN,
+    MOUSEBUTTONUP,
     UNKNOWN
 };
 
@@ -35,6 +38,9 @@ struct Event {
     KeyCode key = KeyCode::Unknown;                     // 키 코드 (키보드 이벤트의 경우)
     std::optional<std::string>payload;         // 추가 데이터 (네트워크 메시지 등)
     std::optional<SceneChangeEventData> sceneChangeData;
+    int mouseX, mouseY;
+    bool mouseDown = false;
+    bool clicked = false;
 };
 
 struct AttackEvent{

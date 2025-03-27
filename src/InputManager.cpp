@@ -16,6 +16,15 @@ void InputManager::handleEvents(){
         if(gameEvent.type == EventType::KEYUP) {
             eventManager->pushEvent(gameEvent);
         }
+        if(gameEvent.type == EventType::MOUSEMOTION) {
+            eventManager->pushEvent(gameEvent);
+        }
+        if(gameEvent.type == EventType::MOUSEBUTTONDOWN){
+            eventManager->pushEvent(gameEvent);
+        }
+        if(gameEvent.type == EventType::MOUSEBUTTONUP){
+             eventManager->pushEvent(gameEvent);
+        }
         if(gameEvent.type == EventType::UNKNOWN){
             // std::cout << "EventType : UNKNOWN " << std::endl;  
         }
@@ -38,6 +47,26 @@ Event InputManager::convertSDLEventToGameEvent(const SDL_Event& sdlEvent) {
             case SDL_KEYUP:
                 gameEvent.type = EventType::KEYUP;
                 gameEvent.key = translateSDLKey(sdlEvent.key.keysym.sym);
+                break;
+            case SDL_MOUSEMOTION:
+                gameEvent.type = EventType::MOUSEMOTION;
+                gameEvent.mouseX = sdlEvent.motion.x;
+                gameEvent.mouseY = sdlEvent.motion.y;            
+                break;
+            case SDL_MOUSEBUTTONDOWN:
+                gameEvent.type = EventType::MOUSEBUTTONDOWN;
+                gameEvent.mouseX = sdlEvent.button.x;
+                gameEvent.mouseY = sdlEvent.button.y;
+                gameEvent.mouseDown = true;
+                break;
+            case SDL_MOUSEBUTTONUP:
+                gameEvent.type = EventType::MOUSEBUTTONUP;
+                if(gameEvent.mouseDown) gameEvent.clicked = true;
+                gameEvent.mouseX = sdlEvent.button.x;
+                gameEvent.mouseY = sdlEvent.button.y;
+                gameEvent.mouseDown = false;
+                // gameEvent.mouseX = sdlEvent.button.type;
+                // gameEvent.type
                 break;
             default:
                 // std::cout << "Unhandled SDL Event type: " << sdlEvent.type << std::endl;

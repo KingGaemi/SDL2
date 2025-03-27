@@ -453,10 +453,15 @@ void EntityFactory::loadExplosionComponent(const json& componentData, std::share
 	entity->addComponent<ExplosionComponent>(explosionAmount, explosionTime);
 }
 
+void EntityFactory::loadClickableComponent(const json& componentData, std::shared_ptr<Entity> entity){
 
+	float x = componentData.value("x", 0.0f);
+    float y = componentData.value("y", 0.0f);
+    float w = componentData.value("w", 0.0f);
+    float h = componentData.value("h", 0.0f);
 
-
-
+	entity->addComponent<ClickableComponent>(x, y, w, h);
+}
 
 
 
@@ -601,5 +606,7 @@ void EntityFactory::registerComponentLoaders() {
     componentLoaders["ExplosionComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadExplosionComponent(data, entity);
     };    
-    
+    componentLoaders["ClickableComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadClickableComponent(data, entity);
+    };     
 }

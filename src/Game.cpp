@@ -42,10 +42,9 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
         std::cerr << "Window creation failed: " << SDL_GetError() << std::endl;
         return;
     }
+
     // Create renderer
     renderer = std::make_unique<Renderer>(window);
-
-    // Create manager
     ecsManager = std::make_shared<ECSManager>();
     ecsManager->entityFactory = std::make_shared<EntityFactory>(ecsManager);
     eventManager = std::make_shared<EventManager>();
@@ -54,14 +53,13 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     inputManager = std::make_unique<InputManager>(eventManager);
     mapManager = std::make_shared<MapManager>(ecsManager);
     effectManager = std::make_shared<EffectManager>();
+    cursorManager = std::make_shared<CursorManager>();
     // Add Systems
-
     // Render
-    // ecsManager->addSystem<MapSystem>(SystemGroup::Render, 50, *renderer, ecsManager);
     ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer, ecsManager, effectManager);
     ecsManager->addSystem<UIRenderSystem>(SystemGroup::Render, 200, *renderer, ecsManager, effectManager);
     // Logic
-    ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager);
+    ecsManager->addSystem<EventSystem>(SystemGroup::Logic, 10, eventManager, cursorManager);
     ecsManager->addSystem<TimerSystem>(SystemGroup::Logic, 30);
     ecsManager->addSystem<CommandSystem>(SystemGroup::Logic, 40, eventManager);
     ecsManager->addSystem<PhysicsSystem>(SystemGroup::Logic, 50, ecsManager, eventManager, mapManager);
@@ -84,6 +82,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
 
     // auto physSys = ecsManager->getSystem<PhysicsSystem>();
     // ecsManager->setPhysicsSystem(physSys);
+    cursorManager->init();
 
     textureLoading();
     soundLoading();
