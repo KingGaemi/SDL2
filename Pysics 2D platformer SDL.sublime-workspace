@@ -558,7 +558,7 @@
 						"characters": "`"
 					},
 					"AQAAABsDAAAAAAAAHAMAAAAAAAAAAAAA",
-					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAbAwAAAAAAABsDAAAAAAAAAAAAAAAA8L8"
+					"BAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAGwMAAAAAAAAbAwAAAAAAAAAAAAAAAPC/"
 				]
 			]
 		}
@@ -991,13 +991,14 @@
 						"translation.y": 486.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"stack_multiselect": false,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
 					"file": "include/Components/PlayableComponent.h",
+					"selected": true,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1008,8 +1009,8 @@
 						"selection":
 						[
 							[
-								112,
-								112
+								109,
+								109
 							]
 						],
 						"settings":
@@ -1023,14 +1024,13 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"stack_multiselect": false,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
 					"file": "include/Components/CommandComponent.h",
-					"selected": true,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1041,8 +1041,8 @@
 						"selection":
 						[
 							[
-								398,
-								398
+								397,
+								397
 							]
 						],
 						"settings":
@@ -1053,10 +1053,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 54.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"stack_multiselect": false,
 					"type": "text"
 				}
