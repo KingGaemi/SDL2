@@ -16,7 +16,6 @@ struct CooldownStruct{
 
 };
 
-
 class CooldownComponent : public Component{
 
 public:
@@ -64,9 +63,6 @@ public:
             }
         }
     }
-
-
-
 
 	std::unordered_map<std::string, CooldownStruct> cooldownAbilities;
 

@@ -43,7 +43,7 @@ public:
         return {CommandType::None, {0, 0}, false}; // 빈 이벤트 반환
     }
 
-    std::queue<Command> commands;`
+    std::queue<Command> commands;
 };
 
 

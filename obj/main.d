@@ -104,7 +104,8 @@ obj/main.o: src/main.cpp include/Game.h include/SDL2/SDL.h \
  include/Components/ShakeEffectComponent.h \
  include/Components/SoundEffectComponent.h \
  include/Components/ExplosionComponent.h \
- include/Components/ClickableComponent.h include/Events/EventManager.h \
+ include/Components/ClickableComponent.h include/ClickCommand.h \
+ include/Manager/GameManager.h include/Events/EventManager.h \
  include/ECS/System.h include/EffectManager.h \
  include/Manager/SoundManager.h include/Manager/CursorManager.h \
  include/Scene.h include/MenuScene.h include/GameplayScene.h \
@@ -281,6 +282,8 @@ include/Components/ShakeEffectComponent.h:
 include/Components/SoundEffectComponent.h:
 include/Components/ExplosionComponent.h:
 include/Components/ClickableComponent.h:
+include/ClickCommand.h:
+include/Manager/GameManager.h:
 include/Events/EventManager.h:
 include/ECS/System.h:
 include/EffectManager.h:

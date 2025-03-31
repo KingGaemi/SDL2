@@ -104,7 +104,8 @@ obj/GameplayScene.o: src/GameplayScene.cpp include/GameplayScene.h \
  include/Components/ShakeEffectComponent.h \
  include/Components/SoundEffectComponent.h \
  include/Components/ExplosionComponent.h \
- include/Components/ClickableComponent.h include/ECS/System.h \
+ include/Components/ClickableComponent.h include/ClickCommand.h \
+ include/Manager/GameManager.h include/ECS/System.h \
  include/nlohmann/json.hpp
 include/GameplayScene.h:
 include/Scene.h:
@@ -267,5 +268,7 @@ include/Components/ShakeEffectComponent.h:
 include/Components/SoundEffectComponent.h:
 include/Components/ExplosionComponent.h:
 include/Components/ClickableComponent.h:
+include/ClickCommand.h:
+include/Manager/GameManager.h:
 include/ECS/System.h:
 include/nlohmann/json.hpp:

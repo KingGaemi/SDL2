@@ -50,7 +50,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 				auto clickComp = entity->getComponent<ClickableComponent>();
 				if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
 					cursorManager->changeCursor(Cursors::Grab);
-					cursorManager->clickedEntity = entity;
+					cursorManager->clickedEntity = entity;				
 				}
 			}
 		}
@@ -63,8 +63,9 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 				auto clickComp = entity->getComponent<ClickableComponent>();
 				if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
 					if(cursorManager->clickedEntity == entity){
-						std::cout<< "Clicked" << std::endl;
-						clickComp->isClicked = true;
+						
+						clickComp->onClick();
+						clickComp->isClicked = true; //temp
 					}
 					isHovered = true;
 					cursorManager->changeCursor(Cursors::Hover);

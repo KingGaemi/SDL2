@@ -54,6 +54,8 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     mapManager = std::make_shared<MapManager>(ecsManager);
     effectManager = std::make_shared<EffectManager>();
     cursorManager = std::make_shared<CursorManager>();
+    gameManager = std::make_shared<GameManager>();
+    gameManager->setEventManager(eventManager);
     // Add Systems
     // Render
     ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer, ecsManager, effectManager);

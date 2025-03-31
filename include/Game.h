@@ -11,6 +11,7 @@
 #include "EffectManager.h"
 #include "Manager/SoundManager.h"
 #include "Manager/CursorManager.h"
+#include "Manager/GameManager.h"
 #include "Scene.h"
 #include "MenuScene.h"
 #include "GameplayScene.h"
@@ -52,6 +53,7 @@ private:
 	std::unique_ptr<Renderer> renderer;
     std::shared_ptr<Scene> currentScene;
     std::shared_ptr<ECSManager> ecsManager;
+    std::shared_ptr<GameManager> gameManager;
     std::shared_ptr<EntityFactory> entityFactory;
     std::shared_ptr<EventManager> eventManager;
     std::shared_ptr<MapManager> mapManager;

@@ -73,8 +73,9 @@ obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
  include/Components/ShakeEffectComponent.h \
  include/Components/SoundEffectComponent.h \
  include/Components/ExplosionComponent.h \
- include/Components/ClickableComponent.h include/ECS/ECSManager.h \
- include/Events/EventManager.h include/ECS/System.h
+ include/Components/ClickableComponent.h include/ClickCommand.h \
+ include/Manager/GameManager.h include/Events/EventManager.h \
+ include/ECS/ECSManager.h include/ECS/System.h
 include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
 include/nlohmann/adl_serializer.hpp:
@@ -172,6 +173,8 @@ include/Components/ShakeEffectComponent.h:
 include/Components/SoundEffectComponent.h:
 include/Components/ExplosionComponent.h:
 include/Components/ClickableComponent.h:
-include/ECS/ECSManager.h:
+include/ClickCommand.h:
+include/Manager/GameManager.h:
 include/Events/EventManager.h:
+include/ECS/ECSManager.h:
 include/ECS/System.h:

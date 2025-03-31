@@ -33,6 +33,7 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/Components/CommandComponent.h \
  include/Components/MovementCommandComponent.h \
  include/Components/ClickableComponent.h include/Rect.h \
+ include/ClickCommand.h include/Manager/GameManager.h \
  include/ECS/EntityFactory.h include/nlohmann/json.hpp \
  include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
@@ -171,6 +172,8 @@ include/Components/CommandComponent.h:
 include/Components/MovementCommandComponent.h:
 include/Components/ClickableComponent.h:
 include/Rect.h:
+include/ClickCommand.h:
+include/Manager/GameManager.h:
 include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
 include/nlohmann/adl_serializer.hpp:

@@ -327,7 +327,7 @@ void PhysicsSystem::applyMovementCommands(std::vector<std::shared_ptr<Entity>>&p
                 else if(moveCommand.moveCommandType == MovementCommandType::Stop){
                     // 행동은 멈추지만.. 다른 엔티티에 의해 밀릴 수 있음
                     if(stateComp)stateComp->changeMovementState(MovementStates::Stop);
-                    // b2Body_SetLinearVelocity(physComp->body, {0, 0});                    
+                    b2Body_SetLinearVelocity(physComp->body, {0, 0});                    
                 }
                 else if(moveCommand.moveCommandType == MovementCommandType::MoveToDirection){
 
