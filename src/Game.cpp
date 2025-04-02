@@ -46,16 +46,16 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     // Create renderer
     renderer = std::make_unique<Renderer>(window);
     ecsManager = std::make_shared<ECSManager>();
-    ecsManager->entityFactory = std::make_shared<EntityFactory>(ecsManager);
+    gameManager = std::make_shared<GameManager>();
     eventManager = std::make_shared<EventManager>();
+    gameManager->setEventManager(eventManager);
+    ecsManager->entityFactory = std::make_shared<EntityFactory>(ecsManager, gameManager);
     soundManager = std::make_shared<SoundManager>();
     ecsManager->eventManager = eventManager;
     inputManager = std::make_unique<InputManager>(eventManager);
     mapManager = std::make_shared<MapManager>(ecsManager);
     effectManager = std::make_shared<EffectManager>();
     cursorManager = std::make_shared<CursorManager>();
-    gameManager = std::make_shared<GameManager>();
-    gameManager->setEventManager(eventManager);
     // Add Systems
     // Render
     ecsManager->addSystem<WorldRenderSystem>(SystemGroup::Render, 100, *renderer, ecsManager, effectManager);

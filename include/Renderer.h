@@ -27,6 +27,7 @@ public:
     void RenderDrawLineF(float x1, float y1, float x2, float y2);
     void RenderFillRectF(SDL_FRect *rect);
     void RenderDrawRect(SDL_FRect &debugRect, float rot);
+    void setFont(const std::string& font, int size);
 
 private:
     TTF_Font* myFont;

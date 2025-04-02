@@ -78,7 +78,8 @@ obj/CollisionSystem.o: src/CollisionSystem.cpp \
  include/Components/ExplosionComponent.h \
  include/Components/ClickableComponent.h include/ClickCommand.h \
  include/Manager/GameManager.h include/Events/EventManager.h \
- include/ECS/System.h include/Collision.h
+ include/Components/TextLabelComponent.h include/ECS/System.h \
+ include/Collision.h
 include/Systems/CollisionSystem.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
@@ -181,5 +182,6 @@ include/Components/ClickableComponent.h:
 include/ClickCommand.h:
 include/Manager/GameManager.h:
 include/Events/EventManager.h:
+include/Components/TextLabelComponent.h:
 include/ECS/System.h:
 include/Collision.h:

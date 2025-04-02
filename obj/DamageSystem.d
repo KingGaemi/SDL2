@@ -77,14 +77,14 @@ obj/DamageSystem.o: src/DamageSystem.cpp include/Systems/DamageSystem.h \
  include/Components/ExplosionComponent.h \
  include/Components/ClickableComponent.h include/ClickCommand.h \
  include/Manager/GameManager.h include/Events/EventManager.h \
- include/Manager/SoundManager.h include/SDL2/SDL_mixer.h \
- include/SDL2/SDL_stdinc.h include/SDL2/SDL_config.h \
- include/SDL2/SDL_platform.h include/SDL2/begin_code.h \
- include/SDL2/close_code.h include/SDL2/SDL_rwops.h \
- include/SDL2/SDL_error.h include/SDL2/SDL_audio.h \
- include/SDL2/SDL_endian.h include/SDL2/SDL_mutex.h \
- include/SDL2/SDL_thread.h include/SDL2/SDL_atomic.h \
- include/SDL2/SDL_version.h
+ include/Components/TextLabelComponent.h include/Manager/SoundManager.h \
+ include/SDL2/SDL_mixer.h include/SDL2/SDL_stdinc.h \
+ include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
+ include/SDL2/begin_code.h include/SDL2/close_code.h \
+ include/SDL2/SDL_rwops.h include/SDL2/SDL_error.h \
+ include/SDL2/SDL_audio.h include/SDL2/SDL_endian.h \
+ include/SDL2/SDL_mutex.h include/SDL2/SDL_thread.h \
+ include/SDL2/SDL_atomic.h include/SDL2/SDL_version.h
 include/Systems/DamageSystem.h:
 include/ECS/System.h:
 include/ECS/ECSManager.h:
@@ -188,6 +188,7 @@ include/Components/ClickableComponent.h:
 include/ClickCommand.h:
 include/Manager/GameManager.h:
 include/Events/EventManager.h:
+include/Components/TextLabelComponent.h:
 include/Manager/SoundManager.h:
 include/SDL2/SDL_mixer.h:
 include/SDL2/SDL_stdinc.h:

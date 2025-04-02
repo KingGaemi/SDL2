@@ -4,6 +4,7 @@
 #include "nlohmann/json.hpp"
 #include "Requests.h"
 #include "Components/Components.h"
+#include "Manager/GameManager.h"
 
 class Entity;
 class ECSManager; // 전방 선언
@@ -13,7 +14,7 @@ using json = nlohmann::json;
 
 class EntityFactory {
 public:
-    EntityFactory(std::shared_ptr<ECSManager>& ecsManager) : ecsManager(ecsManager) {
+    EntityFactory(std::shared_ptr<ECSManager>& ecsManager, std::shared_ptr<GameManager>& gameManager) : ecsManager(ecsManager) , gameManager(gameManager) {
         unitsJson = json::parse(std::ifstream("json/prefab/units_prefab.json"));
         objectsJson = json::parse(std::ifstream("json/prefab/objects_prefab.json"));
         uiJson = json::parse(std::ifstream("json/prefab/ui_prefab.json"));
@@ -61,6 +62,7 @@ public:
     void loadSoundEffectComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadExplosionComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadClickableComponent(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadTextLabelComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req);
     void registerComponentLoaders();
 private:
@@ -73,5 +75,6 @@ private:
     json itemsJson;
     std::size_t nextItemID = 0;
     std::shared_ptr<ECSManager> ecsManager;
+    std::shared_ptr<GameManager> gameManager;
     std::unordered_map<std::string, std::function<void(const json&, std::shared_ptr<Entity>)>> componentLoaders;
 };

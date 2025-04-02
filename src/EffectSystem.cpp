@@ -200,7 +200,7 @@ void EffectSystem::damageTextEffect(std::shared_ptr<Entity>& entity){
 	w += n * 7.0f;
 	float h = 40.0f;	
 	float x = posComp->x - w/2;
-	float y = posComp->y - h*1.2f - transComp->height - (statusComp->recentTime - statusComp->timer)*10;;
+	float y = posComp->y - h*1.2f - transComp->height - (statusComp->recentTime - statusComp->timer)*10;
 	req.dstRect = {x, y, w, h};
 	effectManager->pendingEffects.push_back(req);
 

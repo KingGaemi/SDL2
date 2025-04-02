@@ -105,7 +105,8 @@ obj/MapManager.o: src/MapManager.cpp include/MapManager.h \
  include/Components/ExplosionComponent.h \
  include/Components/ClickableComponent.h include/ClickCommand.h \
  include/Manager/GameManager.h include/Events/EventManager.h \
- include/ECS/System.h include/nlohmann/json.hpp
+ include/Components/TextLabelComponent.h include/ECS/System.h \
+ include/nlohmann/json.hpp
 include/MapManager.h:
 include/TextureManager.h:
 include/Renderer.h:
@@ -267,5 +268,6 @@ include/Components/ClickableComponent.h:
 include/ClickCommand.h:
 include/Manager/GameManager.h:
 include/Events/EventManager.h:
+include/Components/TextLabelComponent.h:
 include/ECS/System.h:
 include/nlohmann/json.hpp:

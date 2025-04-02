@@ -134,6 +134,11 @@
       "path": "res/gfx/sprite_sheets/object/barrel/barrel.png",
       "textureId": "barrel",
       "type": "object"
+    },
+    {
+      "path": "res/gfx/UI/frame/spr_banner_hud.png",
+      "textureId": "select_frame",
+      "type": "ui"
     }
   ]
 }

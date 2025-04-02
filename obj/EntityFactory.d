@@ -75,7 +75,8 @@ obj/EntityFactory.o: src/EntityFactory.cpp include/ECS/EntityFactory.h \
  include/Components/ExplosionComponent.h \
  include/Components/ClickableComponent.h include/ClickCommand.h \
  include/Manager/GameManager.h include/Events/EventManager.h \
- include/ECS/ECSManager.h include/ECS/System.h
+ include/Components/TextLabelComponent.h include/ECS/ECSManager.h \
+ include/ECS/System.h
 include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
 include/nlohmann/adl_serializer.hpp:
@@ -176,5 +177,6 @@ include/Components/ClickableComponent.h:
 include/ClickCommand.h:
 include/Manager/GameManager.h:
 include/Events/EventManager.h:
+include/Components/TextLabelComponent.h:
 include/ECS/ECSManager.h:
 include/ECS/System.h:

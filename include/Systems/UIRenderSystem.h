@@ -17,6 +17,14 @@ class UIRenderSystem : public RenderSystem {
             
         }
         drawEffects();
+        for (auto& entity : entities) {
+            if (!entity->isActive) continue;
+            // UI 태그가 있어야만 그린다거나...
+            if (!entity->hasComponent<TextLabelComponent>()) continue;
+            drawText(entity);
+            
+        }
+
         // 여기서 최종 display()
         renderer->display();
     }

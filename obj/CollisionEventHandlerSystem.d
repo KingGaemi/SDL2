@@ -77,7 +77,8 @@ obj/CollisionEventHandlerSystem.o: src/CollisionEventHandlerSystem.cpp \
  include/Components/SoundEffectComponent.h \
  include/Components/ExplosionComponent.h \
  include/Components/ClickableComponent.h include/ClickCommand.h \
- include/Manager/GameManager.h include/Events/EventManager.h
+ include/Manager/GameManager.h include/Events/EventManager.h \
+ include/Components/TextLabelComponent.h
 include/Systems/CollisionEventHandlerSystem.h:
 include/ECS/Entity.h:
 include/ECS/Component.h:
@@ -181,3 +182,4 @@ include/Components/ClickableComponent.h:
 include/ClickCommand.h:
 include/Manager/GameManager.h:
 include/Events/EventManager.h:
+include/Components/TextLabelComponent.h:

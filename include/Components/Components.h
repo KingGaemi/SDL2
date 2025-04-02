@@ -35,4 +35,5 @@
 #include "SoundEffectComponent.h"
 #include "ExplosionComponent.h"
 #include "ClickableComponent.h"
+#include "TextLabelComponent.h"
 // #include "GroupComponent.h"

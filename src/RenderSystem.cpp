@@ -9,6 +9,7 @@
 #include "Components/CameraComponent.h"
 #include "Components/HitboxComponent.h"
 #include "Components/ClickableComponent.h"
+#include "Components/TextLabelComponent.h"
 #include <iostream>
 #include <algorithm>
 #include "myMath.h"
@@ -40,12 +41,16 @@ void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
     cameraEntity = ecsManager->getCamera();
     std::vector<std::shared_ptr <Entity>> renderables;
     std::vector<std::shared_ptr <Entity>> shadows;
+    std::vector<std::shared_ptr <Entity>> texts;
     for (auto& e : entities) {
         if (e->hasComponent<PositionComponent>() && e->hasComponent<SpriteComponent>()) {
             renderables.push_back(e);
         }
         if (e->hasComponent<PositionComponent>() && e->hasComponent<SpriteComponent>() && e->hasComponent<ShadowComponent>()) {
             shadows.push_back(e);
+        }
+        if (e->hasComponent<PositionComponent>() && e->hasComponent<TextLabelComponent>()){
+            texts.push_back(e);
         }
     }
 
@@ -90,6 +95,10 @@ void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
     }
     for (auto& entity : renderables) {
        drawEntity(entity);
+    }
+    for (auto& entity : texts) {
+       drawText(entity);
+
     }
 
     renderer->display();
@@ -217,13 +226,13 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
             renderer->RenderDrawRect(debugRect, rad);
 
         }
-        if(entity->hasComponent<ClickableComponent>()){
+        if(entity->hasComponent<ClickableComponent>() && entity->hasComponent<PositionComponent>()){
 
             auto clickComp = entity->getComponent<ClickableComponent>();
-
+            auto posComp = entity->getComponent<PositionComponent>();
             SDL_FRect debugRect;
-            debugRect = { debugRect.x = clickComp->rect.x + clickComp->rect.w/2,
-                    debugRect.y = clickComp->rect.y + clickComp->rect.h/2,
+            debugRect = { debugRect.x = posComp->x,
+                    debugRect.y = posComp->y,
                     debugRect.w = clickComp->rect.w,
                     debugRect.h = clickComp->rect.h
             };
@@ -324,7 +333,7 @@ void RenderSystem::drawEffects(){
             renderer->RenderFillRectF(&dstRect);
         }else if(textureId == "damageText"){            
             textureManager->loadText(std::to_string(effectRequest.textNumber).c_str());
-            auto texture = textureManager->getTexture(textureId);
+            auto texture = textureManager->getTexture(std::to_string(effectRequest.textNumber).c_str());
             renderer->render(texture, nullptr, &dstRect, rot, nullptr, SDL_FLIP_NONE);
     
             
@@ -381,3 +390,33 @@ void RenderSystem::drawUI(const std::shared_ptr<Entity>& entity){
     }
 }
 
+
+void RenderSystem::drawText(const std::shared_ptr<Entity>& entity) {
+    if (!entity->isActive) return;
+
+
+    if(entity->hasComponent<PositionComponent>() && entity->hasComponent<TextLabelComponent>()){
+        auto posComp = entity->getComponent<PositionComponent>();
+        auto textComp = entity->getComponent<TextLabelComponent>();
+
+        if (posComp && textComp) {
+            SDL_FRect dstRect = {0, 0, textComp->w, textComp->h};
+            dstRect.x = posComp->x - (dstRect.w/2);
+            dstRect.y = posComp->y - (dstRect.h/2);
+            if(cameraEntity){
+                auto cameraPos = cameraEntity->getComponent<PositionComponent>();
+                if(cameraPos){
+                   dstRect.x = dstRect.x - cameraPos->x;                   
+                   dstRect.y = dstRect.y - cameraPos->y;
+                }
+            }
+
+            SDL_RendererFlip flip = SDL_FLIP_NONE;
+            float rot = 0.0f;
+            renderer->setFont(textComp->font, textComp->size);
+            textureManager->loadText(textComp->text.c_str());
+            auto texture = textureManager->getTexture(textComp->text.c_str());
+            renderer->render(texture, nullptr, &dstRect, rot, nullptr, SDL_FLIP_NONE);
+        }
+    }
+}

@@ -64,7 +64,7 @@ public:
             std::cerr << "Failed to load textTexture: " << textString << " Error: " << SDL_GetError() << std::endl;
             return false;
         }
-		textures["damageText"] = texture;
+		textures[textString] = texture;
 		return true;
 	}
 

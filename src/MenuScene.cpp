@@ -37,9 +37,9 @@ void MenuScene::onEnter(){
 
 
 	req.entityType = EntityType::UI;
-	req.name = "playButton";
-	req.w = 71;
-	req.h = 92;
+	req.name = "select_frame";
+	req.w = 192;
+	req.h = 32;
 	req.sc = 3.0f;
 	req.hasTransform = true;
 	ecsManager->pendingSpawns.push_back(req);

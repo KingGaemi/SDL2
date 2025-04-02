@@ -77,8 +77,9 @@ obj/RenderSystem.o: src/RenderSystem.cpp include/Systems/RenderSystem.h \
  include/Components/ExplosionComponent.h \
  include/Components/ClickableComponent.h include/ClickCommand.h \
  include/Manager/GameManager.h include/Events/EventManager.h \
- include/TextureManager.h include/Renderer.h include/IRenderer.h \
- include/SDL2/SDL.h include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
+ include/Components/TextLabelComponent.h include/TextureManager.h \
+ include/Renderer.h include/IRenderer.h include/SDL2/SDL.h \
+ include/SDL2/SDL_main.h include/SDL2/SDL_stdinc.h \
  include/SDL2/SDL_config.h include/SDL2/SDL_platform.h \
  include/SDL2/begin_code.h include/SDL2/close_code.h \
  include/SDL2/SDL_assert.h include/SDL2/SDL_atomic.h \
@@ -208,6 +209,7 @@ include/Components/ClickableComponent.h:
 include/ClickCommand.h:
 include/Manager/GameManager.h:
 include/Events/EventManager.h:
+include/Components/TextLabelComponent.h:
 include/TextureManager.h:
 include/Renderer.h:
 include/IRenderer.h:

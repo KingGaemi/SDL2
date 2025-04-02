@@ -39,6 +39,7 @@ protected:
     void drawEntity(const std::shared_ptr<Entity>& entity);
     void drawShadow(const std::shared_ptr<Entity>& entity);
     void drawUI(const std::shared_ptr<Entity>& entity);
+    void drawText(const std::shared_ptr<Entity>& entity);
     void drawEffects();
     std::shared_ptr<Entity> cameraEntity;
     std::shared_ptr<ECSManager> ecsManager;

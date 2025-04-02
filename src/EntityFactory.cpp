@@ -455,13 +455,33 @@ void EntityFactory::loadExplosionComponent(const json& componentData, std::share
 
 void EntityFactory::loadClickableComponent(const json& componentData, std::shared_ptr<Entity> entity){
 
-	float x = componentData.value("x", 0.0f);
-    float y = componentData.value("y", 0.0f);
+	float offsetX = componentData.value("offsetX", 0.0f);
+    float offsetY = componentData.value("offsetY", 0.0f);
     float w = componentData.value("w", 0.0f);
     float h = componentData.value("h", 0.0f);
+    std::string clickCommandType = componentData.value("commandType", "none");
 
-	entity->addComponent<ClickableComponent>(x, y, w, h);
+	entity->addComponent<ClickableComponent>(offsetX, offsetY, w, h);
+
+	auto clickComp = entity->getComponent<ClickableComponent>();
+
+	if(!clickComp) return; 
+
+	if(clickCommandType == "PlayGameCommand"){
+		clickComp->clickCommand = std::make_unique<PlayGameCommand>(gameManager);
+	}
+
 }
+
+void EntityFactory::loadTextLabelComponent(const json& componentData, std::shared_ptr<Entity> entity){
+
+	std::string text = componentData.value("text", "Text here");
+    std::string font = componentData.value("font", "ARCADECLASSIC.TTF");
+    int size = componentData.value("size", 18);
+
+	entity->addComponent<TextLabelComponent>(text, font, size);
+}
+
 
 
 
@@ -608,5 +628,9 @@ void EntityFactory::registerComponentLoaders() {
     };    
     componentLoaders["ClickableComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadClickableComponent(data, entity);
-    };     
+    }; 
+    componentLoaders["TextLabelComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadTextLabelComponent(data, entity);
+    }; 
+        
 }

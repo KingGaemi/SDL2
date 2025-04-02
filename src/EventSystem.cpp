@@ -30,51 +30,64 @@ void EventSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float d
 void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Entity>>& entities){
 
 	// Check KeyDowns and direction
-	if(evt.type == EventType::MOUSEMOTION){
+	if(evt.type == EventType::MOUSEMOTION ||
+	   evt.type == EventType::MOUSEBUTTONDOWN ||
+	   evt.type == EventType::MOUSEBUTTONUP){
 		bool isHovered = false;
 		for(auto& entity : entities){
-			if(entity->isActive && entity->hasComponent<ClickableComponent>()){
+			if(entity->isActive && entity->hasComponent<ClickableComponent>() && entity->hasComponent<PositionComponent>()){
+				auto posComp = entity->getComponent<PositionComponent>();
 				auto clickComp = entity->getComponent<ClickableComponent>();
-				if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
+				if(clickComp->isHovered(posComp->x, posComp->y, evt.mouseX, evt.mouseY)){
 					isHovered = true;
-					if(cursorManager->getCurrentCursor() != Cursors::Grab) cursorManager->changeCursor(Cursors::Hover);
+					if(evt.type == EventType::MOUSEMOTION && cursorManager->getCurrentCursor() != Cursors::Grab) cursorManager->changeCursor(Cursors::Hover);
+					if(evt.type == EventType::MOUSEBUTTONDOWN ){
+						cursorManager->changeCursor(Cursors::Grab);
+						cursorManager->clickedEntity = entity;	
+					}
+					if(evt.type == EventType::MOUSEBUTTONUP ){
+						if(cursorManager->clickedEntity == entity){
+							clickComp->onClick();
+							clickComp->isClicked = true; //temp
+						}
+						cursorManager->changeCursor(Cursors::Hover);
+					}
 				}
 			}
 		}
 		if(!isHovered && (cursorManager->getCurrentCursor() != Cursors::Grab)) cursorManager->changeCursor(Cursors::Pointer);
 	}
 
-	if(evt.type == EventType::MOUSEBUTTONDOWN){
-		for(auto& entity : entities){
-			if(entity->isActive && entity->hasComponent<ClickableComponent>()){
-				auto clickComp = entity->getComponent<ClickableComponent>();
-				if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
-					cursorManager->changeCursor(Cursors::Grab);
-					cursorManager->clickedEntity = entity;				
-				}
-			}
-		}
-	}
+	// if(evt.type == EventType::MOUSEBUTTONDOWN){
+	// 	for(auto& entity : entities){
+	// 		if(entity->isActive && entity->hasComponent<ClickableComponent>() && entity->hasComponent<PositionComponent>()){
+	// 			auto clickComp = entity->getComponent<ClickableComponent>();
+	// 			if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
+	// 				cursorManager->changeCursor(Cursors::Grab);
+	// 				cursorManager->clickedEntity = entity;				
+	// 			}
+	// 		}
+	// 	}
+	// }
 
-	if(evt.type == EventType::MOUSEBUTTONUP){
-		bool isHovered = false;
-		for(auto& entity : entities){
-			if(entity->isActive && entity->hasComponent<ClickableComponent>()){
-				auto clickComp = entity->getComponent<ClickableComponent>();
-				if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
-					if(cursorManager->clickedEntity == entity){
+	// if(evt.type == EventType::MOUSEBUTTONUP){
+	// 	bool isHovered = false;
+	// 	for(auto& entity : entities){
+	// 		if(entity->isActive && entity->hasComponent<ClickableComponent>()){
+	// 			auto clickComp = entity->getComponent<ClickableComponent>();
+	// 			if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
+	// 				if(cursorManager->clickedEntity == entity){
 						
-						clickComp->onClick();
-						clickComp->isClicked = true; //temp
-					}
-					isHovered = true;
-					cursorManager->changeCursor(Cursors::Hover);
-				}
-			}
-		}
-		if(!isHovered) cursorManager->changeCursor(Cursors::Pointer);
-		else cursorManager->changeCursor(Cursors::Hover);
-	}
+	// 					clickComp->onClick();
+	// 					clickComp->isClicked = true; //temp
+	// 				}
+	// 				isHovered = true;
+	// 				cursorManager->changeCursor(Cursors::Hover);
+	// 			}
+	// 		}
+	// 	}
+
+	// }
 
 	if(evt.type == EventType::KEYDOWN && !pressed[toInt(evt.key)]){
 		pressed[toInt(evt.key)] = true;

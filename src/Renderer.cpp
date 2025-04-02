@@ -65,6 +65,12 @@ SDL_Texture* Renderer::loadText(const char * textString){
     return textTexture;
 }
 
+void Renderer::setFont(const std::string& font, int size){
+    std::string path = "res/fonts/";
+    path += font;
+    myFont = TTF_OpenFont(path.c_str(), size);
+}
+
 
 void Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_FRect* dstRect, double angle, SDL_FPoint* center, SDL_RendererFlip flip) {
 
@@ -74,7 +80,6 @@ void Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_FRect* dstRec
     }
     
     SDL_RenderCopyExF(SDL_renderer, texture, srcRect, dstRect, angle, center, flip);
-
 }
 
 void Renderer::clear()
