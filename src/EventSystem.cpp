@@ -58,37 +58,6 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 		if(!isHovered && (cursorManager->getCurrentCursor() != Cursors::Grab)) cursorManager->changeCursor(Cursors::Pointer);
 	}
 
-	// if(evt.type == EventType::MOUSEBUTTONDOWN){
-	// 	for(auto& entity : entities){
-	// 		if(entity->isActive && entity->hasComponent<ClickableComponent>() && entity->hasComponent<PositionComponent>()){
-	// 			auto clickComp = entity->getComponent<ClickableComponent>();
-	// 			if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
-	// 				cursorManager->changeCursor(Cursors::Grab);
-	// 				cursorManager->clickedEntity = entity;				
-	// 			}
-	// 		}
-	// 	}
-	// }
-
-	// if(evt.type == EventType::MOUSEBUTTONUP){
-	// 	bool isHovered = false;
-	// 	for(auto& entity : entities){
-	// 		if(entity->isActive && entity->hasComponent<ClickableComponent>()){
-	// 			auto clickComp = entity->getComponent<ClickableComponent>();
-	// 			if(clickComp->isHovered(evt.mouseX, evt.mouseY)){
-	// 				if(cursorManager->clickedEntity == entity){
-						
-	// 					clickComp->onClick();
-	// 					clickComp->isClicked = true; //temp
-	// 				}
-	// 				isHovered = true;
-	// 				cursorManager->changeCursor(Cursors::Hover);
-	// 			}
-	// 		}
-	// 	}
-
-	// }
-
 	if(evt.type == EventType::KEYDOWN && !pressed[toInt(evt.key)]){
 		pressed[toInt(evt.key)] = true;
 		// std::cout << toInt(evt.key) << std::endl;
@@ -120,16 +89,6 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 	//==========================
 	// KeyDown to commands
 	//
-
-	// temp ====
-	if (evt.type == EventType::KEYDOWN && evt.key == KeyCode::Enter) {
-        Event sceneChangeEvent;
-        sceneChangeEvent.type = EventType::SCENE_CHANGE;
-        sceneChangeEvent.sceneChangeData = SceneChangeEventData{"GameplayScene"};
-        eventManager->pushBigEvent(sceneChangeEvent);
-    }
-    // ======
-
 
 	if(!targetEntity) return;
 	auto commandComp = targetEntity->getComponent<CommandComponent>();

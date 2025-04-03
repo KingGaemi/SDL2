@@ -471,6 +471,10 @@ void EntityFactory::loadClickableComponent(const json& componentData, std::share
 		clickComp->clickCommand = std::make_unique<PlayGameCommand>(gameManager);
 	}
 
+	if(clickCommandType == "SelectCharacterCommand"){
+		clickComp->clickCommand = std::make_unique<SelectCharacterCommand>(gameManager);
+	}
+
 }
 
 void EntityFactory::loadTextLabelComponent(const json& componentData, std::shared_ptr<Entity> entity){

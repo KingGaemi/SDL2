@@ -139,6 +139,11 @@
       "path": "res/gfx/UI/frame/spr_banner_hud.png",
       "textureId": "select_frame",
       "type": "ui"
+    },
+    {
+      "path": "res/gfx/UI/made/text_box.png",
+      "textureId": "text_box",
+      "type": "ui"
     }
   ]
 }

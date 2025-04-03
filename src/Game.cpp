@@ -221,6 +221,12 @@ void Game::changeScene(std::string sceneName) {
         currentScene = std::make_shared<GameplayScene>(ecsManager, mapManager);
         currentScene->onEnter();
     }
+    if (sceneName == "CharacterSelectScene") {
+        std::cout << "Switching to Character Select Scene..." << std::endl;
+        currentScene->onExit();
+        currentScene = std::make_shared<CharacterSelectScene>(ecsManager, gameManager);
+        currentScene->onEnter();
+    }
 } 
 
 void Game::clean() {

@@ -16,6 +16,7 @@ public:
 
 
 	void gameStart();
+	void goSelectScene();
 
 	void setEventManager(std::shared_ptr<EventManager>& p_eventManager){
 		eventManager = p_eventManager;

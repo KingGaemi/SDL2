@@ -27,3 +27,23 @@ public:
 private:
     std::shared_ptr<GameManager> gameManager;
 };
+
+class SelectCharacterCommand : public ClickCommand {
+public:
+
+    SelectCharacterCommand(std::shared_ptr<GameManager>& gameManager) : gameManager(gameManager) {}
+
+    void execute() override {
+        if(gameManager) {
+            gameManager->goSelectScene();
+           
+        }else{
+            std::cout << "gameManager is nullptr" << std::endl;
+        }
+
+
+        // 실제 문 열기 로직 실행
+    }
+private:
+    std::shared_ptr<GameManager> gameManager;
+};

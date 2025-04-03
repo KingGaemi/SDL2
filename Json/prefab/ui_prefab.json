@@ -145,11 +145,52 @@
         "h": 40,      
         "offsetX": 0,
         "offsetY": 0,
-	"commandType": "PlayGameCommand"
+	"commandType": "SelectCharacterCommand"
 	},
       {
         "name": "TextLabelComponent",
 	"text": "Game Start",
+	"font": "ARCADECLASSIC.TTF",
+	"size": 36
+	}
+
+    ]
+  },
+  "confirm_button": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "text_box",
+        "width": 192,
+        "height": 32,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 192,
+        "height": 32,
+        "scale": 1.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Menu"
+      },
+      {
+        "name": "ClickableComponent",
+        "w": 132,
+        "h": 40,      
+        "offsetX": 0,
+        "offsetY": 0,
+	"commandType": "PlayGameCommand"
+	},
+      {
+        "name": "TextLabelComponent",
+	"text": "Confirm",
 	"font": "ARCADECLASSIC.TTF",
 	"size": 36
 	}

@@ -109,15 +109,16 @@ obj/Game.o: src/Game.cpp include/Game.h include/SDL2/SDL.h \
  include/Components/TextLabelComponent.h include/ECS/System.h \
  include/EffectManager.h include/Manager/SoundManager.h \
  include/Manager/CursorManager.h include/Scene.h include/MenuScene.h \
- include/GameplayScene.h include/Systems/Systems.h \
- include/Systems/AnimationSystem.h include/Systems/InputSystem.h \
- include/Systems/MovementSystem.h include/Systems/RenderSystem.h \
- include/Systems/TimerSystem.h include/Systems/ExpireSystem.h \
- include/Systems/AttackSystem.h include/Systems/CooldownSystem.h \
- include/Systems/PhysicsSystem.h include/Systems/CommandSystem.h \
- include/Systems/WorldRenderSystem.h include/Systems/SyncSystem.h \
- include/Systems/UIRenderSystem.h include/Systems/CollisionSystem.h \
- include/Systems/DamageSystem.h include/Systems/EffectSystem.h \
+ include/GameplayScene.h include/CharacterSelectScene.h \
+ include/Systems/Systems.h include/Systems/AnimationSystem.h \
+ include/Systems/InputSystem.h include/Systems/MovementSystem.h \
+ include/Systems/RenderSystem.h include/Systems/TimerSystem.h \
+ include/Systems/ExpireSystem.h include/Systems/AttackSystem.h \
+ include/Systems/CooldownSystem.h include/Systems/PhysicsSystem.h \
+ include/Systems/CommandSystem.h include/Systems/WorldRenderSystem.h \
+ include/Systems/SyncSystem.h include/Systems/UIRenderSystem.h \
+ include/Systems/CollisionSystem.h include/Systems/DamageSystem.h \
+ include/Systems/EffectSystem.h \
  include/Systems/CollisionEventHandlerSystem.h \
  include/Systems/CameraSystem.h include/Systems/AISystem.h \
  include/Systems/SpawnSystem.h include/Systems/KillSystem.h \
@@ -293,6 +294,7 @@ include/Manager/CursorManager.h:
 include/Scene.h:
 include/MenuScene.h:
 include/GameplayScene.h:
+include/CharacterSelectScene.h:
 include/Systems/Systems.h:
 include/Systems/AnimationSystem.h:
 include/Systems/InputSystem.h:

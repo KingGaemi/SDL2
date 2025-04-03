@@ -13,7 +13,8 @@ enum class SceneCode{
     Global,
     Menu,
     Game,
-    Pause
+    Pause,
+    Select
 };
 
 

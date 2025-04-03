@@ -15,6 +15,7 @@
 #include "Scene.h"
 #include "MenuScene.h"
 #include "GameplayScene.h"
+#include "CharacterSelectScene.h"
 #include "ECS/ECSManager.h"
 #include "ECS/System.h"
 #include "ECS/EntityFactory.h"

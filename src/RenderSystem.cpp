@@ -312,10 +312,6 @@ void RenderSystem::drawEffects(){
         SDL_Rect srcRect = toSDLRect(effectRequest.srcRect);
         SDL_FRect dstRect = toSDLFRect(effectRequest.dstRect);
         float rot = effectRequest.rot;
-        // dstRect.x = effectRequest.x;
-        // dstRect.y = effectRequest.y;
-        // dstRect.w = effectRequest.w;
-        // dstRect.h = effectRequest.h;
 
 
 
