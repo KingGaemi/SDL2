@@ -25,21 +25,27 @@ C++
 
 SDL2, Box2D, nlohmann/json
 
-실행 방법 (How to Run)
-release/ 폴더로 이동합니다.
+---
+엔티티를 생성 로직
+
+1. SpawnRequest를 통해 엔티티의 타입, 이름, 좌표, 크기 등 간단한 데이터를 직접 할당해준 뒤 ecsManager의 pendingSpawn 큐에 푸쉬 (ecsManager를 호출할 수 있으면 어디서든 가능).
+2. ecsManager는 EntityFactory에게 빈 엔티티 전달 후 팩토리에서 엔티티의 타입과 이름을 경로삼아 json 형태로 저장된 데이터를 기반으로 그 엔티티가 붙여야 할 컴포넌트(Component)들을 부착.
+3. 마지막으로 Request에 담긴 지정 좌표와 크기 등, 유닛이 가진 고유값이 아닌 데이터를 부여
+
+
+
+
+=======
+
+실행 방법 
 
 2DPlatformer.exe 실행 파일을 실행합니다.
 
 필요한 SDL2 관련 DLL 파일들은 함께 제공됩니다.
 
 ※ 추가 설치나 빌드 과정 없이 바로 실행 가능합니다.
+========
 
-
-엔티티를 생성 로직
-
-1. SpawnRequest를 통해 엔티티의 타입, 이름, 좌표, 크기 등 간단한 데이터를 직접 할당해준 뒤 ecsManager의 pendingSpawn 큐에 푸쉬 (ecsManager를 호출할 수 있으면 어디서든 가능).
-2. ecsManager는 EntityFactory에게 빈 엔티티 전달 후 팩토리에서 엔티티의 타입과 이름을 경로삼아 json 형태로 저장된 데이터를 기반으로 그 엔티티가 붙여야 할 컴포넌트(Component)들을 부착.
-3. 마지막으로 Request에 담긴 지정 좌표와 크기 등, 유닛이 가진 고유값이 아닌 데이터를 부여
 
 
 ----
