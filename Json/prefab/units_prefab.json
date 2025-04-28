@@ -204,6 +204,7 @@
         "maxHp": 599,
         "maxMp": 511,
         "attackSpeed": 0.8,
+        "movementSpeed": 60,
         "physicalDamage": 20
       },
       {
@@ -309,7 +310,7 @@
         "maxHp": 5550,
         "maxMp": 511,
         "attackSpeed": 1.5,
-        "movementSpeed": 30,
+        "movementSpeed": 15,
         "physicalDamage": 50
       },
       {
