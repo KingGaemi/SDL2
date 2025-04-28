@@ -36,6 +36,7 @@ SDL2, Box2D, nlohmann/json
 
 
 =======
+
 실행 방법 
 
 2DPlatformer.exe 실행 파일을 실행합니다.
