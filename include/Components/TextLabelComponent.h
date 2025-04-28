@@ -8,6 +8,7 @@ public:
 	std::string text;
 	std::string font;
 	float w, h;
+	bool textChanged;
 	int size;
 	TextLabelComponent(const std::string& text, const std::string& font, int size) : text(text), font(font), size(size){
 		h = size*2;

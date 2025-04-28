@@ -12,7 +12,10 @@ enum class EntityType {
     Props,
     Wall,
     Camera,
-    Item
+    Image,
+    Effect,
+    Item,
+    Text
 };
 
 

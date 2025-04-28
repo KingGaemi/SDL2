@@ -144,6 +144,26 @@
       "path": "res/gfx/UI/made/text_box.png",
       "textureId": "text_box",
       "type": "ui"
+    },
+    {
+      "path": "res/gfx/game_over.png",
+      "textureId": "game_over",
+      "type": "image"
+    },
+    {
+      "path": "res/gfx/you_died.png",
+      "textureId": "you_died",
+      "type": "image"
+    },
+    {
+      "path": "res/gfx/core_destroyed.png",
+      "textureId": "core_destroyed",
+      "type": "image"
+    },
+    {
+      "path": "res/gfx/stage_clear.png",
+      "textureId": "stage_clear",
+      "type": "image"
     }
   ]
 }

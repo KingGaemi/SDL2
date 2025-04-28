@@ -61,11 +61,13 @@ void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float
 								eventManager->pushAttackEvent(attackEvent);
 							}
 						}else if(command.commandType == CommandType::Shoot){
-							if(!stateComp->inMotion) stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
-							AttackEvent attackEvent;
-							attackEvent.attackerId = entity->getId();
-							attackEvent.attackType = AttackType::Shoot;
-							eventManager->pushAttackEvent(attackEvent);
+							if(!stateComp->inMotion){
+								stateComp->changeActionState(ActionStates::Attack, (1.0f / statusComp->attackSpeed));
+								AttackEvent attackEvent;
+								attackEvent.attackerId = entity->getId();
+								attackEvent.attackType = AttackType::Shoot;
+								eventManager->pushAttackEvent(attackEvent);
+							} 
 						}else{
 							stateComp->changeActionState(ActionStates::Idle, 0);
 						}

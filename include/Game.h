@@ -37,7 +37,6 @@ public:
 	void soundLoading();
 	void run();
 	bool running() const;
-	void render();
 	Event convertSDLEventToGameEvent(const SDL_Event& sdlEvent);
 	void changeScene(std::string newScene);
 	void handleEvents();
@@ -45,7 +44,7 @@ public:
 	
 private:
 	SDL_Window* window;
-	bool isRunning;
+	bool isRunning, pause, gameOver;
 	Uint32 lastFrameTime;
 	Uint32 frameStart;
 	int frameTime;

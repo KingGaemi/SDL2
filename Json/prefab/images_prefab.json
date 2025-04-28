@@ -1,0 +1,29 @@
+{
+  "game_over": {
+    "components": [
+
+      {
+        "name": "PositionComponent",
+        "x": 500,
+        "y": 500
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "game_over",
+        "width": 785,
+        "height": 258,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 785,
+        "height": 258,
+        "scale": 1.0
+      }
+    ]
+  }
+}

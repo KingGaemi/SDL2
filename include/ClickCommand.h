@@ -20,9 +20,6 @@ public:
         }else{
             std::cout << "gameManager is nullptr" << std::endl;
         }
-
-
-        // 실제 문 열기 로직 실행
     }
 private:
     std::shared_ptr<GameManager> gameManager;
@@ -35,14 +32,11 @@ public:
 
     void execute() override {
         if(gameManager) {
-            gameManager->goSelectScene();
+            gameManager->popUpSelectMenu();
            
         }else{
             std::cout << "gameManager is nullptr" << std::endl;
         }
-
-
-        // 실제 문 열기 로직 실행
     }
 private:
     std::shared_ptr<GameManager> gameManager;

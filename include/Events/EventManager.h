@@ -16,6 +16,9 @@ enum class EventType {
     MOUSEMOTION,
     MOUSEBUTTONDOWN,
     MOUSEBUTTONUP,
+	PAUSE,
+	RESUME,
+	GAMEOVER,
     UNKNOWN
 };
 

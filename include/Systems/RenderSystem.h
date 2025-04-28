@@ -23,7 +23,7 @@ class RenderSystem : public System{
 
 public:
 
-    bool debugMode = true;
+    bool debugMode = false;
 
 	RenderSystem(Renderer& renderer, std::shared_ptr<ECSManager>& ecsManager, std::shared_ptr<EffectManager> effectManager) : renderer(&renderer), textureManager(nullptr), ecsManager(ecsManager), effectManager(effectManager) {}
     void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;

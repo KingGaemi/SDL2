@@ -18,6 +18,9 @@ enum class Cursors{
 class CursorManager {
 
 public:
+	CursorManager () {
+		init();
+	}
 	void init();
 	void loadCursor(Cursors type);
 	void changeCursor(Cursors type);

@@ -69,6 +69,7 @@ public:
     }
     void updateSystems(float deltaTime);
     void renderSystems(float deltaTime);
+    void renderUI(float deltaTime);
 
     template<typename S>
     std::shared_ptr<S> getSystem(){
@@ -91,6 +92,7 @@ public:
             registeredSystems.end()
         );
     }
+    
     // Temporary
     void takeSingleRequest(const SpawnRequest& req);
 
@@ -114,6 +116,8 @@ public:
     void cleanUpEntitiesByScene(SceneCode sceneCode);
     void activeMapEntity();
     void makeCamera();
+    void pauseGame();
+
     std::shared_ptr<Entity> getCamera();
     // 엔티티 이름 관리 (선택 사항)
 

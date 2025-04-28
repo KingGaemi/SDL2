@@ -23,10 +23,11 @@ public:
     void display();
 
     SDL_Renderer* getSDLRenderer() const { return SDL_renderer; }
-    void SetRenderDrawColor(int r, int g, int b, int a);
-    void RenderDrawLineF(float x1, float y1, float x2, float y2);
-    void RenderFillRectF(SDL_FRect *rect);
-    void RenderDrawRect(SDL_FRect &debugRect, float rot);
+    void setRenderDrawColor(int r, int g, int b, int a);
+    void renderDrawLineF(float x1, float y1, float x2, float y2);
+    void renderFillRectF(SDL_FRect *rect);
+    void renderDrawRect(SDL_FRect &debugRect, float rot);
+    void addDarkOverlay();
     void setFont(const std::string& font, int size);
 
 private:

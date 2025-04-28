@@ -29,7 +29,7 @@ void EventSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float d
 
 void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Entity>>& entities){
 
-	// Check KeyDowns and direction
+	// 마우스 이벤트
 	if(evt.type == EventType::MOUSEMOTION ||
 	   evt.type == EventType::MOUSEBUTTONDOWN ||
 	   evt.type == EventType::MOUSEBUTTONUP){
@@ -58,6 +58,9 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 		if(!isHovered && (cursorManager->getCurrentCursor() != Cursors::Grab)) cursorManager->changeCursor(Cursors::Pointer);
 	}
 
+
+
+	// 키보드 이벤트
 	if(evt.type == EventType::KEYDOWN && !pressed[toInt(evt.key)]){
 		pressed[toInt(evt.key)] = true;
 		// std::cout << toInt(evt.key) << std::endl;
@@ -76,7 +79,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
   	direction = getDirection(evt);
 
 
-	// Find Target
+	// 입력 이벤트의 주체(타겟) 지정
 	for(auto& entity : entities){
 		if(entity->isActive &&
 			entity->hasComponent<PlayerTag>() &&
@@ -87,7 +90,7 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 		}
 	}
 	//==========================
-	// KeyDown to commands
+	// 입력 이벤트를 토대로 커멘드 생성 & 부쉬
 	//
 
 	if(!targetEntity) return;
@@ -119,23 +122,19 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 		}
 		if(pressed[toInt(KeyCode::q)]){
 			// std::cout << "q" << std::endl;
-			command.abilityNumber = 1;
-			command.commandType = CommandType::Cast;
-			command.direction = {0,0};
-			commandComp->push(command);
-		}
-		if(pressed[toInt(KeyCode::w)]){	
-			// std::cout << "w" << std::endl;		
 			command.abilityNumber = 2;
 			command.commandType = CommandType::Shoot;
 			command.direction = {0,0};
 			commandComp->push(command);
 		}
+		if(pressed[toInt(KeyCode::w)]){	
+			// command.abilityNumber = 2;
+			// command.commandType = CommandType::Cast;
+			// command.direction = {0,0};
+			// commandComp->push(command);
+		}
 		if(pressed[toInt(KeyCode::e)]){	
-			// std::cout << "w" << std::endl;		
-			command.abilityNumber = 3;
-			command.commandType = CommandType::Cast;
-			commandComp->push(command);
+			// etc..
 		}	
 	}
 }

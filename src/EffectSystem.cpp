@@ -27,27 +27,17 @@ void EffectSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 		if(entity->hasComponent<PlayerTag>()){
 			player = entity;
 		}
-		// if(entity->hasComponent<HpGageTag>()){
-		// 	hpGage = entity;
-		// }
 		if(entity->hasComponent<StatusComponent>() && entity->hasComponent<HpBarComponent>()){
 			hpBarControl(entity);
 		}
 		if(entity->hasComponent<ShakeEffectComponent>()){
 			ShakeEffect(entity, deltaTime);
 		}
-		if(entity->hasComponent<ItemComponent>()){
-			auto itemComp = entity->getComponent<ItemComponent>();
-			if(itemComp&&itemComp->onField) itemShadowEffect(entity);			
-		}
 		if(entity->hasComponent<StatusComponent>()){
 			damageTextEffect(entity);
 		}
 		
 	}
-	// if(player){
-	// 	hpBarControl(player);
-	// }
 
 }
 

@@ -43,9 +43,9 @@ void CollisionEventHandlerSystem::applyRoot(std::shared_ptr<Entity> charactor, s
 	    if (!itemComp->consumed) {
 	    	//temp
 	    	statusComp->currentHp = statusComp->maxHp;
-	    	statusComp->attackSpeed += 1.0f;
-	    	statusComp->movementSpeed += 30.0f;
-	    	statusComp->physicalDamage += 300000.0f;
+	    	statusComp->attackSpeed += 0.2f;
+	    	statusComp->movementSpeed += 5.0f;
+	    	statusComp->physicalDamage += 10.0f;
 	    	itemComp->consumed = true;
 	    	itemComp->currentStack -= 1;
 	    	if(itemComp->currentStack <= 0) item->terminate = true;

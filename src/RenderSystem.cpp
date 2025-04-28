@@ -71,24 +71,6 @@ void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
     std::sort(renderables.begin(), renderables.end(), sortFn);
     std::sort(shadows.begin(), shadows.end(), sortFn);
 
-    // // 2) 정렬 (y 좌표 기준 오름차순)
-    // std::sort(renderables.begin(), renderables.end(), 
-    //     [](std::shared_ptr <Entity> a, std::shared_ptr <Entity> b){
-    //         auto pa = a->getComponent<PositionComponent>();
-    //         auto pb = b->getComponent<PositionComponent>();
-    //         // 혹은 pa->y + pa->height 등, 원하는 기준
-    //         return pa->y < pb->y; 
-    //     }
-    // );
-
-    // std::sort(shadows.begin(), shadows.end(), 
-    //     [](std::shared_ptr <Entity> a, std::shared_ptr <Entity> b){
-    //         auto pa = a->getComponent<PositionComponent>();
-    //         auto pb = b->getComponent<PositionComponent>();
-    //         // 혹은 pa->y + pa->height 등, 원하는 기준
-    //         return pa->y < pb->y; 
-    //     }
-    // );
 
     for (auto& entity : shadows) {
        drawShadow(entity);
@@ -222,8 +204,8 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
                 rad = transComp->radian;
             }
             
-            renderer->SetRenderDrawColor(255, 0, 0, 255);
-            renderer->RenderDrawRect(debugRect, rad);
+            renderer->setRenderDrawColor(255, 0, 0, 255);
+            renderer->renderDrawRect(debugRect, rad);
 
         }
         if(entity->hasComponent<ClickableComponent>() && entity->hasComponent<PositionComponent>()){
@@ -236,8 +218,8 @@ void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
                     debugRect.w = clickComp->rect.w,
                     debugRect.h = clickComp->rect.h
             };
-            renderer->SetRenderDrawColor(255, 0, 0, 255);
-            renderer->RenderDrawRect(debugRect, 0);
+            renderer->setRenderDrawColor(255, 0, 0, 255);
+            renderer->renderDrawRect(debugRect, 0);
         }
     }
 
@@ -325,11 +307,15 @@ void RenderSystem::drawEffects(){
 
         //temp
         if(textureId == "black"){
-            renderer->SetRenderDrawColor(0, 0, 0, 0);
-            renderer->RenderFillRectF(&dstRect);
+            renderer->setRenderDrawColor(0, 0, 0, 0);
+            renderer->renderFillRectF(&dstRect);
         }else if(textureId == "damageText"){            
-            textureManager->loadText(std::to_string(effectRequest.textNumber).c_str());
             auto texture = textureManager->getTexture(std::to_string(effectRequest.textNumber).c_str());
+            if(!texture){
+                textureManager->loadText(std::to_string(effectRequest.textNumber).c_str());
+                texture = textureManager->getTexture(std::to_string(effectRequest.textNumber).c_str());
+            }
+            
             renderer->render(texture, nullptr, &dstRect, rot, nullptr, SDL_FLIP_NONE);
     
             

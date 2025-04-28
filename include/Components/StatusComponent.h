@@ -75,6 +75,17 @@ public:
 		recentDamage = 0;
 		percentage = currentHp/maxHp;
 	}
+		
+	StatusComponent(int maxHp, int maxMp, float attackSpeed, float movementSpeed, int physicalDamage) : maxHp(maxHp), maxMp(maxMp), physicalDamage(physicalDamage), attackSpeed(attackSpeed), movementSpeed(movementSpeed)  {
+		currentHp = maxHp;
+		currentmp = maxMp;
+		runningSpeedMultiple = 2.0f;
+		strength = 1;
+		agility = 1;
+		intelligence = 1;
+		recentDamage = 0;
+		percentage = currentHp/maxHp;
+	}
 
 	void gainExp(int expGain){
 		exp += expGain;

@@ -118,8 +118,9 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
         			auto targetType = targetSound->typeMaterial;
         			soundManager->playEffect(targetType + "_death");
         		}    		
-        		statusComp->isAlive = false;
+        		
 	    	}
+			statusComp->isAlive = false;
         }
     }
 }

@@ -1,0 +1,29 @@
+{
+  "dark_overlayer": {
+    "components": [
+
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "dark_overlay",
+        "width": 50,
+        "height": 50,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 50,
+        "height": 50,
+        "scale": 1.0
+      }
+    ]
+  }
+}

@@ -6,6 +6,7 @@
 #include "Components/StateComponent.h"
 #include "Components/StatusComponent.h"
 #include "Components/SoundEffectComponent.h"
+#include "Components/MovementCommandComponent.h"
 #include "Groups.h"
 #include <iostream>
 #include <unordered_map>
@@ -30,7 +31,10 @@ void AttackSystem::teskEvent(const AttackEvent& event){
 	}else if(event.attackType == AttackType::Cast){
 		if(event.abilityId == 1){
 			castSpell(event);
-		}else if(event.abilityId == 3){
+		}else if(event.abilityId == 2){
+			whirlBlade(event);
+		}
+		else if(event.abilityId == 3){
 			releaseBomb(event);
 		}
 	}else if(event.attackType == AttackType::Shoot){
@@ -195,8 +199,9 @@ void AttackSystem::whirlBlade(const AttackEvent& event){
 	auto transComp = entity->getComponent<TransformComponent>();
 	auto statusComp = entity->getComponent<StatusComponent>();
 	auto teamComp = entity->getComponent<TeamTag>();
+	auto moveCommandComp = entity->getComponent<MovementCommandComponent>();
 
-	if(posComp && directComp && transComp && statusComp && teamComp){
+	if(posComp && directComp && transComp && statusComp && teamComp && moveCommandComp){
 		
 		SpawnRequest req;
 
@@ -222,7 +227,11 @@ void AttackSystem::whirlBlade(const AttackEvent& event){
 		req.hasOwner = true;
 		req.hasVelocity = true;
 
+		MovementCommand moveCommand;
+		moveCommand.moveCommandType = MovementCommandType::GoForward;
+		moveCommandComp->push(moveCommand);
 		ecsManager->pendingSpawns.push_back(req);
+		
 	}
 }
 

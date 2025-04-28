@@ -32,7 +32,6 @@ void CharacterSelectScene::handleEvents(const std::vector<Event>& events){
 
 void CharacterSelectScene::render(){
 
-		
 }
 
 void CharacterSelectScene::update(float deltaTime){
@@ -45,5 +44,8 @@ void CharacterSelectScene::update(float deltaTime){
 
 void CharacterSelectScene::onExit(){
 
+	std::cout << "CharacterSelectScene on Exit" << std::endl;
  	ecsManager->cleanUpEntitiesByScene(SceneCode::Select);
+ 	ecsManager->cleanUpEntitiesByScene(SceneCode::Menu);
+ 	ecsManager->cleanUpAllEntities();
  }

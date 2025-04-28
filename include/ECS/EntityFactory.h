@@ -20,11 +20,11 @@ public:
         uiJson = json::parse(std::ifstream("json/prefab/ui_prefab.json"));
         projectilesJson = json::parse(std::ifstream("json/prefab/projectiles_prefab.json"));
         itemsJson = json::parse(std::ifstream("json/prefab/items_prefab.json"));
+        imagesJson = json::parse(std::ifstream("json/prefab/images_prefab.json"));
         registerComponentLoaders();
     }
-    void createEntity(const SpawnRequest& req);
+    void configureEntity(const SpawnRequest& req, std::shared_ptr<Entity>& entity);
     void makeProps(const SpawnRequest& req);
-    void makeCamera(const SpawnRequest& req);
 
     void loadPositionComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadPhysicsComponent(const json& componentData, std::shared_ptr<Entity> entity);
@@ -63,6 +63,8 @@ public:
     void loadExplosionComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadClickableComponent(const json& componentData, std::shared_ptr<Entity> entity);
     void loadTextLabelComponent(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadCoreTag(const json& componentData, std::shared_ptr<Entity> entity);
+    void loadBossTag(const json& componentData, std::shared_ptr<Entity> entity);
     void applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req);
     void registerComponentLoaders();
 private:
@@ -73,6 +75,7 @@ private:
     json uiJson;
     json projectilesJson;
     json itemsJson;
+    json imagesJson;
     std::size_t nextItemID = 0;
     std::shared_ptr<ECSManager> ecsManager;
     std::shared_ptr<GameManager> gameManager;

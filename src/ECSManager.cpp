@@ -13,13 +13,11 @@ ECSManager::ECSManager() {
 std::shared_ptr<Entity> ECSManager::createEntity() {
     auto entity = std::make_shared<Entity>(nextID++);
     entities.push_back(entity);
-    // std::cout << "createEntity "<< std::endl; 
     return entity;
 }
 
 
 void ECSManager::destroyEntity(std::shared_ptr<Entity> entity) {
-    // std::cout << "destroyEntity : " << entityNames[entity] << std::endl;
     entities.erase(std::remove(entities.begin(), entities.end(), entity), entities.end());
     // 이름 관리도 필요하면 여기서 정리
     for (auto it = entityNames.begin(); it != entityNames.end();) {
@@ -76,22 +74,37 @@ void ECSManager::renderSystems(float deltaTime) {
         }
     }
 
+
+  
+}
+
+void ECSManager::renderUI(float deltaTime) {
+    std::sort(registeredSystems.begin(), registeredSystems.end(),
+        [](const SystemRegistration& a, const SystemRegistration& b) {
+            return a.priority < b.priority;
+        }
+    );
+
     for (auto& reg : registeredSystems) {
         if (reg.group == SystemGroup::UI) {
             reg.system->update(entities, deltaTime);
         }
-    }    
+    }     
 }
+
+
 
 void ECSManager::processSpawnRequests() {
 
     for(auto& req : pendingSpawns){
-        entityFactory->createEntity(req);
+        auto entity = createEntity();
+        entityFactory->configureEntity(req, entity);
     }
     pendingSpawns.clear();
     
     for(auto& req : pendingProjectiles){
-         entityFactory->createEntity(req);
+        auto entity = createEntity();
+        entityFactory->configureEntity(req, entity);
     }
     pendingProjectiles.clear();   
 }
@@ -170,6 +183,7 @@ void ECSManager::cleanUpEntitiesByScene(SceneCode sceneCode){
     for (auto& entity : entities){
         if(entity&&entity->hasComponent<SceneTag>()){
             auto sceneTag = entity->getComponent<SceneTag>();
+            // std::cout << "entity " << entity->getId() << "terminate \n"; 
             if(sceneTag && sceneTag->sceneCode == sceneCode) entity->terminate = true;
         }
     }
@@ -192,6 +206,8 @@ void ECSManager::makeCamera(){
     cameraEntity->addComponent<PositionComponent>(1.0f, 1.0f);
     cameraEntity->addComponent<CameraComponent>(1280, 800);
 }
+
+
 
 std::shared_ptr<Entity> ECSManager::getCamera(){
     return cameraEntity;

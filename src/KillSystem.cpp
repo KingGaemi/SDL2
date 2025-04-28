@@ -1,6 +1,8 @@
 #include "Systems/KillSystem.h"
 #include "Components/StatusComponent.h"
 #include "Components/StateComponent.h"
+#include "Components/HpBarComponent.h"
+#include "Groups.h"
 
 
 void KillSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
@@ -15,15 +17,22 @@ void KillSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float de
 				if(stateComp){
 					if(stateComp->inMotion) continue;
 				}
-				entity->terminate = true;
-				// if(entity->hasComponent<HpBarComponent>()){
-				// 	auto hpBarComp = entity->getComponent<HpBarComponent>();
-				// 	hpBarComp->hpGage->terminate = true;
-				// 	hpBarComp->hpFrame->terminate = true;
-				// }
+				
+				if(entity->hasComponent<PlayerTag>()){
+					auto playerComp = entity->getComponent<PlayerTag>();
+					playerComp->life -= 1;
+					if(playerComp->life <= 0){
+						gameManager->gameOver(1);
+						entity->removeComponent<HpBarComponent>();
+					}
+				}else if(entity->hasComponent<CoreTag>()){
+					gameManager->gameOver(2);
+				}else if(entity->hasComponent<BossTag>()){
+					gameManager->stageClear();
+				}else{
+					entity->terminate = true;
+				}
 			}
-			
 		}
 	}
-
 }

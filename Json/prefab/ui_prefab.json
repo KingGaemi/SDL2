@@ -145,7 +145,7 @@
         "h": 40,      
         "offsetX": 0,
         "offsetY": 0,
-	"commandType": "SelectCharacterCommand"
+	"commandType": "PlayGameCommand"
 	},
       {
         "name": "TextLabelComponent",
@@ -178,7 +178,7 @@
       },
       {
         "name": "SceneTag",
-        "sceneCode": "Menu"
+        "sceneCode": "Select"
       },
       {
         "name": "ClickableComponent",
@@ -195,6 +195,110 @@
 	"size": 36
 	}
 
+    ]
+  },"game_over": {
+    "components": [
+
+      {
+        "name": "PositionComponent",
+        "x": 500,
+        "y": 500
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "game_over",
+        "width": 785,
+        "height": 258,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 785,
+        "height": 258,
+        "scale": 1.0
+      }
+    ]
+  },"you_died": {
+    "components": [
+
+      {
+        "name": "PositionComponent",
+        "x": 500,
+        "y": 500
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "you_died",
+        "width": 785,
+        "height": 258,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 785,
+        "height": 258,
+        "scale": 1.0
+      }
+    ]
+  },"core_destroyed": {
+    "components": [
+
+      {
+        "name": "PositionComponent",
+        "x": 500,
+        "y": 500
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "core_destroyed",
+        "width": 785,
+        "height": 258,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 785,
+        "height": 258,
+        "scale": 1.0
+      }
+    ]
+  },"stage_clear": {
+    "components": [
+
+      {
+        "name": "PositionComponent",
+        "x": 500,
+        "y": 500
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "stage_clear",
+        "width": 238,
+        "height": 177,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 785,
+        "height": 258,
+        "scale": 1.0
+      }
     ]
   }
 }

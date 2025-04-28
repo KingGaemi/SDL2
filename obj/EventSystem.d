@@ -33,7 +33,7 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/Components/CommandComponent.h \
  include/Components/MovementCommandComponent.h \
  include/Components/ClickableComponent.h include/Rect.h \
- include/ClickCommand.h include/Manager/GameManager.h \
+ include/ClickCommand.h include/Manager/GameManager.h include/Groups.h \
  include/ECS/EntityFactory.h include/nlohmann/json.hpp \
  include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
@@ -79,8 +79,7 @@ obj/EventSystem.o: src/EventSystem.cpp include/Events/EventSystem.h \
  include/nlohmann/ordered_map.hpp \
  include/nlohmann/detail/macro_unscope.hpp \
  include/nlohmann/thirdparty/hedley/hedley_undef.hpp include/Requests.h \
- include/Groups.h include/Components/Components.h \
- include/Components/AnimationComponent.h \
+ include/Components/Components.h include/Components/AnimationComponent.h \
  include/Components/ColliderComponent.h \
  include/Components/CooldownComponent.h \
  include/Components/DamageComponent.h include/Components/DashComponent.h \
@@ -175,6 +174,7 @@ include/Components/ClickableComponent.h:
 include/Rect.h:
 include/ClickCommand.h:
 include/Manager/GameManager.h:
+include/Groups.h:
 include/ECS/EntityFactory.h:
 include/nlohmann/json.hpp:
 include/nlohmann/adl_serializer.hpp:
@@ -223,7 +223,6 @@ include/nlohmann/ordered_map.hpp:
 include/nlohmann/detail/macro_unscope.hpp:
 include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
 include/Requests.h:
-include/Groups.h:
 include/Components/Components.h:
 include/Components/AnimationComponent.h:
 include/Components/ColliderComponent.h:

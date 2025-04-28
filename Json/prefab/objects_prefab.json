@@ -89,6 +89,32 @@
       }
     ]
   },
+  "potionSpawner": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "TransformComponent",
+        "width": 200,
+        "height": 200,
+        "scale": 1.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpawnerComponent",
+        "spawnName": "potionCap",
+        "spawnTime": 7,
+        "spawnType": "Item"
+
+      }
+    ]
+  },
   "tree1": {
     "components": [
       {

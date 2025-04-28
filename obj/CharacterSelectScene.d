@@ -1,7 +1,7 @@
 obj/CharacterSelectScene.o: src/CharacterSelectScene.cpp \
  include/CharacterSelectScene.h include/Manager/GameManager.h \
- include/Events/EventManager.h include/KeyCode.h include/Scene.h \
- include/Requests.h include/Groups.h include/ECS/Component.h \
+ include/Events/EventManager.h include/KeyCode.h include/Groups.h \
+ include/ECS/Component.h include/Scene.h include/Requests.h \
  include/Rect.h include/ECS/ECSManager.h include/ECS/EntityFactory.h \
  include/nlohmann/json.hpp include/nlohmann/adl_serializer.hpp \
  include/nlohmann/detail/abi_macros.hpp \
@@ -82,10 +82,10 @@ include/CharacterSelectScene.h:
 include/Manager/GameManager.h:
 include/Events/EventManager.h:
 include/KeyCode.h:
-include/Scene.h:
-include/Requests.h:
 include/Groups.h:
 include/ECS/Component.h:
+include/Scene.h:
+include/Requests.h:
 include/Rect.h:
 include/ECS/ECSManager.h:
 include/ECS/EntityFactory.h:

@@ -13,7 +13,7 @@
 void GameplayScene::onEnter(){
 
 	if(mapManager){
-		mapManager->loadMap("maps/newResol.tmj");
+		mapManager->loadMap("maps/newResol44.tmj");
 		mapManager->enterMap = true;
 	}
 
@@ -40,7 +40,7 @@ void GameplayScene::render(){
 
 void GameplayScene::update(float deltaTime){
 
-	// ecsManager->updateSystems(deltaTime);	
+		
 }
 
 void GameplayScene::onExit(){

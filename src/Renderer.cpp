@@ -93,21 +93,39 @@ void Renderer::display()
 	SDL_RenderPresent(SDL_renderer);
 }
 
-void Renderer::SetRenderDrawColor(int r, int g, int b, int a){
+void Renderer::setRenderDrawColor(int r, int g, int b, int a){
     SDL_SetRenderDrawColor(SDL_renderer, r, g, b, a);
 }
 
-void Renderer::RenderFillRectF(SDL_FRect* rect){
+void Renderer::renderFillRectF(SDL_FRect* rect){
     SDL_RenderFillRectF(SDL_renderer, rect);
 }
 
 
-void Renderer::RenderDrawLineF(float x1, float y1, float x2, float y2){
+void Renderer::renderDrawLineF(float x1, float y1, float x2, float y2){
     SDL_RenderDrawLineF(SDL_renderer, x1, y1,
                                       x2, y2);
 }
 
-void Renderer::RenderDrawRect(SDL_FRect &debugRect, float theta){
+
+void Renderer::addDarkOverlay() {
+    SDL_Rect overlayRect = { 0, 0, 1280, 800 };
+
+    // 반투명한 검은색
+    SDL_SetRenderDrawBlendMode(SDL_renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(SDL_renderer, 0, 0, 0, 128); // 반투명 검정색 (Alpha = 128)
+
+    // 사각형을 그려서 오버레이 추가
+    SDL_RenderFillRect(SDL_renderer, &overlayRect);
+
+    // 렌더링
+    SDL_RenderPresent(SDL_renderer);
+    
+}
+
+
+void Renderer::renderDrawRect(SDL_FRect &debugRect, float theta){
+
 
     float x1, y1, x2, y2, cx, cy;
 

@@ -8,33 +8,28 @@
 #include <iostream>
 
 
-// MenuScene::~MenuScene(){
-
-// 	onExit();
-// }
-
-
 void MenuScene::onEnter(){
 
+	// ecsManager 연결 확인
 	if (this->ecsManager) {
         std::cout << "MenuScene initialized with a valid manager." << std::endl;
     } else {
         std::cerr << "MenuScene initialized with a nullptr manager!" << std::endl;
     }
 
+	
 	SpawnRequest req;
 
+	// 메뉴 씬에 필요한 엔티티들 직접 request 생성 후 푸쉬
 	req.entityType = EntityType::UI;
 	req.name = "background";
 	req.x = 640.0f;
 	req.y = 400.0f;
-	// req.hasPosition = true;
 	req.w = 1280;
 	req.h = 800;
 	req.sc = 1.0f;
 	
 	ecsManager->pendingSpawns.push_back(req);
-
 
 	req.entityType = EntityType::UI;
 	req.name = "select_frame";
@@ -43,9 +38,6 @@ void MenuScene::onEnter(){
 	req.sc = 3.0f;
 	req.hasTransform = true;
 	ecsManager->pendingSpawns.push_back(req);
-
-
-	
 }
 
 

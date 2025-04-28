@@ -33,10 +33,8 @@ public:
 			// std::cout << "getTexture Success" << std::endl;
             return it->second;
         }
-        std::cerr << "Failed to get texture: (" << textureId << ")" << std::endl;
-        // it = textures.find("unknown");
-           	    
-        // return it->second;
+        // std::cerr << "Failed to get texture: (" << textureId << ")" << std::endl;
+      
         return nullptr;
 	}
 
@@ -61,7 +59,7 @@ public:
 	bool loadText(const char * textString){
 		SDL_Texture* texture = renderer->loadText(textString);
 		if (!texture) {
-            std::cerr << "Failed to load textTexture: " << textString << " Error: " << SDL_GetError() << std::endl;
+            // std::cerr << "Failed to load textTexture: " << textString << " Error: " << SDL_GetError() << std::endl;
             return false;
         }
 		textures[textString] = texture;

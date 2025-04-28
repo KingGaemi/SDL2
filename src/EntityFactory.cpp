@@ -4,7 +4,7 @@
 #include "ECS/Entity.h"
 #include "Groups.h"
 
-void EntityFactory::createEntity(const SpawnRequest& req) {
+void EntityFactory::configureEntity(const SpawnRequest& req, std::shared_ptr<Entity>& entity) {
 
 	json j;
 
@@ -13,14 +13,16 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
 	else if(req.entityType == EntityType::UI) j = uiJson;
 	else if(req.entityType == EntityType::Object) j = objectsJson;
 	else if(req.entityType == EntityType::Item) j = itemsJson;
+    else if(req.entityType == EntityType::Image) j = imagesJson;
 	else if(req.entityType == EntityType::Props){
 		makeProps(req);
 		return;
 	}else if(req.entityType == EntityType::Camera){
-		makeCamera(req);
 		return;
-	}
-	else{
+    }else if(req.entityType == EntityType::Text){
+		std::cerr << "EntityType is \'default\'. Can't create " << std::endl;
+		return;
+	}else{
 		std::cerr << "EntityType is \'default\'. Can't create " << std::endl;
 		return;
 	}
@@ -30,8 +32,7 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
         return;
     }
 
-    // 2) 엔티티 생성
-    auto entity = ecsManager->createEntity();
+    
     if(req.entityType == EntityType::UI) entity->addComponent<UITag>();
     // 3) components 배열 반복
     auto componentsArray = j[req.name]["components"];
@@ -47,23 +48,19 @@ void EntityFactory::createEntity(const SpawnRequest& req) {
         }
     }
     applyRequests(entity, req);
+
+    if(!entity->hasComponent<SceneTag>()){
+    	entity->addComponent<SceneTag>(gameManager->getCurrentScene());
+    	std::cout << "entity " << entity->getId() << " didn't have SceneTag" << std::endl;
+    } 
 }
 
 void EntityFactory::makeProps(const SpawnRequest& req){
 	auto prop = ecsManager->createEntity();
 	prop->addComponent<PositionComponent>((req.x + req.w/2) * 2, (req.y + req.h/2) * 2);
-    // prop->addComponent<ColliderComponent>(req.w, req.h, req.sc, ColliderType::Wall);
-    // prop->addComponent<SpriteComponent>("dirt_tile", req.w, req.h, req.sc);
     prop->addComponent<TransformComponent>(req.w, req.h, req.sc);
     prop->addComponent<PhysicsComponent>(req.w, req.h, req.sc, BodyType::Static);
     prop->addComponent<SceneTag>(SceneCode::Game);
-}
-
-void EntityFactory::makeCamera(const SpawnRequest& req){
-	// auto cameraEntity = ecsManager->createEntity();
-	// cameraEntity->addComponent<CameraComponent>(1280, 800);
-
-	// ecsManager->setEntityName(cameraEntity, "camera");
 }
 
 void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnRequest& req) {
@@ -85,7 +82,6 @@ void EntityFactory::applyRequests(std::shared_ptr<Entity> entity, const SpawnReq
 	    auto veloComp = entity->getComponent<VelocityComponent>();
 	    auto projectileComp = entity->getComponent<ProjectileComponent>();
 	    if (veloComp && projectileComp) {
-	    	// Direction * 
             veloComp->set(req.hDir * req.projectileSpeed * projectileComp->projectileSpeed,
             			  req.vDir * req.projectileSpeed * projectileComp->projectileSpeed);
 	    } 
@@ -274,8 +270,9 @@ void EntityFactory::loadStatusComponent(const json& componentData, std::shared_p
 	int maxMp = componentData.value("maxMp", 1);
 	float movementSpeed = componentData.value("movementSpeed", 100.0f);
 	float attackSpeed = componentData.value("attackSpeed", 1.0f);
+    int physicalDamage = componentData.value("physicalDamage", 10);
 
-	entity->addComponent<StatusComponent>(maxHp, maxMp, attackSpeed, movementSpeed);
+	entity->addComponent<StatusComponent>(maxHp, maxMp, attackSpeed, movementSpeed, physicalDamage);
 }
 
 void EntityFactory::loadCommandComponent(const json& componentData, std::shared_ptr<Entity> entity){
@@ -325,6 +322,14 @@ void EntityFactory::loadTextTag(const json& componentData, std::shared_ptr<Entit
 void EntityFactory::loadIMGTag(const json& componentData, std::shared_ptr<Entity> entity) {
 	entity->addComponent<IMGTag>();
 }
+void EntityFactory::loadCoreTag(const json& componentData, std::shared_ptr<Entity> entity) {
+	entity->addComponent<CoreTag>();
+}
+void EntityFactory::loadBossTag(const json& componentData, std::shared_ptr<Entity> entity) {
+	entity->addComponent<BossTag>();
+}
+
+
 
 void EntityFactory::loadProjectileComponent(const json& componentData, std::shared_ptr<Entity> entity) {
 	float speed = componentData.value("speed", 1.0);
@@ -395,8 +400,12 @@ void EntityFactory::loadSpawnerComponent(const json& componentData, std::shared_
     
     std::string spawnName = componentData.value("spawnName", "none");
     float spawnTime = componentData.value("spawnTime", 1.0f);
+    std::string spawnType = componentData.value("spawnType", "Unit");
+
     SpawnRequest req;
-    req.entityType = EntityType::Unit;
+
+    if(spawnType == "Item") req.entityType= EntityType::Item;
+    else req.entityType = EntityType::Unit;
     req.name = spawnName;
     req.teamCode = TeamCode::Enemy;
 
@@ -636,5 +645,13 @@ void EntityFactory::registerComponentLoaders() {
     componentLoaders["TextLabelComponent"] = [this](const json& data, std::shared_ptr<Entity> entity) {
         this->loadTextLabelComponent(data, entity);
     }; 
-        
+    componentLoaders["CoreTag"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadCoreTag(data, entity);
+    }; 
+    componentLoaders["BossTag"] = [this](const json& data, std::shared_ptr<Entity> entity) {
+        this->loadBossTag(data, entity);
+    }; 
+
+    
+    
 }
