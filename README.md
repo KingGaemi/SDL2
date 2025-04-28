@@ -41,9 +41,13 @@ SDL2, Box2D, nlohmann/json
 
 2DPlatformer.exe 실행 파일을 실행합니다.
 
+Game start를 클릭합니다.
+
 필요한 SDL2 관련 DLL 파일들은 함께 제공됩니다.
 
 ※ 추가 설치나 빌드 과정 없이 바로 실행 가능합니다.
+
+재시작 버튼은 재시작시 부하가 쌓여 미구현입니다. (clear 과정 미흡, map 관련 문제 추정)
 ========
 
 
