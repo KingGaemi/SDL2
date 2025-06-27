@@ -15,7 +15,8 @@ enum class EntityType {
     Image,
     Effect,
     Item,
-    Text
+    Text,
+    Manager
 };
 
 

@@ -2,6 +2,11 @@
 #include "ECS/Component.h"
 #include "Requests.h"
 
+
+
+
+
+
 class SpawnerComponent : public Component{
 
 public:
@@ -14,8 +19,7 @@ public:
 	void addSpawnRequest(SpawnRequest req){
 		spawnList.push_back(req);
 	}
-
-
+	
 	float spawnTime;
 	float currentLeftTime = 1.0f;
 	std::vector<SpawnRequest> spawnList;

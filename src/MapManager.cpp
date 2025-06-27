@@ -10,7 +10,7 @@
 void MapManager::init(){
     mapEntities.clear();
     auto mapEntity = ecsManager->createEntity();
-    mapEntity->addComponent<MapComponent>("home_map");
+    mapEntity->addComponent<MapComponent>("dungeon_map");
     mapEntities.push_back(mapEntity);
    
 
@@ -164,7 +164,7 @@ void MapManager::loadMap(const std::string& mapPath){
                 if (layerJson.contains("data") && layerJson["data"].is_array()) {
                     auto dataArray = layerJson["data"];
                     // std::cout << layerName <<std::endl;
-                    int i = 1;
+                    int i = 1; // modified
                     for (auto& val : dataArray) {
                         int tileId = val.get<int>(); // 정수 변환
                         mapComp->addData(layerId, tileId);

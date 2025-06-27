@@ -18,7 +18,7 @@ public:
     
     SDL_Texture* loadTexture(const std::string& filePath);
     SDL_Texture* loadText(const char * textString);
-    void render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_FRect* dstRect, double angle, SDL_FPoint* center, SDL_RendererFlip flip);
+    bool render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_FRect* dstRect, double angle, SDL_FPoint* center, SDL_RendererFlip flip);
     void clear();
     void display();
 

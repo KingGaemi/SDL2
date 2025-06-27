@@ -14,6 +14,18 @@ public:
 	std::string InventorytextureID;
 	int maxSlots = 10;
 
-	InventoryComponent(int maxSlots) : maxSlots(maxSlots) {} 
+	int gold = 0;
+	int maxGold = 99999999;
+
+
+
+	InventoryComponent(int maxSlots) : maxSlots(maxSlots) {}
+
+	
+
+	void increaseGold(int amount) {
+		gold += amount;
+		if(gold > maxGold) gold = maxGold;
+	}
 
 };

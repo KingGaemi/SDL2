@@ -89,6 +89,30 @@
       }
     ]
   },
+  "orc1Spawner": {
+    "components": [
+      {
+        "name": "PositionComponent",
+        "x": 100,
+        "y": 100
+      },
+      {
+        "name": "TransformComponent",
+        "width": 200,
+        "height": 200,
+        "scale": 1.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "SpawnerComponent",
+        "spawnName": "orc1",
+        "spawnTime": 5
+      }
+    ]
+  },
   "potionSpawner": {
     "components": [
       {
@@ -213,6 +237,126 @@
         "name": "ExplosionComponent",
         "explosionAmount":  100,
 	"explosionTime": 2
+      }
+    ]
+  },
+  "pillar1": {
+    "components": [
+      {
+        "name": "PositionComponent"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "pillar1",
+        "width": 26,
+        "height": 52,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 26,
+        "height": 52,
+        "scale": 2.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "PhysicsComponent",
+        "width": 26,
+        "height": 16,
+        "offsetY": -28,
+        "scale": 2.0,
+        "bodyType": "Static"
+      },
+      {
+        "name": "ShadowComponent",
+        "width": 31,
+        "height": 31,
+        "scale": 2.0,
+        "offsetX": 5,
+        "offsetY": 21
+      }
+    ]
+  },
+  "pillar2": {
+    "components": [
+      {
+        "name": "PositionComponent"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "pillar2",
+        "width": 26,
+        "height": 66,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 26,
+        "height": 66,
+        "scale": 2.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "PhysicsComponent",
+        "width": 26,
+        "height": 16,
+        "offsetY": -42,
+        "scale": 2.0,
+        "bodyType": "Static"
+      },
+      {
+        "name": "ShadowComponent",
+        "width": 36,
+        "height": 43,
+        "scale": 2.0,
+        "offsetX": 10,
+        "offsetY": 23
+      }
+    ]
+  },
+  "pillar3": {
+    "components": [
+      {
+        "name": "PositionComponent"
+      },
+      {
+        "name": "SpriteComponent",
+        "textureID": "pillar3",
+        "width": 26,
+        "height": 38,
+        "scale": 1.0
+      },
+      {
+        "name": "TransformComponent",
+        "width": 26,
+        "height": 38,
+        "scale": 2.0
+      },
+      {
+        "name": "SceneTag",
+        "sceneCode": "Game"
+      },
+      {
+        "name": "PhysicsComponent",
+        "width": 26,
+        "height": 16,
+        "offsetY": -18,
+        "scale": 2.0,
+        "bodyType": "Static"
+      },
+      {
+        "name": "ShadowComponent",
+        "width": 31,
+        "height": 25,
+        "scale": 2.0,
+        "offsetX": 5,
+        "offsetY": 13
       }
     ]
   }

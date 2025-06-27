@@ -12,6 +12,7 @@
 #include "Manager/SoundManager.h"
 #include "Manager/CursorManager.h"
 #include "Manager/GameManager.h"
+#include "Manager/SpawnManager.h"
 #include "Scene.h"
 #include "MenuScene.h"
 #include "GameplayScene.h"
@@ -39,7 +40,6 @@ public:
 	bool running() const;
 	Event convertSDLEventToGameEvent(const SDL_Event& sdlEvent);
 	void changeScene(std::string newScene);
-	void handleEvents();
 	void clean();
 	
 private:
@@ -60,6 +60,7 @@ private:
     std::shared_ptr<EffectManager> effectManager;
  	std::shared_ptr<SoundManager> soundManager;
  	std::shared_ptr<CursorManager> cursorManager;
+	std::shared_ptr<SpawnManager> spawnManager;
     std::unique_ptr<TextureManager> mapTextureManager;
     std::unique_ptr<TextureManager> textureManager;
     std::unique_ptr<TextureManager> uiTextureManager;

@@ -403,7 +403,8 @@ void PhysicsSystem::applyMovementCommands(std::vector<std::shared_ptr<Entity>>&p
                     }
                     if(moveCommand.stopSpin)  b2Body_SetAngularVelocity(physComp->body, 0);
                 }else if(moveCommand.moveCommandType == MovementCommandType::Impulse){
-                    b2Vec2 vec = {cos(moveCommand.radian), sin(moveCommand.radian)};
+                    b2Vec2 vec =  {cos(moveCommand.radian), sin(moveCommand.radian)};
+                    vec *= moveCommand.force;
                     b2Body_ApplyLinearImpulseToCenter(physComp->body, vec, true);
                 }
             }

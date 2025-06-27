@@ -40,14 +40,13 @@ void WorldRenderSystem::renderMap(std::shared_ptr<Entity>& currentMap){
 
                             int tileID = 0;
                             if(index < static_cast<int>(layer.tileData.size())) tileID = layer.tileData[index++];
-                            if (tileID == 0) {
-                                continue; // 빈 타일이므로 그리지 않음
-                            }
+                            if(tileID == 0) continue; // 빈 타일이므로 그리지 않음
+                          
 
                             // (예) 256x256 이미지에 16x16 타일이면 16칸
                             int adjustedID = tileID - tilesetInfo.firstgid;  // firstgid=1 이면 1 빼주기
                             // 
-                            if(adjustedID <= 0) continue;
+                            if(adjustedID < 0) continue;
 
                             int srcX = (adjustedID % tilesPerRow) * mapComp->tileWidth;
                             int srcY = (adjustedID / tilesPerRow) * mapComp->tileHeight;

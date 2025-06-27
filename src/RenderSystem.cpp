@@ -108,7 +108,6 @@ void RenderSystem::setTextureManager(TextureManager& p_textureManager){
 
 void RenderSystem::drawEntity(const std::shared_ptr<Entity>& entity){
     
-    
     if (!entity->isActive || !entity->isVisible) return;
     if(entity->hasComponent<PositionComponent>() && entity->hasComponent<SpriteComponent>()){
         auto posComp = entity->getComponent<PositionComponent>();

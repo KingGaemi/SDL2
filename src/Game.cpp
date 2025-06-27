@@ -54,6 +54,7 @@ void Game::init(const char* title, int width, int height, bool fullscreen){
     ecsManager = std::make_shared<ECSManager>();
     gameManager = std::make_shared<GameManager>(ecsManager);
     eventManager = std::make_shared<EventManager>();
+    spawnManager = std::make_shared<SpawnManager>(ecsManager);
     gameManager->setEventManager(eventManager);
     ecsManager->entityFactory = std::make_shared<EntityFactory>(ecsManager, gameManager);
     soundManager = std::make_shared<SoundManager>();
@@ -152,7 +153,9 @@ void Game::soundLoading(){
 }
 
 void Game::run() {
-  
+
+    // initialize before loop
+    lastFrameTime = SDL_GetTicks();
     while (isRunning) {
         frameStart = SDL_GetTicks();
 
@@ -171,7 +174,7 @@ void Game::run() {
         if(pause||gameOver) renderer->addDarkOverlay();
         ecsManager->renderUI(deltaTime);
         ecsManager->processSpawnRequests();
-        ecsManager->processCollisionEvents();
+        // ecsManager->processCollisionEvents();
         
 
         // 3. 주요 이벤트 처리 (SCENE_CHANGE, QUIT 등..)
@@ -219,10 +222,6 @@ void Game::run() {
 
 bool Game::running() const {
     return isRunning;
-}
-
-void Game::handleEvents() {
-    inputManager->handleEvents();
 }
 
 void Game::changeScene(std::string sceneName) {

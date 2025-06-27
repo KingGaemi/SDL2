@@ -1,0 +1,52 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "renew_defense_map.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
+        "TX_tileset_grass.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "renew_defense_map.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1269.3333333333333,
+                "y": 817.3333333333333
+            }
+        },
+        "renew_defense_map.tmx#TX_tileset_grass": {
+            "scaleInDock": 1
+        },
+        "renew_defense_map.tmx#TX_tileset_wall": {
+            "scaleInDock": 1
+        },
+        "renew_defense_map.tmx#basicTile": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps",
+    "last.imagePath": "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps",
+    "map.height": 80,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.width": 80,
+    "openFiles": [
+        "renew_defense_map.tmx"
+    ],
+    "project": "renew_defense_map.tiled-project",
+    "recentFiles": [
+        "renew_defense_map.tmx",
+        "TX_tileset_grass.tsx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFormat": "tsx"
+}

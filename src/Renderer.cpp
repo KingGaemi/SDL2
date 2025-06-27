@@ -72,14 +72,15 @@ void Renderer::setFont(const std::string& font, int size){
 }
 
 
-void Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_FRect* dstRect, double angle, SDL_FPoint* center, SDL_RendererFlip flip) {
+bool Renderer::render(SDL_Texture* texture, SDL_Rect* srcRect, SDL_FRect* dstRect, double angle, SDL_FPoint* center, SDL_RendererFlip flip) {
 
     if(!texture) {
-        std::cout << "Renderer: texture is nullptr" << std::endl;
-        return;
+        // std::cout << "Renderer: texture is nullptr" << std::endl;
+        return false;
     }
     
     SDL_RenderCopyExF(SDL_renderer, texture, srcRect, dstRect, angle, center, flip);
+    return true;
 }
 
 void Renderer::clear()
@@ -125,7 +126,6 @@ void Renderer::addDarkOverlay() {
 
 
 void Renderer::renderDrawRect(SDL_FRect &debugRect, float theta){
-
 
     float x1, y1, x2, y2, cx, cy;
 

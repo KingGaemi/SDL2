@@ -109,22 +109,22 @@ void ECSManager::processSpawnRequests() {
     pendingProjectiles.clear();   
 }
 
-void ECSManager::processCollisionEvents(){
+// void ECSManager::processCollisionEvents(){
 
-    for(auto& evt : collisionEvents){
+//     for(auto& evt : collisionEvents){
 
-        if(evt.type == CollisionType::Crash){
+//         if(evt.type == CollisionType::Crash){
             
 
-        }else if(evt.type == CollisionType::Hit){
+//         }else if(evt.type == CollisionType::Hit){
 
-            // std::cout << evt.entityA->getId() << " hits " << evt.entityB->getId() << std::endl;
+//             // std::cout << evt.entityA->getId() << " hits " << evt.entityB->getId() << std::endl;
 
-        }
+//         }
 
-    }
-    collisionEvents.clear();
-}
+//     }
+//     collisionEvents.clear();
+// }
 
 
 std::shared_ptr<EntityFactory> ECSManager::shareFactory() {

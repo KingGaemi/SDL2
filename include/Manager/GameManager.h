@@ -1,16 +1,15 @@
 #pragma once
 #include "Events/EventManager.h"
+#include "Manager/SpawnManager.h"
 #include "Groups.h"
 #include <memory>
 
 
-class ECSManager;
 class EffectManager;
 
 class GameManager {
 
 public:
-	GameManager(std::shared_ptr<ECSManager>& ecsManager) : ecsManager(ecsManager) {}
 	int currentHour;
 	int currentMinute;
 	int currentRound;
@@ -28,11 +27,15 @@ public:
 		eventManager = p_eventManager;
 	}
 
+	void setSpawnManager(std::shared_ptr<SpawnManager>& p_spawnManaer){
+		spawnManager = p_spawnManaer;
+	}
+
 	SceneCode getCurrentScene();
 
 private:
-	std::shared_ptr<ECSManager> ecsManager;
 	std::shared_ptr<EventManager> eventManager;
 	std::shared_ptr<EffectManager> effectManager;
+	std::shared_ptr<SpawnManager> spawnManager;
 	SceneCode currentScene;
 };

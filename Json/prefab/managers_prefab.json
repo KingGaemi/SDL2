@@ -1,0 +1,11 @@
+{
+  "spawnManager": {
+    "components" : [
+      {
+        "name" : "SpawnerComponent",
+        "spawnName" : "orc1"
+      }
+    ]
+
+  }  
+}

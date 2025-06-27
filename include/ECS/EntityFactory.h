@@ -21,6 +21,7 @@ public:
         projectilesJson = json::parse(std::ifstream("json/prefab/projectiles_prefab.json"));
         itemsJson = json::parse(std::ifstream("json/prefab/items_prefab.json"));
         imagesJson = json::parse(std::ifstream("json/prefab/images_prefab.json"));
+        managersJson = json::parse(std::ifstream("json/prefab/managers_prefab.json"));
         registerComponentLoaders();
     }
     void configureEntity(const SpawnRequest& req, std::shared_ptr<Entity>& entity);
@@ -76,6 +77,7 @@ private:
     json projectilesJson;
     json itemsJson;
     json imagesJson;
+    json managersJson;
     std::size_t nextItemID = 0;
     std::shared_ptr<ECSManager> ecsManager;
     std::shared_ptr<GameManager> gameManager;

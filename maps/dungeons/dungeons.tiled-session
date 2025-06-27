@@ -1,0 +1,166 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx": {
+            "scale": 0.025976562499999998,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1270.3759398496243,
+                "y": 789.1729323308282
+            }
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#FD_Ground_Tiles": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#FD_Village": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#TX_plant": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#TX_player": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#TX_props": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#TX_shadow": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#TX_shadow_plant": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#TX_tileset_grass": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#TX_tileset_stone_ground": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#TX_tileset_wall": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#basicTile": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#foods": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#grassForRandom": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx#unitPresets": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeonTile.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/home2_amp.tmx": {
+            "scale": 0.041562499999999995,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 793.9849624060151,
+                "y": 806.0150375939847
+            }
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/home2_amp.tmx#TX_plant": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/home2_amp.tmx#TX_props": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/home2_amp.tmx#TX_shadow": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/home2_amp.tmx#TX_tileset_grass": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/home2_amp.tmx#unitPresets": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx": {
+            "scale": 0.025976562499999998,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1270.3759398496259,
+                "y": 769.9248120300763
+            }
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#FD_Ground_Tiles": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#FD_Village": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#TX_plant": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#TX_player": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#TX_props": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#TX_shadow": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#TX_shadow_plant": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#TX_tileset_grass": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#TX_tileset_stone_ground": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#TX_tileset_wall": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#basicTile": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#foods": {
+            "scaleInDock": 1
+        },
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx#unitPresets": {
+            "scaleInDock": 1
+        },
+        "dungeon_map.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 330,
+                "y": 421
+            }
+        },
+        "dungeon_tile.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeons",
+    "last.imagePath": "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeons",
+    "map.height": 80,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+    ],
+    "project": "dungeons.tiled-project",
+    "recentFiles": [
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/newResol2.tmx",
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/dungeon.tmx",
+        "C:/Users/geami/Desktop/Dev/Physics 2D Platformer SDL/maps/home2_amp.tmx",
+        "dungeon_map.tmx",
+        "dungeon_tile.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}

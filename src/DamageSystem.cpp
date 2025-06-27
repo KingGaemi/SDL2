@@ -39,17 +39,21 @@ void DamageSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float 
 }
 
 void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr<Entity> target) {
+
+	// find entity with DamageComponent
     if (attacker->hasComponent<DamageComponent>() && target->hasComponent<StatusComponent>()
     	&& attacker->hasComponent<TeamTag>() && target->hasComponent<TeamTag>()) {
         auto damageComp = attacker->getComponent<DamageComponent>();
         auto statusComp = target->getComponent<StatusComponent>();
         auto teamCompA = attacker->getComponent<TeamTag>();
         auto teamCompT = target->getComponent<TeamTag>();
-
+		
         if(!statusComp->isAlive) return;
         if(teamCompA->teamCode == teamCompT->teamCode) return;
-	    if (damageComp->hitTargets.count(target->getId()) != 0) return;
+	    if(damageComp->hitTargets.count(target->getId()) != 0) return;
 
+
+		// shake target in proportion to damage
 	    if(target->hasComponent<ShakeEffectComponent>()){
     		auto shakeComp = target->getComponent<ShakeEffectComponent>();
     		int maxHp = statusComp->maxHp;
@@ -60,21 +64,19 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
     		// if(shakeComp->shakeAmount >= )
     	}
 
-    	if(target->hasComponent<StateComponent>()){
-    		auto stateComp = target->getComponent<StateComponent>();
-    		stateComp->changeActionState(ActionStates::Hurt, 0.7f);
-    	}
+    	// if(target->hasComponent<StateComponent>()){
+    	// 	auto stateComp = target->getComponent<StateComponent>();
+    	// 	stateComp->changeActionState(ActionStates::Hurt, 0.7f);
+    	// }
 
-        statusComp->currentHp -= damageComp->damage;
-        statusComp->recentDamage += damageComp->damage;
-        statusComp->damagedRecently = true;
-        statusComp->timer = statusComp->recentTime;
+		// calculate damage(int)
+
+        statusComp->takeDamage(damageComp->damage);
         damageComp->hitTargets.insert(target->getId());
 
         if(attacker->hasComponent<SoundEffectComponent>() && target->hasComponent<SoundEffectComponent>()){
         	auto attackerSound = attacker->getComponent<SoundEffectComponent>();
         	auto attackerMaterial = attackerSound->bodyMaterial;
-
         	auto targetSound = target->getComponent<SoundEffectComponent>();
         	auto targetMaterial = targetSound->bodyMaterial;
 
@@ -88,18 +90,23 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
         }
         
         auto moveCommandComp = target->getComponent<MovementCommandComponent>();
-		if(moveCommandComp) {
-			MovementCommand moveCommand;
-			moveCommand.moveCommandType = MovementCommandType::Impulse;
-			// moveCommand.amount = damageComp->damage;
-			if(attacker->hasComponent<TransformComponent>()) {
-				auto transComp = attacker->getComponent<TransformComponent>();
-				if(transComp){
-					moveCommand.radian = transComp->radian;						
-				}
-			}
-			moveCommandComp->push(moveCommand);
-		}
+
+
+		// Temporarily Impulse deleted;
+		// if(moveCommandComp) {
+		// 	MovementCommand moveCommand;
+		// 	moveCommand.moveCommandType = MovementCommandType::Impulse;
+		// 	moveCommand.force = damageComp->knockBackForce;
+		// 	if(attacker->hasComponent<TransformComponent>()) {
+		// 		auto transComp = attacker->getComponent<TransformComponent>();
+		// 		if(transComp){
+		// 			moveCommand.radian = transComp->radian;						
+		// 		}
+		// 	}
+		// 	moveCommandComp->push(moveCommand);
+		// }
+
+
         if(statusComp->currentHp <= 0){
         	statusComp->currentHp = 0;
 	        if(target->hasComponent<StateComponent>()){
@@ -118,7 +125,6 @@ void DamageSystem::applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr
         			auto targetType = targetSound->typeMaterial;
         			soundManager->playEffect(targetType + "_death");
         		}    		
-        		
 	    	}
 			statusComp->isAlive = false;
         }

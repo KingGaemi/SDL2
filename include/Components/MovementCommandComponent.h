@@ -34,6 +34,8 @@ struct MovementCommand{
     int abilityNumber = 0;
     bool isClockwise = true;
     bool stopSpin = false;
+    float force = 1.0f;
+    
 };
 
 

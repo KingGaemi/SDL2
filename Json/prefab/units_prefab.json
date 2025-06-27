@@ -75,7 +75,7 @@
       {
         "name": "TransformComponent",
         "width": 32,
-        "height": 39,
+        "height": 34,
         "scale": 3.5
       },
       {
@@ -201,11 +201,11 @@
       },
       {
         "name": "StatusComponent",
-        "maxHp": 599,
-        "maxMp": 511,
+        "maxHp": 50,
+        "maxMp": 1,
         "attackSpeed": 0.8,
         "movementSpeed": 60,
-        "physicalDamage": 20
+        "physicalDamage": 10
       },
       {
         "name": "TeamTag",
@@ -462,8 +462,8 @@
         "width": 27,
         "height": 28,
         "scale": 2.0,
-        "offsetX": 13.5,
-        "offsetY": 14
+        "offsetX": 6,
+        "offsetY": 16
       },
       {
         "name": "StatusComponent",

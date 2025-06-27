@@ -58,8 +58,6 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 		if(!isHovered && (cursorManager->getCurrentCursor() != Cursors::Grab)) cursorManager->changeCursor(Cursors::Pointer);
 	}
 
-
-
 	// 키보드 이벤트
 	if(evt.type == EventType::KEYDOWN && !pressed[toInt(evt.key)]){
 		pressed[toInt(evt.key)] = true;
@@ -76,8 +74,14 @@ void EventSystem::handleEvent(const Event& evt, std::vector<std::shared_ptr<Enti
 	}
 
 	if(evt.type == EventType::KEYUP) pressed[toInt(evt.key)] = false;
+
   	direction = getDirection(evt);
 
+	if(evt.type == EventType::KEYDOWN && evt.key == KeyCode::Enter){
+		Event spawnEvent;
+		spawnEvent.type = EventType::WAVESTART;
+		eventManager->pushMiddleEvent(spawnEvent);
+	}
 
 	// 입력 이벤트의 주체(타겟) 지정
 	for(auto& entity : entities){

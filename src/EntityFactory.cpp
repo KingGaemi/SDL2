@@ -14,6 +14,7 @@ void EntityFactory::configureEntity(const SpawnRequest& req, std::shared_ptr<Ent
 	else if(req.entityType == EntityType::Object) j = objectsJson;
 	else if(req.entityType == EntityType::Item) j = itemsJson;
     else if(req.entityType == EntityType::Image) j = imagesJson;
+    else if(req.entityType == EntityType::Manager) j = managersJson;
 	else if(req.entityType == EntityType::Props){
 		makeProps(req);
 		return;

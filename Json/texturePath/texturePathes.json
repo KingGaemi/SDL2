@@ -164,6 +164,41 @@
       "path": "res/gfx/stage_clear.png",
       "textureId": "stage_clear",
       "type": "image"
+    },
+    {
+      "path": "res/gfx/stage_clear.png",
+      "textureId": "stage_clear",
+      "type": "image"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/object/props/pillar1.png",
+      "textureId": "pillar1",
+      "type": "object"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/object/props/pillar1-shadow.png",
+      "textureId": "pillar1-shadow",
+      "type": "object"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/object/props/pillar2.png",
+      "textureId": "pillar2",
+      "type": "object"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/object/props/pillar2-shadow.png",
+      "textureId": "pillar2-shadow",
+      "type": "object"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/object/props/pillar3.png",
+      "textureId": "pillar3",
+      "type": "object"
+    },
+    {
+      "path": "res/gfx/sprite_sheets/object/props/pillar3-shadow.png",
+      "textureId": "pillar3-shadow",
+      "type": "object"
     }
   ]
 }

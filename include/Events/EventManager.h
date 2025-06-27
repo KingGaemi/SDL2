@@ -19,6 +19,7 @@ enum class EventType {
 	PAUSE,
 	RESUME,
 	GAMEOVER,
+	WAVESTART,
     UNKNOWN
 };
 

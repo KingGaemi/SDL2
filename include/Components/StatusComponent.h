@@ -99,6 +99,13 @@ public:
 		std::cout << "exp : "<< exp << std::endl;
 	}
 
+	void takeDamage(int amount){
+		currentHp -= amount;
+        recentDamage += amount;
+        damagedRecently = true;
+        timer = recentTime;
+	}
+
 private:
 
 

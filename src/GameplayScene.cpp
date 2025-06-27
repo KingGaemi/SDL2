@@ -13,16 +13,15 @@
 void GameplayScene::onEnter(){
 
 	if(mapManager){
-		mapManager->loadMap("maps/newResol44.tmj");
+		mapManager->loadMap("maps/renew_defense_map.tmj");
 		mapManager->enterMap = true;
 	}
-
 	SpawnRequest req;
 
 	req.entityType = EntityType::Camera;
 	req.name = "camera";
 	ecsManager->pendingSpawns.push_back(req);
-	
+
 
 	std::cout << "GameplayScene initialized!" << std::endl;
 
