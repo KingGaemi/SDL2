@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
-#include <ECS/ECSManager.h>
-#include "Requests.h"
+#include "engine/ecs/core/ECSCoordinator.h"
+#include "engine/factory/Requests.h"
 
 struct MonsterWave{
 

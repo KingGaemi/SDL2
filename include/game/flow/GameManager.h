@@ -1,7 +1,7 @@
 #pragma once
-#include "Events/EventManager.h"
-#include "Manager/SpawnManager.h"
-#include "Groups.h"
+#include "engine/event/EventManager.h"
+#include "game/gameplay/spawn/SpawnManager.h"
+#include "game/gameplay/"
 #include <memory>
 
 

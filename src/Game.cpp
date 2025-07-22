@@ -1,6 +1,4 @@
-
-#include "Game.h"
-
+#include "game/app/Game.h"
 
 Game::Game() : window(nullptr),  isRunning(false), lastFrameTime(0) {}
 

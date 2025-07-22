@@ -2,7 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "ecs/Entity.h"
+#include "engine/ecs/core/Entity.h"
 
 
 enum class Cursors{
