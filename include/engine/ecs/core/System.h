@@ -1,17 +1,31 @@
 #pragma once
-
+#include <cstddef>
 #include <vector>
-#include <memory>
+#include "Types.h"
 
-// 전방 선언(Include 최소화)
-class Entity;
+class ComponentManager;
+class EntityManager;
+
+
 
 class System {
+protected:
+  ComponentManager* compMgr;
+  EntityManager*   entityMgr;
+  const std::vector<ecs::EntityID>& entities;
+
 public:
+    System(ComponentManager* cm,
+         EntityManager* em,
+         const std::vector<ecs::EntityID>& ents)
+    : compMgr(cm)
+    , entityMgr(em)
+    , entities(ents)
+    {}
+
     virtual ~System() = default;
     virtual void update(float deltaTime) = 0;
 };
-
 
 // 컴포넌트 타입 ID를 위한 유틸리티
 using SystemTypeID = std::size_t;

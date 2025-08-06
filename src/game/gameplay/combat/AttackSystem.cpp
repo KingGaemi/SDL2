@@ -15,7 +15,7 @@
 
 
 
-void AttackSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+void AttackSystem::update(float deltaTime){
 
 	AttackEvent event;
 	while(eventManager->pollAttackEvent(event)){

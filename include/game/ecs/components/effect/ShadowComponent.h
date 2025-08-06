@@ -1,7 +1,7 @@
 #pragma once
 #include "engine/ecs/core/Component.h"
 
-#include "Rect.h"
+#include "engine/math/Rect.h"
 #include <string>
 #include <cmath>
 

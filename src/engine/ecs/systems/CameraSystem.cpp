@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-void CameraSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+void CameraSystem::update(float deltaTime){
 
 	for(auto& entity: entities){
 		if(entity->hasComponent<PlayerTag>()) playerEntity = entity;			

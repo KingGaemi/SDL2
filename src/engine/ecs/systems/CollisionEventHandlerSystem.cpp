@@ -4,7 +4,7 @@
 #include "Groups.h"
 #include <iostream>
 
-void CollisionEventHandlerSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+void CollisionEventHandlerSystem::update(float deltaTime){
 
 	auto& collisionEvents = ecsManager->getCollisionEvents();
 

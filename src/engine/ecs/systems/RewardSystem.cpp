@@ -2,7 +2,7 @@
 #include "Systems/RewardSystem.h"
 #include "Components/StatusComponent.h"
 
-void RewardSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+void RewardSystem::update(float deltaTime){
 
 	// KillEvent killEvent;
 	// while(eventManager->pollKillEvent(killEvent)){

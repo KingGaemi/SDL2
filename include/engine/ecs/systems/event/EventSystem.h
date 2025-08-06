@@ -1,6 +1,6 @@
 #pragma once
-#include "ecs/System.h"
-#include "Events/EventManager.h"
+#include "engine/ecs/core/System.h"
+#include "engine/event/EventManager.h"
 #include "Manager/CursorManager.h"
 #include "Components/DirectionComponent.h"
 #include "engine/input/KeyCode.h"
@@ -18,7 +18,7 @@ public:
 
 	}  
 
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
+	void update(float deltaTime) override;
 
 	void handleEvent(const Event& evt, std::vector<std::shared_ptr<Entity>>&entities);
 

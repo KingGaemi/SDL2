@@ -39,7 +39,7 @@ class MapManager{
 
 
 public:
-	MapManager(std::shared_ptr<ECSManager> ecsManager) : ecsManager(ecsManager) {}
+	MapManager() : () {}
 	void init();
 	void loadMap(const std::string& mapPath);
 	void parseTileLayer(const json& layerJson);

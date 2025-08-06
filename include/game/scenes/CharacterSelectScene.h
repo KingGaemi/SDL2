@@ -1,8 +1,8 @@
 #pragma once
 #include "Manager/GameManager.h"
 #include "Scene.h"
-#include "Requests.h"
-#include "Groups.h"
+#include "engine/event/Requests.h"
+#include "game/ecs/components/tags/Groups.h"
 
 
 

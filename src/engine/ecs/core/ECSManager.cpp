@@ -109,49 +109,6 @@ void ECSManager::processSpawnRequests() {
     pendingProjectiles.clear();   
 }
 
-// void ECSManager::processCollisionEvents(){
-
-//     for(auto& evt : collisionEvents){
-
-//         if(evt.type == CollisionType::Crash){
-            
-
-//         }else if(evt.type == CollisionType::Hit){
-
-//             // std::cout << evt.entityA->getId() << " hits " << evt.entityB->getId() << std::endl;
-
-//         }
-
-//     }
-//     collisionEvents.clear();
-// }
-
-
-std::shared_ptr<EntityFactory> ECSManager::shareFactory() {
-    return entityFactory;
-}
-
-void ECSManager::setFactory(std::shared_ptr<EntityFactory>& factory){
-    entityFactory = factory;
-}
-
-void ECSManager::setEntityName(std::shared_ptr<Entity> entity, const std::string& name) {
-    if (entityByName.find(name) != entityByName.end()) {
-        // 이름 중복 경고
-        return;
-    }
-    entityNames[entity] = name;
-    entityByName[name] = entity;
-}
-
-std::shared_ptr<Entity> ECSManager::getEntityByName(const std::string& name) {
-    auto it = entityByName.find(name);
-    if (it != entityByName.end()) {
-        return it->second;
-    }
-    return nullptr;
-}
-
 void ECSManager::processTerminatedEntities(){
     for (auto& entity : entities){
         if(entity&&entity->terminate) {
@@ -200,7 +157,6 @@ void ECSManager::activeMapEntity(){
 
 void ECSManager::makeCamera(){
     cameraEntity = createEntity();
-    setEntityName(cameraEntity, "camera");
     cameraEntity->addComponent<SceneTag>(SceneCode::Game);
     cameraEntity->addComponent<TransformComponent>();
     cameraEntity->addComponent<PositionComponent>(1.0f, 1.0f);

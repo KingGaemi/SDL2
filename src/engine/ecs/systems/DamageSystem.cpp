@@ -12,7 +12,7 @@
 
 
 
-void DamageSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+void DamageSystem::update(float deltaTime){
 
 	auto& collisionEvents = ecsManager->getCollisionEvents();
 

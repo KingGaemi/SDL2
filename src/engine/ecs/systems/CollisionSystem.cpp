@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+void CollisionSystem::update(float deltaTime){
     auto colliders = getColliders(entities);
 
     if(!colliders.empty()){

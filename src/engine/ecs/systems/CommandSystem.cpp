@@ -12,7 +12,7 @@
 
 
 
-void CommandSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+void CommandSystem::update(float deltaTime){
 
 
 	for(auto& entity : entities){

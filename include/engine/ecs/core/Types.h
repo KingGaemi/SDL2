@@ -12,7 +12,7 @@ namespace ecs {
 
     using EntityID        = std::size_t;
     using ComponentTypeID = std::size_t;
-
+    using SystemTypeID = std::size_t;
     using ComponentBitSet = std::bitset<MAX_COMPONENTS>;
     using ComponentArray = std::array<std::shared_ptr<Component>, MAX_COMPONENTS>;
 }

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ecs/Entity.h"
-#include "ecs/ECSManager.h"
-#include "ecs/System.h"
+#include "engine/ecs/core/Entity.h"
+#include "engine/ecs/core/ECSCoordinator.h"
+#include "engine/ecs/core/System.h"
 
 
 
@@ -16,7 +16,7 @@ public:
 
 	CollisionSystem(std::shared_ptr<ECSManager> ecsManager) : ecsManager(ecsManager) {}
 
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
+	void update(float deltaTime) override;
 	std::vector<std::shared_ptr<Entity>> getColliders(std::vector<std::shared_ptr<Entity>>& entities);
 	std::vector<std::shared_ptr<Entity>> getSolidColliders(std::vector<std::shared_ptr<Entity>>& entities);
 	void updateCollidersPosition(std::vector<std::shared_ptr<Entity>>& colliders);

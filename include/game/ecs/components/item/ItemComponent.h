@@ -1,7 +1,7 @@
 #pragma once
 #include "engine/ecs/core/Component.h"
 
-#include "ecs/Entity.h"
+#include "engine/ecs/core/Entity.h"
 #include <vector>
 
 

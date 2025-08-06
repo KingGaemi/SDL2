@@ -1,8 +1,8 @@
 #pragma once 
-#include "ecs/System.h"
-#include "ecs/Entity.h"
-#include "ecs/ECSManager.h"
-#include "Requests.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/core/Entity.h"
+#include "engine/ecs/core/ECSCoordinator.h"
+#include "engine/event/Requests.h"
 #include <random>
 
 

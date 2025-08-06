@@ -8,7 +8,7 @@
 
 
 
-void MovementSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) {
+void MovementSystem::update(float deltaTime) {
 
     for (auto& entity : entities) {
 

@@ -1,24 +1,21 @@
 #pragma once
 
-#include "ecs/System.h"
-#include "ecs/ECSManager.h"
-#include "Components/LifeTimeComponent.h"
-#include "Components/StatusComponent.h"
-#include "Components/AnimationComponent.h"
-#include "Components/StateComponent.h"
-#include "Components/ProjectileComponent.h"
-#include "Components/HpBarComponent.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/core/ECSCoordinator.h"
+#include "engine/ecs/components/flow/LifeTimeComponent.h"
 #include <iostream>
 
 
-
-
-class ExpireSystem : public System{
+class LifeTimeExpireSystem : public System{
 
 
 public:
-
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override {
+	LifeTimeExpireSystem(ComponentManager* cm,
+                         EntityManager* em,
+                         const std::vector<EntityID>& ents)
+      : System(cm, em, ents) {}
+	  
+	void update(float deltaTime) override {
 
 		for(auto& entity : entities){
 			if(!entity->isActive) continue;

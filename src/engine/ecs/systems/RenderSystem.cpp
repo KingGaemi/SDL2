@@ -36,7 +36,7 @@ SDL_Rect RenderSystem::toSDLRect(const Rect& r) {
 
 
 
-void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) {
+void RenderSystem::update(float deltaTime) {
     // 화면 클리어    
     cameraEntity = ecsManager->getCamera();
     std::vector<std::shared_ptr <Entity>> renderables;

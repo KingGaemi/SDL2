@@ -1,8 +1,8 @@
-#include "Systems/WorldRenderSystem.h"
+#include "game/ecs/systems/rendering/WorldRenderSystem.h"
 
 
 
-void WorldRenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) {
+void WorldRenderSystem::update(float deltaTime) {
     renderer->clear(); 
 
     std::shared_ptr <Entity> currentMap;

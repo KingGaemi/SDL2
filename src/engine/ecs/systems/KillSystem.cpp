@@ -5,7 +5,7 @@
 #include "Groups.h"
 
 
-void KillSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+void KillSystem::update(float deltaTime){
 
 	for(auto& entity : entities){
 		if(entity->hasComponent<StatusComponent>()){

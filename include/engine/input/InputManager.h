@@ -3,7 +3,7 @@
 #include <vector>
 #include <memory>
 #include <SDL2/SDL.h>
-#include "Events/EventManager.h"
+#include "engine/event/EventManager.h"
 
 
 class InputManager {

@@ -1,16 +1,16 @@
 #pragma once
 
-#include "ecs/Entity.h"
-#include "ecs/System.h"
-#include "Components/AnimationComponent.h"
-#include "Components/SpriteComponent.h"
+#include "engine/ecs/core/Entity.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/components/rendering/SpriteComponent.h"
+#include "game/ecs/components/animation/AnimationComponent.h"
 
 
 class AnimationSystem : public System {
 
 
 public:
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
+	void update(float deltaTime) override;
 
 private:
 

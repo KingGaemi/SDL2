@@ -1,11 +1,10 @@
 #pragma once
-
-#include "ecs/Entity.h"
-#include "ecs/System.h"
-#include "ecs/ECSManager.h"
-#include "Events/EventManager.h"
-#include "Manager/SoundManager.h"
-#include "Requests.h"
+#include "engine/ecs/core/Entity.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/core/ECSCoordinator.h"
+#include "engine/event/EventManager.h"
+#include "engine/event/Requests.h"
+#include "engine/audio/SoundManager.h"
 
 // struct AttackEvent {
 //     int attackerId;         // 공격자 엔티티 ID
@@ -27,7 +26,7 @@ class AttackSystem : public System {
 
 public:
 	AttackSystem(std::shared_ptr<ECSManager>& ecsManager, std::shared_ptr<EventManager>& eventManager, std::shared_ptr<SoundManager>& soundManager) : ecsManager(ecsManager), eventManager(eventManager), soundManager(soundManager) {}
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
+	void update(float deltaTime) override;
     void teskEvent(const AttackEvent& event);
     void castSpell(const AttackEvent& event);
     void basicAttack(const AttackEvent& event);

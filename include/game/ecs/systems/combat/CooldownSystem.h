@@ -1,8 +1,7 @@
 #pragma once
-
-#include "ecs/System.h"
-#include "ecs/ECSManager.h"
-#include "Components/CooldownComponent.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/core/ECSCoordinator.h"
+#include "game/ecs/components/combat/CooldownComponent.h"
 
 
 
@@ -16,7 +15,7 @@ public:
 
 	// CooldownSystem(std::shared_ptr<ECSManager> ecsManager) : ecsManager(ecsManager) {}
 
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override {
+	void update(float deltaTime) override {
 
 		for(auto& entity : entities){
 

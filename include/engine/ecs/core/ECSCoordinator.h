@@ -1,4 +1,3 @@
-// ECSManager.h
 #pragma once
 #include <memory>
 #include <vector>
@@ -10,35 +9,6 @@
 #include "engine/ecs/core/SystemManager.h"
 #include "engine/event/EventManager.h"
 #include "engine/factory/EntityFactory.h"
-#include "Entity.h"
-#include "System.h"
-
-
-enum class SystemGroup {
-    Logic,
-    Render,
-    UI,
-    Event
-};
-
-enum class CollisionType {
-    Crash,
-    Hit
-};
-
-
-struct SystemRegistration {
-    std::shared_ptr<System> system;
-    SystemGroup group;
-    int priority; // 그룹 내 우선순위
-};
-
-struct CollisionEvent {
-    CollisionType type;
-    std::shared_ptr<Entity> entityA;
-    std::shared_ptr<Entity> entityB;
-};
-
 
 class ECSCoordinator {
 public:
@@ -79,20 +49,12 @@ public:
         sysMgr->addSystem<S>(g, prio, std::forward<Args>(a)...);
     }
     void update(float dt) {
-        sysMgr->updateLogic(dt);
-        sysMgr->updateEvent(dt);
+        sysMgr->update(dt);
     }
-
-    void render(float dt) {
-        sysMgr->render(dt);
-        sysMgr->renderUI(dt);
-    }
-
 
     void pushEvent(const Event& e) {
-      eventMgr->push(e);
+      eventMgr->pushEvent(e);
     }
-
 
     void updateSystems(float deltaTime);
     void renderSystems(float deltaTime);
@@ -111,17 +73,15 @@ public:
     void processTerminatedEntities();
     void cleanUpEntities();
     void cleanUpAllEntities();
-    void cleanUpEntitiesByScene(SceneCode sceneCode);
     void activeMapEntity();
     void makeCamera();
-    void pauseGame();
 
     std::shared_ptr<Entity> getCamera();
     // 엔티티 이름 관리 (선택 사항)
 
     std::vector<SpawnRequest> pendingSpawns;
     std::vector<ProjectileRequest> pendingProjectiles;
-    std::vector<CollisionEvent> collisionEvents;
+    // std::vector<CollisionEvent> collisionEvents;
 
 private:
     std::shared_ptr<EntityManager>    entityMgr;
@@ -130,7 +90,6 @@ private:
     std::shared_ptr<EntityFactory>    factory;
     std::shared_ptr<EventManager>     eventMgr;
     // std::shared_ptr<Entity> mapEntity;
-    std::shared_ptr<Entity> cameraEntity;
     // 이름 관리 (원한다면 유지)
 
     bool activeMap = false;

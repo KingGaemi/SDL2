@@ -1,9 +1,9 @@
 #pragma once
 
-#include "ecs/System.h"
-#include "ecs/Entity.h"
-#include "Requests.h"
-#include "Rect.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/core/Entity.h"
+#include "engine/event/Requests.h"
+#include "engine/math/Rect.h"
 #include "TextureManager.h"
 #include "EffectManager.h"
 
@@ -16,7 +16,7 @@ class EffectSystem : public System{
 public:
 	
 	EffectSystem(std::shared_ptr<EffectManager> effectManager) : effectManager(effectManager) {}
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
+	void update(float deltaTime) override;
 
 	void floatingEffect(std::shared_ptr<Entity>& entity, float deltaTime);
 	// void hpBarControl(std::shared_ptr<Entity>& hpGage, std::shared_ptr<Entity>& player);

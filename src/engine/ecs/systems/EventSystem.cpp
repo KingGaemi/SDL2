@@ -13,7 +13,7 @@
 #include <string>
 
 
-void EventSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+void EventSystem::update(float deltaTime){
 
 	if(leftDoubleTapTime > 0){
 		leftDoubleTapTime -= deltaTime;

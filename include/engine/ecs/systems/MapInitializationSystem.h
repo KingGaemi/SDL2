@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ecs/System.h"
-#include "ecs/Entity.h"
-#include "Components/MapComponent.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/core/Entity.h"
+#include "game/map/MapComponent.h"
 
 
 
@@ -11,7 +11,7 @@ class MapInitializationSystem : public System{
 
 public:
 
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+	void update(float deltaTime){
 		for(auto& entity : entities){
 			entity->hasComponent<MapComponent>();
 		}

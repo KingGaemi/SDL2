@@ -1,6 +1,6 @@
 #pragma once
-#include "ecs/System.h"
-#include "ecs/Entity.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/core/Entity.h"
 #include <random>
 
 struct AIModule;

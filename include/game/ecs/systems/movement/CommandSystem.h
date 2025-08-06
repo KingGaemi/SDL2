@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ecs/System.h"
-#include "ecs/Entity.h"
-#include "Events/EventManager.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/core/Entity.h"
+#include "engine/event/EventManager.h"
 
 
 
@@ -14,7 +14,7 @@ class CommandSystem : public System {
 
 public:
 	CommandSystem(std::shared_ptr<EventManager>& eventManager): eventManager(eventManager) {}
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
+	void update(float deltaTime) override;
 
 
 

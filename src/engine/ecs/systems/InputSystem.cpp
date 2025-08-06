@@ -11,7 +11,7 @@
 
 
 
-void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+void InputSystem::update(float deltaTime){
 
    
 

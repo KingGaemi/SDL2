@@ -7,7 +7,7 @@
 #include <string>
 
 
-void MiddleEventSystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime){
+void MiddleEventSystem::update(float deltaTime){
 	Event evt;
 	while(eventManager->pollMiddleEvent(evt)){
 		handleMiddleEvent(evt, entities);

@@ -1,15 +1,15 @@
 #pragma once
 
-#include "ecs/Entity.h"
-#include "ecs/System.h"
-#include "ecs/ECSManager.h"
+#include "engine/ecs/core/Entity.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/core/ECSCoordinator.h"
 #include "Components/SpriteComponent.h"
 #include "Components/TransformComponent.h"
 #include "Components/ColliderComponent.h"
-#include "Components/AnimationComponent.h"
-#include "Components/StatusComponent.h"
+#include "game/ecs/components/animation/AnimationComponent.h"
+#include "game/ecs/components/status/StatusComponent.h"
 #include "Components/ItemComponent.h"
-#include "Components/ProjectileComponent.h"
+#include "game/ecs/components/combat/ProjectileComponent.h"
 #include <iostream>
 
 
@@ -19,7 +19,7 @@ class SyncSystem : public System {
 
 
 public:
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override {
+	void update(float deltaTime) override {
 
 		for(auto& entity : entities){
 			if(!entity->isActive) return;

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "ecs/System.h"
-#include "ecs/ECSManager.h"
-#include "ecs/Entity.h"
-#include "Manager/SoundManager.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/core/ECSCoordinator.h"
+#include "engine/ecs/core/Entity.h"
+#include "engine/audio/SoundManager.h"
 #include <unordered_set>
 
 
@@ -30,7 +30,7 @@ class DamageSystem : public System{
 public:
 	DamageSystem(std::shared_ptr<ECSManager> ecsManager, std::shared_ptr<EventManager> eventManager, std::shared_ptr<SoundManager> soundManager) : ecsManager(ecsManager), eventManager(eventManager), soundManager(soundManager) {}
 
-	void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
+	void update(float deltaTime) override;
 	void applyDamage(std::shared_ptr<Entity> attacker, std::shared_ptr<Entity> target);
     void getReward(std::shared_ptr<Entity> attacker, std::shared_ptr<Entity> target);
 

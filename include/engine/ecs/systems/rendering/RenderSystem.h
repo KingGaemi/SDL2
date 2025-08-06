@@ -1,12 +1,12 @@
 #pragma once
 
-#include "ecs/System.h"
-#include "ecs/Entity.h"
-#include "ecs/ECSManager.h"
-#include "Groups.h"
-#include "Requests.h"
-#include "TextureManager.h"
-#include "EffectManager.h"
+#include "engine/ecs/core/System.h"
+#include "engine/ecs/core/Entity.h"
+#include "engine/ecs/core/ECSCoordinator.h"
+#include "game/ecs/components/tags/Groups.h"
+#include "engine/event/Requests.h"
+#include "engine/rendering/TextureManager.h"
+#include "game/effect/EffectManager.h"
 
 #include <string>
 #include <vector>
@@ -26,7 +26,7 @@ public:
     bool debugMode = false;
 
 	RenderSystem(Renderer& renderer, std::shared_ptr<ECSManager>& ecsManager, std::shared_ptr<EffectManager> effectManager) : renderer(&renderer), textureManager(nullptr), ecsManager(ecsManager), effectManager(effectManager) {}
-    void update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) override;
+    void update(float deltaTime) override;
     std::pair<int, int> getTextureSize(const std::string& textureID);
     void setTextureManager(TextureManager& p_textureManager); 
     SDL_FRect toSDLFRect(const FRect& r);

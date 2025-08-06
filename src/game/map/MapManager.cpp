@@ -1,7 +1,7 @@
-#include "MapManager.h"
-#include "Components/MapComponent.h"
+#include "engine/math/myMath.h"
+#include "game/map/MapManager.h"
+#include "game/map/MapComponent.h"
 #include <cmath>
-#include "myMath.h"
 
 
 
@@ -12,8 +12,6 @@ void MapManager::init(){
     auto mapEntity = ecsManager->createEntity();
     mapEntity->addComponent<MapComponent>("dungeon_map");
     mapEntities.push_back(mapEntity);
-   
-
 }
 
 

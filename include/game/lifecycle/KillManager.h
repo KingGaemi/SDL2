@@ -1,5 +1,5 @@
 #pragma once
-#include "ecs/Entity.h"
+#include "engine/ecs/core/Entity.h"
 #include <queue>
 
 

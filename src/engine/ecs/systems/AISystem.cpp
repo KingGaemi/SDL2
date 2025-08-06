@@ -13,7 +13,7 @@
 
 #include "Groups.h"
 
-void AISystem::update(std::vector<std::shared_ptr<Entity>>& entities, float deltaTime) 
+void AISystem::update(float deltaTime) 
 {
     // 1) 모든 엔티티 순회
     for (auto& entity : entities) {
